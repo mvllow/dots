@@ -32,7 +32,8 @@
     }
   ],
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Nord",
+  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "none"
