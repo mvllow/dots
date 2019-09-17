@@ -1,3 +1,5 @@
+export GPG_TTY=$(tty)
+
 if [ nvim ]; then
 	alias vi='nvim'
 fi
