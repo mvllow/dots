@@ -1,0 +1,21 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+
+brew "fd"
+brew "fzf"
+brew "go"
+brew "mas"
+brew "neovim"
+brew "node"
+brew "the_silver_searcher"
+brew "yarn"
+
+cask "1password"
+cask "google-chrome-canary"
+cask "hyper"
+cask "visual-studio-code-insiders"
+
+mas "Magnet", id: 441258766
+mas "Xcode", id: 497799835

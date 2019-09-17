@@ -1,0 +1,32 @@
+{
+  "breadcrumbs.enabled": false,
+  "editor.folding": false,
+  "editor.fontFamily": "SF Mono, SFMono-Regular",
+  "editor.fontSize": 12,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.renderIndentGuides": false,
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.suggest.showIcons": false,
+  "editor.tabSize": 2,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "git.autofetch": true,
+  "terminal.integrated.fontSize": 12,
+  "vim.handleKeys": {
+    "<D-c>": false
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Nord",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.tree.indent": 16,
+  "workbench.tree.renderIndentGuides": "none"
+}
