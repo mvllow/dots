@@ -1,0 +1,14 @@
+{
+  "in_process_packages": [],
+  "installed_packages": [
+    "A File Icon",
+    "ayu",
+    "JsPrettier",
+    "Naomi",
+    "Package Control",
+    "SublimeLinter",
+    "SublimeLinter-eslint",
+    "Svelte",
+    "TypeScript"
+  ]
+}

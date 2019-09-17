@@ -4,6 +4,7 @@ app_dir=$(mktemp -d)
 app_repo=https://github.com/mvllow/dots.git
 app_config=~/.config/mvllow/dots
 
+subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 code_user_dir=$HOME/Library/Application\ Support/Code/User
 code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
@@ -133,6 +134,13 @@ set_app_prefs() {
     code-insiders --install-extension ms-vscode.go > /dev/null 2>&1;
     code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
+  fi
+
+  if [ $(which subl) ]; then
+    mkdir -p "$subl_user_dir"
+    cp "$app_dir/sublime/keymap.json" "$subl_user_dir/Default\ \(OSX\).sublime-keymap"
+    cp "$app_dir/sublime/packages.json" "$subl_user_dir/Package\ Control.sublime-settings"
+    cp "$app_dir/sublime/settings.json" "$subl_user_dir/Preferences.sublime-settings"
   fi
 }
 
