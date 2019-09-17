@@ -2,6 +2,19 @@
 
 # Minimalist developer
 
+## Getting started
+
+- Assumes a fresh install of macOS Catalina
+- Else, low attachment to your current settings (there are NO backups)
+
+The setup script will install and configure a minimal amount of applications, command line tools, and other packages.
+
+Packages not found in the repo's `brewfile` will be purged.
+
+```sh
+$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
+```
+
 ## Signing GitHub commits with GPG
 
 ```sh
