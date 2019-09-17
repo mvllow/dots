@@ -55,9 +55,22 @@ use-agent
 
 ### Troubleshooting
 
+**Restart GPG agent**
+
+```
+# Kill agent, it will start again when needed
+$ gpgconf --kill gpg-agent
+```
+
+**Test GPG signing**
+
+Pinentry-mac should popup, allowing you to save your password to the keychain. Otherwise, restart the agent and try again.
+
 ```
 # Test GPG signing
 $ echo "test" | gpg --clearsign
 ```
+
+**Error messages**
 
 `Inappropriate ioctl for device` can usually be fixed by adding `export GPG_TTY=$(tty)` to the top of your profile.
