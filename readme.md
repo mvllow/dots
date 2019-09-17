@@ -59,3 +59,5 @@ use-agent
 # Test GPG signing
 $ echo "test" | gpg --clearsign
 ```
+
+`Inappropriate ioctl for device` can usually be fixed by adding `export GPG_TTY=$(tty)` to the top of your profile.
