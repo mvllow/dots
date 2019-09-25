@@ -1,51 +1,40 @@
 {
-	"binary_file_patterns":
-	[
-		"*.jpg",
-		"*.jpeg",
-		"*.png",
-		"*.gif",
-		"*.ttf",
-		"*.tga",
-		"*.dds",
-		"*.ico",
-		"*.eot",
-		"*.pdf",
-		"*.swf",
-		"*.jar",
-		"*.zip",
-		"node_modules/",
-		"dist/",
-		".*/"
-	],
-	"color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
-	"detect_indentation": false,
-	"disable_tab_width_auto_detection": true,
-	"font_face": "SF Mono",
-	"font_size": 13,
-	"ignored_packages":
-	[
-		""
-	],
-	"indent_guide_options":
-	[
-		"draw_active"
-	],
-	"js_prettier":
-	{
-		"additional_cli_args":
-		{
-			"--config-precedence": "file-override",
-			"--plugin-search-dir": "$folder"
-		},
-		"auto_format_on_save": true,
-		"custom_file_extensions":
-		[
-			"svelte"
-		]
-	},
-	"line_padding_bottom": 3,
-	"line_padding_top": 3,
-	"theme": "ayu-mirage.sublime-theme",
-	"translate_tabs_to_spaces": true
+  "binary_file_patterns": [
+    "*.jpg",
+    "*.jpeg",
+    "*.png",
+    "*.gif",
+    "*.ttf",
+    "*.tga",
+    "*.dds",
+    "*.ico",
+    "*.eot",
+    "*.pdf",
+    "*.swf",
+    "*.jar",
+    "*.zip",
+    "node_modules/",
+    "dist/",
+    ".*/"
+  ],
+  "color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+  "detect_indentation": false,
+  "disable_tab_width_auto_detection": true,
+  "font_face": "SF Mono",
+  "font_size": 13,
+  "ignored_packages": [""],
+  "indent_guide_options": ["draw_active"],
+  "js_prettier": {
+    "additional_cli_args": {
+      "--config-precedence": "file-override",
+      "--plugin-search-dir": "$folder"
+    },
+    "auto_format_on_save": true,
+    "custom_file_extensions": ["svelte"]
+  },
+  "line_padding_bottom": 3,
+  "line_padding_top": 3,
+  "tab_size": 2,
+  "theme": "ayu-mirage.sublime-theme",
+  "translate_tabs_to_spaces": true
 }
