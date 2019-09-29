@@ -97,10 +97,6 @@ set_app_prefs() {
     cp -r "$app_dir/.hyper.js" ~/.hyper.js
   fi
 
-  # todo: check for iterm
-  mkdir -p "$app_config/iterm"
-  cp -r "$app_dir/iterm/com.googlecode.iterm2.plist" "$app_config/iterm"
-
   if ! [ -e ~/.vim/pack/minpac ]; then
     git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
   fi
