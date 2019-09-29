@@ -118,9 +118,10 @@ set_app_prefs() {
 
     code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
+    code --install-extension fallenwood.viml > /dev/null 2>&1;
     code --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code --install-extension ms-python.python > /dev/null 2>&1;
+    code --install-extension juliettepretot.lucy-vscode > /dev/null 2>&1;
     code --install-extension ms-vscode.go > /dev/null 2>&1;
     code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
@@ -132,9 +133,10 @@ set_app_prefs() {
 
     code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
+    code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
     code-insiders --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code-insiders --install-extension ms-python.python > /dev/null 2>&1;
+    code-insiders --install-extension juliettepretot.lucy-vscode > /dev/null 2>&1;
     code-insiders --install-extension ms-vscode.go > /dev/null 2>&1;
     code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
