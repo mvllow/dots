@@ -14,10 +14,10 @@ if [ git ]; then
 	alias chop='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 fi
 
-# todo: find performant way to check for pure-prompt npm package
+# TODO: Find performant way to check for pure-prompt npm package
 # 			`npm list -g` is painfully slow
-	autoload -U promptinit; promptinit
-	prompt pure
+autoload -U promptinit; promptinit
+prompt pure
 
 if [ -f ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
 	source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

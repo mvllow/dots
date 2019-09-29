@@ -19,7 +19,7 @@ let mapleader=','
 
 " ALE
 "
-" lint and fix javascript/svelte/prettier-supported langs
+" Lint and fix javascript/svelte/prettier-supported langs
 "
 let g:ale_fix_on_save = 1
 let g:ale_fixers = { 'javascript': ['eslint', 'prettier'], 'svelte': ['eslint', 'prettier'] }
@@ -31,13 +31,13 @@ let g:ale_sign_error = '✖'
 
 " Golang
 "
-" disable conflicting `K` keybind
+" Disable conflicting `K` keybind
 "
 let g:go_doc_keywordprg_enabled = 0
 
 " Appearance
 " 
-" attemps to set transparent sign column, fallback to black
+" Attemps to set transparent sign column, fallback to black
 "
 syntax on
 set noshowmode
@@ -50,16 +50,16 @@ colorscheme nord
 
 " Splits
 "
-" splitbelow | default vertical split to below (vs above)
-" splitright | default horizontal split to right (vs left)
+" splitbelow | Default vertical split to below (vs above)
+" splitright | Default horizontal split to right (vs left)
 set splitbelow
 set splitright
 
 " Vim files
 "
-" noswapfile | do not create swap files
-" viminfo    | do not create ~/.viminfo
-" undofile   | enable persistent undo...
+" noswapfile | Do not create swap files
+" viminfo    | Do not create ~/.viminfo
+" undofile   | Enable persistent undo...
 " undodir    | ...and save states in ~/.vim/undo
 "
 set noswapfile
@@ -69,11 +69,11 @@ set undodir=~/.vim/undo
 
 " Tabs and spacing
 "
-" tabstop     | amount of indentation per tab byte 
-" shiftwidth  | same as tabstop except when manually indenting via `>>`
-" expandtab   | prefer spaces over tabs
-" autoindent  | auto indent on new lines or where otherwise appropriate
-" smartindent | same as autoindent except reacts to current syntax/style
+" tabstop     | Amount of indentation per tab byte 
+" shiftwidth  | Same as tabstop except when manually indenting via `>>`
+" expandtab   | Prefer spaces over tabs
+" autoindent  | Auto indent on new lines or where otherwise appropriate
+" smartindent | Same as autoindent except reacts to current syntax/style
 "
 set tabstop=2
 set shiftwidth=2
@@ -83,7 +83,7 @@ set smartindent
 
 " Search
 "
-" ignorecase       | case insensitive search...
+" ignorecase       | Case insensitive search...
 " smartcase        | ...unless using uppercase
 "
 " <leader>f -> FZF | open FZF menu
@@ -95,9 +95,9 @@ nnoremap <leader>f :FZF<cr>
 
 " Movements
 "
-" jk -> esc        | exit insert mode
-" J -> 5j, K -> 5k | move up or down by 5 lines
-" j -> gj, k -> gk | natural vertical movement through wrapped lines
+" jk -> esc         | Exit insert mode
+"  J -> 5j, K -> 5k | Move up or down by 5 lines
+"  j -> gj, k -> gk | Natural vertical movement through wrapped lines
 "
 inoremap jk <esc>
 nnoremap J 5j
@@ -107,10 +107,10 @@ nnoremap k gk
 
 " Buffer manipulation
 " 
-" hidden               | allow unsaved hidden buffers
-" <leader>s -> bnext   | focus next buffer
-" <leader>a -> bprev   | focus previous buffer
-" <leader>d -> bdelete | close current buffer
+" hidden               | Allow unsaved hidden buffers
+" <leader>s -> bnext   | Focus next buffer
+" <leader>a -> bprev   | Focus previous buffer
+" <leader>d -> bdelete | Close current buffer
 "
 set hidden
 nnoremap <silent> <leader>s :bnext<cr>
@@ -119,9 +119,9 @@ nnoremap <silent> <leader>d :bd<cr>
 
 " Minpac plugin manager
 "
-" PackUpdate | install and update plugins
-" PackClean  | remove unused plugins
-" PackStatus | show plugin status
+" PackUpdate | Install and update plugins
+" PackClean  | Remove unused plugins
+" PackStatus | Show plugin status
 "
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
