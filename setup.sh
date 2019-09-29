@@ -18,49 +18,49 @@ init() {
   blue_text "Minimalist developer"
   grey_text "by @mvllow"
   echo
-  echo "- cloning mvllow/dots → temp dir"
+  echo "- Cloning mvllow/dots → temp dir"
   mkdir -p "$app_config"
   git clone https://github.com/mvllow/dots.git $app_dir > /dev/null 2>&1;
 }
 
 get_command_line_tools() {
   if ! [ $(xcode-select -p) ]; then
-    echo "- installing command line tools"
+    echo "- Installing command line tools"
     xcode-select --install > /dev/null 2>&1;
-    read -p "> please wait until finished, then enter to continue... "
+    read -p "> Please wait until finished, then enter to continue... "
   else
-    grey_text "- (skipping) installing command line tools"
+    grey_text "- (skipping) Installing command line tools"
   fi
 }
 
 get_homebrew() {
   if ! [ brew ]; then
-    echo "- installing homebrew"
+    echo "- Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    grey_text "- (skipping) installing homebrew"
+    grey_text "- (skipping) Installing homebrew"
   fi
 
-  echo "- installing homebrew bundle"
+  echo "- Installing homebrew bundle"
   brew upgrade > /dev/null 2>&1;
   brew bundle --file="$app_dir/brewfile" > /dev/null 2>&1;
 
-  echo "- cleaning homebrew bundle and packages"
+  echo "- Cleaning homebrew bundle and packages"
   brew cleanup > /dev/null 2>&1;
   brew bundle cleanup --file="$app_dir/brewfile" --force > /dev/null 2>&1;
 }
 
 get_node_packages() {
-  echo "- upgrading global node packages"
+  echo "- Upgrading global node packages"
   npm upgrade -g > /dev/null 2>&1;
   npm i -g pure-prompt now prettier degit > /dev/null 2>&1;
 }
 
 prepare_git() {
   if ! [ -f ~/.gitconfig ]; then
-    echo "- creating global git config"
-    read -p "> name for git: " git_name
-    read -p "> email for git: " git_email
+    echo "- Creating global git config"
+    read -p "> Name for git: " git_name
+    read -p "> Email for git: " git_email
 
     git config --global user.name "$git_name"
     git config --global user.email "$git_email"
@@ -69,27 +69,27 @@ prepare_git() {
     git config --global alias.br branch
     git config --global alias.st status
   else
-    grey_text "- (skipping) generating global git config"
+    grey_text "- (skipping) Generating global git config"
   fi
 }
 
 prepare_keys() {
   if ! [ -f ~/.ssh/id_rsa ]; then
-    echo "- generating ssh keys"
+    echo "- Generating ssh keys"
 
     if ! [ -z $git_email ]; then
-      read -p "> email for ssh: " git_email
+      read -p "> Email for ssh: " git_email
     fi
 
     ssh-keygen -t rsa -b 4096 -C "$git_email" -N "" -f ~/.ssh/id_rsa
     pbcopy < ~/.ssh/id_rsa.pub
   else
-    grey_text "- (skipping) generating ssh keys"
+    grey_text "- (skipping) Generating ssh keys"
   fi
 }
 
 set_app_prefs() {
-  echo "- configuring app preferences"
+  echo "- Configuring app preferences"
   cp -r "$app_dir/.zshrc" ~/.zshrc
   cp -r "$app_dir/.vimrc" ~/.vimrc
 
@@ -147,7 +147,7 @@ set_app_prefs() {
 }
 
 set_system_prefs() {
-  echo "- configuring system preferences"
+  echo "- Configuring system preferences"
   cp -R /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
 
   # Dock: clear existing icons
