@@ -18,20 +18,12 @@ cask "notion"
 cask "google-chrome-canary"
 cask "visual-studio-code-insiders"
 
-### Supported alternative
+### Supported alternatives
 
 # cask "hyper-canary"
 # cask "sublime-text"
 # cask "sublime-text-dev"
 # cask "visual-studio-code"
-
-### Partially supported alternatives
-
-## iTerm2 assumes a local clone of mvllow/dots for it's custom preferences.
-## This behaviour will be fixed (more robust) in the future.
-
-# brew "iterm2"
-# brew "iterm2-nightly"
 
 mas "Magnet", id: 441258766
 mas "Xcode", id: 497799835
