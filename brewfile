@@ -13,12 +13,13 @@ brew "the_silver_searcher"
 brew "yarn"
 
 cask "1password"
+cask "hyper"
+cask "notion"
 cask "google-chrome-canary"
 cask "visual-studio-code-insiders"
 
 ### Supported alternative
 
-# cask "hyper"
 # cask "hyper-canary"
 # cask "sublime-text"
 # cask "sublime-text-dev"
