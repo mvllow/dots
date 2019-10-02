@@ -6,7 +6,6 @@ packadd minpac
 call minpac#init()
 call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('burner/vim-svelte')
-call minpac#add('fatih/vim-go')
 call minpac#add('itchyny/lightline.vim')
 call minpac#add('junegunn/fzf', { 'do': './install --all' })
 call minpac#add('junegunn/fzf.vim')
@@ -28,12 +27,6 @@ let g:ale_lint_on_save = 1
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = { 'javascript': ['eslint', 'prettier'], 'svelte': ['eslint', 'prettier'] }
 let g:ale_sign_error = '✖'
-
-" Golang
-"
-" Disable conflicting `K` keybind
-"
-let g:go_doc_keywordprg_enabled = 0
 
 " Appearance
 " 
