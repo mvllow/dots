@@ -1,25 +1,24 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-versions"
-tap "homebrew/core"
+tap "homebrew/bundle"        # Allow brewfile
+tap "homebrew/core"          # Enable default packages
+tap "homebrew/cask"          # Enable default casks
+tap "homebrew/cask-versions" # Enable alt casks (beta, canary, etc.)
 
-brew "fd"
-brew "fzf"
-brew "go"
-brew "mas"
-brew "neovim"
-brew "node"
-brew "the_silver_searcher"
-brew "yarn"
+brew "node"                  # Comes with npm...
+brew "yarn"                  # ...but use npm wrapper
+brew "neovim"                # Modern Vim alternative
+brew "the_silver_searcher"   # Faster grep alternative
+brew "fzf"                   # Fuzzy search files
+brew "gnupg"                 # Enable GPG shanigans...
+brew "pinentry-mac"          # ...and sign commits
+brew "mas"                   # CLI access to Mac App Store
 
 cask "1password"
-cask "hyper"
-cask "notion"
+cask "iterm2-nightly"
 cask "google-chrome-canary"
 cask "visual-studio-code-insiders"
 
-### Supported alternatives
-
+# Other supported casks
+# cask "hyper"
 # cask "hyper-canary"
 # cask "sublime-text"
 # cask "sublime-text-dev"
