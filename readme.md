@@ -15,7 +15,18 @@ Packages not found in the repo's `brewfile` will be purged.
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
+Some preferences that have not yet been reliably automated:
+
+- Set wallpaper, no favourites yet!
+- Move all default launchpad apps into a single folder named "Apple"
+- Preferences > Keyboard > Modifier Keys > Map Caps Lock to Escape
+- Preferences > Siri > Show siri in menu bar (disable)
+- Preferences > Date & Time > Clock > Use a 24-hour clock (enable)
+- Preferences > Date & Time > Clock > Show the day of the week (enable)
+
 ## Signing GitHub commits with GPG
+
+The setup script will install the following for you (including Keybase). The rest was left out of the script to prevent complexity.
 
 ```sh
 $ brew install gnupg pinentry-mac
