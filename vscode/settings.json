@@ -8,10 +8,10 @@
 {
   "breadcrumbs.enabled": false,
   "editor.folding": false,
-  "editor.fontFamily": "Dank Mono, SF Mono, SFMono-Regular",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 14,
+  "editor.fontFamily": "SF Mono, SFMono-Regular",
+  "editor.fontSize": 13,
   "editor.formatOnSave": true,
+  "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
@@ -21,20 +21,25 @@
   "editor.tabSize": 2,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "explorer.decorations.badges": false,
   "git.autofetch": true,
-  "svelte.language-server.runtime": "/usr/local/bin/node",
   "terminal.integrated.fontSize": 12,
   "vim.handleKeys": {
     "<D-c>": false
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
   ],
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "lucy",
+  "workbench.colorTheme": "Material Theme Ocean",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "none"
