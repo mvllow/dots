@@ -5,7 +5,7 @@
 ## Getting started
 
 - Assumes a fresh install of macOS Catalina
-- Else, low attachment to your current settings (there are NO backups)
+- Else, low attachment to your current settings (there are _no_ backups)
 
 The setup script will install and configure a minimal amount of applications, command line tools, and other packages.
 
