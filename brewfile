@@ -15,7 +15,7 @@ brew "mas"                   # CLI access to Mac App Store
 cask "1password"
 cask "iterm2-nightly"
 cask "google-chrome-canary"
-cask "visual-studio-code-insiders"
+cask "visual-studio-code"
 
 # Other supported casks
 # cask "hyper"
