@@ -22,7 +22,7 @@ cask "visual-studio-code"
 # cask "hyper-canary"
 # cask "sublime-text"
 # cask "sublime-text-dev"
-# cask "visual-studio-code"
+# cask "visual-studio-code-insiders"
 
 mas "Magnet", id: 441258766
 mas "Xcode", id: 497799835
