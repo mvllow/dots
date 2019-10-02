@@ -93,6 +93,8 @@ set_app_prefs() {
   cp -r "$app_dir/.zshrc" ~/.zshrc
   cp -r "$app_dir/.vimrc" ~/.vimrc
 
+  cp -r "$app_dir/iterm/com.googlecode.iterm2.plist" $app_config
+
   if [ $(which hyper) ]; then
     cp -r "$app_dir/.hyper.js" ~/.hyper.js
   fi
@@ -113,10 +115,11 @@ set_app_prefs() {
     cp "$app_dir/vscode/settings.json" "$code_user_dir/settings.json"
 
     code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
+    code --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code --install-extension juliettepretot.lucy-vscode > /dev/null 2>&1;
+    code --install-extension pkief.material-icon-theme > /dev/null 2>&1;
     code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
@@ -126,10 +129,11 @@ set_app_prefs() {
     cp "$app_dir/vscode/settings.json" "$code_beta_user_dir/settings.json"
 
     code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
+    code-insiders --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code-insiders --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code-insiders --install-extension juliettepretot.lucy-vscode > /dev/null 2>&1;
+    code-insiders --install-extension pkief.material-icon-theme > /dev/null 2>&1;
     code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
@@ -208,3 +212,4 @@ set_system_prefs
 
 echo
 green_text "Complete, woo! Please log out to ensure all changes apply."
+grey_text "Local config can be found at ~/.config/mvllow/dots"
