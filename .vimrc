@@ -5,7 +5,6 @@ packadd minpac
 
 call minpac#init()
 call minpac#add('arcticicestudio/nord-vim')
-call minpac#add('burner/vim-svelte')
 call minpac#add('itchyny/lightline.vim')
 call minpac#add('junegunn/fzf', { 'do': './install --all' })
 call minpac#add('junegunn/fzf.vim')
@@ -21,11 +20,10 @@ let mapleader=','
 " Lint and fix javascript/svelte/prettier-supported langs
 "
 let g:ale_fix_on_save = 1
-let g:ale_fixers = { 'javascript': ['eslint', 'prettier'], 'svelte': ['eslint', 'prettier'] }
+let g:ale_fixers = { 'javascript': ['eslint', 'prettier'] }
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_save = 1
-let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
-let g:ale_linters = { 'javascript': ['eslint', 'prettier'], 'svelte': ['eslint', 'prettier'] }
+let g:ale_linters = { 'javascript': ['eslint', 'prettier'] }
 let g:ale_sign_error = '✖'
 
 " Appearance
