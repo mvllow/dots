@@ -35,6 +35,7 @@
   ],
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Material Theme Ocean",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.tree.indent": 16,
   "workbench.tree.renderIndentGuides": "none"
