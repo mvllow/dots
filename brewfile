@@ -6,7 +6,8 @@ tap "homebrew/cask-versions" # Enable alt casks (beta, canary, etc.)
 brew "node"                  # Comes with npm...
 brew "yarn"                  # ...but use npm wrapper
 brew "neovim"                # Modern Vim alternative
-brew "the_silver_searcher"   # Faster grep alternative
+brew "the_silver_searcher"   # Search file text (via ag)
+brew "fd"                    # Search file name
 brew "fzf"                   # Fuzzy search files
 brew "gnupg"                 # Enable GPG shanigans...
 brew "pinentry-mac"          # ...and sign commits
@@ -14,12 +15,10 @@ brew "mas"                   # CLI access to Mac App Store
 
 cask "keybase"
 cask "1password"
-cask "iterm2-nightly"
 cask "google-chrome-canary"
 cask "visual-studio-code"
 
 # Other supported casks
-# cask "iterm2"
 # cask "hyper"
 # cask "hyper-canary"
 # cask "sublime-text"

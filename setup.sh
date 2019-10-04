@@ -8,8 +8,6 @@ subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 code_user_dir=$HOME/Library/Application\ Support/Code/User
 code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
-iterm_pref_file=$HOME/Library/Preferences/com.googlecode.iterm2.plist
-
 blue_text() { echo "\033[0;96m$1\033[0m" ; }
 green_text() { echo "\033[0;92m$1\033[0m" ; }
 grey_text() { echo "\033[0;90m$1\033[0m" ; }
@@ -92,8 +90,6 @@ set_app_prefs() {
   echo "- Configuring app preferences"
   cp -r "$app_dir/.zshrc" ~/.zshrc
   cp -r "$app_dir/.vimrc" ~/.vimrc
-
-  cp -r "$app_dir/iterm/com.googlecode.iterm2.plist" $iterm_pref_file
 
   if [ $(which hyper) ]; then
     cp -r "$app_dir/.hyper.js" ~/.hyper.js
