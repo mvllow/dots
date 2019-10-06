@@ -11,6 +11,9 @@
   "editor.fontFamily": "SF Mono, SFMono-Regular",
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
@@ -19,6 +22,10 @@
   "editor.scrollbar.vertical": "hidden",
   "editor.suggest.showIcons": false,
   "editor.tabSize": 2,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "eslint.autoFixOnSave": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.decorations.badges": false,
