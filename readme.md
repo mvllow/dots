@@ -26,7 +26,7 @@ Some preferences that have not yet been reliably automated:
 
 ## Signing GitHub commits with GPG
 
-The setup script will install the following for you (including Keybase). The rest was left out of the script to prevent complexity.
+The setup script will install the following for you (minus Keybase). The rest was left out of the script to prevent complexity.
 
 ```sh
 $ brew install gnupg pinentry-mac
