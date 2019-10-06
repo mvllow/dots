@@ -25,4 +25,3 @@ cask "visual-studio-code"
 # cask "visual-studio-code-insiders"
 
 mas "Magnet", id: 441258766
-mas "Xcode", id: 497799835
