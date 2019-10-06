@@ -25,12 +25,7 @@
   "ignored_packages": [""],
   "indent_guide_options": ["draw_active"],
   "js_prettier": {
-    "additional_cli_args": {
-      "--config-precedence": "file-override",
-      "--plugin-search-dir": "$folder"
-    },
-    "auto_format_on_save": true,
-    "custom_file_extensions": ["svelte"]
+    "auto_format_on_save": true
   },
   "line_padding_bottom": 3,
   "line_padding_top": 3,
