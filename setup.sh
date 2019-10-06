@@ -113,6 +113,7 @@ set_app_prefs() {
     code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
+    code --install-extension fallenwood.viml > /dev/null 2>&1;
     code --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
     code --install-extension pkief.material-icon-theme > /dev/null 2>&1;
@@ -127,6 +128,7 @@ set_app_prefs() {
     code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code-insiders --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
+    code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
     code-insiders --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
     code-insiders --install-extension pkief.material-icon-theme > /dev/null 2>&1;
