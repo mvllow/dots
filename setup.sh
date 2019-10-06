@@ -136,8 +136,8 @@ set_app_prefs() {
 
   if [ $(which subl) ]; then
     mkdir -p "$subl_user_dir"
-    cp "$app_dir/sublime/keymap.json" "$subl_user_dir/Default\ \(OSX\).sublime-keymap"
-    cp "$app_dir/sublime/packages.json" "$subl_user_dir/Package\ Control.sublime-settings"
+    cp "$app_dir/sublime/keymap.json" "$subl_user_dir/Default (OSX).sublime-keymap"
+    cp "$app_dir/sublime/packages.json" "$subl_user_dir/Package Control.sublime-settings"
     cp "$app_dir/sublime/settings.json" "$subl_user_dir/Preferences.sublime-settings"
   fi
 }

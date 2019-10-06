@@ -7,8 +7,6 @@
     "Naomi",
     "Package Control",
     "SublimeLinter",
-    "SublimeLinter-eslint",
-    "Svelte",
-    "TypeScript"
+    "SublimeLinter-eslint"
   ]
 }
