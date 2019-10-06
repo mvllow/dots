@@ -34,7 +34,7 @@ get_command_line_tools() {
 }
 
 get_homebrew() {
-  if ! [$(which brew) ]; then
+  if ! [ $(which brew) ]; then
     echo "- Installing homebrew"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
