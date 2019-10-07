@@ -28,16 +28,23 @@ set hidden                             " Allow unsaved hidden buffers
 let mapleader=','                      " Sets the <leader> character
 let $FZF_DEFAULT_COMMAND = 'ag -g ""'  " Fuzzy search via `ag`
 
-inoremap jk <esc>                      " Exit insert mode
-nnoremap K 5k                          " Move up by 5 lines
-nnoremap J 5j                          " Move down by 5 lines
-nnoremap k gk                          " Natural movement up through wrapped lines
-nnoremap j gj                          " Natural movement down through wrapped lines
-nnoremap <silent> <leader>s :bnext<cr> " Focus next buffer
-nnoremap <silent> <leader>a :bprev<cr> " Focus prev buffer
-nnoremap <silent> <leader>d :bd<cr>    " Close current buffer
-nnoremap <leader>f :FZF<cr>            " Open FZF menu
+inoremap jk <esc>
+
+" Improve movement
+" > Vertical movements will stay in current column
+" > Adds optionn for J and K to move vertically by 5
+nnoremap K 5gk
+nnoremap J 5gj
+nnoremap k gk
+nnoremap j gj
+
+nnoremap <silent> <leader>s :bnext<cr>
+nnoremap <silent> <leader>a :bprev<cr>
+nnoremap <silent> <leader>d :bd<cr>
+
+nnoremap <leader>f :FZF<cr>
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+
