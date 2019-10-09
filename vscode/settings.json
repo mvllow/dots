@@ -4,10 +4,10 @@
   "editor.colorDecorators": false,
   "editor.folding": false,
   "editor.fontFamily": "SF Mono, SFMono-Regular",
-  "editor.fontSize": 14,
+  "editor.fontSize": 13,
   "editor.formatOnSave": true,
   "[javascript]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
   "editor.glyphMargin": false,
   "editor.hideCursorInOverviewRuler": true,
@@ -41,13 +41,8 @@
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     }
   ],
   "workbench.activityBar.visible": false,
@@ -69,7 +64,7 @@
     "editorOverviewRuler.selectionHighlightForeground": "#0000",
     "editorOverviewRuler.warningForeground": "#0000",
     "editorOverviewRuler.wordHighlightForeground": "#0000",
-    "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+    "editorOverviewRuler.wordHighlightStrongForeground": "#0000"
   },
   "workbench.colorTheme": "Material Theme Ocean",
   "workbench.editor.showTabs": false,
@@ -78,5 +73,5 @@
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
   "workbench.tree.indent": 16,
-  "workbench.tree.renderIndentGuides": "none",
+  "workbench.tree.renderIndentGuides": "none"
 }
