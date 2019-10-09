@@ -4,7 +4,6 @@
   "editor.colorDecorators": false,
   "editor.folding": false,
   "editor.fontFamily": "SF Mono, SFMono-Regular",
-  "editor.fontSize": 13,
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.formatOnSave": false
@@ -34,7 +33,6 @@
   "search.exclude": {
     "**/.next": true
   },
-  "terminal.integrated.fontSize": 12,
   // Fix conflict when copying via `super+c` or `ctrl+c`
   "vim.handleKeys": {
     "<D-c>": false
@@ -66,9 +64,9 @@
     "editorOverviewRuler.wordHighlightForeground": "#0000",
     "editorOverviewRuler.wordHighlightStrongForeground": "#0000"
   },
-  "workbench.colorTheme": "Material Theme Ocean",
+  "workbench.colorTheme": "Ayu Mirage",
   "workbench.editor.showTabs": false,
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,

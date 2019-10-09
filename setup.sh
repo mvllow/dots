@@ -111,12 +111,10 @@ set_app_prefs() {
     cp "$app_dir/vscode/settings.json" "$code_user_dir/settings.json"
 
     code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
-    code --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code --install-extension fallenwood.viml > /dev/null 2>&1;
-    code --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code --install-extension pkief.material-icon-theme > /dev/null 2>&1;
+    code --install-extension teabyii.ayu > /dev/null 2>&1;
     code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
@@ -126,12 +124,10 @@ set_app_prefs() {
     cp "$app_dir/vscode/settings.json" "$code_beta_user_dir/settings.json"
 
     code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
-    code-insiders --install-extension equinusocio.vsc-material-theme > /dev/null 2>&1;
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
-    code-insiders --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
     code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code-insiders --install-extension pkief.material-icon-theme > /dev/null 2>&1;
+    code-insiders --install-extension teabyii.ayu > /dev/null 2>&1;
     code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
