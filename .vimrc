@@ -4,8 +4,26 @@ set packpath^=~/.vim
 packadd minpac
 
 call minpac#init()
+call minpac#add('dense-analysis/ale')
+call minpac#add('pangloss/vim-javascript')
+call minpac#add('sheerun/vim-polyglot')
 call minpac#add('/usr/local/opt/fzf')
 call minpac#add('junegunn/fzf.vim')
+
+let g:jsx_ext_required = 0
+
+let b:ale_fixers = ['prettier', 'eslint']
+let b:ale_lint_on_save = 1
+let b:ale_fix_on_save = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = 'x'
+let g:ale_sign_warning = '!'
+
+highlight clear SignColumn
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
 syntax off                             " Turn off syntax highlighting
 
@@ -26,7 +44,6 @@ set smartcase                          " ...unless using uppercase
 set hidden                             " Allow unsaved hidden buffers
 
 let mapleader=','                      " Sets the <leader> character
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'  " Fuzzy search via `ag`
 
 inoremap jk <esc>
 
