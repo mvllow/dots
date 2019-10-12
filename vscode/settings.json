@@ -15,15 +15,19 @@
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
   "editor.renderWhitespace": "none",
-  // Undocument settings to hide scrollbars
+  // Undocumented settings to hide scrollbars
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.suggest.showIcons": false,
   "editor.tabSize": 2,
-  "emmet.includeLanguages": {
-    "javascript": "javascriptreact"
-  },
   "eslint.autoFixOnSave": true,
+  "eslint.packageManager": "yarn",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.decorations.badges": false,
@@ -64,9 +68,9 @@
     "editorOverviewRuler.wordHighlightForeground": "#0000",
     "editorOverviewRuler.wordHighlightStrongForeground": "#0000"
   },
-  "workbench.colorTheme": "Ayu Mirage",
+  "workbench.colorTheme": "Blueberry dark theme",
+  "workbench.editor.showIcons": false,
   "workbench.editor.showTabs": false,
-  "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
