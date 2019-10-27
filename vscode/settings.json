@@ -3,42 +3,40 @@
   "breadcrumbs.enabled": false,
   "editor.colorDecorators": false,
   "editor.folding": false,
-  "editor.fontFamily": "SF Mono, SFMono-Regular",
+  "editor.fontFamily": "SF Mono, SFMono-Regular, Menlo",
+  "editor.fontSize": 12,
+  "editor.fontWeight": "500",
   "editor.formatOnSave": true,
-  "[javascript]": {
-    "editor.formatOnSave": false
-  },
   "editor.glyphMargin": false,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineNumbers": "off",
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
-  "editor.renderWhitespace": "none",
-  // Undocumented settings to hide scrollbars
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
-  "editor.suggest.showIcons": false,
   "editor.tabSize": 2,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.validate": [
     "javascript",
     "javascriptreact",
-    "typescript",
-    "typescriptreact"
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
   ],
   "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
   "explorer.decorations.badges": false,
   "explorer.openEditors.visible": 0,
   "git.autofetch": true,
   "npm.enableScriptExplorer": false,
-  "search.exclude": {
-    "**/.next": true
-  },
-  // Fix conflict when copying via `super+c` or `ctrl+c`
   "vim.handleKeys": {
+    // Disable vim `super+c` (conflicts with system copy)
     "<D-c>": false
   },
   "vim.insertModeKeyBindings": [
@@ -48,32 +46,12 @@
     }
   ],
   "workbench.activityBar.visible": false,
-  "workbench.colorCustomizations": {
-    // Disable overview ruler
-    // No official setting, make each scenario transparent
-    "editorOverviewRuler.addedForeground": "#0000",
-    "editorOverviewRuler.border": "#0000",
-    "editorOverviewRuler.bracketMatchForeground": "#0000",
-    "editorOverviewRuler.commonContentForeground": "#0000",
-    "editorOverviewRuler.currentContentForeground": "#0000",
-    "editorOverviewRuler.deletedForeground": "#0000",
-    "editorOverviewRuler.errorForeground": "#0000",
-    "editorOverviewRuler.findMatchForeground": "#0000",
-    "editorOverviewRuler.incomingContentForeground": "#0000",
-    "editorOverviewRuler.infoForeground": "#0000",
-    "editorOverviewRuler.modifiedForeground": "#0000",
-    "editorOverviewRuler.rangeHighlightForeground": "#0000",
-    "editorOverviewRuler.selectionHighlightForeground": "#0000",
-    "editorOverviewRuler.warningForeground": "#0000",
-    "editorOverviewRuler.wordHighlightForeground": "#0000",
-    "editorOverviewRuler.wordHighlightStrongForeground": "#0000"
-  },
-  "workbench.colorTheme": "Blueberry dark theme",
+  "workbench.colorTheme": "Ayu Mirage",
   "workbench.editor.showIcons": false,
-  "workbench.editor.showTabs": false,
+  "workbench.iconTheme": "ayu",
   "workbench.startupEditor": "newUntitledFile",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
-  "workbench.tree.indent": 16,
+  "workbench.tree.indent": 12,
   "workbench.tree.renderIndentGuides": "none"
 }
