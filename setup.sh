@@ -6,7 +6,6 @@ app_config=~/.config/mvllow/dots
 
 subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 code_user_dir=$HOME/Library/Application\ Support/Code/User
-code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
 blue_text() { echo "\033[0;96m$1\033[0m" ; }
 green_text() { echo "\033[0;92m$1\033[0m" ; }
@@ -117,19 +116,6 @@ set_app_prefs() {
     code --install-extension teabyii.ayu > /dev/null 2>&1;
     code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
-  fi
-  
-  if [ $(which code-insiders) ]; then
-    mkdir -p "$code_beta_user_dir"
-    cp "$app_dir/vscode/settings.json" "$code_beta_user_dir/settings.json"
-
-    code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
-    code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
-    code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
-    code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
-    code-insiders --install-extension teabyii.ayu > /dev/null 2>&1;
-    code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
-    code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
 
   if [ $(which subl) ]; then
