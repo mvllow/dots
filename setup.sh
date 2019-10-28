@@ -4,7 +4,9 @@ app_dir=$(mktemp -d)
 app_repo=https://github.com/mvllow/dots.git
 app_config=~/.config/mvllow/dots
 
+subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 code_user_dir=$HOME/Library/Application\ Support/Code/User
+code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
 blue_text() { echo "\033[0;96m$1\033[0m" ; }
 green_text() { echo "\033[0;92m$1\033[0m" ; }
@@ -51,7 +53,7 @@ get_homebrew() {
 get_node_packages() {
   echo "- Upgrading global node packages"
   npm upgrade -g > /dev/null 2>&1;
-  npm i -g pure-prompt now prettier > /dev/null 2>&1;
+  npm i -g pure-prompt now prettier degit > /dev/null 2>&1;
 }
 
 prepare_git() {
@@ -116,6 +118,26 @@ set_app_prefs() {
     code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
+  
+  if [ $(which code-insiders) ]; then
+    mkdir -p "$code_beta_user_dir"
+    cp "$app_dir/vscode/settings.json" "$code_beta_user_dir/settings.json"
+
+    code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
+    code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
+    code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
+    code-insiders --install-extension joshpeng.sublime-babel-vscode > /dev/null 2>&1;
+    code-insiders --install-extension teabyii.ayu > /dev/null 2>&1;
+    code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
+    code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
+  fi
+
+  if [ $(which subl) ]; then
+    mkdir -p "$subl_user_dir"
+    cp "$app_dir/sublime/keymap.json" "$subl_user_dir/Default (OSX).sublime-keymap"
+    cp "$app_dir/sublime/packages.json" "$subl_user_dir/Package Control.sublime-settings"
+    cp "$app_dir/sublime/settings.json" "$subl_user_dir/Preferences.sublime-settings"
+  fi
 }
 
 set_system_prefs() {
@@ -152,7 +174,7 @@ set_system_prefs() {
   # Keyboard: shorter delay before key repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-  # Trackpad: enable tap to click (for current user and login screen)
+  # Trackpad: enable tap to click (this user and login screen)
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
