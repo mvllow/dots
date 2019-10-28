@@ -17,6 +17,7 @@ cask "1password"
 cask "google-chrome-canary"
 cask "hyper"
 cask "vanilla"
+cask "sublime-text-dev"
 cask "visual-studio-code"
 
 mas "Magnet", id: 441258766
