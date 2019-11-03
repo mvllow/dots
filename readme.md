@@ -24,6 +24,18 @@ Some preferences that have not yet been reliably automated:
 - Preferences > Date & Time > Clock > Use a 24-hour clock (enable)
 - Preferences > Date & Time > Clock > Show the day of the week (enable)
 
+## Supported packages
+
+All stable builds are supported, with noted alternative versions.
+
+- zsh
+- elvish
+
+- [neo]vim
+- hyper [canary]
+- sublime text [dev]
+- visual studio code [insiders]
+
 ## Signing GitHub commits with GPG
 
 The setup script will install the following for you (minus Keybase). The rest was left out of the script to prevent complexity.
