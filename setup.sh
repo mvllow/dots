@@ -108,7 +108,7 @@ set_app_prefs() {
 
   if [ $(which code) ]; then
     mkdir -p "$code_user_dir"
-    cp "$app_dir/vscode/settings.json" "$code_user_dir/settings.json"
+    cp "$app_dir/code/settings.json" "$code_user_dir/settings.json"
 
     code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
@@ -120,7 +120,7 @@ set_app_prefs() {
   
   if [ $(which code-insiders) ]; then
     mkdir -p "$code_beta_user_dir"
-    cp "$app_dir/vscode/settings.json" "$code_beta_user_dir/settings.json"
+    cp "$app_dir/code/settings.json" "$code_beta_user_dir/settings.json"
 
     code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
@@ -132,9 +132,9 @@ set_app_prefs() {
 
   if [ $(which subl) ]; then
     mkdir -p "$subl_user_dir"
-    cp "$app_dir/sublime/keymap.json" "$subl_user_dir/Default (OSX).sublime-keymap"
-    cp "$app_dir/sublime/packages.json" "$subl_user_dir/Package Control.sublime-settings"
-    cp "$app_dir/sublime/settings.json" "$subl_user_dir/Preferences.sublime-settings"
+    cp "$app_dir/subl/keymap.json" "$subl_user_dir/Default (OSX).sublime-keymap"
+    cp "$app_dir/subl/packages.json" "$subl_user_dir/Package Control.sublime-settings"
+    cp "$app_dir/subl/settings.json" "$subl_user_dir/Preferences.sublime-settings"
   fi
 }
 
