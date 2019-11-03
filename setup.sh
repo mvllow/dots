@@ -51,7 +51,7 @@ get_homebrew() {
 get_node_packages() {
   echo "- Upgrading global node packages"
   npm upgrade -g > /dev/null 2>&1;
-  npm i -g now prettier > /dev/null 2>&1;
+  npm i -g now prettier pure-prompt > /dev/null 2>&1;
 }
 
 prepare_git() {
