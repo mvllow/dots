@@ -8,15 +8,13 @@ subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
 code_user_dir=$HOME/Library/Application\ Support/Code/User
 code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
-blue_text() { echo "\033[0;96m$1\033[0m" ; }
 green_text() { echo "\033[0;92m$1\033[0m" ; }
 grey_text() { echo "\033[0;90m$1\033[0m" ; }
 
 init() {
   clear
   echo
-  blue_text "Minimalist developer"
-  grey_text "by @mvllow"
+  grey_text "mvllow/dots"
   echo
   echo "- Cloning mvllow/dots → temp dir"
   mkdir -p "$app_config"
@@ -53,7 +51,7 @@ get_homebrew() {
 get_node_packages() {
   echo "- Upgrading global node packages"
   npm upgrade -g > /dev/null 2>&1;
-  npm i -g pure-prompt now prettier degit > /dev/null 2>&1;
+  npm i -g now prettier > /dev/null 2>&1;
 }
 
 prepare_git() {
@@ -88,8 +86,12 @@ prepare_keys() {
 
 set_app_prefs() {
   echo "- Configuring app preferences"
-  cp -r "$app_dir/.zshrc" ~/.zshrc
   cp -r "$app_dir/.vimrc" ~/.vimrc
+  cp -r "$app_dir/.zshrc" ~/.zshrc
+
+  if [ $(which elvish) ]; then
+    cp -r "$app_dir/.elvish/rc.elv" ~/.elvish/rc.elv
+  fi
 
   if [ $(which hyper) ]; then
     cp -r "$app_dir/.hyper.js" ~/.hyper.js
@@ -142,8 +144,6 @@ set_system_prefs() {
   echo "- Configuring system preferences"
   cp -R /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
 
-  # Dock: clear existing icons
-  defaults write com.apple.dock persistent-apps -array
   # Dock: enable autohide
   defaults write com.apple.dock autohide -bool true
   # Dock: decrease size
@@ -180,8 +180,6 @@ set_system_prefs() {
   # Trackpad: increase tracking speed
   defaults write -g com.apple.trackpad.scaling 3
 
-  # Finder: keep folders on top when sorting by name
-  defaults write com.apple.finder _FXSortFoldersFirst -bool true
   # Finder: disable warning on file extension change
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
   # Finder: disable warning when emptying trash

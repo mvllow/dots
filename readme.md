@@ -15,21 +15,25 @@ Packages not found in the repo's `brewfile` will be purged.
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-Some preferences that have not yet been reliably automated:
+## Modified preferences
 
-- Set wallpaper, no favourites yet!
-- Move all default launchpad apps into a single folder named "Apple"
-- Preferences > Keyboard > Modifier Keys > Map Caps Lock to Escape
-- Preferences > Siri > Show siri in menu bar (disable)
-- Preferences > Date & Time > Clock > Use a 24-hour clock (enable)
-- Preferences > Date & Time > Clock > Show the day of the week (enable)
+| Preference menu   | Value                                                                                        |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| Language & Region | Enable 24-hour time\*                                                                        |
+| Keyboard          | Map escape to caps lock\*<br />Quicker key repeat<br />Disable auto completion/smart symbols |
+| Dock              | Show only active apps                                                                        |
+| Trackpad          | Tap to click<br />Increase tracking speed                                                    |
+| Finder            | Disable system prompts                                                                       |
+| Menubar           | Show battery percentage                                                                      |
+
+\*Not yet automated
 
 ## Supported packages
 
 All stable builds are supported, with noted alternative versions.
 
-- zsh
-- elvish
+- zsh (default)
+- elvish (for hyper)
 
 - [neo]vim
 - hyper [canary]
