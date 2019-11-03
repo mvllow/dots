@@ -3,7 +3,6 @@ tap "homebrew/core"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 
-brew "elvish"
 brew "ag"
 brew "fd"
 brew "fzf"
@@ -15,7 +14,6 @@ brew "yarn"
 brew "mas"
 
 cask "google-chrome-canary"
-cask "hyper"
 cask "vanilla"
 cask "visual-studio-code"
 
