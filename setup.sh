@@ -166,7 +166,7 @@ set_system_prefs() {
   defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
   # Keyboard: disable smart quotes
   defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-  # Keyboard: enable key repeeat
+  # Keyboard: enable key repeat
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
   # Keyboard: faster key repeat
   defaults write NSGlobalDomain KeyRepeat -int 2
