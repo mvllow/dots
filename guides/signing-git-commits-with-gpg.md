@@ -55,7 +55,7 @@ use-agent
 
 **Restart GPG agent**
 
-```
+```sh
 # Kill agent, it will start again when needed
 $ gpgconf --kill gpg-agent
 ```
@@ -64,7 +64,7 @@ $ gpgconf --kill gpg-agent
 
 Pinentry-mac should popup, allowing you to save your password to the keychain. Otherwise, restart the agent and try again.
 
-```
+```sh
 # Test GPG signing
 $ echo "test" | gpg --clearsign
 ```
