@@ -19,115 +19,28 @@ $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh 
 
 It is recommeneded to read through `setup.sh` to know exactly what is being modified. The list below has been simplified.
 
-**Keyboard**
+- Dock: autohide
+- Dock: show only active apps
+- Finder: disable app quarantine popup
+- Finder: disable warning when emptying trash
+- Finder: disable warning on file extension change
+- Menubar: show battery percentage
+- Trackpad: increase tracking speed
+- Trackpad: enable tap to click (this user and login screen)
+- Keyboard: enable (faster) key repeat with shorter delay
+- Keyboard: disable auto correct/capitilise
+- Keyboard: disable smart dashes/quotes
 
-- Map escape to caps lock
-- Increase key repeat with shorter delay
-- Disable auto completion and smart symbols
+**Not yet automated**
 
-**Dock**
+- Keyboard: map escape to caps lock
 
-- Show only active apps
+## Tools & Packages
 
-**Trackpad**
+All stable builds are supported, as well as most pre-release versions.
 
-- Tap to click
-- Increase tracking speed
-
-**Finder**
-
-- Disable system prompts
-
-**Menubar**
-
-- Enable 24-hour time\*
-- Show battery percentage
-
-\*Not yet automated
-
-## Supported packages
-
-All stable builds are supported, with noted alternative versions.
-
-**Terminal**
-
-- elvish, zsh, [neo]vim, hyper (canary)
-
-**Editors**
-
-- sublime text (dev), visual studio code (insiders)
-
-## Signing GitHub commits with GPG
-
-The setup script will install the following for you (minus Keybase). The rest was left out of the script to prevent complexity.
-
-```sh
-$ brew install gnupg pinentry-mac
-
-# Optionally use key from Keybase
-$ brew cask install keybase
-```
-
-### Generate GPG keys
-
-```sh
-# With existing Keybase
-$ keybase pgp export | gpg --import
-$ keybase pgp export -q <keyid> --secret | gpg --import --allow-secret-key-import
-
-# With new GPG key
-$ gpg --full-generate-key
-```
-
-### Export and copy key
-
-```sh
-# List keyid
-$ gpg --list-secret-keys --keyid-format LONG
-
-# Copy key to clipboard
-$ gpg --armor --export <keyid> | pbcopy
-
-# Add to GitHub
-$ open https://github.com/settings/gpg/new
-```
-
-### Git and GPG config
-
-```sh
-$ git config --global user.signingkey <keyid>
-$ git config --global gpg.program $(which gpg)
-$ git config --global commit.gpgsign true
-
-# ~/.zshrc or similar
-export GPG_TTY=$(tty)
-
-# ~/.gnupg/gpg-agent.conf
-pinentry-program /usr/local/bin/pinentry-mac
-
-# ~/.gnupg/gpg.conf
-no-tty
-use-agent
-```
-
-### Troubleshooting
-
-**Restart GPG agent**
-
-```
-# Kill agent, it will start again when needed
-$ gpgconf --kill gpg-agent
-```
-
-**Test GPG signing**
-
-Pinentry-mac should popup, allowing you to save your password to the keychain. Otherwise, restart the agent and try again.
-
-```
-# Test GPG signing
-$ echo "test" | gpg --clearsign
-```
-
-**Error messages**
-
-`Inappropriate ioctl for device` can usually be fixed by adding `export GPG_TTY=$(tty)` to the top of your profile.
+- Zsh and Elvish shells
+- Hyper terminal
+- [Neo]Vim
+- Sublime Text
+- Visual Studio Code
