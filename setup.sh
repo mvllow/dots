@@ -16,9 +16,6 @@ init() {
   echo
   grey_text "mvllow/dots"
   echo
-  echo "- Cloning mvllow/dots → temp dir"
-  mkdir -p "$app_config"
-  git clone https://github.com/mvllow/dots.git $app_dir > /dev/null 2>&1;
 }
 
 get_command_line_tools() {
@@ -29,6 +26,12 @@ get_command_line_tools() {
   else
     grey_text "- (skipping) Installing command line tools"
   fi
+}
+
+clone_repo() {
+  echo "- Cloning mvllow/dots → temp dir"
+  mkdir -p "$app_config"
+  git clone https://github.com/mvllow/dots.git $app_dir > /dev/null 2>&1;
 }
 
 get_homebrew() {
@@ -191,6 +194,7 @@ set_system_prefs() {
 
 init
 get_command_line_tools
+clone_repo
 get_homebrew
 get_node_packages
 prepare_git
