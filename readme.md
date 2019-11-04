@@ -72,7 +72,7 @@ $ gpg --list-secret-keys --keyid-format LONG
 $ gpg --armor --export <keyid> | pbcopy
 
 # Add to GitHub
-$ open https://github.com/settings/keys/new
+$ open https://github.com/settings/gpg/new
 ```
 
 ### Git and GPG config
