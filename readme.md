@@ -5,26 +5,43 @@
 ## Getting started
 
 - Assumes a fresh install of macOS Catalina
-- Else, low attachment to your current settings (there are _no_ backups)
+- Else, low attachment to your current settings (see below)
 
 The setup script will install and configure a minimal amount of applications, command line tools, and other packages.
 
-Packages not found in the repo's `brewfile` will be purged.
+Packages not found in the repo's `brewfile` will be **purged**.
 
 ```sh
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-## Modified preferences
+## Preferences
 
-| Preference menu   | Value                                                                                        |
-| ----------------- | -------------------------------------------------------------------------------------------- |
-| Language & Region | Enable 24-hour time\*                                                                        |
-| Keyboard          | Map escape to caps lock\*<br />Quicker key repeat<br />Disable auto completion/smart symbols |
-| Dock              | Show only active apps                                                                        |
-| Trackpad          | Tap to click<br />Increase tracking speed                                                    |
-| Finder            | Disable system prompts                                                                       |
-| Menubar           | Show battery percentage                                                                      |
+It is recommeneded to read through `setup.sh` to know exactly what is being modified. The list below has been simplified.
+
+**Keyboard**
+
+- Map escape to caps lock
+- Increase key repeat with shorter delay
+- Disable auto completion and smart symbols
+
+**Dock**
+
+- Show only active apps
+
+**Trackpad**
+
+- Tap to click
+- Increase tracking speed
+
+**Finder**
+
+- Disable system prompts
+
+**Menubar**
+
+- Enable 24-hour time\*
+- Show battery percentage
 
 \*Not yet automated
 
@@ -32,13 +49,13 @@ $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh 
 
 All stable builds are supported, with noted alternative versions.
 
-- zsh (default)
-- elvish (for hyper)
+**Terminal**
 
-- [neo]vim
-- hyper [canary]
-- sublime text [dev]
-- visual studio code [insiders]
+- elvish, zsh, [neo]vim, hyper (canary)
+
+**Editors**
+
+- sublime text (dev), visual studio code (insiders)
 
 ## Signing GitHub commits with GPG
 
