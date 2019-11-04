@@ -148,8 +148,6 @@ set_system_prefs() {
   defaults write com.apple.dock autohide -bool true
   # Dock: decrease size
   defaults write com.apple.dock tilesize -int 40
-  # Dock: pin to left
-  defaults write com.apple.dock pinning -string start
   # Dock: hide recent apps
   defaults write com.apple.dock show-recents -bool false
   # Dock: show only active apps
