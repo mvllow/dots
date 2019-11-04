@@ -7,6 +7,7 @@ call minpac#add('pangloss/vim-javascript')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('/usr/local/opt/fzf')
 call minpac#add('junegunn/fzf.vim')
+set rtp+=/usr/local/opt/fzf
 
 let g:jsx_ext_required = 0
 
