@@ -33,7 +33,8 @@ It is recommeneded to read through `setup.sh` to know exactly what is being modi
 
 **Not yet automated**
 
-- Keyboard: map escape to caps lock
+- Keyboard -> Modifier keys -> Caps Lock = Escape
+- General -> Accent color -> Grayscale
 
 ## Tools & Packages
 
