@@ -18,6 +18,12 @@ paths = [/usr/local/bin $@paths]
 
 edit:rprompt = { put '' }
 
-alias:new vi nvim
+if (test nvim) {
+  alias:new vi nvim
+}
+
+if (test code-insiders) {
+  alias:new code code-insiders
+}
 
 -exports- = (alias:export)
