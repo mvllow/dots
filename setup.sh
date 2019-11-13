@@ -119,7 +119,6 @@ set_app_prefs() {
     code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code --install-extension fallenwood.viml > /dev/null 2>&1;
     code --install-extension teabyii.ayu > /dev/null 2>&1;
-    code --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
   
@@ -131,7 +130,6 @@ set_app_prefs() {
     code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
     code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
     code-insiders --install-extension teabyii.ayu > /dev/null 2>&1;
-    code-insiders --install-extension tyriar.sort-lines > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
   fi
 
