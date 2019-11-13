@@ -1,20 +1,14 @@
 {
   "breadcrumbs.enabled": false,
-  "editor.colorDecorators": false,
   "editor.folding": false,
-  "editor.fontFamily": "SF Mono, SFMono-Regular, Menlo",
-  "editor.fontSize": 12,
+  "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontWeight": "500",
   "editor.formatOnSave": true,
   "editor.glyphMargin": false,
   "editor.hideCursorInOverviewRuler": true,
-  "editor.lineNumbers": "off",
   "editor.minimap.enabled": false,
-  "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.validate": [
@@ -32,24 +26,25 @@
   "explorer.confirmDelete": false,
   "explorer.decorations.badges": false,
   "explorer.openEditors.visible": 0,
-  "git.autofetch": true,
   "npm.enableScriptExplorer": false,
   "vim.handleKeys": {
     "<D-c>": false
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "k"],
-      "after": ["<Esc>"]
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<Esc>"
+      ]
     }
   ],
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Ayu Mirage",
-  "workbench.editor.showIcons": false,
   "workbench.iconTheme": "ayu",
-  "workbench.startupEditor": "newUntitledFile",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
-  "workbench.tree.indent": 12,
   "workbench.tree.renderIndentGuides": "none"
 }
