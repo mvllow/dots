@@ -18,6 +18,6 @@ cask "google-chrome-canary"
 cask "hyper"
 cask "keybase"
 cask "vanilla"
-cask "visual-studio-code"
+cask "visual-studio-code-insiders"
 
 mas "Magnet", id: 441258766
