@@ -97,6 +97,7 @@ get_homebrew() {
 
 get_node_packages() {
     echo "Updating Node packages..."
+    color_grey "Probably located in /usr/local/lib (check via npm list -g --depth=0)"
     echo
 
     npm upgrade -g > /dev/null 2>&1;
