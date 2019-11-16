@@ -18,10 +18,7 @@
     ".*/"
   ],
   "color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
-  "detect_indentation": false,
-  "disable_tab_width_auto_detection": true,
   "font_face": "SF Mono",
-  "font_size": 13,
   "ignored_packages": [""],
   "indent_guide_options": ["draw_active"],
   "js_prettier": {
@@ -29,6 +26,7 @@
   },
   "line_padding_bottom": 3,
   "line_padding_top": 3,
+  "SublimeLinter.linters.eslint.selector": "source.js, source.jsx, source.ts, source.tsx",
   "tab_size": 2,
   "theme": "ayu-mirage.sublime-theme",
   "translate_tabs_to_spaces": true
