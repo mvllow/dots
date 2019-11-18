@@ -1,4 +1,5 @@
 {
+  "SublimeLinter.linters.eslint.selector": "source.js, source.jsx, source.ts, source.tsx",
   "binary_file_patterns": [
     "*.jpg",
     "*.jpeg",
@@ -22,11 +23,11 @@
   "ignored_packages": [""],
   "indent_guide_options": ["draw_active"],
   "js_prettier": {
-    "auto_format_on_save": true
+    "auto_format_on_save": true,
+    "custom_file_extensions": ["svelte"]
   },
   "line_padding_bottom": 3,
   "line_padding_top": 3,
-  "SublimeLinter.linters.eslint.selector": "source.js, source.jsx, source.ts, source.tsx",
   "tab_size": 2,
   "theme": "ayu-mirage.sublime-theme",
   "translate_tabs_to_spaces": true
