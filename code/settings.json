@@ -6,9 +6,12 @@
   "editor.formatOnSave": true,
   "editor.glyphMargin": false,
   "editor.hideCursorInOverviewRuler": true,
+  "editor.lineHeight": 20,
   "editor.minimap.enabled": false,
   "editor.renderIndentGuides": false,
-  "editor.wordWrap": "on",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.tabSize": 2,
   "eslint.autoFixOnSave": true,
   "eslint.packageManager": "yarn",
   "eslint.validate": [
@@ -28,23 +31,46 @@
   "explorer.openEditors.visible": 0,
   "git.autofetch": true,
   "npm.enableScriptExplorer": false,
+  "scm.diffDecorationsGutterVisibility": "hover",
+  "terminal.integrated.fontWeight": "500",
   "vim.handleKeys": {
     "<D-c>": false
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<Esc>"
-      ]
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
     }
   ],
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Ayu Mirage",
+  "workbench.editor.showIcons": false,
+  "workbench.fontAliasing": "auto",
+  "workbench.colorCustomizations": {
+    "editorError.foreground": "#feb2b2",
+    "editorWarning.foreground": "#fbd38d",
+    "editorOverviewRuler.addedForeground": "#0000",
+    "editorOverviewRuler.border": "#0000",
+    "editorOverviewRuler.bracketMatchForeground": "#0000",
+    "editorOverviewRuler.commonContentForeground": "#0000",
+    "editorOverviewRuler.currentContentForeground": "#0000",
+    "editorOverviewRuler.deletedForeground": "#0000",
+    "editorOverviewRuler.errorForeground": "#0000",
+    "editorOverviewRuler.findMatchForeground": "#0000",
+    "editorOverviewRuler.incomingContentForeground": "#0000",
+    "editorOverviewRuler.infoForeground": "#0000",
+    "editorOverviewRuler.modifiedForeground": "#0000",
+    "editorOverviewRuler.rangeHighlightForeground": "#0000",
+    "editorOverviewRuler.selectionHighlightForeground": "#0000",
+    "editorOverviewRuler.warningForeground": "#0000",
+    "editorOverviewRuler.wordHighlightForeground": "#0000",
+    "editorOverviewRuler.wordHighlightStrongForeground": "#0000",
+    "scrollbarSlider.activeBackground": "#0000",
+    "scrollbarSlider.background": "#0000",
+    "scrollbarSlider.hoverBackground": "#0000"
+  },
   "workbench.iconTheme": "ayu",
+  "workbench.startupEditor": "none",
   "workbench.statusBar.visible": false,
   "workbench.tips.enabled": false,
   "workbench.tree.renderIndentGuides": "none"
