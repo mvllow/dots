@@ -120,6 +120,8 @@ set_app_prefs() {
     code --install-extension fallenwood.viml > /dev/null 2>&1;
     code --install-extension teabyii.ayu > /dev/null 2>&1;
     code --install-extension vscodevim.vim > /dev/null 2>&1;
+    code --install-extension blanu.vscode-styled-jsx > /dev/null 2>&1;
+    code --install-extension jpoissonnier.vscode-styled-components > /dev/null 2>&1;
   fi
   
   if [ $(which code-insiders) ]; then
@@ -131,6 +133,8 @@ set_app_prefs() {
     code-insiders --install-extension fallenwood.viml > /dev/null 2>&1;
     code-insiders --install-extension teabyii.ayu > /dev/null 2>&1;
     code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
+    code-insiders --install-extension blanu.vscode-styled-jsx > /dev/null 2>&1;
+    code-insiders --install-extension jpoissonnier.vscode-styled-components > /dev/null 2>&1;
   fi
 
   if [ $(which subl) ]; then
