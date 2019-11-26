@@ -100,10 +100,6 @@ set_app_prefs() {
     cp -r "$app_dir/.hyper.js" ~/.hyper.js
   fi
 
-  if ! [ -e ~/.vim/pack/minpac ]; then
-    git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
-  fi
-
   if [ $(which nvim) ]; then
     mkdir -p ~/.config/nvim
     echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
