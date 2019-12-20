@@ -1,5 +1,5 @@
 E:VISUAL = nvim
-E:EDIOTR = $E:VISUAL
+E:EDITOR = $E:VISUAL
 E:GIT_EDITOR = $E:EDITOR
 
 use re
