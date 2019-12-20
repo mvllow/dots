@@ -1,7 +1,5 @@
 module.exports = {
   config: {
-    updateChannel: "canary",
-
     fontSize: 12,
     fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas",
 
@@ -18,5 +16,5 @@ module.exports = {
 
     bell: false
   },
-  plugins: ["hyper-website-theme"]
+  plugins: ["hypercwd", "hyper-website-theme"]
 };
