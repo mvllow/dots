@@ -41,7 +41,7 @@ It is recommeneded to read through `setup.sh` to know exactly what is being modi
 All stable builds are supported, as well as most pre-release versions.
 
 - Zsh and Elvish shells
-- Hyper terminal
+- Hyper and iTerm2
 - [Neo]Vim
 - Sublime Text
 - Visual Studio Code
