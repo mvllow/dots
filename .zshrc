@@ -1,15 +1,7 @@
-export GPG_TTY=$(tty)
+export GPG_TTY=/dev/tty
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-if (( $+commands[nvim] )); then
-  alias vi='nvim'
-fi
+SHELL=/usr/local/bin/elvish
+PROMPT='%~> '
 
-if (( $+commands[code-insiders] )); then
-  alias code='code-insiders'
-fi
-
-autoload -U promptinit; promptinit
-
-PURE_PROMPT_SYMBOL="▲"
-
-prompt pure
+[ -x $SHELL ] && exec $SHELL
