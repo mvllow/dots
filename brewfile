@@ -3,21 +3,32 @@ tap "homebrew/core"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 
+# Alternative shell
+brew "elvish"
+
+# Faster fuzzy search
 brew "ag"
-brew "fd"
 brew "fzf"
+
+# "Future of vim"
 brew "neovim"
+
+# GPG
 brew "gnupg"
 brew "pinentry-mac"
+
+# NodeJS/npm & yarn
 brew "node"
 brew "yarn"
+
+# Mac App Store
 brew "mas"
 
-cask "1password"
 cask "google-chrome-canary"
-cask "hyper"
+cask "iterm2"
 cask "keybase"
-cask "vanilla"
+cask "now"
 cask "visual-studio-code-insiders"
 
+# Window manager
 mas "Magnet", id: 441258766
