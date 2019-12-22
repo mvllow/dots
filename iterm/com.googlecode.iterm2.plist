@@ -769,7 +769,7 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>410 363 620 392 0 0 1440 877 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 452 718 425 0 0 1440 877 </string>
+	<string>361 240 620 413 0 0 1440 877 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1501,21 +1501,23 @@
 	</array>
 	<key>NoSyncAllAppVersions</key>
 	<array>
-		<string>3.3.20191204-nightly</string>
 		<string>3.3.20191127-nightly</string>
 		<string>3.3.20191202-nightly</string>
+		<string>3.3.8beta1</string>
+		<string>3.3.7</string>
+		<string>3.3.20191204-nightly</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1440, 900}}</string>
 		<key>topLeft</key>
-		<string>{253, 620}</string>
+		<string>{365, 798}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>C3D42393-15AF-4278-811B-AA884A37B543</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>21</integer>
+	<integer>26</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2296,11 +2298,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly_new.xml?shard=67</string>
+	<string>https://iterm2.com/appcasts/testing_new.xml?shard=67</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2019-12-04T22:26:55Z</date>
+	<date>2019-12-21T22:13:09Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateRelaunchingMarker</key>
@@ -2324,7 +2326,7 @@
 	<key>TerminalMargin</key>
 	<integer>30</integer>
 	<key>TerminalVMargin</key>
-	<integer>0</integer>
+	<integer>12</integer>
 	<key>UseBorder</key>
 	<false/>
 	<key>VisualIndicatorForEsc</key>
@@ -2332,7 +2334,7 @@
 	<key>WindowNumber</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.3.20191204-nightly</string>
+	<string>3.3.7</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
