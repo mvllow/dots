@@ -1,5 +1,7 @@
 module.exports = {
   config: {
+    updateChannel: "stable",
+
     fontSize: 12,
     fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas",
 
@@ -10,9 +12,6 @@ module.exports = {
     borderColor: "rgba(0, 0, 0, 0)",
 
     padding: "12px 30px 30px 30px",
-
-    shell: "",
-    shellArgs: ["--login"],
 
     bell: false
   },
