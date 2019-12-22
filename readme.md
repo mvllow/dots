@@ -10,11 +10,7 @@ The setup script will install and configure a minimal amount of applications, co
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-For automation, read through `setup-unsafe.sh`. All information is hardcoded and therefore requires zero user input. After forking, be sure to look over `brewfile` as well.
-
-```sh
-$ curl -LJO https://raw.githubusercontent.com/<your git username>/dots/master/setup-unsafe.sh && sh ./setup-unsafe.sh
-```
+For automation, read through `setup.sh`. Commented variables can be hardcoded and therefore requires zero user input. After forking, be sure to look over `brewfile` as well.
 
 ## Apps
 
@@ -44,6 +40,7 @@ Both VSCode (stable/insiders) and Sublime Text (stable/dev) are supported.
 - Increase tracking speed and enable tap to click
 - Enable (faster) key repeat with shorter delay
 - Disable auto correct/capitilise and smart dashes/quotes
+- Expose SF Mono making it accessible via Font Book
 
 **Manual**
 

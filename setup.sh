@@ -3,6 +3,11 @@
 app=~/.config/mvllow/dots
 repo=https://github.com/mvllow/dots.git
 
+# For automation, set the below variables
+# git_name="user123"
+# git_email="you@domain.com"
+# ssh_email="you@domain.com"
+
 color_green() {
     echo "\033[0;92m$1\033[0m"
 }
@@ -25,7 +30,7 @@ init() {
 
     if ! [ $(xcode-select --print-path) ]; then
         echo "We need command line tools for git, brew, and more."
-        color_grey "This could take a while, so when the installation finishes press enter to let me know it's done."
+        color_grey "This could take a while, so we will check every few seconds."
 
         get_command_line_tools
     else
@@ -36,13 +41,12 @@ init() {
 get_command_line_tools() {
     xcode-select --install &>/dev/null;
 
-    read -p ""
+    sleep 5
 
     if ! [ $(xcode-select --print-path) ]; then
         put_header
 
-        echo "It doesn't look like command line tools are done installing."
-        color_grey "Press enter when you want me to check again."
+        echo "Waiting..."
 
         get_command_line_tools
     else
@@ -97,13 +101,19 @@ config_git() {
     put_header
 
     if ! [ -f ~/.gitconfig ]; then
-        echo "Let's setup git with our information."
-        read -p "What's your git name? " name
-        read -p "Your git email? " email
+        echo "Let's setup git with your information."
+
+        if ! [ -z $git_name ]; then
+            read -p "What's your git name? " git_name
+        fi
+
+        if ! [ -z $git_email ]; then
+            read -p "Your git email? " git_email
+        fi
         echo
 
-        git config --global user.name "$name"
-        git config --global user.email "$email"
+        git config --global user.name "$git_name"
+        git config --global user.email "$git_email"
 
         if ! type nvim &>/dev/null; then
             git config --global core.editor "nvim"
@@ -130,18 +140,13 @@ config_git() {
 
 config_ssh() {
     if ! [ -f ~/.ssh/id_rsa ]; then
-        if [ -z $email ]; then
-            echo "We will generate ssh keys using your git email."
-            color_grey "To use an alternative email:"
-            color_grey "$ ssh-keygen -t rsa -b 4096 -C \"you@domain.com\" -N \"\" -f ~/.ssh/id_rsa"
-            echo
-        else
+        if ! [ -z $ssh_email ]; then
             echo "We will generate ssh keys now."
-            read -p "What's your preferred email? " email
+            read -p "What's your preferred email? " ssh_email
             echo
         fi
 
-        ssh-keygen -t rsa -b 4096 -C "$email"
+        ssh-keygen -t rsa -b 4096 -C "$ssh_email"
         pbcopy < ~/.ssh/id_rsa.pub
 
         echo "Public key has been copied to your clipboard."
@@ -171,6 +176,10 @@ config_shell() {
 }
 
 config_apps() {
+    echo "Now changing app preferences."
+    color_grey "More information available at github.com/mvllow/dots"
+    echo
+
     if [ $(ls /Applications/ | grep iTerm) ]; then
         cp -r $app/iterm/com.googlecode.iterm2.plist ~/Library/Preferences
     fi
@@ -219,7 +228,13 @@ config_apps() {
 }
 
 config_prefs() {
+    echo "We are going to expose SF Mono making it accessibile via Font Book."
     cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
+    echo
+
+    echo "Now changing system preferences."
+    color_grey "More information available at github.com/mvllow/dots"
+    echo
 
     # Dock: enable autohide
     defaults write com.apple.dock autohide -bool true
@@ -258,11 +273,20 @@ config_prefs() {
 
     # Menubar: show battery percentage
     defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+    woohoo
+}
+
+woohoo() {
+    color_green "Done. Stay humble, stay hopeful."
+    echo
 }
 
 if [ $(uname) == "Darwin" ]; then
     init
 else
+    put_header
+
     echo "Unsupported OS: $(uname)"
     exit 1
 fi
