@@ -1,205 +1,268 @@
 #!/bin/sh
 
-app_dir=$(mktemp -d)
-app_repo=https://github.com/mvllow/dots.git
-app_config=~/.config/mvllow/dots
+app=~/.config/mvllow/dots
+repo=https://github.com/mvllow/dots.git
 
-subl_user_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-code_user_dir=$HOME/Library/Application\ Support/Code/User
-code_beta_user_dir=$HOME/Library/Application\ Support/Code\ -\ Insiders/User
+color_green() {
+    echo "\033[0;92m$1\033[0m"
+}
 
-green_text() { echo "\033[0;92m$1\033[0m" ; }
-grey_text() { echo "\033[0;90m$1\033[0m" ; }
+color_grey() {
+    echo "\033[0;90m$1\033[0m"
+}
+
+put_header() {
+    clear
+    echo "Welcome to mvllow/dots 🌸"
+    echo
+}
 
 init() {
-  clear
-  echo
-  grey_text "mvllow/dots"
-  echo
+    put_header
+
+    echo "Let's start by checking for the necessary tools."
+    echo
+
+    if ! [ $(xcode-select --print-path) ]; then
+        echo "We need command line tools for git, brew, and more."
+        color_grey "This could take a while, so when the installation finishes press enter to let me know it's done."
+
+        get_command_line_tools
+    else
+        get_repo
+    fi
 }
 
 get_command_line_tools() {
-  if ! [ $(xcode-select -p) ]; then
-    echo "- Installing command line tools"
-    xcode-select --install > /dev/null 2>&1;
-    read -p "> Please wait until finished, then enter to continue... "
-  else
-    grey_text "- (skipping) Installing command line tools"
-  fi
+    xcode-select --install &>/dev/null;
+
+    read -p ""
+
+    if ! [ $(xcode-select --print-path) ]; then
+        put_header
+
+        echo "It doesn't look like command line tools are done installing."
+        color_grey "Press enter when you want me to check again."
+
+        get_command_line_tools
+    else
+        get_repo
+    fi
 }
 
-clone_repo() {
-  echo "- Cloning mvllow/dots → temp dir"
-  mkdir -p "$app_config"
-  git clone https://github.com/mvllow/dots.git $app_dir > /dev/null 2>&1;
+get_repo() {
+    put_header
+
+    if ! [ -e $app ]; then
+        echo "We're going to clone the repo now."
+        color_grey "Cloning to $app"
+        echo
+
+        mkdir -p $app
+        git clone $repo $app &>/dev/null;
+    else
+        echo "It looks like you already have the repo locally."
+        color_grey "To use the remote branch, remove $app"
+        echo
+    fi
+
+    get_homebrew
 }
 
 get_homebrew() {
-  if ! [ $(which brew) ]; then
-    echo "- Installing homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  else
-    grey_text "- (skipping) Installing homebrew"
-  fi
+    if ! type brew &>/dev/null; then
+        echo "Before we change any preferences, let's install Homebrew to manage our packages."
+        color_grey "Learn more about Homebrew at https://brew.sh"
+        echo
 
-  echo "- Installing homebrew bundle"
-  brew upgrade > /dev/null 2>&1;
-  brew bundle --file="$app_dir/brewfile" > /dev/null 2>&1;
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
 
-  echo "- Cleaning homebrew bundle and packages"
-  brew cleanup > /dev/null 2>&1;
-  brew bundle cleanup --file="$app_dir/brewfile" --force > /dev/null 2>&1;
+    echo "Updating Homebrew packages..."
+    color_grey "Using $app/brewfile"
+    echo
+
+    brew upgrade &>/dev/null;
+    brew bundle --file="$app/brewfile" &>/dev/null;
+    brew cleanup &>/dev/null;
+
+    echo "If you have existing formulae, you may decide to purge anything not listed in the brewfile:"
+    color_grey "$ brew bundle cleanup --file=\"$app/brewfile\" --force"
+    echo
+
+    config_git
 }
 
-get_node_packages() {
-  echo "- Upgrading global node packages"
-  npm upgrade -g > /dev/null 2>&1;
-  npm i -g now prettier pure-prompt > /dev/null 2>&1;
+config_git() {
+    put_header
+
+    if ! [ -f ~/.gitconfig ]; then
+        echo "Let's setup git with our information."
+        read -p "What's your git name? " name
+        read -p "Your git email? " email
+        echo
+
+        git config --global user.name "$name"
+        git config --global user.email "$email"
+
+        if ! type nvim &>/dev/null; then
+            git config --global core.editor "nvim"
+        else
+            git config --global core.editor "vim"
+        fi
+
+        echo "Great! Now we will add a few aliases..."
+        echo "git checkout -> git co"
+        git config --global alias.co checkout
+        echo "git branch   -> git br"
+        git config --global alias.br branch
+        echo "git status   -> git st"
+        git config --global alias.st status
+        echo
+    else
+        echo "It looks like you already have global git configured."
+        color_grey "To use our setup, remove ~/.gitconfig"
+        echo
+    fi
+
+    config_ssh
 }
 
-prepare_git() {
-  if ! [ -f ~/.gitconfig ]; then
-    echo "- Creating global git config"
-    read -p "> Name for git: " git_name
-    read -p "> Email for git: " git_email
+config_ssh() {
+    if ! [ -f ~/.ssh/id_rsa ]; then
+        if [ -z $email ]; then
+            echo "We will generate ssh keys using your git email."
+            color_grey "To use an alternative email:"
+            color_grey "$ ssh-keygen -t rsa -b 4096 -C \"you@domain.com\" -N \"\" -f ~/.ssh/id_rsa"
+            echo
+        else
+            echo "We will generate ssh keys now."
+            read -p "What's your preferred email? " email
+            echo
+        fi
 
-    git config --global user.name "$git_name"
-    git config --global user.email "$git_email"
-    git config --global core.editor "nvim"
-    git config --global alias.co checkout
-    git config --global alias.br branch
-    git config --global alias.st status
-  else
-    grey_text "- (skipping) Generating global git config"
-  fi
+        ssh-keygen -t rsa -b 4096 -C "$email"
+        pbcopy < ~/.ssh/id_rsa.pub
+
+        echo "Public key has been copied to your clipboard."
+        color_grey "Your key can be found at ~/.ssh/id_rsa.pub"
+        echo
+    else
+        echo "It looks like you already have local ssh keys."
+        color_grey "To use our setup, remove ~/.ssh/id_rsa"
+        echo
+    fi
+
+    config_shell
 }
 
-prepare_keys() {
-  if ! [ -f ~/.ssh/id_rsa ]; then
-    echo "- Generating ssh keys"
+config_shell() {
+    echo "By default, Catalina now uses zsh instead of bash."
+    echo "If elvish was installed via brew, we will configure that as well."
+    echo
 
-    read -p "> Email for ssh: " ssh_email
+    if [ -x /usr/local/bin/elvish ]; then
+        cp -r $app/.elvish ~/
+    fi
 
-    ssh-keygen -t rsa -b 4096 -C "$ssh_email" -N "" -f ~/.ssh/id_rsa
-    pbcopy < ~/.ssh/id_rsa.pub
-  else
-    grey_text "- (skipping) Generating ssh keys"
-  fi
+    cp $app/.zshrc ~/
+
+    config_apps
 }
 
-set_app_prefs() {
-  echo "- Configuring app preferences"
-  cp -r "$app_dir/.vimrc" ~/.vimrc
-  cp -r "$app_dir/.zshrc" ~/.zshrc
+config_apps() {
+    if [ $(ls /Applications/ | grep iTerm) ]; then
+        cp -r $app/iterm/com.googlecode.iterm2.plist ~/Library/Preferences
+    fi
+    
+    if [ $(which hyper) ]; then
+        cp -r $app/.hyper.js ~/
+    fi
 
-  if [ $(which elvish) ]; then
-    cp -r "$app_dir/.elvish/rc.elv" ~/.elvish/rc.elv
-  fi
+    if [ $(which nvim) ]; then
+        mkdir -p ~/.config/nvim
+        echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
+        echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
+        echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+    fi
 
-  if [ $(which hyper) ]; then
-    cp -r "$app_dir/.hyper.js" ~/.hyper.js
-  fi
+    if [ $(which code) ]; then
+        cp -r $app/code $HOME/Library/Application\ Support/Code/User
 
-  if [ $(which nvim) ]; then
-    mkdir -p ~/.config/nvim
-    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
-    echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-    echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
-  fi
-
-  if [ $(which code) ]; then
-    mkdir -p "$code_user_dir"
-    cp "$app_dir/code/settings.json" "$code_user_dir/settings.json"
-
-    code --install-extension blanu.vscode-styled-jsx > /dev/null 2>&1;
-    code --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
-    code --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
-    code --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
-    code --install-extension jpoissonnier.vscode-styled-components > /dev/null 2>&1;
-    code --install-extension mvllow.rose-pine > /dev/null 2>&1;
-    code --install-extension vscodevim.vim > /dev/null 2>&1;
-  fi
+        code --install-extension blanu.vscode-styled-jsx &>/dev/null;
+        code --install-extension dbaeumer.vscode-eslint &>/dev/null;
+        code --install-extension esbenp.prettier-vscode &>/dev/null;
+        code --install-extension jamesbirtles.svelte-vscode &>/dev/null;
+        code --install-extension mvllow.rose-pine &>/dev/null;
+        code --install-extension vscodevim.vim &>/dev/null;
+    fi
   
-  if [ $(which code-insiders) ]; then
-    mkdir -p "$code_beta_user_dir"
-    cp "$app_dir/code/settings.json" "$code_beta_user_dir/settings.json"
+    if [ $(which code-insiders) ]; then
+        cp -r $app/code $HOME/Library/Application\ Support/Code\ -\ Insiders/User
 
-    code-insiders --install-extension blanu.vscode-styled-jsx > /dev/null 2>&1;
-    code-insiders --install-extension dbaeumer.vscode-eslint > /dev/null 2>&1;
-    code-insiders --install-extension esbenp.prettier-vscode > /dev/null 2>&1;
-    code-insiders --install-extension jamesbirtles.svelte-vscode > /dev/null 2>&1;
-    code-insiders --install-extension jpoissonnier.vscode-styled-components > /dev/null 2>&1;
-    code-insiders --install-extension mvllow.rose-pine > /dev/null 2>&1;
-    code-insiders --install-extension vscodevim.vim > /dev/null 2>&1;
-  fi
+        code-insiders --install-extension blanu.vscode-styled-jsx &>/dev/null;
+        code-insiders --install-extension dbaeumer.vscode-eslint &>/dev/null;
+        code-insiders --install-extension esbenp.prettier-vscode &>/dev/null;
+        code-insiders --install-extension jamesbirtles.svelte-vscode &>/dev/null;
+        code-insiders --install-extension mvllow.rose-pine &>/dev/null;
+        code-insiders --install-extension vscodevim.vim &>/dev/null;
+    fi
 
-  if [ $(which subl) ]; then
-    mkdir -p "$subl_user_dir"
-    cp "$app_dir/subl/keymap.json" "$subl_user_dir/Default (OSX).sublime-keymap"
-    cp "$app_dir/subl/packages.json" "$subl_user_dir/Package Control.sublime-settings"
-    cp "$app_dir/subl/settings.json" "$subl_user_dir/Preferences.sublime-settings"
-  fi
+    if [ $(which subl) ]; then
+        sublime_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+        cp -r $app/subl/keymap.json "$sublime_dir/Default (OSX).sublime-keymap"
+        cp -r $app/subl/packages.json "$sublime_dir/Package Control.sublime-settings"
+        cp -r $app/subl/settings.json "$sublime_dir/Preferences.sublime-settings"
+    fi
+
+    config_prefs
 }
 
-set_system_prefs() {
-  echo "- Configuring system preferences"
-  cp -R /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
+config_prefs() {
+    cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
 
-  # Dock: enable autohide
-  defaults write com.apple.dock autohide -bool true
-  # Dock: decrease size
-  defaults write com.apple.dock tilesize -int 40
-  # Dock: hide recent apps
-  defaults write com.apple.dock show-recents -bool false
-  # Dock: show only active apps
-  defaults write com.apple.dock static-only -bool true
-  # Dock: minimise windows into app icon
-  defaults write com.apple.dock minimize-to-application -bool true
-  
-  # Keyboard: disable auto correct
-  defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-  # Keyboard: disable auto capitilise
-  defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-  # Keyboard: disable smart dashes
-  defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-  # Keyboard: disable smart quotes
-  defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-  # Keyboard: enable key repeat
-  defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-  # Keyboard: faster key repeat
-  defaults write NSGlobalDomain KeyRepeat -int 2
-  # Keyboard: shorter delay before key repeat
-  defaults write NSGlobalDomain InitialKeyRepeat -int 10
+    # Dock: enable autohide
+    defaults write com.apple.dock autohide -bool true
+    # Dock: hide recent apps
+    defaults write com.apple.dock show-recents -bool false
+    # Dock: show only active apps
+    defaults write com.apple.dock static-only -bool true
+    
+    # Keyboard: disable auto correct
+    defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+    # Keyboard: disable auto capitilise
+    defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+    # Keyboard: disable smart dashes
+    defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+    # Keyboard: disable smart quotes
+    defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+    # Keyboard: enable key repeat
+    defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+    # Keyboard: faster key repeat
+    defaults write NSGlobalDomain KeyRepeat -int 2
+    # Keyboard: shorter delay before key repeat
+    defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-  # Trackpad: enable tap to click (this user and login screen)
-  defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
-  defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-  defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
-  # Trackpad: increase tracking speed
-  defaults write -g com.apple.trackpad.scaling 3
+    # Trackpad: enable tap to click (this user and login screen)
+    defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+    defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+    defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+    # Trackpad: increase tracking speed
+    defaults write -g com.apple.trackpad.scaling 3
 
-  # Finder: disable warning on file extension change
-  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-  # Finder: disable warning when emptying trash
-  defaults write com.apple.finder WarnOnEmptyTrash -bool false
-  # Finder: disable app quarantine popup
-  defaults write com.apple.LaunchServices LSQuarantine -bool false
+    # Finder: disable warning on file extension change
+    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+    # Finder: disable warning when emptying trash
+    defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-  # Menubar: show battery percentage
-  defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+    # Menubar: show battery percentage
+    defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 }
 
-init
-get_command_line_tools
-clone_repo
-get_homebrew
-get_node_packages
-prepare_git
-prepare_keys
-set_app_prefs
-set_system_prefs
-
-echo
-green_text "Complete, woo! Please log out to ensure all changes apply."
-grey_text "Local config can be found at ~/.config/mvllow/dots"
+if [ $(uname) == "Darwin" ]; then
+    init
+else
+    echo "Unsupported OS: $(uname)"
+    exit 1
+fi
