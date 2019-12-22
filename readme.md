@@ -2,46 +2,53 @@
 
 # Minimalist developer
 
-## Getting started
-
-- Assumes a fresh install of macOS Catalina
-- Else, low attachment to your current settings (see below)
-
 The setup script will install and configure a minimal amount of applications, command line tools, and other packages.
 
-Packages not found in the repo's `brewfile` will be **purged**.
+## Getting started
 
 ```sh
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-## Preferences
+For automation, read through `setup-unsafe.sh`. All information is hardcoded and therefore requires zero user input. After forking, be sure to look over `brewfile` as well.
 
-It is recommeneded to read through `setup.sh` to know exactly what is being modified. The list below has been simplified.
+```sh
+$ curl -LJO https://raw.githubusercontent.com/<your git username>/dots/master/setup-unsafe.sh && sh ./setup-unsafe.sh
+```
 
-- Dock: autohide
-- Dock: show only active apps
-- Finder: disable app quarantine popup
-- Finder: disable warning when emptying trash
-- Finder: disable warning on file extension change
-- Menubar: show battery percentage
-- Trackpad: increase tracking speed
-- Trackpad: enable tap to click (this user and login screen)
-- Keyboard: enable (faster) key repeat with shorter delay
-- Keyboard: disable auto correct/capitilise
-- Keyboard: disable smart dashes/quotes
+## Apps
 
-**Not yet automated**
+Only installed apps will be configured.
+
+**Shells**
+
+We avoid changing your default shell (and needing _sudo_) by executing non-standard shells via `.zshrc`. Currently we support [elvish](elv.sh) and later [fish](fishshell.com).
+
+**Terminals**
+
+There are settings for both Hyper and iTerm2.
+
+**Editors**
+
+Our `.vimrc` uses zero dependencies/plugins and will be shared with NeoVim if found.
+
+Both VSCode (stable/insiders) and Sublime Text (stable/dev) are supported.
+
+## System preferences
+
+**Automated**
+
+- Autohide dock and only show active apps
+- Disable warning when emptying trash & changing file extensions
+- Show battery % in menubar
+- Increase tracking speed and enable tap to click
+- Enable (faster) key repeat with shorter delay
+- Disable auto correct/capitilise and smart dashes/quotes
+
+**Manual**
 
 - Keyboard -> Modifier keys -> Caps Lock = Escape
-- General -> Accent color -> Grayscale
 
-## Tools & Packages
+## Guides
 
-All stable builds are supported, as well as most pre-release versions.
-
-- Zsh and Elvish shells
-- Hyper and iTerm2
-- [Neo]Vim
-- Sublime Text
-- Visual Studio Code
+- [Signing git commits with GPG](https://github.com/mvllow/dots/blob/master/guides/signing-git-commits-with-gpg.md)
