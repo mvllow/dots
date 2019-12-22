@@ -14,7 +14,7 @@ For automation, read through `setup.sh`. Commented variables can be hardcoded an
 
 ## Apps
 
-Only installed apps will be configured.
+> Only installed apps will be configured.
 
 **Shells**
 
