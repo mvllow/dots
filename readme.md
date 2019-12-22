@@ -18,7 +18,7 @@ $ curl -LJO https://raw.githubusercontent.com/<your git username>/dots/master/se
 
 ## Apps
 
-Only installed apps will be configured.
+> Only installed apps will be configured.
 
 **Shells**
 
