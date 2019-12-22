@@ -1,7 +1,3 @@
-E:VISUAL = nvim
-E:EDITOR = $E:VISUAL
-E:GIT_EDITOR = $E:EDITOR
-
 use re
 use epm
 
