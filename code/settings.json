@@ -34,6 +34,7 @@
   "explorer.openEditors.visible": 0,
   "git.autofetch": true,
   "npm.enableScriptExplorer": false,
+  "problems.showCurrentInStatus": true,
   "scm.diffDecorationsGutterVisibility": "hover",
   "vim.handleKeys": {
     "<D-c>": false
