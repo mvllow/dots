@@ -1,9 +1,8 @@
 #!/bin/sh
 
+# todo: update variables for personal use
 app=~/.config/mvllow/dots
 repo=https://github.com/mvllow/dots.git
-
-# For automation, set the below variables
 # git_name="user123"
 # git_email="you@domain.com"
 
