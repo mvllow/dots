@@ -6,7 +6,6 @@ repo=https://github.com/mvllow/dots.git
 # For automation, set the below variables
 # git_name="user123"
 # git_email="you@domain.com"
-# ssh_email="you@domain.com"
 
 color_green() {
     echo "\033[0;92m$1\033[0m"
@@ -55,8 +54,6 @@ get_command_line_tools() {
 }
 
 get_repo() {
-    put_header
-
     if ! [ -e $app ]; then
         echo "We're going to clone the repo now."
         color_grey "Cloning to $app"
@@ -98,16 +95,14 @@ get_homebrew() {
 }
 
 config_git() {
-    put_header
-
     if ! [ -f ~/.gitconfig ]; then
         echo "Let's setup git with your information."
 
-        if ! [ -z $git_name ]; then
+        if [ -z ${git_name+x} ]; then
             read -p "What's your git name? " git_name
         fi
 
-        if ! [ -z $git_email ]; then
+        if [ -z ${git_email+x} ]; then
             read -p "Your git email? " git_email
         fi
         echo
@@ -140,13 +135,7 @@ config_git() {
 
 config_ssh() {
     if ! [ -f ~/.ssh/id_rsa ]; then
-        if ! [ -z $ssh_email ]; then
-            echo "We will generate ssh keys now."
-            read -p "What's your preferred email? " ssh_email
-            echo
-        fi
-
-        ssh-keygen -t rsa -b 4096 -C "$ssh_email"
+        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
         pbcopy < ~/.ssh/id_rsa.pub
 
         echo "Public key has been copied to your clipboard."
@@ -188,6 +177,8 @@ config_apps() {
         cp -r $app/.hyper.js ~/
     fi
 
+    cp -r $app/.vimrc ~/
+
     if [ $(which nvim) ]; then
         mkdir -p ~/.config/nvim
         echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
@@ -196,7 +187,8 @@ config_apps() {
     fi
 
     if [ $(which code) ]; then
-        cp -r $app/code $HOME/Library/Application\ Support/Code/User
+        mkdir -p ~/Library/Application\ Support/Code/User
+        cp $app/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
         code --install-extension blanu.vscode-styled-jsx &>/dev/null;
         code --install-extension dbaeumer.vscode-eslint &>/dev/null;
@@ -207,7 +199,8 @@ config_apps() {
     fi
   
     if [ $(which code-insiders) ]; then
-        cp -r $app/code $HOME/Library/Application\ Support/Code\ -\ Insiders/User
+        mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
+        cp $app/code/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
 
         code-insiders --install-extension blanu.vscode-styled-jsx &>/dev/null;
         code-insiders --install-extension dbaeumer.vscode-eslint &>/dev/null;
@@ -218,10 +211,8 @@ config_apps() {
     fi
 
     if [ $(which subl) ]; then
-        sublime_dir=$HOME/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-        cp -r $app/subl/keymap.json "$sublime_dir/Default (OSX).sublime-keymap"
-        cp -r $app/subl/packages.json "$sublime_dir/Package Control.sublime-settings"
-        cp -r $app/subl/settings.json "$sublime_dir/Preferences.sublime-settings"
+        mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+        cp -r $app/subl/ ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
     fi
 
     config_prefs
