@@ -8,6 +8,7 @@ brew "elvish"
 
 # Faster fuzzy search
 brew "ag"
+brew "fd"
 brew "fzf"
 
 # "Future of vim"
