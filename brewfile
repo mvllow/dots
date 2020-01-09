@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
 
 # Alternative shell
 brew "elvish"
@@ -25,8 +24,8 @@ brew "yarn"
 # Mac App Store
 brew "mas"
 
-cask "google-chrome-canary"
-cask "iterm2"
+cask "google-chrome"
+cask "hyper"
 cask "keybase"
 cask "now"
 cask "visual-studio-code"
