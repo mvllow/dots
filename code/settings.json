@@ -39,7 +39,6 @@
   "vim.handleKeys": {
     "<D-c>": false
   },
-  "window.zoomLevel": 1,
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.showIcons": false,
