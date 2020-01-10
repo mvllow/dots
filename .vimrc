@@ -69,8 +69,6 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = '!'
 
-let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 highlight clear SignColumn
