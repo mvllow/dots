@@ -1,7 +1,13 @@
 export GPG_TTY=/dev/tty
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-SHELL=/usr/local/bin/elvish
 PROMPT='%~> '
 
-[ -x $SHELL ] && exec $SHELL
+alias vi='nvim'
+alias chop='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
+
+# Spawn custom shell
+# Useful if you want to avoid changing the default shell
+#
+# SHELL=/usr/local/bin/elvish
+# [ -x $SHELL ] && exec $SHELL
