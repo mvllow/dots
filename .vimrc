@@ -39,6 +39,8 @@ let g:fzf_colors =
 
 set rtp+=/usr/local/opt/fzf
 
+let g:loaded_matchparen=1
+
 let g:indentLine_char = '¦'
 
 let g:goyo_width = 120
@@ -67,12 +69,7 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = 'x'
 let g:ale_sign_warning = '!'
 
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_winsize = 15
-
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
