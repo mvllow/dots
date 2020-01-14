@@ -1,34 +1,25 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/cask"
+tap "homebrew/cask-versions"
 
-# Alternative shell
-brew "elvish"
-
-# Faster fuzzy search
+# Improved fuzzy search
 brew "ag"
 brew "fd"
 brew "fzf"
 
-# "Future of vim"
+# Dev tools
 brew "neovim"
-
-# GPG
-brew "gnupg"
-brew "pinentry-mac"
-
-# NodeJS/npm & yarn
 brew "node"
 brew "yarn"
+cask "google-chrome-canary"
+cask "visual-studio-code-insiders"
 
-# Mac App Store
-brew "mas"
-
-cask "google-chrome"
-cask "hyper"
+# For GPG
+brew "gnupg"
+brew "pinentry-mac"
 cask "keybase"
-cask "now"
-cask "visual-studio-code"
 
-# Window manager
+# Mac App Store applications
+brew "mas"
 mas "Magnet", id: 441258766
