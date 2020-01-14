@@ -44,7 +44,7 @@ get_command_line_tools() {
     if ! [ $(xcode-select --print-path) ]; then
         put_header
 
-        echo "Waiting..."
+        echo "Waiting for command line tools to finish installing..."
 
         get_command_line_tools
     else
