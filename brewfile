@@ -1,7 +1,6 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
 
 # Improved fuzzy search
 brew "ag"
@@ -12,8 +11,8 @@ brew "fzf"
 brew "neovim"
 brew "node"
 brew "yarn"
-cask "google-chrome-canary"
-cask "visual-studio-code-insiders"
+cask "google-chrome"
+cask "visual-studio-code"
 
 # For GPG
 brew "gnupg"
