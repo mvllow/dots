@@ -1,7 +1,6 @@
 syntax off
 
 set rtp+=/usr/local/opt/fzf            " Use local fzf
-set number                             " Show line numbers
 set laststatus=0                       " Hide status line
 set splitbelow                         " Split vertical below
 set splitright                         " Split horizontal right
