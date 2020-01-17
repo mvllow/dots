@@ -4,19 +4,14 @@
     "source.fixAll.eslint": true
   },
   "editor.folding": false,
-  "editor.fontFamily": "SF Mono",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "'SF Mono', Menlo",
   "editor.fontSize": 12,
   "editor.fontWeight": "500",
   "editor.formatOnSave": true,
   "editor.glyphMargin": false,
-  "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 20,
-  "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.renderIndentGuides": false,
-  "editor.renderLineHighlight": "gutter",
-  "editor.renderWhitespace": "none",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.tabSize": 2,
@@ -30,20 +25,18 @@
   "explorer.autoReveal": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "explorer.decorations.badges": false,
   "explorer.openEditors.visible": 0,
   "git.autofetch": true,
-  "npm.enableScriptExplorer": false,
   "problems.showCurrentInStatus": true,
   "scm.diffDecorationsGutterVisibility": "hover",
   "vim.handleKeys": {
     "<D-c>": false
   },
+  "vim.vimrc.enable": true,
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.showIcons": false,
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": "rose-pine-icons",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.tips.enabled": false
+  "workbench.startupEditor": "none"
 }
