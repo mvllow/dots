@@ -21,11 +21,12 @@ color_green() {
 }
 
 color_grey() {
-  echo "\033[0;90m$1\033[0m"
+  echo "\033[0;90m> $1\033[0m"
 }
 
 put_header() {
   clear
+  echo
   echo "Welcome to mvllow/dots 🌸"
   echo
 }
@@ -33,29 +34,30 @@ put_header() {
 init() {
   put_header
 
+  echo "Let's start with getting Homebrew"
+
   if ! type brew &>/dev/null; then
-    echo "Let's start with getting Homebrew"
     color_grey "https://brew.sh"
-    echo
-    echo "This will prompt to install command line tools if necessary"
-    echo
 
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
-    color_grey "Homebrew already installed... skipping"
-    echo
+    color_grey "Already exists... skipping"
   fi
+
+  echo
 
   get_command_line_tools
   get_repo
 
   echo "Updating brew packages"
   color_grey "Using $app/brewfile"
-  echo
 
   brew upgrade &>/dev/null;
   brew bundle --file="$app/brewfile" &>/dev/null;
   brew cleanup &>/dev/null;
+
+  color_grey "Cleaning up"
+  echo
 
   config_git
   config_ssh
@@ -80,21 +82,25 @@ get_command_line_tools() {
 }
 
 get_repo() {
+  echo "Fetching remote repo"
+
   if ! [ -e $app ]; then
-    echo "Fetching remote repo"
     color_grey "Cloning to $app"
-    echo
 
     mkdir -p $app
     git clone $repo $app &>/dev/null;
   else
     color_grey "$app exists... skipping"
-    echo
   fi
+
+  echo
 }
 
 config_git() {
+  echo "Configuring global git"
+
   if ! [ -f ~/.gitconfig ]; then
+    color_grey "Setting general information"
     if [[ -z ${git_user} ]]; then
       git config --global user.name "$git_user"
     fi
@@ -109,66 +115,72 @@ config_git() {
       git config --global core.editor "vim"
     fi
 
-    echo "Adding git aliases"
-    color_grey "[ch]eckout [br]anch [st]atus"
+    color_grey "Adding aliases: [ch]eckout [br]anch [st]atus"
 
     git config --global alias.ch checkout
     git config --global alias.br branch
     git config --global alias.st status
-    echo
   else
-    color_grey "Global git config found... skipping"
-    echo
+    color_grey "Already exists... skipping"
   fi
+
+  echo
 }
 
 config_ssh() {
+  echo "Configuring ssh keys"
+
   if ! [ -f ~/.ssh/id_rsa ]; then
     if [[ -z ${git_email} ]]; then
+      color_grey "Generating key with git email"
       ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N "" -C $git_email
     else
+      color_grey "Generating key with computer hostname"
       ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
     fi
 
     pbcopy < ~/.ssh/id_rsa.pub
 
-    echo "Public key has been copied to your clipboard"
-    color_grey "Your key can be found at ~/.ssh/id_rsa.pub"
-    echo
+    color_grey "Public key copied to clipboard"
+    color_grey "Saved to ~/.ssh/id_rsa.pub"
   else
-    color_grey "Local ssh keys found... skipping"
-    echo
+    color_grey "Already exists... skipping"
   fi
+
+  echo
 }
 
 config_shell() {
-  echo "By default, Catalina now uses zsh instead of bash"
-  echo "If elvish was installed via brew, we will configure that as well"
-  echo
+  echo "Configuring shells"
 
   if [ -x /usr/local/bin/elvish ]; then
+    color_grey "Copying elvish settings"
     cp -r $app/.elvish ~/
   fi
 
+  color_grey "Copying zsh settings"
   cp $app/.zshrc ~/
+  echo
 }
 
 config_apps() {
   echo "Updating app preferences"
-  color_grey "More information available at github.com/mvllow/dots"
-  echo
 
   if [ $(ls /Applications/ | grep iTerm) ]; then
+    color_grey "Copying iTerm settings"
     cp -r $app/iterm/com.googlecode.iterm2.plist ~/Library/Preferences
   fi
   
   if [ $(which hyper) ]; then
+    color_grey "Copying Hyper settings"
     cp -r $app/.hyper.js ~/
   fi
 
+  color_grey "Copying Vim settings"
   cp -r $app/.vimrc ~/
 
   if [ $(which nvim) ]; then
+    color_grey "Sharing Vim settings with NeoVim"
     mkdir -p ~/.config/nvim
     echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
     echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
@@ -176,6 +188,7 @@ config_apps() {
   fi
 
   if [ $(which code) ]; then
+    color_grey "Copying VSCode settings"
     mkdir -p ~/Library/Application\ Support/Code/User
     cp $app/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
@@ -188,6 +201,7 @@ config_apps() {
   fi
 
   if [ $(which code-insiders) ]; then
+    color_grey "Copying VSCode Insiders settings"
     mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
     cp $app/code/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
 
@@ -200,20 +214,21 @@ config_apps() {
   fi
 
   if [ $(which subl) ]; then
+    color_grey "Copying Sublime Text settings"
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
     cp -r $app/subl/ ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   fi
+
+  echo
 }
 
 config_prefs() {
-  echo "Exposing SF Mono, making it accessibile via Font Book"
+  echo "Configuring system preferences"
+
+  color_grey "Copying SF Mono to Font Book"
   cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
-  echo
 
-  echo "Updating system preferences"
-  color_grey "More information available at github.com/mvllow/dots"
-  echo
-
+  color_grey "Modifying dock preferences"
   # Dock: enable autohide
   defaults write com.apple.dock autohide -bool true
   # Dock: hide recent apps
@@ -221,6 +236,7 @@ config_prefs() {
   # Dock: show only active apps
   defaults write com.apple.dock static-only -bool true
   
+  color_grey "Modifying keyboard preferences"
   # Keyboard: disable auto correct
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
   # Keyboard: disable auto capitilise
@@ -236,6 +252,7 @@ config_prefs() {
   # Keyboard: shorter delay before key repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
+  color_grey "Modifying trackpad preferences"
   # Trackpad: enable tap to click (this user and login screen)
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -244,13 +261,17 @@ config_prefs() {
   # Trackpad: increase tracking speed
   defaults write -g com.apple.trackpad.scaling 3
 
+  color_grey "Modifying finder preferences"
   # Finder: disable warning on file extension change
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
   # Finder: disable warning when emptying trash
   defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
+  color_grey "Modifying menubar preferences"
   # Menubar: show battery percentage
   defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+  echo
 }
 
 woohoo() {
