@@ -1,10 +1,18 @@
 {
-  "in_process_packages": [],
-  "installed_packages": [
+  "bootstrapped": true,
+  "in_process_packages":
+  [
+  ],
+  "install_prereleases":
+  [
+    "Babel"
+  ],
+  "installed_packages":
+  [
     "A File Icon",
     "ayu",
+    "Babel",
     "JsPrettier",
-    "Naomi",
     "Package Control",
     "SublimeLinter",
     "SublimeLinter-eslint",
