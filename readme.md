@@ -10,7 +10,15 @@ The setup script will install and configure a minimal amount of applications, co
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-For automation, read through `setup.sh`. Commented variables can be hardcoded and therefore requires zero user input. After forking, be sure to look over `brewfile` as well.
+We are close to a zero-input script. Use our beta script to enable flags to include your git username/email. Brew still requires input if not installed.
+
+```sh
+$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup-beta.sh && sh ./setup-beta.sh  -u johnsmith -e you@domain.com
+```
+
+## Caveats
+
+VSCode needs to be approved via System Preferences on first open. Because of this, extensions may not install properly on the initial run. To fix, open VSCode and run the script again.
 
 ## Apps
 
