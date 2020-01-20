@@ -101,15 +101,15 @@ config_git() {
 
   if ! [ -f ~/.gitconfig ]; then
     color_grey "Setting general information"
-    if [[ -z ${git_user} ]]; then
+    if ! [[ -z ${git_user} ]]; then
       git config --global user.name "$git_user"
     fi
 
-    if [[ -z ${git_email} ]]; then
+    if ! [[ -z ${git_email} ]]; then
       git config --global user.email "$git_email"
     fi
 
-    if ! type nvim &>/dev/null; then
+    if type nvim &>/dev/null; then
       git config --global core.editor "nvim"
     else
       git config --global core.editor "vim"
