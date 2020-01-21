@@ -3,13 +3,21 @@
 app=~/.config/mvllow/dots
 repo=https://github.com/mvllow/dots.git
 
-while getopts u:e:h option; do
+# TODO: test -d
+# add usage exampled for -d
+while getopts u:e:dh option; do
   case "${option}" in
     u) git_user=${OPTARG};;
     e) git_email=${OPTARG};;
+    d) rm -rf $app;;
     h)
       echo "Example usage:"
-      echo "$0 [-u GIT USERNAME] [-e EMAIL]" >&2
+      echo "$0 [-u USERNAME] [-e EMAIL]" >&2
+      echo
+      echo "Commands:"
+      echo "-u []    username for global git config"
+      echo "-e []    email for global git config and ssh keys"
+      echo "-d       overwrite local repo with remote"
       echo
       exit 2
       ;;
