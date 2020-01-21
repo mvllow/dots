@@ -10,25 +10,9 @@ The setup script will install and configure a minimal amount of applications, co
 $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
 ```
 
-Use the beta script to enable cli arguments.
+> For global git config/ssh keys see usage below
 
-```sh
-$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup-beta.sh && sh ./setup-beta.sh -u johnsmith -e you@domain.com
-```
-
-### Options
-
-```
-Example usage:
-sh $0 [-u USERNAME] [-e EMAIL]
-
-Commands:
--u []    username for global git config
--e []    email for global git config and ssh keys
--d       overwrite local repo with remote
--D       delete local repo and exit
--h       show this message
-```
+![Usage](images/usage.png "Usage")
 
 ## Caveats
 
