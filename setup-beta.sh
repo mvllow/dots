@@ -3,27 +3,6 @@
 app=~/.config/mvllow/dots
 repo=https://github.com/mvllow/dots.git
 
-# TODO: test -d
-# add usage exampled for -d
-while getopts u:e:dh option; do
-  case "${option}" in
-    u) git_user=${OPTARG};;
-    e) git_email=${OPTARG};;
-    d) rm -rf $app;;
-    h)
-      echo "Example usage:"
-      echo "$0 [-u USERNAME] [-e EMAIL]" >&2
-      echo
-      echo "Commands:"
-      echo "-u []    username for global git config"
-      echo "-e []    email for global git config and ssh keys"
-      echo "-d       overwrite local repo with remote"
-      echo
-      exit 2
-      ;;
-  esac
-done
-
 color_green() {
   echo "\033[0;92m$1\033[0m"
 }
@@ -38,6 +17,33 @@ put_header() {
   echo "Welcome to mvllow/dots 🌸"
   echo
 }
+
+while getopts u:e:dDh option; do
+  case "${option}" in
+    u) git_user=${OPTARG};;
+    e) git_email=${OPTARG};;
+    d) rm -rf $app;;
+    D)
+      rm -rf $app
+      exit 2
+      ;;
+    h)
+      echo "Example usage:"
+      echo "sh $0 [-u USERNAME] [-e EMAIL]"
+      echo
+      echo "Commands:"
+      echo "-u []    username for global git config"
+      echo "-e []    email for global git config and ssh keys"
+      echo "-d       overwrite local repo with remote"
+      echo "-D       delete local repo and exit"
+      echo "-h       show this message"
+      echo
+      color_grey "local repo at $app"
+      echo
+      exit 2
+      ;;
+  esac
+done
 
 init() {
   put_header
