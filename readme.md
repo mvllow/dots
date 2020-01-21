@@ -20,7 +20,7 @@ VSCode needs to be approved via System Preferences on first open. Because of thi
 
 ## Apps
 
-> Only installed apps will be configured.
+> Only installed apps will be configured
 
 **Shells**
 
