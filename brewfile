@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
-tap "homebrew/core"
 tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
 
 # Improved fuzzy search
 brew "ag"
@@ -8,11 +9,12 @@ brew "fd"
 brew "fzf"
 
 # Dev tools
-brew "neovim"
+brew "neovim", args: ["HEAD]
 brew "node"
 brew "yarn"
-cask "google-chrome"
-cask "visual-studio-code"
+cask "hyper"
+cask "google-chrome-canary"
+cask "visual-studio-code-insiders"
 
 # Mac App Store applications
 brew "mas"
