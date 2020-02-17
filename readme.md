@@ -28,7 +28,7 @@ We avoid changing your default shell (and needing _sudo_) by executing non-stand
 
 **Terminals**
 
-There are settings for both Hyper and iTerm2.
+[Hyper](hyper.is) is offically supported.
 
 **Editors**
 

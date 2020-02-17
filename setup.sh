@@ -193,11 +193,6 @@ config_shell() {
 
 config_apps() {
   echo "Updating app preferences"
-
-  if [ $(ls /Applications/ | grep iTerm) ]; then
-    item "Copying iTerm settings"
-    cp -r $app/iterm/com.googlecode.iterm2.plist ~/Library/Preferences
-  fi
   
   if [ $(which hyper) ]; then
     item "Copying Hyper settings"
