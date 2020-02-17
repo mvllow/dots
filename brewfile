@@ -14,11 +14,6 @@ brew "yarn"
 cask "google-chrome"
 cask "visual-studio-code"
 
-# For GPG
-brew "gnupg"
-brew "pinentry-mac"
-cask "keybase"
-
 # Mac App Store applications
 brew "mas"
 mas "Magnet", id: 441258766

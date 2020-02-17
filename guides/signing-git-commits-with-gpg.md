@@ -1,7 +1,5 @@
 ## Signing git commits with GPG
 
-The [setup script](https://github.com/mvllow/dots) will install the following for you. The rest was left out of the script to prevent complexity.
-
 ```sh
 $ brew install gnupg pinentry-mac
 
