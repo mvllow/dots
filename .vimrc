@@ -1,35 +1,51 @@
 syntax off
 
-set rtp+=/usr/local/opt/fzf            " Use local fzf
-set laststatus=0                       " Hide status line
-set splitbelow                         " Split vertical below
-set splitright                         " Split horizontal right
-set noswapfile                         " Do not create swap files
-set viminfo=""                         " Do not create ~/.viminfo
-set undofile                           " Enable persistent undo...
-set undodir=~/.vim/undo                " ...and save state in ~/.vim/undo
-set tabstop=2                          " Amount of indentation per tab byte
-set shiftwidth=2                       " Same as tabstop but for indenting via `>>`
-set expandtab                          " Prefer spaces over tabs
-set autoindent                         " Auto indent new lines
-set smartindent                        " Same as autoindent but for current syntax/style
-set ignorecase                         " Case insensitive search...
-set smartcase                          " ...unless using uppercase
-set hidden                             " Allow unsaved hidden buffers
-set autowrite                          " Auto save changes before switching buffer
+" Use local fzf for fuzzy search
+set rtp+=/usr/local/opt/fzf
 
-let mapleader=','
+" 2 spaces over tabs (don't @ me)
+filetype indent on
+set autoindent expandtab
+set shiftwidth=2 softtabstop=2 tabstop=2
 
-inoremap jk <esc>
+" Highlight search, case insensitive unless uppercase
+set hlsearch ignorecase incsearch smartcase
 
-nnoremap K 5gk
-nnoremap J 5gj
+" No backups, persistent undo
+set nobackup noswapfile nowritebackup
+set undofile undodir=~/.vim/undo undolevels=9999
+set viminfo=""
+
+" Improve performance
+set lazyredraw
+set nocursorline
+set ttyfast
+
+" Buffers
+set autoread
+set hidden
+set nowrap
+set scrolloff=3
+set splitbelow splitright
+
+let mapleader=' '
+nnoremap <space> <nop>
+
+nnoremap <leader><leader>j :sp<cr>
+nnoremap <leader><leader>l :vsp<cr>
+
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+
 nnoremap k gk
 nnoremap j gj
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nmap <leader>bd :bd<cr>
+nmap <leader>bn :bn<cr>
+nmap <leader>bp :bp<cr>
 
 nnoremap <leader>f :FZF<cr>
+
+inoremap jk <esc>
