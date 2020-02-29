@@ -1,5 +1,8 @@
 syntax off
 
+" Disable audio bell
+set visualbell
+
 " Use local fzf for fuzzy search
 set rtp+=/usr/local/opt/fzf
 
