@@ -1,71 +1,57 @@
 {
-    /* Preferences */
-    "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 12,
-    "editor.fontWeight": "500",
-    "editor.tabSize": 2,
-    "workbench.fontAliasing": "auto",
-    /* Theme */
-    "workbench.colorTheme": "Rosé Pine",
-    "workbench.iconTheme": "rose-pine-icons",
-    /* Interface */
-    "breadcrumbs.enabled": false,
-    "editor.folding": false,
-    "editor.hideCursorInOverviewRuler": true,
-    "editor.lineHeight": 20,
-    "editor.lineNumbers": "off",
-    "editor.matchBrackets": "never",
-    "editor.minimap.enabled": false,
-    "editor.occurrencesHighlight": false,
-    "editor.renderIndentGuides": false,
-    "editor.renderLineHighlight": "none",
-    "editor.scrollbar.horizontal": "hidden",
-    "editor.scrollbar.vertical": "hidden",
-    "explorer.openEditors.visible": 0,
-    "git.decorations.enabled": false,
-    "scm.diffDecorations": "none",
-    "window.zoomLevel": 0,
-    "workbench.activityBar.visible": false,
-    "workbench.editor.showIcons": false,
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.statusBar.visible": false,
-    /* Behaviours */
-    "css.validate": false,
-    "editor.codeActionsOnSave": {
-        "source.fixAll": true,
-        // Conflicts with prettier
-        // "source.organizeImports": true
-    },
-    "editor.formatOnSave": false,
-    "editor.multiCursorModifier": "ctrlCmd",
-    "explorer.autoReveal": false,
-    "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": false,
-    "git.autofetch": true,
-    "search.exclude": {
-        "**/.git": true,
-        "**/.next": true,
-        "**/node_modules": true,
-    },
-    /* Plugins */
-    "eslint.validate": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact"
-    ],
-    "vim.handleKeys": {
-        "<c-d>": true
-    },
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "k"
-            ],
-            "after": [
-                "<esc>"
-            ]
-        }
-    ]
+  "breadcrumbs.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.folding": false,
+  "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 12,
+  "editor.fontWeight": "500",
+  "editor.formatOnSave": true,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.lineHeight": 20,
+  "editor.lineNumbers": "off",
+  "editor.matchBrackets": "never",
+  "editor.minimap.enabled": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.occurrencesHighlight": false,
+  "editor.renderIndentGuides": false,
+  "editor.renderLineHighlight": "none",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.tabSize": 2,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "explorer.autoReveal": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.openEditors.visible": 0,
+  "git.autofetch": true,
+  "git.decorations.enabled": false,
+  "scm.diffDecorations": "none",
+  "search.exclude": {
+    "**/.git": true,
+    "**/.next": true,
+    "**/node_modules": true
+  },
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Rosé Pine",
+  "workbench.editor.showIcons": false,
+  "workbench.fontAliasing": "auto",
+  "workbench.iconTheme": "Rosé Pine Icons",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.statusBar.visible": false,
+  "vim.handleKeys": {
+    "<c-d>": true
+  },
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<esc>"]
+    }
+  ]
 }
