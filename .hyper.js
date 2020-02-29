@@ -15,5 +15,5 @@ module.exports = {
 
     bell: false
   },
-  plugins: ["hypercwd", "hyper-website-theme"]
+  plugins: ["hyper-rose-pine"]
 };
