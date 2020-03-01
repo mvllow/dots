@@ -1,4 +1,4 @@
-![](https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fp-y=.7&w=1951&h=480&q=80)
+![Promo](images/dots.png "Promo")
 
 # Minimalist developer
 
