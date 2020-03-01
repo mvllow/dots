@@ -1,4 +1,4 @@
-![Promo](images/dots.png "Promo")
+![Promo](images/promo.png "Promo")
 
 # Minimalist developer
 
