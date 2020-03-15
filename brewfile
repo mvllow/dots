@@ -9,7 +9,7 @@ brew "fd"
 brew "fzf"
 
 # Dev tools
-brew "neovim", args: ["HEAD]
+brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
 cask "hyper"
