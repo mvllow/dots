@@ -13,7 +13,10 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
 cask "hyper"
+cask "signal"
 cask "google-chrome-canary"
+cask "sublime-text"
+cask "sublime-merge"
 cask "visual-studio-code-insiders"
 
 # Mac App Store applications
