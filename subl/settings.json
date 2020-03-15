@@ -1,5 +1,4 @@
 {
-  "SublimeLinter.linters.eslint.selector": "source.js, source.jsx, source.ts, source.tsx",
   "binary_file_patterns": [
     "*.jpg",
     "*.jpeg",
@@ -14,11 +13,13 @@
     "*.swf",
     "*.jar",
     "*.zip",
+    ".git/",
     "node_modules/",
-    "dist/",
-    ".*/"
   ],
   "color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+  "draw_indent_guides": false,
+  "enable_tab_scrolling": false,
+  "fold_buttons": false,
   "font_face": "SF Mono",
   "ignored_packages": [""],
   "indent_guide_options": ["draw_active"],
