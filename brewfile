@@ -14,10 +14,10 @@ brew "node"
 brew "yarn"
 cask "hyper"
 cask "signal"
-cask "google-chrome-canary"
+cask "google-chrome"
 cask "sublime-text"
 cask "sublime-merge"
-cask "visual-studio-code-insiders"
+cask "visual-studio-code"
 
 # Mac App Store applications
 brew "mas"
