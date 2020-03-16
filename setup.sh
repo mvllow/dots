@@ -215,10 +215,8 @@ config_apps() {
     mkdir -p ~/Library/Application\ Support/Code/User
     cp $app/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
-    code --install-extension blanu.vscode-styled-jsx &>/dev/null;
     code --install-extension dbaeumer.vscode-eslint &>/dev/null;
     code --install-extension esbenp.prettier-vscode &>/dev/null;
-    code --install-extension jamesbirtles.svelte-vscode &>/dev/null;
     code --install-extension mvllow.rose-pine &>/dev/null;
     code --install-extension vscodevim.vim &>/dev/null;
   fi
@@ -228,10 +226,8 @@ config_apps() {
     mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
     cp $app/code/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
 
-    code-insiders --install-extension blanu.vscode-styled-jsx &>/dev/null;
     code-insiders --install-extension dbaeumer.vscode-eslint &>/dev/null;
     code-insiders --install-extension esbenp.prettier-vscode &>/dev/null;
-    code-insiders --install-extension jamesbirtles.svelte-vscode &>/dev/null;
     code-insiders --install-extension mvllow.rose-pine &>/dev/null;
     code-insiders --install-extension vscodevim.vim &>/dev/null;
   fi
