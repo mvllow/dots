@@ -24,7 +24,7 @@ put_header() {
 
 put_header
 
-while getopts u:e:dDh option; do
+while getopts u:e:rDh option; do
   case "${option}" in
     u) git_user=${OPTARG};;
     e) git_email=${OPTARG};;
