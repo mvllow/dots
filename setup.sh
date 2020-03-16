@@ -28,7 +28,7 @@ while getopts u:e:dDh option; do
   case "${option}" in
     u) git_user=${OPTARG};;
     e) git_email=${OPTARG};;
-    d) rm -rf $app;;
+    r) rm -rf $app;;
     D)
       rm -rf $app
       exit 2
@@ -42,7 +42,7 @@ while getopts u:e:dDh option; do
       echo
       echo "  -u [user]           set user for global git config"
       echo "  -e [email]          set email for global git config and ssh keys"
-      echo "  -d                  replace $app with remote"
+      echo "  -r                  replace $app with remote"
       echo "  -D                  delete $app and exit"
       echo "  -h                  show this message"
       echo
