@@ -6,7 +6,7 @@ set visualbell
 " Use local fzf for fuzzy search
 set rtp+=/usr/local/opt/fzf
 
-" 2 spaces over tabs (don't @ me)
+" 2 spaces over tabs
 filetype indent on
 set autoindent expandtab
 set shiftwidth=2 softtabstop=2 tabstop=2
