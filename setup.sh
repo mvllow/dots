@@ -90,7 +90,6 @@ init() {
 
   config_git
   config_ssh
-  config_shell
   config_apps
   config_prefs
   woohoo
@@ -144,9 +143,9 @@ config_git() {
       git config --global core.editor "vim"
     fi
 
-    item "Adding aliases: [ch]eckout [br]anch [st]atus"
+    item "Adding aliases: CheckOut BRanch STatus"
 
-    git config --global alias.ch checkout
+    git config --global alias.co checkout
     git config --global alias.br branch
     git config --global alias.st status
   else
@@ -179,21 +178,13 @@ config_ssh() {
   echo
 }
 
-config_shell() {
-  echo "Configuring shells"
-
-  if [ -x /usr/local/bin/elvish ]; then
-    item "Copying elvish settings"
-    cp -r $app/.elvish ~/
-  fi
-
-  item "Copying zsh settings"
-  cp $app/.zshrc ~/
-  echo
-}
-
 config_apps() {
   echo "Updating app preferences"
+
+  if [ $(which zsh) ]; then
+    item "Copying Zsh settings"
+    cp -r $app/.zshrc ~/
+  fi
   
   if [ $(which hyper) ]; then
     item "Copying Hyper settings"
@@ -214,7 +205,7 @@ config_apps() {
   if [ $(which code) ]; then
     item "Copying VSCode settings"
     mkdir -p ~/Library/Application\ Support/Code/User
-    cp $app/code/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
 
     code --install-extension dbaeumer.vscode-eslint &>/dev/null;
     code --install-extension esbenp.prettier-vscode &>/dev/null;
@@ -225,18 +216,12 @@ config_apps() {
   if [ $(which code-insiders) ]; then
     item "Copying VSCode Insiders settings"
     mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
-    cp $app/code/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
+    cp $app/vscode/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
 
     code-insiders --install-extension dbaeumer.vscode-eslint &>/dev/null;
     code-insiders --install-extension esbenp.prettier-vscode &>/dev/null;
     code-insiders --install-extension mvllow.rose-pine &>/dev/null;
     code-insiders --install-extension vscodevim.vim &>/dev/null;
-  fi
-
-  if [ $(which subl) ]; then
-    item "Copying Sublime Text settings"
-    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-    cp -r $app/subl/ ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   fi
 
   echo
