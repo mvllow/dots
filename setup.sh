@@ -228,12 +228,12 @@ config_apps() {
 }
 
 config_prefs() {
-  echo "Configuring system preferences"
+  echo "Configuring system"
 
   item "Copying SF Mono to Font Book"
   cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
 
-  item "Modifying dock preferences"
+  item "Modifying preferences"
   # Dock: enable autohide
   defaults write com.apple.dock autohide -bool true
   # Dock: hide recent apps
@@ -241,7 +241,6 @@ config_prefs() {
   # Dock: show only active apps
   defaults write com.apple.dock static-only -bool true
   
-  item "Modifying keyboard preferences"
   # Keyboard: disable auto correct
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
   # Keyboard: disable auto capitilise
@@ -257,7 +256,6 @@ config_prefs() {
   # Keyboard: shorter delay before key repeat
   defaults write NSGlobalDomain InitialKeyRepeat -int 10
 
-  item "Modifying trackpad preferences"
   # Trackpad: enable tap to click (this user and login screen)
   defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -266,13 +264,11 @@ config_prefs() {
   # Trackpad: increase tracking speed
   defaults write -g com.apple.trackpad.scaling 3
 
-  item "Modifying finder preferences"
   # Finder: disable warning on file extension change
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
   # Finder: disable warning when emptying trash
   defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
-  item "Modifying menubar preferences"
   # Menubar: show battery percentage
   defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 
