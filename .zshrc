@@ -8,7 +8,7 @@ if (( $+commands[nvim] )); then
 fi
 
 if (( $+commands[code-insiders] )); then
-  alias code='code-insiders'
+  alias ci='code-insiders'
 fi
 
 alias chop='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
