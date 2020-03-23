@@ -24,7 +24,7 @@ VSCode needs to be approved via System Preferences on first open. Because of thi
 
 **Shells**
 
-We avoid changing your default shell (and needing _sudo_) by executing non-standard shells via `.zshrc`. Currently we support [elvish](elv.sh) and later [fish](fishshell.com).
+We avoid changing your default shell (and needing _sudo_) by executing non-standard shells via `.zshrc`.
 
 **Terminals**
 
