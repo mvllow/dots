@@ -1,6 +1,7 @@
 #!/bin/sh
 
 app=~/.config/mvllow/dots
+url=https://github.com/mvllow/dots
 repo=https://github.com/mvllow/dots.git
 
 green() {
@@ -52,7 +53,7 @@ while getopts u:e:rDh option; do
       echo
       gray "Documentation:"
       echo
-      echo "  $repo"
+      echo "  $url"
       echo
       exit 2
       ;;
