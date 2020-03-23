@@ -16,5 +16,5 @@ alias chop='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 # Spawn custom shell
 # Useful if you want to avoid changing the default shell
 #
-# SHELL=/usr/local/bin/elvish
+# SHELL=/usr/local/bin/fish
 # [ -x $SHELL ] && exec $SHELL
