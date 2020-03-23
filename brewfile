@@ -3,22 +3,18 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 
-# Improved fuzzy search
 brew "ag"
 brew "fd"
 brew "fzf"
-
-# Dev tools
+brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
+cask "figma"
+cask "google-chrome-canary"
 cask "hyper"
 cask "signal"
-cask "google-chrome"
-cask "sublime-text"
+cask "spotify"
 cask "sublime-merge"
-cask "visual-studio-code"
-
-# Mac App Store applications
-brew "mas"
+cask "visual-studio-code-insiders"
 mas "Magnet", id: 441258766
