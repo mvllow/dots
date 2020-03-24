@@ -62,6 +62,7 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 ## Misc
 
 - SF Mono is copied to Font Book for easier accessibility
+- The theme used in most apps is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
 
 ## Guides
 
