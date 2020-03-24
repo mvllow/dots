@@ -18,39 +18,50 @@ $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh 
 
 VSCode needs to be approved via System Preferences on first open. Because of this, extensions may not install properly on the initial run. To fix, open VSCode and run the script again.
 
-## Apps
+Proof of concept for a way of manually extracting a vsix. This allows extensions to be installed before vscode has been opened the first time.
+
+> https://gist.github.com/mvllow/96aabfa338a11c41f11a286985391ade
+
+## App preferences
 
 > Only installed apps will be configured
 
-**Shells**
-
-We avoid changing your default shell (and needing _sudo_) by executing non-standard shells via `.zshrc`.
-
-**Terminals**
-
-[Hyper](hyper.is) is offically supported.
-
-**Editors**
-
-Our `.vimrc` uses zero dependencies/plugins and will be shared with NeoVim if found.
-
-Both VSCode (stable/insiders) and Sublime Text (stable/dev) are supported.
+| App             | Modified files                                                      |
+| --------------- | ------------------------------------------------------------------- |
+| Zsh             | ~/.zshrc                                                            |
+| Vim             | ~/.vimrc                                                            |
+| NeoVim          | ~/.vimrc                                                            |
+| Hyper           | ~/.hyper.js                                                         |
+| VSCode          | ~/Library/Application\ Support/Code/User/settings.json              |
+| VSCode Insiders | ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json |
 
 ## System preferences
 
-**Automated**
+| Setting                                 | Value |
+| --------------------------------------- | ----- |
+| **Dock**                                |       |
+| Autohide                                | true  |
+| Show recent apps                        | false |
+| Show only active apps                   | true  |
+| **Keyboard**                            |       |
+| Auto correct                            | false |
+| Auto capitilise                         | false |
+| Use smart quotes/dashes                 | false |
+| Enable system-wide key repeat           | true  |
+| Enable faster key repeat                | 2     |
+| Enabled shorter delay before key repeat | 10    |
+| **Trackpad**                            |       |
+| Tap to click                            | true  |
+| Increase tracking speed                 | 3     |
+| **Finder**                              |       |
+| Warn on file extension change           | false |
+| Warn on emptying trash                  | false |
+| **Menubar**                             |       |
+| Show battery percentage                 | true  |
 
-- Autohide dock and only show active apps
-- Disable warning when emptying trash & changing file extensions
-- Show battery % in menubar
-- Increase tracking speed and enable tap to click
-- Enable (faster) key repeat with shorter delay
-- Disable auto correct/capitilise and smart dashes/quotes
-- Expose SF Mono making it accessible via Font Book
+## Misc
 
-**Manual**
-
-- Keyboard -> Modifier keys -> Caps Lock = Escape
+- SF Mono is copied to Font Book for easier accessibility
 
 ## Guides
 
