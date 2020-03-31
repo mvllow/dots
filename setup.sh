@@ -159,7 +159,7 @@ config_ssh() {
   echo "Configuring ssh keys"
 
   if ! [ -f ~/.ssh/id_rsa ]; then
-    if [[ -z ${git_email} ]]; then
+    if ! [[ -z ${git_email} ]]; then
       item "Generating key with git email"
       ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N "" -C $git_email
     else
