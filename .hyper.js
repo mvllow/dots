@@ -5,7 +5,7 @@ module.exports = {
     fontSize: 12,
     fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas",
 
-    padding: "12px 30px 30px 30px",
+    padding: "12px 30px",
 
     bell: false
   },
