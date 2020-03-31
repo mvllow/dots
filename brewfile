@@ -16,6 +16,5 @@ cask "hyper"
 cask "notion"
 cask "signal"
 cask "spotify"
-cask "sublime-merge"
 cask "visual-studio-code-insiders"
 mas "Magnet", id: 441258766
