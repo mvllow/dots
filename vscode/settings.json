@@ -5,6 +5,7 @@
   },
   "editor.folding": false,
   "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
   "editor.fontSize": 12,
   "editor.fontWeight": "500",
   "editor.formatOnSave": true,
@@ -15,6 +16,8 @@
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": false,
+  "editor.padding.bottom": 20,
+  "editor.padding.top": 20,
   "editor.renderIndentGuides": false,
   "editor.renderLineHighlight": "none",
   "editor.scrollbar.horizontal": "hidden",
@@ -31,7 +34,7 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
   "git.autofetch": true,
-  "git.decorations.enabled": false,
+  "git.decorations.enabled": true,
   "scm.diffDecorations": "none",
   "search.exclude": {
     "**/.git": true,
@@ -50,8 +53,13 @@
   },
   "vim.insertModeKeyBindings": [
     {
-      "before": ["j", "k"],
-      "after": ["<esc>"]
+      "before": [
+        "j",
+        "k"
+      ],
+      "after": [
+        "<esc>"
+      ]
     }
-  ]
+  ],
 }
