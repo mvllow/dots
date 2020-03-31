@@ -30,7 +30,7 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 | --------------- | ------------------------------------------------------------------- |
 | Zsh             | ~/.zshrc                                                            |
 | Vim             | ~/.vimrc                                                            |
-| NeoVim          | ~/.vimrc                                                            |
+| NeoVim          | ~/.config/nvim/init.vim                                                            |
 | Hyper           | ~/.hyper.js                                                         |
 | VSCode          | ~/Library/Application\ Support/Code/User/settings.json              |
 | VSCode Insiders | ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json |
