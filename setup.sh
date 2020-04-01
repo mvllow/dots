@@ -227,7 +227,9 @@ config_apps() {
   if [ $(which subl) ]; then
     item "Copying Sublime Text settings"
     mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-    cp -r $app/sublime/ ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+    cp -r $app/sublime/keymap.json ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Default\ \(OSX\).sublime-keymap
+    cp -r $app/sublime/packages.json ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
+    cp -r $app/sublime/settings.json ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
   fi
 
   echo
