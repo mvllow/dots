@@ -224,6 +224,12 @@ config_apps() {
     code-insiders --install-extension vscodevim.vim &>/dev/null;
   fi
 
+  if [ $(which subl) ]; then
+    item "Copying Sublime Text settings"
+    mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+    cp -r $app/sublime/ ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+  fi
+
   echo
 }
 
