@@ -1,0 +1,18 @@
+{
+  "bootstrapped": true,
+  "in_process_packages":
+  [
+  ],
+  "install_prereleases":
+  [
+    "Babel"
+  ],
+  "installed_packages":
+  [
+    "A File Icon",
+    "ayu",
+    "Babel",
+    "JsPrettier",
+    "Package Control",
+  ]
+}
