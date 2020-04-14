@@ -64,7 +64,9 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 > Due to the nature of these settings, they must be set by the user
 
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
-- Preferences > Privacy > Full Disk Access > Allow Terminal.app
+- Preferences > Privacy > Full Disk Access > Allow Terminal.app*
+
+* Needed for zapping brew casks and other priviledged tasks
 
 ## Misc
 
