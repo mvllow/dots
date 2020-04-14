@@ -59,6 +59,13 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 | **Menubar**                             |       |
 | Show battery percentage                 | true  |
 
+### Manual settings
+
+> Due to the nature of these settings, they must be set by the user
+
+- Preferences > Keyboard > Modifier Keys > Map caps lock to escape
+- Preferences > Privacy > Full Disk Access > Allow Terminal.app
+
 ## Misc
 
 - SF Mono is copied to Font Book for easier accessibility
