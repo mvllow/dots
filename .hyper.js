@@ -1,13 +1,8 @@
 module.exports = {
   config: {
-    updateChannel: "stable",
-
-    fontSize: 12,
-    fontFamily: "'SF Mono', SFMono-Regular, Menlo, Consolas",
-
-    padding: "12px 30px",
-
-    bell: false
+    padding: "15px",
+    lineHeight: 1.25,
+    fontFamily: "'SF Mono', Menlo, Consolas",
   },
-  plugins: ["hyper-rose-pine"]
+  plugins: ["hyper-rose-pine"],
 };
