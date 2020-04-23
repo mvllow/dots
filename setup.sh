@@ -251,7 +251,7 @@ config_prefs() {
   
   # Keyboard: disable auto correct
   defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
-  # Keyboard: disable auto capitilise
+  # Keyboard: disable auto capitalise
   defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
   # Keyboard: disable smart dashes
   defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
