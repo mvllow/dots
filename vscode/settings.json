@@ -3,23 +3,21 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
+  "css.validate": false,
   "editor.folding": false,
   "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 12,
-  "editor.fontWeight": "500",
   "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 20,
-  "editor.lineNumbers": "off",
-  "editor.matchBrackets": "never",
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": false,
   "editor.padding.bottom": 20,
   "editor.padding.top": 20,
   "editor.renderIndentGuides": false,
-  "editor.renderLineHighlight": "none",
+  "editor.renderLineHighlight": "gutter",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.tabSize": 2,
@@ -27,9 +25,9 @@
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
+    "typescriptreact",
+    "vue"
   ],
-  "explorer.autoReveal": false,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.openEditors.visible": 0,
@@ -38,28 +36,17 @@
   "scm.diffDecorations": "none",
   "search.exclude": {
     "**/.git": true,
-    "**/.next": true,
     "**/node_modules": true
   },
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Rosé Pine",
-  "workbench.editor.showIcons": false,
-  "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": "Rosé Pine Icons",
-  "workbench.startupEditor": "newUntitledFile",
-  "workbench.statusBar.visible": false,
+  "vetur.validation.template": false,
   "vim.handleKeys": {
     "<c-d>": true
   },
-  "vim.insertModeKeyBindings": [
-    {
-      "before": [
-        "j",
-        "k"
-      ],
-      "after": [
-        "<esc>"
-      ]
-    }
-  ],
+  "vim.vimrc.enable": true,
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Night Owl",
+  "workbench.editor.showTabs": false,
+  "workbench.fontAliasing": "auto",
+  "workbench.iconTheme": null,
+  "workbench.startupEditor": "newUntitledFile"
 }
