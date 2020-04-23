@@ -22,18 +22,27 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 
 > https://gist.github.com/mvllow/96aabfa338a11c41f11a286985391ade
 
-## App preferences
+## Modified files
 
-> Only installed apps will be configured
+> Only installed apps will be configured (see brewfile)
 
-| App             | Modified files                                                      |
-| --------------- | ------------------------------------------------------------------- |
-| Zsh             | ~/.zshrc                                                            |
-| Vim             | ~/.vimrc                                                            |
-| NeoVim          | ~/.config/nvim/init.vim                                                            |
-| Hyper           | ~/.hyper.js                                                         |
-| VSCode          | ~/Library/Application\ Support/Code/User/settings.json              |
-| VSCode Insiders | ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json |
+```
+.vimrc
+.zshrc
+.hyper.js
+.config
+└── nvim
+    └── init.vim
+Library/Application Support
+├── Sublime Text 3/Packages/User
+│   ├── Default (OSX).sublime-keymap
+│   ├── Package Control.sublime-settings
+│   └── Preferences.sublime-settings
+├── Code/User
+│   └── settings.json
+└── Code - Insiders/User
+    └── settings.json
+```
 
 ## System preferences
 
@@ -64,7 +73,7 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 > Due to the nature of these settings, they must be set by the user
 
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
-- Preferences > Privacy > Full Disk Access > Allow Terminal.app*
+- Preferences > Privacy > Full Disk Access > Allow Terminal.app\*
 
 * Needed for zapping brew casks and other priviledged tasks
 
