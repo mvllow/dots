@@ -4,8 +4,8 @@ app=~/.config/mvllow/dots
 url=https://github.com/mvllow/dots
 repo=https://github.com/mvllow/dots.git
 
-green() {
-  echo "\033[0;92m$1\033[0m"
+cyan() {
+  echo "\033[0;36m$1\033[0m"
 }
 
 gray() {
@@ -186,12 +186,6 @@ config_apps() {
     cp -r $app/.zshrc ~/
   fi
 
-  if [ $(ls /Applications/ | grep iTerm) ]; then
-    item "Copying iTerm settings"
-    cp -r $app/iterm/com.googlecode.iterm2.plist ~/Library/Preferences
-  fi
-
-  
   if [ $(which hyper) ]; then
     item "Copying Hyper settings"
     cp -r $app/.hyper.js ~/
@@ -290,7 +284,7 @@ config_prefs() {
 }
 
 woohoo() {
-    green "Done. Stay humble, stay hopeful."
+    cyan "Done. Stay humble, stay hopeful."
     echo
 }
 
