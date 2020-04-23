@@ -34,14 +34,14 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 └── nvim
     └── init.vim
 Library/Application Support
-├── Sublime Text 3/Packages/User
-│   ├── Default (OSX).sublime-keymap
-│   ├── Package Control.sublime-settings
-│   └── Preferences.sublime-settings
-├── Code/User
-│   └── settings.json
+├── Sublime Text 3
+│   ├── Packages/User/Default (OSX).sublime-keymap
+│   ├── Packages/User/Package Control.sublime-settings
+│   └── Packages/User/Preferences.sublime-settings
+├── Code
+│   └── User/settings.json
 └── Code - Insiders/User
-    └── settings.json
+    └── User/settings.json
 ```
 
 ## System preferences
