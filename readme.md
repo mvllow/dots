@@ -75,7 +75,7 @@ Library/Application Support
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
 - Preferences > Privacy > Full Disk Access > Allow Terminal.app\*
 
-* Needed for zapping brew casks and other priviledged tasks
+\* _Needed for zapping brew casks and other priviledged tasks_
 
 ## Misc
 
