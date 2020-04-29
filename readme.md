@@ -24,7 +24,7 @@ Proof of concept for a way of manually extracting a vsix. This allows extensions
 
 ## Modified files
 
-> Only installed apps will be configured (see brewfile)
+> Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/master/brewfile))
 
 ```
 .vimrc
