@@ -4,10 +4,10 @@
     "source.fixAll": true
   },
   "css.validate": false,
+  "scss.validate": false,
   "editor.folding": false,
-  "editor.fontFamily": "'SF Mono', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontFamily": "'Cartograph CF', 'SF Mono', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.fontSize": 12,
   "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 20,
@@ -44,9 +44,8 @@
   },
   "vim.vimrc.enable": true,
   "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Rosé Pine",
   "workbench.editor.showTabs": false,
   "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": null,
   "workbench.startupEditor": "newUntitledFile"
 }
