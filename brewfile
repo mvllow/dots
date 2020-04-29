@@ -10,10 +10,7 @@ brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
-cask "figma"
 cask "google-chrome-canary"
-cask "signal"
 cask "spotify"
-cask "sublime-text"
 cask "visual-studio-code-insiders"
 mas "Magnet", id: 441258766
