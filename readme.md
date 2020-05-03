@@ -40,7 +40,7 @@ Library/Application Support
 │   └── Packages/User/Preferences.sublime-settings
 ├── Code
 │   └── User/settings.json
-└── Code - Insiders/User
+└── Code - Insiders
     └── User/settings.json
 ```
 
