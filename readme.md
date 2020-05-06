@@ -14,14 +14,6 @@ $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh 
 
 ![Usage](images/usage.png "Usage")
 
-## Caveats
-
-VSCode needs to be approved via System Preferences on first open. Because of this, extensions may not install properly on the initial run. To fix, open VSCode and run the script again.
-
-Proof of concept for a way of manually extracting a vsix. This allows extensions to be installed before vscode has been opened the first time.
-
-> https://gist.github.com/mvllow/96aabfa338a11c41f11a286985391ade
-
 ## Modified files
 
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/master/brewfile))
@@ -64,18 +56,12 @@ Library/Application Support
 | Increase tracking speed                 | 3     |
 | **Finder**                              |       |
 | Warn on file extension change           | false |
-| Warn on emptying trash                  | false |
 | **Menubar**                             |       |
 | Show battery percentage                 | true  |
 
 ### Manual settings
 
-> Due to the nature of these settings, they must be set by the user
-
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
-- Preferences > Privacy > Full Disk Access > Allow Terminal.app\*
-
-\* _Needed for zapping brew casks and other priviledged tasks_
 
 ## Misc
 
