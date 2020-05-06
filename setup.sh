@@ -68,7 +68,7 @@ init() {
   if ! type brew &>/dev/null; then
     item "https://brew.sh"
 
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   else
     item "Already exists... skipping"
   fi
@@ -274,8 +274,6 @@ config_prefs() {
 
   # Finder: disable warning on file extension change
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-  # Finder: disable warning when emptying trash
-  defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
   # Menubar: show battery percentage
   defaults write com.apple.menuextra.battery ShowPercent -string "YES"
