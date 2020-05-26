@@ -282,15 +282,15 @@ config_prefs() {
 }
 
 woohoo() {
-    cyan "Done. Stay humble, stay hopeful."
-    echo
+  cyan "Done. Stay humble, stay hopeful."
+  echo
 }
 
 if [ $(uname) == "Darwin" ]; then
-    init
+  init
 else
-    put_header
+  put_header
 
-    echo "Unsupported OS: $(uname)"
-    exit 1
+  echo "Unsupported OS: $(uname)"
+  exit 1
 fi
