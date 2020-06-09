@@ -2,17 +2,14 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
-tap "jondot/tap" # for hygen
 
 brew "ag"
 brew "fd"
 brew "fzf"
-brew "hygen"
 brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
 cask "google-chrome-canary"
-cask "spotify"
 cask "visual-studio-code-insiders"
 mas "Magnet", id: 441258766
