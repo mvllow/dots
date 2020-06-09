@@ -29,9 +29,7 @@ Library/Application Support
 ├── Sublime Text 3
 │   ├── Packages/User/Default (OSX).sublime-keymap
 │   ├── Packages/User/Package Control.sublime-settings
-│   └── Packages/User/Preferences.sublime-settings
-├── Code
-│   └── User/settings.json
+│   └── Packages/User/Preferences.sublime-setting
 └── Code - Insiders
     └── User/settings.json
 ```
