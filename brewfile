@@ -7,7 +7,6 @@ brew "ag"
 brew "fd"
 brew "fzf"
 brew "mas"
-brew "neovim", args: ["HEAD"]
 brew "node"
 brew "yarn"
 cask "google-chrome-canary"
