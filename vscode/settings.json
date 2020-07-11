@@ -1,39 +1,28 @@
 {
   "breadcrumbs.enabled": false,
+  "css.validate": false,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "css.validate": false,
-  "scss.validate": false,
+  "editor.colorDecorators": false,
+  "editor.cursorBlinking": "solid",
   "editor.folding": false,
-  "editor.fontFamily": "'Cartograph CF', 'SF Mono', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
+  "editor.fontFamily": "Source Code Pro, SF Mono, Menlo",
+  "editor.fontSize": 13,
+  "editor.fontWeight": "500",
   "editor.formatOnSave": true,
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.lineHeight": 20,
+  "editor.glyphMargin": false,
+  "editor.lineHeight": 24,
+  "editor.lineNumbers": "off",
+  "editor.links": false,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": false,
-  "editor.padding.bottom": 20,
-  "editor.padding.top": 20,
   "editor.renderIndentGuides": false,
-  "editor.renderLineHighlight": "gutter",
-  "editor.scrollbar.horizontal": "hidden",
-  "editor.scrollbar.vertical": "hidden",
-  "editor.tabSize": 2,
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "vue"
-  ],
+  "editor.renderLineHighlight": "none",
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "explorer.openEditors.visible": 0,
   "git.autofetch": true,
-  "git.decorations.enabled": true,
-  "scm.diffDecorations": "none",
   "search.exclude": {
     "**/.git": true,
     "**/node_modules": true
@@ -42,10 +31,18 @@
   "vim.handleKeys": {
     "<c-d>": true
   },
-  "vim.vimrc.enable": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<esc>"]
+    }
+  ],
   "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Rosé Pine",
-  "workbench.editor.showTabs": false,
   "workbench.fontAliasing": "auto",
-  "workbench.startupEditor": "newUntitledFile"
+  "workbench.iconTheme": "Rosé Pine Icons",
+  "workbench.startupEditor": "none",
+  "workbench.statusBar.visible": true,
+  "workbench.tree.indent": 18,
+  "workbench.tree.renderIndentGuides": "none"
 }
