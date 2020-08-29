@@ -187,16 +187,40 @@ if [ $(uname) == "Darwin" ]; then
       cp -r $app/.hyper.js ~/
     fi
 
-    echo_subtitle "Copying Vim settings"
-    cp -r $app/.vimrc ~/
+
+    # if ~/.vimrc file doesn't exist
+    if ! [ -f ~/.vimrc ]; then
+      echo_subtitle "Copying Vim settings"
+      cp -r $app/.vimrc ~/
+    fi
 
     if [ $(which nvim) ]; then
-      echo_subtitle "Sharing Vim settings with NeoVim"
+      # if ~/.config/nvim/init.vim file doesn't exist
+      if ! [ -f ~/.config/nvim/init.vim]; then
+          echo_subtitle "Sharing Vim settings with NeoVim"
 
-      mkdir -p ~/.config/nvim
-      echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
-      echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
-      echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+          mkdir -p ~/.config/nvim
+          echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ~/.config/nvim/init.vim
+          echo "let &packpath=&runtimepath" >> ~/.config/nvim/init.vim
+          echo "source ~/.vimrc" >> ~/.config/nvim/init.vim
+      fi
+    fi
+
+
+    if [ $(which code) ]; then
+      echo_subtitle "Copying VSCode settings"
+
+      mkdir -p ~/Library/Application\ Support/Code/User
+      cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+
+      code --install-extension bradlc.vscode-tailwindcss &>/dev/null;
+      code --install-extension dbaeumer.vscode-eslint &>/dev/null;
+      code --install-extension esbenp.prettier-vscode &>/dev/null;
+      code --install-extension ms-vsliveshare.vsliveshare &>/dev/null;
+      code --install-extension mvllow.rose-pine &>/dev/null;
+      code --install-extension octref.vetur &>/dev/null;
+      code --install-extension sdras.night-owl &>/dev/null;
+      code --install-extension vscodevim.vim &>/dev/null;
     fi
 
     if [ $(which code-insiders) ]; then
@@ -205,9 +229,13 @@ if [ $(uname) == "Darwin" ]; then
       mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
       cp $app/vscode/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
 
+      code-insiders --install-extension bradlc.vscode-tailwindcss &>/dev/null;
       code-insiders --install-extension dbaeumer.vscode-eslint &>/dev/null;
       code-insiders --install-extension esbenp.prettier-vscode &>/dev/null;
+      code-insiders --install-extension ms-vsliveshare.vsliveshare &>/dev/null;
       code-insiders --install-extension mvllow.rose-pine &>/dev/null;
+      code-insiders --install-extension octref.vetur &>/dev/null;
+      code-insiders --install-extension sdras.night-owl &>/dev/null;
       code-insiders --install-extension vscodevim.vim &>/dev/null;
     fi
 
@@ -265,12 +293,6 @@ if [ $(uname) == "Darwin" ]; then
     defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
     # Trackpad: increase tracking speed
     defaults write -g com.apple.trackpad.scaling 3
-
-    # Finder: disable warning on file extension change
-    defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
-
-    # Menubar: show battery percentage
-    defaults write com.apple.menuextra.battery ShowPercent -string "YES"
   fi
 else
   echo_title "Unsupported OS"
