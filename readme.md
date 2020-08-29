@@ -30,6 +30,8 @@ Library/Application Support
 │   ├── Packages/User/Default (OSX).sublime-keymap
 │   ├── Packages/User/Package Control.sublime-settings
 │   └── Packages/User/Preferences.sublime-setting
+├── Code
+│   └── User/settings.json
 └── Code - Insiders
     └── User/settings.json
 ```
@@ -52,10 +54,6 @@ Library/Application Support
 | **Trackpad**                            |       |
 | Tap to click                            | true  |
 | Increase tracking speed                 | 3     |
-| **Finder**                              |       |
-| Warn on file extension change           | false |
-| **Menubar**                             |       |
-| Show battery percentage                 | true  |
 
 ### Manual settings
 
@@ -65,6 +63,7 @@ Library/Application Support
 
 - SF Mono is copied to Font Book for easier accessibility
 - The theme used in most apps is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
+- The font used in VSCode is [Cartograph CF](https://connary.com/cartograph.html)
 
 ## Guides
 
