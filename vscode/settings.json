@@ -4,17 +4,16 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "editor.colorDecorators": false,
   "editor.cursorBlinking": "solid",
   "editor.folding": false,
-  "editor.fontFamily": "Source Code Pro, SF Mono, Menlo",
+  "editor.fontFamily": "Cartograph CF, SF Mono, Menlo",
+  "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.fontWeight": "500",
   "editor.formatOnSave": true,
-  "editor.glyphMargin": false,
+  "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 24,
   "editor.lineNumbers": "off",
-  "editor.links": false,
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": false,
@@ -42,7 +41,6 @@
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": "Rosé Pine Icons",
   "workbench.startupEditor": "none",
-  "workbench.statusBar.visible": true,
   "workbench.tree.indent": 18,
   "workbench.tree.renderIndentGuides": "none"
 }
