@@ -11,4 +11,6 @@ brew "node"
 brew "yarn"
 cask "google-chrome-canary"
 cask "visual-studio-code-insiders"
+cask "spotify"
+cask "discord"
 mas "Magnet", id: 441258766
