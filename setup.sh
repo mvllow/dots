@@ -160,9 +160,9 @@ if [ $(uname) == "Darwin" ]; then
     if ! [ -f ~/.ssh/id_rsa ]; then
       # if $git_ssh_email isn't null
       if ! [ -z ${git_ssh_email} ]; then
-        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N "" -C $git_ssh_email
+        ssh-keygen -t rsa -b ed25519 -f ~/.ssh/id_rsa -q -N "" -C $git_ssh_email
       else
-        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -q -N ""
+        ssh-keygen -t rsa -b ed25519 -f ~/.ssh/id_rsa -q -N ""
       fi
     else
       echo_title "Skipping ssh config: key exists"
