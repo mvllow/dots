@@ -7,7 +7,7 @@ The setup script will install and configure a minimal amount of applications, co
 ## Getting started
 
 ```sh
-$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh ./setup.sh
+$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./setup.sh
 ```
 
 > For global git config/ssh keys see usage below
@@ -16,7 +16,7 @@ $ curl -LJO https://raw.githubusercontent.com/mvllow/dots/master/setup.sh && sh 
 
 ## Modified files
 
-> Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/master/brewfile))
+> Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
 ```
 .vimrc
@@ -67,4 +67,4 @@ Library/Application Support
 
 ## Guides
 
-- [Signing git commits with GPG](https://github.com/mvllow/dots/blob/master/guides/signing-git-commits-with-gpg.md)
+- [Signing git commits with GPG](https://github.com/mvllow/dots/blob/main/guides/signing-git-commits-with-gpg.md)
