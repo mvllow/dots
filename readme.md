@@ -7,7 +7,7 @@ The setup script will install and configure a minimal amount of applications, co
 ## Getting started
 
 ```sh
-$ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./setup.sh
+curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./setup.sh
 ```
 
 > For global git config/ssh keys see usage below
