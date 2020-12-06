@@ -1,6 +1,6 @@
 ![](https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&fp-y=.7&w=1951&h=480&q=80)
 
-## Signing git commits with GPG
+# Signing git commits with GPG
 
 ```sh
 $ brew install gnupg pinentry-mac
@@ -9,7 +9,7 @@ $ brew install gnupg pinentry-mac
 $ brew cask install keybase
 ```
 
-### Generate GPG keys
+## Generate GPG keys
 
 ```sh
 # With existing Keybase
@@ -20,7 +20,7 @@ $ keybase pgp export -q <keyid> --secret | gpg --import --allow-secret-key-impor
 $ gpg --full-generate-key
 ```
 
-### Export and copy key
+## Export and copy key
 
 ```sh
 # List keyid
@@ -33,7 +33,7 @@ $ gpg --armor --export <keyid> | pbcopy
 $ open https://github.com/settings/gpg/new
 ```
 
-### Git and GPG config
+## Git and GPG config
 
 ```sh
 $ git config --global user.signingkey <keyid>
@@ -51,7 +51,7 @@ no-tty
 use-agent
 ```
 
-### Troubleshooting
+## Troubleshooting
 
 **Restart GPG agent**
 
