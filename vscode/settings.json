@@ -1,46 +1,35 @@
 {
-  "breadcrumbs.enabled": false,
-  "css.validate": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  },
-  "editor.cursorBlinking": "solid",
-  "editor.folding": false,
-  "editor.fontFamily": "Cartograph CF, SF Mono, Menlo",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 13,
-  "editor.fontWeight": "500",
-  "editor.formatOnSave": true,
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.lineHeight": 24,
-  "editor.lineNumbers": "off",
-  "editor.minimap.enabled": false,
-  "editor.multiCursorModifier": "ctrlCmd",
-  "editor.occurrencesHighlight": false,
-  "editor.renderIndentGuides": false,
-  "editor.renderLineHighlight": "none",
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "git.autofetch": true,
-  "search.exclude": {
-    "**/.git": true,
-    "**/node_modules": true
-  },
-  "vetur.validation.template": false,
-  "vim.handleKeys": {
-    "<c-d>": true
-  },
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["j", "k"],
-      "after": ["<esc>"]
-    }
-  ],
-  "workbench.activityBar.visible": false,
-  "workbench.colorTheme": "Rosé Pine",
-  "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": "Rosé Pine Icons",
-  "workbench.startupEditor": "none",
-  "workbench.tree.indent": 18,
-  "workbench.tree.renderIndentGuides": "none"
+    "breadcrumbs.enabled": false,
+    "css.validate": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "editor.cursorBlinking": "solid",
+    "editor.folding": false,
+    "editor.fontFamily": "Cartograph CF, SF Mono, Menlo",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13,
+    "editor.formatOnSave": true,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.minimap.enabled": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.occurrencesHighlight": false,
+    "editor.renderIndentGuides": false,
+    "editor.renderLineHighlight": "none",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "search.exclude": {
+        "**/.git": true,
+        "**/node_modules": true
+    },
+    "vim.handleKeys": {
+        "<c-d>": true
+    },
+    "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "Rosé Pine Moon",
+    "workbench.fontAliasing": "auto",
+    "workbench.iconTheme": "Rosé Pine Icons",
+    "workbench.startupEditor": "none",
+    "workbench.tree.indent": 18,
 }
