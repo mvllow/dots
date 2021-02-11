@@ -56,9 +56,9 @@ fi
 
 echo "(brew) Upgrading"
 brew upgrade &>/dev/null
-printf "\r\033[K(brew) Installing bundle"
+echo "(brew) Installing bundle"
 brew bundle --file="$app/brewfile"
-printf "\r\033[K(brew) Cleaning up"
+echo "(brew) Cleaning up"
 brew cleanup &>/dev/null
 
 if [ -z ${user} ]; then
