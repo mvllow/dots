@@ -1,18 +1,19 @@
-![Promo](images/promo.png "Promo")
+![Dots banner](images/promo.png)
 
 # Minimalist developer
 
-The setup script will install and configure a minimal amount of applications, command line tools, and other packages.
+The setup script will install and configure a minimal amount of applications, command line tools, and other packages
 
 ## Getting started
 
 ```sh
 curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./setup.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mvllow/dots/HEAD/setup.sh)"
 ```
 
 > For global git config/ssh keys see usage below
 
-![Usage](images/usage.png "Usage")
+![Usage](images/usage.png 'Usage')
 
 ## Modified files
 
@@ -21,17 +22,7 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 ```
 .vimrc
 .zshrc
-.hyper.js
-.config
-└── nvim
-    └── init.vim
 Library/Application Support
-├── Sublime Text 3
-│   ├── Packages/User/Default (OSX).sublime-keymap
-│   ├── Packages/User/Package Control.sublime-settings
-│   └── Packages/User/Preferences.sublime-setting
-├── Code
-│   └── User/settings.json
 └── Code - Insiders
     └── User/settings.json
 ```
@@ -68,3 +59,4 @@ Library/Application Support
 ## Guides
 
 - [Signing git commits with GPG](https://github.com/mvllow/dots/blob/main/guides/signing-git-commits-with-gpg.md)
+- [Using a custom shell](https://github.com/mvllow/dots/blob/main/guides/using-custom-shell.md)

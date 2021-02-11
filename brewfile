@@ -3,12 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 
-brew "ag"
-brew "fd"
-brew "fzf"
-brew "mas"
 brew "node"
 brew "yarn"
-cask "google-chrome-canary"
+cask "rectangle"
 cask "visual-studio-code-insiders"
-mas "Magnet", id: 441258766

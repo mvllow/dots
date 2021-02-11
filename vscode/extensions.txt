@@ -1,0 +1,6 @@
+bradlc.vscode-tailwindcss
+editorconfig.editorconfig
+esbenp.prettier-vscode
+ms-vsliveshare.vsliveshare
+mvllow.rose-pine
+vscodevim.vim
