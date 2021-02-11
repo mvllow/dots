@@ -11,7 +11,6 @@
   "editor.fontLigatures": true,
   "editor.fontSize": 13,
   "editor.formatOnSave": true,
-  "editor.glyphMargin": false,
   "editor.hideCursorInOverviewRuler": true,
   "editor.lineHeight": 24,
   "editor.minimap.enabled": false,
@@ -26,8 +25,6 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "git.autofetch": true,
-  "prettier.semi": false,
-  "prettier.singleQuote": true,
   "scm.diffDecorationsGutterVisibility": "hover",
   "vim.handleKeys": {
     "<c-d>": true
