@@ -33,7 +33,7 @@ if ! [ $(uname) == "Darwin" ]; then
 fi
 
 if [ $(uname -m) == "arm64" ]; then
-    echo "\033[1;33mApple silicon supported 🎉\033[0m"
+    echo "\033[1;33mApple silicon supported 🎉\033[0m\n"
 fi
 
 get_command_line_tools() {
@@ -52,6 +52,7 @@ fi
 if ! [ $(which brew) ]; then
     echo "Installing brew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo
 fi
 
 echo "(brew) Upgrading"
@@ -60,6 +61,7 @@ echo "(brew) Installing bundle"
 brew bundle --file="$app/brewfile"
 echo "(brew) Cleaning up"
 brew cleanup &>/dev/null
+echo
 
 if [ -z ${user} ]; then
     read -p "What's your GitHub username? "
