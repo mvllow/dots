@@ -1,6 +1,66 @@
+# prompt
 prompt='%~> '
 
-alias ci='code-insiders'
-alias chop='git branch --merged | egrep -v "(^\*|master|main)" | xargs git branch -d'
+# cd
+alias ..='cd ..'
+alias ...='cd ../..'
 
+# list
+alias l='ls -a'
+
+# editors
+alias n='nvim'
+alias c='code-insiders .'
+
+# git aliases
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit -m'
+alias go='git checkout'
+alias gu='git push'
+alias gp='git pull'
+alias gr='git pull --rebase'
+alias gb='git branch'
+alias gm='git merge'
+alias gl='git log -n 10 --graph --decorate --oneline --no-merges'
+alias gf='git show --oneline --no-patch'
+
+# remove local branches if merged in <remote branch>
+chop () {
+  git branch --merged | egrep -v "(^\*|$1)" | xargs git branch -d
+}
+
+# clone <owner/repo> to ~/dev
+clone() {
+  cd ~/dev
+  git clone git@github.com:$1.git
+}
+
+# upload <file> to 0x0.st
+0x0() {
+  curl -F "file=@$1" https://0x0.st | pbcopy
+}
+
+# shorten <url> via 0x0.st
+shorten() {
+  curl -F "shorten=$1" https://0x0.st | pbcopy
+}
+
+# create <folder> and navigate to it
+md() {
+  mkdir -p -- "$1"
+  cd -P -- "$1"
+}
+
+# navigate to <folder> in ~/dev
+dev() {
+  cd "$HOME/dev/$1"
+}
+
+# navigate to <folder> in ~/fork
+fork() {
+  cd "$HOME/fork/$1"
+}
+
+# add brew to path
 export PATH=/opt/homebrew/bin:$PATH
