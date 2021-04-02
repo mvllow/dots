@@ -1,16 +1,12 @@
 # prompt
 prompt='%~> '
 
-# cd
-alias ..='cd ..'
-alias ...='cd ../..'
-
 # list
 alias l='ls -a'
 
 # editors
 alias n='nvim'
-alias c='code-insiders .'
+alias c='code'
 
 # git aliases
 alias gs='git status'
@@ -23,6 +19,7 @@ alias gr='git pull --rebase'
 alias gb='git branch'
 alias gm='git merge'
 alias gl='git log -n 10 --graph --decorate --oneline --no-merges'
+alias gf='git show --no-patch'
 
 # git status of <directory>
 gsdir() {
