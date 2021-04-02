@@ -80,13 +80,6 @@ echo ".DS_Store" > ~/.gitignore
 git config --global core.excludesfile ~/.gitignore
 git config --global user.name "$user"
 git config --global user.email "$email"
-git config --global core.editor "vim"
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.st status
-git config --global alias.lola "log -n 10 --graph --decorate --pretty=oneline --abbrev-commit"
-
-echo ".DS_Store" > ~/.gitignore
 
 if ! [ -f ~/.ssh/id_rsa ]; then
     ssh-keygen -t rsa -b ed25519 -f ~/.ssh/id_rsa -q -N "" -C $email
