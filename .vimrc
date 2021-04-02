@@ -12,7 +12,7 @@ set undolevels=9999
 set viminfo=""
 
 set hidden
-set laststatus=1
+set laststatus=0
 set splitbelow splitright
 
 inoremap jk <esc>
