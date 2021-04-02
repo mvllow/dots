@@ -63,9 +63,15 @@ dev() {
   cd "$HOME/dev/$1"
 }
 
-# navigate to <folder> in ~/fork
-fork() {
-  cd "$HOME/fork/$1"
+# search <directory> for <file>
+# ignores node_modules and dot directories
+fdir() {
+  find "$1" -type d \( -name node_modules -o -path '*/\.*' \) -prune -false -o -name "*$2*"
+}
+
+# search current directory for <file>
+f() {
+  fdir . "$1"
 }
 
 # add brew to path
