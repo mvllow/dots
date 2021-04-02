@@ -101,10 +101,16 @@ if ! [ -f ~/.vimrc ]; then
     cp -r $app/.vimrc ~/
 fi
 
-if [ $(which code-insiders) ]; then
-    mkdir -p ~/Library/Application\ Support/Code\ -\ Insiders/User
-    cp $app/vscode/settings.json ~/Library/Application\ Support/Code\ -\ Insiders/User/settings.json
-    xargs -n1 code-insiders --install-extension < $app/vscode/extensions.txt &>/dev/null
+if [ $(which nvim) ]; then
+    mkdir -p ~/.config/nvim/lua
+    cp -a $app/nvim/lua/. ~/.config/nvim/lua/
+    cp -r $app/nvim/init.lua ~/.config/nvim/
+fi
+
+if [ $(which code) ]; then
+    mkdir -p ~/Library/Application\ Support/Code/User
+    cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    xargs -n1 code --install-extension < $app/vscode/extensions.txt &>/dev/null
 fi
 
 cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
