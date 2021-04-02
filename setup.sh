@@ -75,6 +75,9 @@ if [ -z ${email} ]; then
     email=$REPLY
 fi
 
+echo ".DS_Store" > ~/.gitignore
+
+git config --global core.excludesfile ~/.gitignore
 git config --global user.name "$user"
 git config --global user.email "$email"
 git config --global core.editor "vim"
