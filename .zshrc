@@ -23,7 +23,13 @@ alias gr='git pull --rebase'
 alias gb='git branch'
 alias gm='git merge'
 alias gl='git log -n 10 --graph --decorate --oneline --no-merges'
-alias gf='git show --oneline --no-patch'
+
+# git status of <directory>
+gsdir() {
+  cd $1
+  git status
+  cd ..
+}
 
 # remove local branches if merged in <remote branch>
 chop () {
