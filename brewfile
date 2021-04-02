@@ -1,9 +1,8 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-versions"
 tap "homebrew/core"
 
 brew "node"
-brew "yarn"
+brew "neovim", args: ["HEAD"]
 cask "rectangle"
-cask "visual-studio-code-insiders"
+cask "visual-studio-code"
