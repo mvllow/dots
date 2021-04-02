@@ -1,7 +1,7 @@
 syntax off
 
 set autoindent expandtab
-set shiftwidth=2 softtabstop=2 tabstop=2
+set shiftwidth=4 softtabstop=4 tabstop=4
 
 set hlsearch ignorecase incsearch smartcase
 
