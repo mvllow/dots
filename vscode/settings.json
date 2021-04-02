@@ -7,25 +7,16 @@
   "editor.cursorBlinking": "solid",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.folding": false,
-  "editor.fontFamily": "Cartograph CF, SF Mono, Menlo",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 13,
+  "editor.fontFamily": "SF Mono, Menlo",
   "editor.formatOnSave": true,
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.lineHeight": 24,
+  "editor.lineHeight": 22,
+  "editor.lineNumbers": "off",
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
   "editor.occurrencesHighlight": false,
-  "editor.padding.bottom": 6,
-  "editor.padding.top": 6,
-  "editor.renderIndentGuides": false,
-  "editor.renderLineHighlight": "none",
-  "editor.scrollbar.vertical": "hidden",
   "editor.scrollbar.horizontal": "hidden",
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
+  "editor.scrollbar.vertical": "hidden",
   "git.autofetch": true,
-  "scm.diffDecorationsGutterVisibility": "hover",
   "vim.handleKeys": {
     "<c-d>": true
   },
@@ -45,12 +36,9 @@
       "after": ["g", "k"]
     }
   ],
-  "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Rosé Pine",
   "workbench.fontAliasing": "auto",
-  "workbench.iconTheme": "rose-pine-icons",
+  "workbench.iconTheme": null,
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "none",
-  "workbench.statusBar.visible": false,
-  "workbench.tree.indent": 18
+  "workbench.startupEditor": "none"
 }
