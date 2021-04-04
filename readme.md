@@ -19,10 +19,17 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
 ```
+.config
+└── nvim
+    ├── init.lua
+    └── lua
+        ├── plugins.lua
+        └── utils.lua
+.gitignore
 .vimrc
 .zshrc
 Library/Application Support
-└── Code - Insiders
+└── Code
     └── User/settings.json
 ```
 
