@@ -8,6 +8,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.folding": false,
   "editor.fontFamily": "SF Mono, Menlo",
+  "editor.fontWeight": "500",
   "editor.formatOnSave": true,
   "editor.lineHeight": 22,
   "editor.lineNumbers": "off",
@@ -16,6 +17,9 @@
   "editor.occurrencesHighlight": false,
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
+  "files.associations": {
+    "*.svg": "html"
+  },
   "git.autofetch": true,
   "vim.handleKeys": {
     "<c-d>": true
@@ -36,7 +40,7 @@
       "after": ["g", "k"]
     }
   ],
-  "workbench.colorTheme": "Rosé Pine",
+  "workbench.colorTheme": "Solarized Light",
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": null,
   "workbench.sideBar.location": "right",

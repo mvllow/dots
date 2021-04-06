@@ -1,5 +1,5 @@
 bradlc.vscode-tailwindcss
-editorconfig.editorconfig
+EditorConfig.EditorConfig
 esbenp.prettier-vscode
 ms-vsliveshare.vsliveshare
 mvllow.rose-pine
