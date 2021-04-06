@@ -1,8 +1,8 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-
-brew "node"
 brew "neovim", args: ["HEAD"]
+brew "node"
+brew "ripgrep"
 cask "rectangle"
 cask "visual-studio-code"
