@@ -1,4 +1,4 @@
-workspace=~/dev/dots
+workspace=~/.config/dots
 
 mkdir -p $workspace
 cd $workspace
