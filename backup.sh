@@ -23,7 +23,7 @@ if [ -z "$(git status --porcelain)" ]; then
   code --list-extensions > $workspace/vscode/extensions.txt
 
   git add .
-  git commit -M "✨ sync with local ✨"
+  git commit -m "✨ sync with local ✨"
 
 # uncommitted changes in workspace
 else
