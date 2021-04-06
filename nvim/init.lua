@@ -19,13 +19,13 @@ vim.g['prettier#autoformat_require_pragma'] = 0
 
 vim.g.mapleader = ' '
 
+vim.cmd('syntax off')
 utils.opt('b', 'shiftwidth', 4)
 utils.opt('b', 'tabstop', 4)
 utils.opt('o', 'hidden', true)
 utils.opt('o', 'laststatus', 0)
 utils.opt('o', 'splitbelow', true)
 utils.opt('o', 'splitright', true)
-utils.opt('o', 'syntax', 'off')
 
 utils.map('i', 'jk', '<esc>')
 
