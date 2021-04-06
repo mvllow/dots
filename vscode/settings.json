@@ -17,6 +17,7 @@
   "editor.occurrencesHighlight": false,
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
+  "editor.tabSize": 2,
   "files.associations": {
     "*.svg": "html"
   },
@@ -44,5 +45,9 @@
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": null,
   "workbench.sideBar.location": "right",
-  "workbench.startupEditor": "none"
+  "workbench.startupEditor": "none",
+
+  "volar.codeLens.pugTools": false,
+  "volar.codeLens.references": false,
+  "volar.codeLens.scriptSetupTools": false
 }

@@ -1,6 +1,9 @@
 bradlc.vscode-tailwindcss
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
+GitHub.github-vscode-theme
+johnsoncodehk.volar
 ms-vsliveshare.vsliveshare
 mvllow.rose-pine
+sdras.night-owl
 vscodevim.vim
