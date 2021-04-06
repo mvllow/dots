@@ -8,6 +8,12 @@ alias l='ls -a'
 alias n='nvim'
 alias c='code'
 
+# config aliases
+alias ,nvim='cd ~/.config/nvim && nvim init.lua'
+alias ,dots='cd ~/.config/dots'
+alias ,vim='cd && nvim .vimrc'
+alias ,zsh='cd && nvim .zshrc'
+
 # git aliases
 alias gs='git status'
 alias ga='git add'
