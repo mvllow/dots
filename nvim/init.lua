@@ -19,8 +19,8 @@ vim.g['prettier#autoformat_require_pragma'] = 0
 
 vim.g.mapleader = ' '
 
-utils.opt('b', 'shiftwidth', indent)
-utils.opt('b', 'tabstop', indent)
+utils.opt('b', 'shiftwidth', 4)
+utils.opt('b', 'tabstop', 4)
 utils.opt('o', 'hidden', true)
 utils.opt('o', 'laststatus', 0)
 utils.opt('o', 'splitbelow', true)
