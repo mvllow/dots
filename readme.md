@@ -60,7 +60,7 @@ Library/Application Support
 
 - SF Mono is copied to Font Book for easier accessibility
 - The theme used in most apps is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
-- The font used in VSCode is [Cartograph CF](https://connary.com/cartograph.html)
+- The font used in most apps is [Cartograph CF](https://connary.com/cartograph.html)
 
 ## Guides
 
