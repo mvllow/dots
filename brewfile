@@ -5,4 +5,3 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
 cask "rectangle"
-cask "visual-studio-code"
