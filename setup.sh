@@ -56,7 +56,7 @@ configs=("kitty" "fish" "nvim")
 for i in "${configs[@]}"; do
 	if [ $(which $i) ]; then
 		mkdir -p ~/.config/$i
-		cp -a $app/.config/$i/ ~/.config/$i/
+		git clone https://github.com/mvllow/$i ~/.config/$i/
 	fi
 done
 
