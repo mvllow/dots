@@ -1,26 +1,26 @@
-workspace=~/.config/dots
+#!/bin/bash
 
-mkdir -p $workspace
-cd $workspace
+dots=~/.config/dots
+configs=("kitty" "fish" "nvim")
+
+mkdir -p $dots
+cd $dots
 
 # workspace is clean
 if [ -z "$(git status --porcelain)" ]; then 
-  rm -rf $workspace/brewfile
-  brew bundle dump --file=$workspace/brewfile
+  rm -rf $dots/brewfile
+  brew bundle dump --file=$dots/brewfile
 
-  # vim
-  cp -r ~/.vimrc $workspace/.vimrc
-
-  # neovim
-  cp -a ~/.config/nvim/lua/. $workspace/nvim/lua/
-  cp -r ~/.config/nvim/init.lua $workspace/nvim/
-
-  # zsh
-  cp -r ~/.zshrc $workspace/.zshrc
+	for i in "${configs[@]}"; do
+		if [ $(which $i) ]; then
+			mkdir -p ~/.config/$i
+			cp -a ~/.config/$i/ $dots/.config/$i/
+		fi
+	done
 
   # vscode
-  cp -r ~/Library/Application\ Support/Code/User/settings.json $workspace/vscode/settings.json
-  code --list-extensions > $workspace/vscode/extensions.txt
+  # cp -r ~/Library/Application\ Support/Code/User/settings.json $dots/vscode/settings.json
+  # code --list-extensions > $dots/vscode/extensions.txt
 
   git add .
   git commit -m "✨ sync with local ✨"
@@ -28,5 +28,5 @@ if [ -z "$(git status --porcelain)" ]; then
 # uncommitted changes in workspace
 else
     echo "\033[0;31m✕ Working directory has uncommited changes\033[0m"
-    echo "\033[0;90m  Please commit changes in $workspace\033[0m\n"
+    echo "\033[0;90m  Please commit changes in $dots\033[0m\n"
 fi
