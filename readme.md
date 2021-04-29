@@ -20,17 +20,10 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 
 ```
 .config
+├── fish
+├── kitty
 └── nvim
-    ├── init.lua
-    └── lua
-        ├── plugins.lua
-        └── utils.lua
 .gitignore
-.vimrc
-.zshrc
-Library/Application Support
-└── Code
-    └── User/settings.json
 ```
 
 ## System preferences
@@ -59,8 +52,8 @@ Library/Application Support
 ## Misc
 
 - SF Mono is copied to Font Book for easier accessibility
-- The theme used in most apps is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
-- The font used in most apps is [Cartograph CF](https://connary.com/cartograph.html)
+- Themes used are [Rosé Pine](https://github.com/rose-pine/rose-pine-theme) and [Nord](https://github.com/articicestudio/nord)
+- Fonts used are [Cartograph CF](https://connary.com/cartograph.html) and SF Mono
 
 ## Guides
 
