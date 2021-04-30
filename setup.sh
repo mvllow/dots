@@ -6,10 +6,11 @@ repo=https://github.com/mvllow/dots
 clear
 echo "Minimalist developer\n"
 
-while getopts u:e:h option; do
+while getopts u:e:s:h option; do
 	case "${option}" in
 		u) user=${OPTARG};;
 		e) email=${OPTARG};;
+		s) shell=${OPTARG};;
 		h)
 			echo "\033[0;90m  Usage\033[0m\n"
 			echo "    $ sh $0 <options>"
