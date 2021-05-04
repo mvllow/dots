@@ -1,4 +1,4 @@
-![Dots banner](images/header.png)
+![Dots banner](images/dots.png)
 
 # Minimalist developer
 
