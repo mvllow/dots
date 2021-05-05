@@ -52,8 +52,8 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 ## Misc
 
 - SF Mono is copied to Font Book for easier accessibility
-- Themes used are [Rosé Pine](https://github.com/rose-pine/rose-pine-theme) and [Nord](https://github.com/articicestudio/nord)
-- Fonts used are [Cartograph CF](https://connary.com/cartograph.html) and SF Mono
+- Theme used is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
+- Font used is [Cartograph CF](https://connary.com/cartograph.html)
 
 ## Guides
 
