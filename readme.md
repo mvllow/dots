@@ -18,13 +18,9 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
-```
-.config
-├── fish
-├── kitty
-└── nvim
-.gitignore
-```
+* [fish](https://github.com/mvllow/fish)
+* [kitty](https://github.com/mvllow/kitty)
+* [nvim](https://github.com/mvllow/nvim)
 
 ## System preferences
 
