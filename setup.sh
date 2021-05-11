@@ -84,6 +84,7 @@ echo ".DS_Store" > ~/.gitignore
 git config --global core.excludesfile ~/.gitignore
 git config --global user.name "$user"
 git config --global user.email "$email"
+git config --global pull.rebase false
 
 if ! [ -f ~/.ssh/id_ed25519 ]; then
 	ssh-keygen -t ed25519 -C $email -f ~/.ssh/id_ed25519 -q -N ""
