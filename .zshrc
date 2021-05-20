@@ -26,7 +26,7 @@ chop() {
 clone() {
 	repo=$1
 
-	cd dev
+	cd ~/dev
 	git clone "git@github.com:$repo.git"
 }
 
