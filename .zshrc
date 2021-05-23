@@ -10,6 +10,8 @@ alias ,elvish="$EDITOR ~/.elvish/rc.elv +'lcd ~/.elvish'"
 alias ,fish="$EDITOR ~/.config/fish/config.fish +'lcd ~/.config/fish'"
 alias ,zsh="$EDITOR ~/.zshrc +'lcd ~'"
 
+alias p=pnpm
+alias px=pnpx
 
 # Chop branches already merged in <branch>
 # @example chop develop
