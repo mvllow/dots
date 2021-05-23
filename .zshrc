@@ -1,13 +1,15 @@
 prompt='%~> '
 
-editor='nvim'
+export PATH=/opt/homebrew/bin:.cargo/bin:$PATH
+export EDITOR='nvim'
 
-alias ,vim="$editor ~/.vimrc +'lcd ~'"
-alias ,nvim="$editor ~/.config/nvim/conf.lua +'lcd ~/.config/nvim'"
-alias ,kitty="$editor ~/.config/kitty/kitty.conf +'lcd ~/.config/kitty'"
-alias ,elvish="$editor ~/.elvish/rc.elv +'lcd ~/.elvish'"
-alias ,fish="$editor ~/.config/fish/config.fish +'lcd ~/.config/fish'"
-alias ,zsh="$editor ~/.zshrc +'lcd ~'"
+alias ,vim="$EDITOR ~/.vimrc +'lcd ~'"
+alias ,nvim="$EDITOR ~/.config/nvim/conf.lua +'lcd ~/.config/nvim'"
+alias ,kitty="$EDITOR ~/.config/kitty/kitty.conf +'lcd ~/.config/kitty'"
+alias ,elvish="$EDITOR ~/.elvish/rc.elv +'lcd ~/.elvish'"
+alias ,fish="$EDITOR ~/.config/fish/config.fish +'lcd ~/.config/fish'"
+alias ,zsh="$EDITOR ~/.zshrc +'lcd ~'"
+
 
 # Chop branches already merged in <branch>
 # @example chop develop
@@ -35,8 +37,6 @@ clean_swap() {
 	echo "Purging ~/.local/share/nvim/swap"
 	rm -rf ~/.local/share/nvim/swap
 }
-
-export PATH=/opt/homebrew/bin:.cargo/bin:$PATH
 
 # Spawn custom shell without changing system defaults
 # if (( $+commands[elvish] )); then
