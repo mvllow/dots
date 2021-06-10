@@ -77,6 +77,7 @@ Examples
 ### Manual settings
 
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
+- Preferences > Security & Privacy > Enable Full Disk Access for Terminal (useful for zapping casks)
 
 ## Misc
 
