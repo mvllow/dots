@@ -6,11 +6,10 @@ repo=https://github.com/mvllow/dots
 clear
 echo "Minimalist developer\n"
 
-while getopts u:e:s:h option; do
+while getopts u:s:h option; do
 	case "${option}" in
 		u) user=${OPTARG};;
 		e) email=${OPTARG};;
-		s) shell=${OPTARG};;
 		h)
 			echo "\033[0;90m  Usage\033[0m\n"
 			echo "    $ sh $0 <options>"
@@ -18,12 +17,10 @@ while getopts u:e:s:h option; do
 			echo "\033[0;90m  Options\033[0m\n"
 			echo "    -u [user]   set username for git"
 			echo "    -e [email]  set email for git and ssh"
-			echo "    -s [shell]  set default shell (assumes brew path)"
 			echo "    -h          show this message"
 			echo
 			echo "\033[0;90m  Examples\033[0m\n"
 			echo "    $ sh $0 -u dots -e dots@mellow.dev"
-			echo "    $ sh $0 -s fish"
 			echo
 			exit 2;;
 	esac
@@ -53,27 +50,12 @@ brew bundle --file="$app/brewfile"
 brew cleanup &>/dev/null
 echo
 
-configs=("kitty" "fish" "nvim")
-for i in "${configs[@]}"; do
-	if [ $(which $i) ]; then
-		mkdir -p ~/.config/$i
-		git clone https://github.com/mvllow/$i ~/.config/$i/
-	fi
-done
-
 if [ $(which code) ]; then
     mkdir -p ~/Library/Application\ Support/Code/User
     cp ~/Library/Application\ Support/Code/User/settings.json ~/Library/Application\ Support/Code/User/settings-backup.json
     cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
     xargs -n1 code --install-extension < $app/vscode/extensions.txt &>/dev/null
 fi
-
-if ! [ -z ${shell} ]; then
-	if [ $(which "/opt/homebrew/bin/$shell") ]; then
-		echo /opt/homebrew/bin/$shell | sudo tee -a /etc/shells
-	fi
-fi
-
 
 if [ -z ${user} ]; then
 	read -p "What's your username (for git)? "
