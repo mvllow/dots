@@ -52,10 +52,6 @@ Examples
 ~/.config/nvim/*
 ```
 
-```sh
-~/Library/Application Support/Code/settings.json
-```
-
 ## System preferences
 
 | Setting                                 | Value |
