@@ -4,31 +4,20 @@
     "source.fixAll": true
   },
   "editor.cursorBlinking": "solid",
-  "editor.cursorStyle": "line",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.folding": false,
   "editor.fontFamily": "SF Mono, Menlo",
-  "editor.fontSize": 12,
   "editor.formatOnSave": true,
   "editor.hideCursorInOverviewRuler": true,
-  "editor.insertSpaces": false,
   "editor.lineHeight": 22,
-  "editor.lineNumbers": "on",
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
-  "editor.tabSize": 8,
-  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
-  "editor.wordWrap": "off",
   "git.autofetch": true,
-  "search.exclude": {
-    "**/.git": true,
-    "**/node_modules": true
-  },
   "vim.handleKeys": {
     "<c-d>": true
   },
   "vim.vimrc.enable": true,
-  "workbench.colorTheme": "Rosé Pine",
+  "workbench.colorTheme": "Rosé Pine Dawn",
   "workbench.fontAliasing": "auto",
   "workbench.iconTheme": "rose-pine-icons",
   "workbench.sideBar.location": "right",
