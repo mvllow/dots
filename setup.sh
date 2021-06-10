@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 app=~/.config/dots
 repo=https://github.com/mvllow/dots
@@ -60,6 +60,13 @@ for i in "${configs[@]}"; do
 		git clone https://github.com/mvllow/$i ~/.config/$i/
 	fi
 done
+
+if [ $(which code) ]; then
+    mkdir -p ~/Library/Application\ Support/Code/User
+    cp ~/Library/Application\ Support/Code/User/settings.json ~/Library/Application\ Support/Code/User/settings-backup.json
+    cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
+    xargs -n1 code --install-extension < $app/vscode/extensions.txt &>/dev/null
+fi
 
 if ! [ -z ${shell} ]; then
 	if [ $(which "/opt/homebrew/bin/$shell") ]; then
