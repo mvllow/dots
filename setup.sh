@@ -61,19 +61,12 @@ for i in "${configs[@]}"; do
 	fi
 done
 
-if [ $(which code) ]; then
-    mkdir -p ~/Library/Application\ Support/Code/User
-    cp ~/Library/Application\ Support/Code/User/settings.json ~/Library/Application\ Support/Code/User/settings-backup.json
-    cp $app/vscode/settings.json ~/Library/Application\ Support/Code/User/settings.json
-    xargs -n1 code --install-extension < $app/vscode/extensions.txt &>/dev/null
-fi
-
 if ! [ -z ${shell} ]; then
 	if [ $(which "/opt/homebrew/bin/$shell") ]; then
 		echo /opt/homebrew/bin/$shell | sudo tee -a /etc/shells
+		chsh -s /opt/homebrew/bin/fish
 	fi
 fi
-
 
 if [ -z ${user} ]; then
 	read -p "What's your username (for git)? "

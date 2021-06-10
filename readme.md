@@ -2,6 +2,8 @@
 
 The setup script will install and configure a minimal amount of applications, command line tools, and other packages
 
+Alternatively, see the [snapshot-with-vim-vscode](https://github.com/mvllow/dots/tree/snapshot-with-vim-vscode) branch that is more focused on VSCode and less on terminal applications
+
 ## Usage
 
 One liner to download and run the setup script, prompting for your relative username and email for git and ssh
@@ -32,25 +34,23 @@ Examples
 
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
-**Fish ([config ↗](https://github.com/mvllow/fish))**
+**Fish ([config](https://github.com/mvllow/fish))**
 
 ```sh
 ~/.config/fish/*
 ```
 
-**Kitty ([config ↗](https://github.com/mvllow/kitty))**
+**Kitty ([config](https://github.com/mvllow/kitty))**
 
 ```sh
 ~/.config/kitty/*
 ```
 
-**Neovim ([config ↗](https://github.com/mvllow/nvim))**
+**Neovim ([config](https://github.com/mvllow/nvim))**
 
 ```sh
 ~/.config/nvim/*
 ```
-
-**VSCode ([config](vscode/settings.json), [extensions](vscode/extensions.txt))**
 
 ```sh
 ~/Library/Application Support/Code/settings.json
