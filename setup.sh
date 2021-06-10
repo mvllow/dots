@@ -113,6 +113,8 @@ if [ $(uname) == "Darwin" ]; then
 	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
 	# Keyboard: disable auto capitalise
 	defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+	# Keyboard: disable period with double-space
+	defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 	# Keyboard: disable smart dash/quote
 	defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 	defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
