@@ -1,18 +1,32 @@
-![Dots banner](images/dots.png)
-
 # Minimalist developer
 
 The setup script will install and configure a minimal amount of applications, command line tools, and other packages
 
-## Getting started
+## Usage
+
+One liner to download and run the setup script, prompting for your relative username and email for git and ssh
 
 ```sh
 curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./setup.sh
 ```
 
-> For global git config/ssh keys see usage below
+```
+Usage
 
-![Usage](images/usage.png 'Usage')
+	$ sh setup.sh <options>
+
+Options
+
+	-u [user]   set username for git
+	-e [email]  set email for git and ssh
+	-s [shell]  set default shell (assumes brew path)
+	-h          show this message
+
+Examples
+
+	$ sh setup.sh -u dots -e dots@mellow.dev
+	$ sh setup.sh -s fish
+```
 
 ## Modified files
 
