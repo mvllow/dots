@@ -121,7 +121,7 @@ if [ $(uname) == "Darwin" ]; then
 	# Keyboard: faster key repeat
 	defaults write NSGlobalDomain KeyRepeat -int 2
 	# Keyboard: shorter delay before key repeat
-	defaults write NSGlobalDomain InitialKeyRepeat -int 10
+	defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 	# Trackpad: enable tap to click (this user and login screen)
 	defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
