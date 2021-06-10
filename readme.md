@@ -26,6 +26,8 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 
 | Setting                                 | Value |
 | --------------------------------------- | ----- |
+| **Menubar**                             |       |
+| Autohide                                | true  |
 | **Dock**                                |       |
 | Autohide                                | true  |
 | Show recent apps                        | false |
@@ -33,10 +35,11 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 | **Keyboard**                            |       |
 | Auto correct                            | false |
 | Auto capitilise                         | false |
+| Period with double-space                | false |
 | Use smart quotes/dashes                 | false |
 | Enable system-wide key repeat           | true  |
 | Enable faster key repeat                | 2     |
-| Enabled shorter delay before key repeat | 10    |
+| Enabled shorter delay before key repeat | 15    |
 | **Trackpad**                            |       |
 | Tap to click                            | true  |
 | Increase tracking speed                 | 3     |
