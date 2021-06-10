@@ -18,9 +18,29 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
-* [fish](https://github.com/mvllow/fish)
-* [kitty](https://github.com/mvllow/kitty)
-* [nvim](https://github.com/mvllow/nvim)
+**Fish ([config ↗](https://github.com/mvllow/fish))**
+
+```sh
+~/.config/fish/*
+```
+
+**Kitty ([config ↗](https://github.com/mvllow/kitty))**
+
+```sh
+~/.config/kitty/*
+```
+
+**Neovim ([config ↗](https://github.com/mvllow/nvim))**
+
+```sh
+~/.config/nvim/*
+```
+
+**VSCode ([config](vscode/settings.json), [extensions](vscode/extensions.txt))**
+
+```sh
+~/Library/Application Support/Code/settings.json
+```
 
 ## System preferences
 
