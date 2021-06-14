@@ -18,7 +18,7 @@ while getopts u:e:s:h option; do
 			echo "\033[0;90m  Options\033[0m\n"
 			echo "    -u [user]   set username for git"
 			echo "    -e [email]  set email for git and ssh"
-			echo "    -s [shell]  set default shell (assumes brew path)"
+			echo "    -s [shell]  set default shell"
 			echo "    -h          show this message"
 			echo
 			echo "\033[0;90m  Examples\033[0m\n"
@@ -62,9 +62,9 @@ for i in "${configs[@]}"; do
 done
 
 if ! [ -z ${shell} ]; then
-	if [ $(which "/opt/homebrew/bin/$shell") ]; then
-		echo /opt/homebrew/bin/$shell | sudo tee -a /etc/shells
-		chsh -s /opt/homebrew/bin/fish
+	if [ $(which $shell) ]; then
+		echo $(which $shell) | sudo tee -a /etc/shells
+		chsh -s $(which $shell)
 	fi
 fi
 
