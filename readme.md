@@ -21,7 +21,7 @@ Options
 
 	-u [user]   set username for git
 	-e [email]  set email for git and ssh
-	-s [shell]  set default shell (assumes brew path)
+	-s [shell]  set default shell
 	-h          show this message
 
 Examples
