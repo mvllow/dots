@@ -91,10 +91,9 @@ git config --global init.defaultBranch "main"
 
 if ! [ -f ~/.ssh/id_ed25519 ]; then
 	ssh-keygen -t ed25519 -C $email -f ~/.ssh/id_ed25519 -q -N ""
-	if [ $(uname) == "Darwin" ]; then
-		echo "*** Copied ssh key to clipboard ***"
+	if command -v pbcopy &> /dev/null; then
 		pbcopy < ~/.ssh/id_ed25519.pub
-		echo
+		echo "*** Copied ssh key to clipboard ***\n"
 	fi
 fi
 
