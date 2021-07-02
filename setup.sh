@@ -39,7 +39,7 @@ get_command_line_tools
 
 if ! [ -e $app ]; then
 	mkdir -p $app
-	git clone $repo $app &>/dev/null
+	git clone --depth=1 $repo $app &>/dev/null
 fi
 
 if ! [ $(which brew) ]; then
