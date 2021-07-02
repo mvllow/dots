@@ -81,6 +81,8 @@ if [ -z ${email} ]; then
 fi
 
 echo ".DS_Store" > ~/.gitignore
+git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit"
+git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 git config --global core.excludesfile ~/.gitignore
 git config --global user.name "$user"
 git config --global user.email "$email"
