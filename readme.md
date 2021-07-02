@@ -54,28 +54,31 @@ Examples
 
 ## System preferences
 
-| Setting                                 | Value |
-| --------------------------------------- | ----- |
-| **Menubar**                             |       |
-| Autohide                                | true  |
-| **Dock**                                |       |
-| Autohide                                | true  |
-| Show recent apps                        | false |
-| Show only active apps                   | true  |
-| **Keyboard**                            |       |
-| Auto correct                            | false |
-| Auto capitilise                         | false |
-| Period with double-space                | false |
-| Use smart quotes/dashes                 | false |
-| Enable system-wide key repeat           | true  |
-| Enable faster key repeat                | 2     |
-| Enabled shorter delay before key repeat | 15    |
-| **Trackpad**                            |       |
-| Tap to click                            | true  |
-| Increase tracking speed                 | 3     |
+| Setting                                 | Value       |
+| --------------------------------------- | ----------- |
+| **Menubar**                             |             |
+| Autohide                                | true        |
+| **Dock**                                |             |
+| Autohide                                | true        |
+| Show recent apps                        | false       |
+| Show only active apps                   | true        |
+| **Keyboard**                            |             |
+| Auto correct                            | false       |
+| Auto capitilise                         | false       |
+| Period with double-space                | false       |
+| Use smart quotes/dashes                 | false       |
+| Enable system-wide key repeat           | true        |
+| Enable faster key repeat                | 2           |
+| Enabled shorter delay before key repeat | 15          |
+| **Screencapture**                       |             |
+| Change default save location            | ~/Downloads |
+| **Trackpad**                            |             |
+| Tap to click                            | true        |
+| Increase tracking speed                 | 3           |
 
 ### Manual settings
 
+- Finder > Show view options > Sort by name > Use as defaults
 - Preferences > Keyboard > Modifier Keys > Map caps lock to escape
 - Preferences > Security & Privacy > Enable Full Disk Access for Terminal (useful for zapping casks)
 

@@ -126,6 +126,9 @@ if [ $(uname) == "Darwin" ]; then
 	# Keyboard: shorter delay before key repeat
 	defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
+	# Screencapture: change save location
+	defaults write com.apple.screencapture location ~/Downloads
+
 	# Trackpad: enable tap to click (this user and login screen)
 	defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 	defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
