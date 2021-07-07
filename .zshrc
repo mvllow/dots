@@ -54,36 +54,49 @@ clean_swap() {
 	rm -rf ~/.local/share/nvim/swap
 }
 
+settings_file="$HOME/.config/settings.txt"
+while read line; do
+	eval "$line"
+done < "$settings_file"
+
 # Set Rosé Pine variant for kitty and neovim
-# TODO update for general purpose variant switcher
-# @example set_theme
-# @example set_theme dawn
-set_theme() {
-	if [ "$1" = "dawn" ]; then
-		variant="dawn"
-		kitty_theme_file="rose-pine-dawn.conf"
-	elif [ "$1" = "moon" ]; then
+# @example toggle_theme
+toggle_theme() {
+	if [ "$theme" = "rose-pine" ]; then
+		theme="rose-pine-moon"
 		variant="moon"
-		kitty_theme_file="rose-pine-moon.conf"
-	else
+	elif [ "$theme" = "rose-pine-moon" ]; then
+		theme="rose-pine-dawn"
+		variant="dawn"
+	elif [ "$theme" = "rose-pine-dawn" ]; then
+		theme="rose-pine"
 		variant="base"
-		kitty_theme_file="rose-pine.conf"
+	else
+		theme="rose-pine"
+		variant="base"
 	fi
+
+	# TODO Refactor with sed
+	# Right now we only have one setting so overwriting the entire file is fine
+	echo "theme=$theme" > "$HOME/.config/settings.txt"
 
 	# Set kitty theme
 	# This requires `allow_remote_control yes` in your kitty config
-	kitty @ set-colors --all --configured ~/.config/kitty/$kitty_theme_file
+	kitty @ set-colors --all --configured ~/.config/kitty/$theme.conf
 
 	# Update kitty.conf with new theme for persistence
 	# Assumes `include rose-pine.conf` or similar on first line
 	# See https://github.com/mvllow/kitty/blob/main/kitty.conf#L1
-	sed -i "" "1s/rose-pine.*\.conf/$kitty_theme_file/" ~/.config/kitty/kitty.conf
+	sed -i "" "1s/rose-pine.*\.conf/$theme.conf/" ~/.config/kitty/kitty.conf
 
 	# Set neovim theme
 	# Assumes `vim.g.rose_pine_variant` on second line of conf.lua
 	# See https://github.com/mvllow/nvim/blob/main/conf.lua#L2
 	sed -i "" "2s/.*/vim.g.rose_pine_variant = '$variant'/" ~/.config/nvim/conf.lua
 }
+
+zle -N toggle_theme
+bindkey "^[[108;9u" toggle_theme # meta+l
 
 # Enable better, case insensitive completions (eg. dow = Downloads)
 # https://stackoverflow.com/a/24237590
