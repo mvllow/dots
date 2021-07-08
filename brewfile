@@ -5,7 +5,7 @@ tap "homebrew/core"
 brew "fish"
 brew "go"
 brew "lazygit"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "node"
 brew "ripgrep"
 brew "rust"
