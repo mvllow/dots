@@ -61,6 +61,15 @@ for i in "${configs[@]}"; do
 	fi
 done
 
+if [ $(which nvim) ]; then
+	nvim --headless \
+		+'autocmd User PackerComplete sleep 100m | qall' \
+		+PackerInstall
+	nvim --headless \
+		+'autocmd User PackerComplete sleep 10m | qall' \
+		+PackerSync
+done
+
 if ! [ -z ${shell} ]; then
 	if [ $(which $shell) ]; then
 		echo $(which $shell) | sudo tee -a /etc/shells
