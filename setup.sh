@@ -8,30 +8,32 @@ echo "Minimalist developer\n"
 
 while getopts u:e:s:h option; do
 	case "${option}" in
-		u) user=${OPTARG};;
-		e) email=${OPTARG};;
-		s) shell=${OPTARG};;
-		h)
-			echo "\033[0;90m  Usage\033[0m\n"
-			echo "    $ sh $0 <options>"
-			echo
-			echo "\033[0;90m  Options\033[0m\n"
-			echo "    -u [user]   set username for git"
-			echo "    -e [email]  set email for git and ssh"
-			echo "    -s [shell]  set default shell"
-			echo "    -h          show this message"
-			echo
-			echo "\033[0;90m  Examples\033[0m\n"
-			echo "    $ sh $0 -u dots -e dots@mellow.dev"
-			echo "    $ sh $0 -s fish"
-			echo
-			exit 2;;
+	u) user=${OPTARG} ;;
+	e) email=${OPTARG} ;;
+	s) shell=${OPTARG} ;;
+	h)
+		echo "\033[0;90m  Usage\033[0m\n"
+		echo "    $ sh $0 <options>"
+		echo
+		echo "\033[0;90m  Options\033[0m\n"
+		echo "    -u [user]   set username for git"
+		echo "    -e [email]  set email for git and ssh"
+		echo "    -s [shell]  set default shell"
+		echo "    -h          show this message"
+		echo
+		echo "\033[0;90m  Examples\033[0m\n"
+		echo "    $ sh $0 -u dots -e dots@mellow.dev"
+		echo "    $ sh $0 -s fish"
+		echo
+		exit 2
+		;;
 	esac
 done
 
 get_command_line_tools() {
 	if ! [ $(xcode-select --print-path) ]; then
-		xcode-select --install &>/dev/null; sleep 3
+		xcode-select --install &>/dev/null
+		sleep 3
 		get_command_line_tools
 	fi
 }
@@ -89,7 +91,7 @@ if [ -z ${email} ]; then
 	email=$REPLY
 fi
 
-echo ".DS_Store" > ~/.gitignore
+echo ".DS_Store" >~/.gitignore
 git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit"
 git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 git config --global core.excludesfile ~/.gitignore
@@ -100,8 +102,8 @@ git config --global init.defaultBranch "main"
 
 if ! [ -f ~/.ssh/id_ed25519 ]; then
 	ssh-keygen -t ed25519 -C $email -f ~/.ssh/id_ed25519 -q -N ""
-	if command -v pbcopy &> /dev/null; then
-		pbcopy < ~/.ssh/id_ed25519.pub
+	if command -v pbcopy &>/dev/null; then
+		pbcopy <~/.ssh/id_ed25519.pub
 		echo "*** Copied ssh key to clipboard ***\n"
 	fi
 fi
