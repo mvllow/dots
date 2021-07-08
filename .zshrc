@@ -3,14 +3,14 @@ export PATH=/opt/homebrew/bin:~/.cargo/bin:$PATH
 
 export EDITOR='vim'
 if [ $(which nvim) ]; then
-  export EDITOR='nvim'
+	export EDITOR='nvim'
 fi
 
 # Set prefixed alias for quick edit app configs
 # @args $1 = name | $2 = config path | $3 = config file
 # @example set_config_alias kitty ~/.config/kitty kitty.conf
 set_config_alias() {
-  alias ,$1="$EDITOR $2/$3 +'lcd $2'"
+	alias ,$1="$EDITOR $2/$3 +'lcd $2'"
 }
 
 set_config_alias fish ~/.config/fish config.fish
@@ -57,7 +57,7 @@ clean_swap() {
 settings_file="$HOME/.config/settings.txt"
 while read line; do
 	eval "$line"
-done < "$settings_file"
+done <"$settings_file"
 
 # Set Rosé Pine variant for kitty and neovim
 # @example toggle_theme
@@ -78,7 +78,7 @@ toggle_theme() {
 
 	# TODO Refactor with sed
 	# Right now we only have one setting so overwriting the entire file is fine
-	echo "theme=$theme" > "$HOME/.config/settings.txt"
+	echo "theme=$theme" >"$HOME/.config/settings.txt"
 
 	# Set kitty theme
 	# This requires `allow_remote_control yes` in your kitty config
@@ -102,4 +102,3 @@ bindkey "^[[108;9u" toggle_theme # meta+l
 # https://stackoverflow.com/a/24237590
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
-
