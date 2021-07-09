@@ -55,6 +55,10 @@ brew bundle --file="$app/brewfile"
 brew cleanup &>/dev/null
 echo
 
+# Install rust via rustup
+# https://www.rust-lang.org/tools/install
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 configs=("kitty" "fish" "nvim")
 for i in "${configs[@]}"; do
 	if [ $(which $i) ]; then
