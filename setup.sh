@@ -70,6 +70,7 @@ if [ $(which nvim) ]; then
 	nvim --headless \
 		+'autocmd User PackerComplete sleep 10m | qall' \
 		+PackerSync
+	nvim --headless -c ':silent TSUpdate' -c ':qall'
 fi
 
 if ! [ -z ${shell} ]; then
