@@ -34,12 +34,6 @@ Examples
 
 > Only installed apps will be configured (see [brewfile](https://github.com/mvllow/dots/blob/main/brewfile))
 
-**Fish ([config](https://github.com/mvllow/fish))**
-
-```sh
-~/.config/fish/*
-```
-
 **Kitty ([config](https://github.com/mvllow/kitty))**
 
 ```sh
