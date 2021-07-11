@@ -1,6 +1,6 @@
-export PROMPT='%~> '
-export PATH=/opt/homebrew/bin:~/.cargo/bin:$PATH
+prompt='%~> '
 
+export PATH=/opt/homebrew/bin:~/.cargo/bin:$PATH
 export EDITOR='vim'
 if [ $(which nvim) ]; then
 	export EDITOR='nvim'
