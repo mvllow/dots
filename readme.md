@@ -15,19 +15,19 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/setup.sh && sh ./se
 ```
 Usage
 
-	$ sh setup.sh <options>
+  $ sh setup.sh <options>
 
 Options
 
-	-u [user]   set username for git
-	-e [email]  set email for git and ssh
-	-s [shell]  set default shell
-	-h          show this message
+  -u [user]   set username for git
+  -e [email]  set email for git and ssh
+  -s [shell]  set default shell
+  -h          show this message
 
 Examples
 
-	$ sh setup.sh -u dots -e dots@mellow.dev
-	$ sh setup.sh -s fish
+  $ sh setup.sh -u dots -e dots@mellow.dev
+  $ sh setup.sh -s fish
 ```
 
 ## Modified files
