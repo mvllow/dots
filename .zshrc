@@ -96,7 +96,7 @@ toggle_theme() {
 }
 
 zle -N toggle_theme
-bindkey "^[[108;9u" toggle_theme # meta+l
+bindkey "^[[108;9u" toggle_theme # super+l
 
 # Enable better, case insensitive completions (eg. dow = Downloads)
 # https://stackoverflow.com/a/24237590
