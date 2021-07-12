@@ -156,5 +156,5 @@ fi
 echo "Done ✨\n"
 echo "\033[0;90m  Don't forget to set caps lock to escape in your settings\033[0m"
 echo "\033[0;90m  Maybe even select a new wallpaper\033[0m"
-echo "\033[0;90m  And reboot to allow all changes to happen\033[0m"
+echo "\033[0;90m  And reboot to allow all changes to take effect\033[0m"
 echo
