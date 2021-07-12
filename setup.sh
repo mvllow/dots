@@ -99,10 +99,10 @@ echo ".DS_Store" >~/.gitignore
 git config --global alias.lol "log --graph --decorate --pretty=oneline --abbrev-commit"
 git config --global alias.lola "log --graph --decorate --pretty=oneline --abbrev-commit --all"
 git config --global core.excludesfile ~/.gitignore
-git config --global user.name "$user"
-git config --global user.email "$email"
-git config --global pull.rebase false
 git config --global init.defaultBranch "main"
+git config --global pull.rebase false
+git config --global user.email "$email"
+git config --global user.name "$user"
 
 if ! [ -f ~/.ssh/id_ed25519 ]; then
 	ssh-keygen -t ed25519 -C $email -f ~/.ssh/id_ed25519 -q -N ""
