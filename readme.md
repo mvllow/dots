@@ -84,6 +84,6 @@ Examples
 
 ## Guides
 
-- [Custom kitty with neovim](https://github.com/mvllow/dots/blob/main/guides/custom-kitty-with-neovim.md)
+- [Update kitty config from neovim](https://github.com/mvllow/dots/blob/main/guides/update-kitty-config-from-neovim.md)
 - [Signing git commits with GPG](https://github.com/mvllow/dots/blob/main/guides/signing-git-commits-with-gpg.md)
 - [Using a custom shell](https://github.com/mvllow/dots/blob/main/guides/using-custom-shell.md)
