@@ -30,7 +30,7 @@ alias px=pnpx
 #
 # @usage 0x0 notes.txt
 0x0() {
-	curl -F"file=@$1" https://0x0.st | tee >(pbcopy)
+	curl -F "file=@$1" https://0x0.st | tee >(pbcopy)
 	echo "(Copied to clipboard)"
 }
 
