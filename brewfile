@@ -2,7 +2,7 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 brew "lazygit"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
 brew "shfmt"
