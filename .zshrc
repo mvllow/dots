@@ -28,16 +28,16 @@ alias px=pnpx
 #
 # @usage 0x0 notes.txt
 0x0() {
-	curl -F "file=@$1" https://0x0.st | tee >(pbcopy)
+	curl -F"file=@$1" https://0x0.st | tee >(pbcopy)
 	echo "(Copied to clipboard)"
 }
 
 # Clone and enter repo
 #
 # @param $1 repo
-# @param $... git clone flags
+# @param $... git clone <repo> flags
 # @usage clone mvllow/dots
-# @usage clone mvllow/dots new-folder-name
+# @usage clone mvllow/dots new-folder
 clone() {
 	author=${1%/*}
 	repo=${1##*/}
