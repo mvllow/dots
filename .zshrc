@@ -2,6 +2,7 @@ prompt='%~> '
 
 export PATH=/opt/homebrew/bin:$PATH
 export EDITOR='nvim'
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # Set prefixed alias for quick edit app configs
 #
