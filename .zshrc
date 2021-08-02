@@ -51,6 +51,18 @@ clone() {
 	fi
 }
 
+# Update git remote url
+#
+# @param $1 repo
+# @param $... git remote set-url origin <repo> flags
+# @usage set_git_url mvllow/dots
+set_git_url() {
+	author=${1%/*}
+	repo=${1##*/}
+
+	git remote set-url --push origin git@github.com:$author/$repo.git ${@:2}
+}
+
 # Clean neovim swap files
 #
 # @usage clean_swap
