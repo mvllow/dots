@@ -1,10 +1,10 @@
 prompt='%~> '
 
-export PATH=/opt/homebrew/bin:~/.cargo/bin:$PATH
 export EDITOR='vim'
 if [ $(which nvim) ]; then
 	export EDITOR='nvim'
 fi
+export PATH=/opt/homebrew/bin:$PATH
 
 # Set prefixed alias for quick edit app configs
 #
