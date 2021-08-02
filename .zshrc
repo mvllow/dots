@@ -82,6 +82,7 @@ set_kitty_theme() {
 	replace_with="include $1.conf"
 
 	# Update theme for active sessions
+	# Requires `allow_remote_control yes` in kitty.conf
 	kitty @ set-colors --all --configured ~/.config/kitty/$1.conf
 
 	# Update config for persistence
@@ -90,7 +91,7 @@ set_kitty_theme() {
 
 # Set neovim theme
 #
-# @param $1 theme variant (base|moon|dawn)
+# @param $1 theme name (rose-pine[-moon|-dawn])
 # @usage set_neovim_theme dawn
 set_neovim_theme() {
 	file="$HOME/.config/nvim/conf.lua"
@@ -123,13 +124,12 @@ toggle_theme() {
 
 	if [ "$theme" = "$dark_theme" ]; then
 		theme=$light_theme
-		set_kitty_theme $light_theme
-		set_neovim_theme $light_theme
 	else
 		theme=$dark_theme
-		set_kitty_theme $dark_theme
-		set_neovim_theme $dark_theme
 	fi
+
+	set_kitty_theme $theme
+	set_neovim_theme $theme
 
 	# Update active theme
 	sed -i '' -e "s/theme.*/theme=$theme/" $theme_file
