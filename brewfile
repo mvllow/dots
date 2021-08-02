@@ -6,5 +6,6 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
 brew "shfmt"
+brew "stylua"
 cask "kitty"
 cask "rectangle"

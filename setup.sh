@@ -59,10 +59,6 @@ brew bundle --file="$app/brewfile"
 brew cleanup &>/dev/null
 echo
 
-# Install rust via rustup
-# https://www.rust-lang.org/tools/install
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
 # Clone personal, external configs
 # Eg. "nvim" will clone "mvllow/nvim" to ~/.config/nvim
 configs=("kitty" "nvim")
