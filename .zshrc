@@ -4,8 +4,6 @@ export PATH=/opt/homebrew/bin:$PATH
 export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 
-dots="$XDG_CONFIG_HOME/dots"
-
 # Set prefixed alias for quick edit app configs
 #
 # @param $1 name
@@ -22,7 +20,6 @@ set_config_alias nvim ~/.config/nvim conf.lua
 set_config_alias vim ~/ .vimrc
 set_config_alias zsh ~/ .zshrc
 
-alias gitd="git --git-dir=$dots --work-tree=$HOME"
 alias chop="git branch --merged | egrep -v \"(^\*|master|main)\" | xargs git branch -d"
 alias p=pnpm
 alias px=pnpx
