@@ -7,8 +7,8 @@ Recent versions of macOS now ship with zsh by default. There are several alterna
 We can add a snippet to our `.zshrc` that checks for our desired shell, in this case "fish". If it exists, we execute fish within zsh.
 
 ```sh
-if (( $+commands[fish] )); then
-  SHELL=/usr/local/bin/fish
-  [ -x $SHELL ] && exec $SHELL
+if [ $(which fish) ]; then
+	SHELL=$(which fish)
+	[ -x $SHELL ] && exec $SHELL
 fi
 ```
