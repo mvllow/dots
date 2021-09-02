@@ -5,25 +5,12 @@ export CLICOLOR=1
 export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# Set prefixed alias for quick edit app configs
-#
-# @param $1 name
-# @param $2 config path
-# @param $3 config file
-# @usage set_config_alias kitty ~/.config/kitty kitty.conf
-set_config_alias() {
-	alias ,$1="$EDITOR $2/$3 +'lcd $2'"
-}
 
-set_config_alias fish ~/.config/fish config.fish
-set_config_alias kitty ~/.config/kitty kitty.conf
-set_config_alias nvim ~/.config/nvim conf.lua
-set_config_alias vim ~/ .vimrc
-set_config_alias zsh ~/ .zshrc
+alias ,kitty="$EDITOR ~/.config/kitty/kitty.conf +'lcd ~/.config/kitty'"
+alias ,nvim="$EDITOR ~/.config/nvim/init.lua +'lcd ~/.config/nvim'"
+alias ,zsh="$EDITOR ~/.zshrc +'lcd ~/'"
 
-alias chop="git branch --merged | egrep -v \"(^\*|master|main)\" | xargs git branch -d"
-alias p=pnpm
-alias px=pnpx
+alias chop="git branch --merged | egrep -v '(^\*|master|main)' | xargs git branch -d"
 
 # Upload file to 0x0
 #
