@@ -5,6 +5,8 @@ export CLICOLOR=1
 export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 
+alias .git="git --git-dir=$HOME/dots.git --work-tree=$HOME"
+alias .lazygit="lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
 
 alias ,kitty="$EDITOR ~/.config/kitty/kitty.conf +'lcd ~/.config/kitty'"
 alias ,nvim="$EDITOR ~/.config/nvim/init.lua +'lcd ~/.config/nvim'"
