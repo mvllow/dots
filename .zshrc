@@ -58,68 +58,19 @@ clean_swap() {
 	rm -rf ~/.local/share/nvim/swap
 }
 
-# Set kitty theme
-#
-# @param $1 theme name (rose-pine[-moon|-dawn])
-# @usage set_kitty_theme rose-pine
-set_kitty_theme() {
-	file="$HOME/.config/kitty/kitty.conf"
-	decorator="@theme"
-	starts_with="include"
-	replace_with="include $1.conf"
+toggle_kitty_theme() {
+	current_theme=$(awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
+	new_theme="rose-pine.conf"
 
-	# Update theme for active sessions
-	# Requires `allow_remote_control yes` in kitty.conf
-	kitty @ set-colors --all --configured ~/.config/kitty/$1.conf
-
-	# Update config for persistence
-	sed -i '' -e "/$decorator/ {" -e "n; s/$starts_with.*/$replace_with/" -e "}" $file
-}
-
-# Set neovim theme
-#
-# @param $1 theme name (rose-pine[-moon|-dawn])
-# @usage set_neovim_theme dawn
-set_neovim_theme() {
-	file="$HOME/.config/nvim/conf.lua"
-	starts_with="vim.g.rose_pine_variant"
-	replace_with="vim.g.rose_pine_variant = '$1'"
-
-	# Update config for persistence
-	sed -i '' -e "s/$starts_with.*/$replace_with/" $file
-}
-
-# Toggle theme
-#
-# @usage toggle_theme
-toggle_theme() {
-	dark_theme="rose-pine"
-	light_theme="rose-pine-dawn"
-
-	theme_file="$HOME/.config/theme.conf"
-
-	# Create default config
-	if ! [ -e $theme_file ]; then
-		echo "theme=$dark_theme" >$theme_file
+	if [ "$current_theme" = "rose-pine.conf" ]; then
+		new_theme="rose-pine-dawn.conf"
 	fi
 
-	# Read theme file
-	# Eg. `theme=` will set $theme
-	while read line; do
-		eval "$line"
-	done <"$theme_file"
+	# Set theme for active sessions. Requires `allow_remote_control yes`
+	kitty @ set-colors --all --configured "~/.config/kitty/$new_theme"
 
-	if [ "$theme" = "$dark_theme" ]; then
-		theme=$light_theme
-	else
-		theme=$dark_theme
-	fi
-
-	set_kitty_theme $theme
-	set_neovim_theme $theme
-
-	# Update active theme
-	sed -i '' -e "s/theme.*/theme=$theme/" $theme_file
+	# Update config for persistence
+	sed -i '' -e "s/include.*/include $new_theme/" "$HOME/.config/kitty/kitty.conf"
 }
 
 zle -N toggle_kitty_theme
