@@ -1,6 +1,7 @@
 prompt='%~> '
 
 export PATH=/opt/homebrew/bin:$PATH
+export CLICOLOR=1
 export EDITOR='nvim'
 export XDG_CONFIG_HOME="$HOME/.config"
 
