@@ -16,28 +16,28 @@ alias chop="git branch --merged | egrep -v '(^\*|master|main)' | xargs git branc
 
 # Upload file to 0x0
 #
-# @usage 0x0 notes.txt
+# @usage 0x0 note.txt
 0x0() {
-	curl -F"file=@$1" https://0x0.st | tee >(pbcopy)
-	echo "(Copied to clipboard)"
+	curl -F "file=@$1" https://0x0.st | tee >(pbcopy)
+	echo "(copied to clipboard)\n"
 }
 
-# Clone and enter repo
+# Clone and cd into repo directory
 #
 # @param $1 repo
 # @param $... git clone <repo> flags
 # @usage clone mvllow/dots
 # @usage clone mvllow/dots new-folder
 clone() {
-	author=${1%/*}
-	repo=${1##*/}
+	repo=$1
+	name=${repo#*/}
 
-	git clone git@github.com:$author/$repo.git ${@:2}
+	git clone git@github.com:$repo.git ${@:2}
 
 	if [ -n "$2" ]; then
 		cd $2
 	else
-		cd $repo
+		cd $name
 	fi
 }
 
@@ -45,19 +45,16 @@ clone() {
 #
 # @param $1 repo
 # @param $... git remote set-url origin <repo> flags
-# @usage set_git_url mvllow/dots
-set_git_url() {
-	author=${1%/*}
-	repo=${1##*/}
+# @usage set_git_ssh_url mvllow/dots
+set_git_ssh_url() {
+	repo=$1
 
-	git remote set-url --push origin git@github.com:$author/$repo.git ${@:2}
+	git remote set-url --push origin git@github.com:$repo.git ${@:2}
 }
 
-# Clean neovim swap files
-#
-# @usage clean_swap
+# Remove nvim swap files
 clean_swap() {
-	echo "Purging ~/.local/share/nvim/swap"
+	echo "purging nvim swap"
 	rm -rf ~/.local/share/nvim/swap
 }
 
@@ -125,10 +122,12 @@ toggle_theme() {
 	sed -i '' -e "s/theme.*/theme=$theme/" $theme_file
 }
 
-zle -N toggle_theme
-bindkey "^[[108;9u" toggle_theme # super+l
+zle -N toggle_kitty_theme
+bindkey "^[[108;9u" toggle_kitty_theme # <super+l>
 
-# Enable better, case insensitive completions (eg. dow<tab> = Downloads)
+# Enable better, case insensitive completions
 # https://stackoverflow.com/a/24237590
+#
+# @example `cd dow<tab>` transforms to `cd Downloads`
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 autoload -Uz compinit && compinit
