@@ -1,3 +1,5 @@
+require('impatient')
+
 local function map(mode, lhs, rhs, opts)
 	opts = opts or { noremap = true, silent = true }
 	return vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
@@ -90,6 +92,8 @@ vim.cmd([[
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
+	vim.fn.setenv('MACOSX_DEPLOYMENT_TARGET', '10.15')
+	use({ 'lewis6991/impatient.nvim', rocks = 'mpack' })
 	use({
 		'rose-pine/neovim',
 		config = function()
