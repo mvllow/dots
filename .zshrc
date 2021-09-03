@@ -58,7 +58,8 @@ clean_swap() {
 	rm -rf ~/.local/share/nvim/swap
 }
 
-toggle_kitty_theme() {
+# Toggle theme
+t() {
 	current_theme=$(awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
 	new_theme="rose-pine.conf"
 
@@ -72,6 +73,3 @@ toggle_kitty_theme() {
 	# Update config for persistence
 	sed -i '' -e "s/include.*/include $new_theme/" "$HOME/.config/kitty/kitty.conf"
 }
-
-zle -N toggle_kitty_theme
-bindkey "^[[108;9u" toggle_kitty_theme # <super+l>
