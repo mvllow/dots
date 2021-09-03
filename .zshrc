@@ -75,10 +75,3 @@ toggle_kitty_theme() {
 
 zle -N toggle_kitty_theme
 bindkey "^[[108;9u" toggle_kitty_theme # <super+l>
-
-# Enable better, case insensitive completions
-# https://stackoverflow.com/a/24237590
-#
-# @example `cd dow<tab>` transforms to `cd Downloads`
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-autoload -Uz compinit && compinit
