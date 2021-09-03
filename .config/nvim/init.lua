@@ -262,12 +262,6 @@ require('packer').startup(function(use)
 	use('L3MON4D3/LuaSnip')
 	use('hrsh7th/cmp-nvim-lsp')
 	use({
-		'mvllow/modes.nvim',
-		config = function()
-			require('modes').setup()
-		end,
-	})
-	use({
 		'kyazdani42/nvim-tree.lua',
 		config = function()
 			vim.g.nvim_tree_auto_close = 1
