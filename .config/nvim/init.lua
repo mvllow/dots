@@ -102,6 +102,7 @@ require('packer').startup(function(use)
 			vim.cmd('colorscheme rose-pine')
 		end,
 	})
+	use('editorconfig/editorconfig-vim')
 	use('tpope/vim-commentary')
 	use({
 		'nvim-treesitter/nvim-treesitter',
