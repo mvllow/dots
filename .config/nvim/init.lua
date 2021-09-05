@@ -73,8 +73,6 @@ vim.opt.splitright = true
 vim.opt.statusline = '%f %M %= %l:%c'
 
 vim.cmd([[autocmd BufEnter * setlocal formatoptions-=o]])
-vim.cmd([[autocmd FileType fish,toml lua vim.api.nvim_buf_set_option(0, "commentstring", "# %s")]])
-vim.cmd([[autocmd FileType markdown setlocal et ts=2 sts=2 sw=2 spell wrap]])
 vim.cmd([[autocmd VimResized * tabdo wincmd =]])
 
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
