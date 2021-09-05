@@ -53,7 +53,7 @@ map('n', '<leader>sb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>sf', '<cmd>Telescope file_browser<cr>')
 map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
 
-local tab_width = 3
+local tab_width = 4
 vim.opt.shiftwidth = tab_width
 vim.opt.tabstop = tab_width
 vim.opt.softtabstop = tab_width
