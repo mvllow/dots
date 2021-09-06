@@ -222,6 +222,7 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.rustfmt,
+					null_ls.builtins.formatting.rufo,
 					null_ls.builtins.formatting.shfmt.with({
 						filetypes = { 'bash', 'sh', 'zsh' },
 					}),

@@ -11,6 +11,7 @@ We use [null-ls](https://github.com/jose-elias-alvarez/null-ls.nvim) for formatt
 | fish_indent | `brew install fish`    |
 | gofmt       | `brew install go`      |
 | prettier    | `npm install prettier` |
+| rufo        | `gem install rufo`     |
 | shfmt       | `brew install shfmt`   |
 | stylua      | `brew install stylua`  |
 
