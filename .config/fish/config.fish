@@ -1,6 +1,7 @@
 set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
 
 fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/opt/ruby/bin
 
 if status is-interactive
     set fish_greeting '🐟'
