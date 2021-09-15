@@ -1,0 +1,14 @@
+[alias]
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	ls = ls-tree --full-tree -r --name-only HEAD
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
