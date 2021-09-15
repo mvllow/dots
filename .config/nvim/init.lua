@@ -52,6 +52,7 @@ map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
 map('n', '<leader>sb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>sf', '<cmd>Telescope file_browser<cr>')
 map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
+map('n', '<leader>sy', "<cmd>lua require('telescope').extensions.neoclip.default()<cr>")
 
 local tab_width = 4
 vim.opt.shiftwidth = tab_width
@@ -136,6 +137,12 @@ require('packer').startup(function(use)
 	use('windwp/nvim-ts-autotag')
 	use('JoosepAlviste/nvim-ts-context-commentstring')
 	use({ 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' })
+	use({
+		'AckslD/nvim-neoclip.lua',
+		config = function()
+			require('neoclip').setup()
+		end,
+	})
 	use({
 		'neovim/nvim-lspconfig',
 		config = function()
