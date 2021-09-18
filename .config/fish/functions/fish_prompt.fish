@@ -1,8 +1,4 @@
 function fish_prompt
     set -g fish_prompt_pwd_dir_length 0
-    printf '%s> ' (prompt_pwd)
-end
-
-function fish_right_prompt
-    printf '%s' (fish_git_prompt)
+    printf '%s%s> ' (prompt_pwd) (set_color brblack; fish_git_prompt; set_color normal)
 end
