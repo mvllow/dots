@@ -71,6 +71,7 @@ vim.opt.scrolloff = 5 -- scroll before reaching edge of screen
 vim.opt.shortmess:append('c') -- shorter messages
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 0
 vim.opt.statusline = '%f %M %= %l:%c'
 
@@ -199,7 +200,7 @@ require('packer').startup(function(use)
 			vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 				vim.lsp.diagnostic.on_publish_diagnostics,
 				{
-					signs = false,
+					signs = true,
 					underline = true,
 					update_in_insert = false,
 					virtual_text = false,
