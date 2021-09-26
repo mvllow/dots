@@ -97,6 +97,13 @@ require('packer').startup(function(use)
 			vim.cmd('colorscheme rose-pine')
 		end,
 	})
+	use({
+		'mvllow/modes.nvim',
+		config = function()
+			vim.opt.cursorline = true
+			require('modes').setup()
+		end,
+	})
 	use('editorconfig/editorconfig-vim')
 	use('tpope/vim-commentary')
 	use({
