@@ -71,6 +71,7 @@ vim.opt.scrolloff = 5 -- scroll before reaching edge of screen
 vim.opt.shortmess:append('c') -- shorter messages
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.laststatus = 0
 vim.opt.statusline = '%f %M %= %l:%c'
 
 vim.cmd([[autocmd BufEnter * setlocal formatoptions-=o]])
