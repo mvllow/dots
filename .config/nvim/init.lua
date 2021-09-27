@@ -1,4 +1,10 @@
-require('impatient')
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
+else
+	require('impatient')
+end
 
 local function map(mode, lhs, rhs, opts)
 	opts = opts or { noremap = true, silent = true }
@@ -77,12 +83,6 @@ vim.opt.statusline = '%f %M %= %l:%c'
 
 vim.cmd([[autocmd BufEnter * setlocal formatoptions-=o]])
 vim.cmd([[autocmd VimResized * tabdo wincmd =]])
-
-local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
-end
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
