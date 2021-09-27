@@ -84,7 +84,7 @@ if [ $(uname) == "Darwin" ]; then
 	defaults write com.knollsoft.Rectangle launchOnLogin -bool true # launch on login
 	defaults write com.knollsoft.Rectangle almostMaximize -dict \
 		keyCode -int 46 \
-		modifierFlags -int 786432 # set almost maximize to ctrl+ooption+m
+		modifierFlags -int 786432 # set almost maximize to ctrl+option+m
 fi
 
 echo "done; suggested next steps:"
