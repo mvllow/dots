@@ -40,6 +40,9 @@ if [ -f ~/.ssh/id_ed25519 ]; then
 fi
 
 if [ $(uname) == "Darwin" ]; then
+	# copy sf mono from terminal.app
+	cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. /Library/Fonts/
+
 	# dock
 	defaults write com.apple.dock autohide -bool true      # autohide
 	defaults write com.apple.dock tilesize -int 48         # set tilesize
