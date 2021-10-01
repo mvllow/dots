@@ -275,8 +275,13 @@ require('packer').startup(function(use)
 	use({
 		'kyazdani42/nvim-tree.lua',
 		config = function()
-			vim.g.nvim_tree_auto_close = 1
-			vim.g.nvim_tree_disable_netrw = 1
+			require('nvim-tree').setup({
+				auto_close = true,
+				disable_netrw = true,
+				view = {
+					side = 'right',
+				},
+			})
 			vim.g.nvim_tree_git_hl = 1
 			vim.g.nvim_tree_icons = {
 				default = '  ',
@@ -292,7 +297,6 @@ require('packer').startup(function(use)
 			vim.g.nvim_tree_ignore = { '.git' }
 			vim.g.nvim_tree_quit_on_open = 1
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
-			vim.g.nvim_tree_side = 'right'
 			vim.g.nvim_tree_symlink_arrow = '↔'
 		end,
 	})
