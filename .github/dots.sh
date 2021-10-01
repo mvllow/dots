@@ -32,6 +32,12 @@ if [ $(which nvim) ]; then
 	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 fi
 
+if [ $(which fish) ]; then
+	echo "- setting default shell: fish"
+	echo $(which fish) | sudo tee -a /etc/shells
+	chsh -s $(which fish)
+fi
+
 if [ -f ~/.ssh/id_ed25519 ]; then
 	echo "- generating ssh key"
 	ssh-keygen -t ed25519 -C $(git config --global user.email) -f ~/.ssh/id_ed25519 -q -N ""
