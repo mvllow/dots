@@ -123,6 +123,13 @@ require('packer').startup(function(use)
 			}
 		end,
 	})
+	use({
+		'lewis6991/gitsigns.nvim',
+		requires = 'nvim-lua/plenary.nvim',
+		config = function()
+			require('gitsigns').setup()
+		end,
+	})
 	use('editorconfig/editorconfig-vim')
 	use('tpope/vim-commentary')
 	use({
