@@ -46,6 +46,12 @@ map('n', 'H', ':bprev<cr>')
 map('n', '<leader>d', ':bdelete<cr>')
 map('n', '<leader>bo', [[:silent %bd|e#|bd#<cr>'"]]) -- close all but current
 
+-- buffers (via barbar)
+map('n', 'L', ':BufferNext<cr>')
+map('n', 'H', ':BufferPrevious<cr>')
+map('n', '<leader>d', ':BufferClose<cr>')
+map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
+
 -- plugin manager (wbthomason/packer.nvim)
 map('n', '<leader>pc', '<cmd>PackerCompile<cr>')
 map('n', '<leader>ps', '<cmd>PackerSync<cr>')
@@ -102,6 +108,19 @@ require('packer').startup(function(use)
 		config = function()
 			vim.opt.cursorline = true
 			require('modes').setup()
+		end,
+	})
+	use({
+		'romgrk/barbar.nvim',
+		config = function()
+			vim.g.bufferline = {
+				animation = false,
+				icon_close_tab = '×',
+				icon_close_tab_modified = '♥',
+				icon_separator_active = '',
+				icon_separator_inactive = '',
+				icons = false,
+			}
 		end,
 	})
 	use('editorconfig/editorconfig-vim')
