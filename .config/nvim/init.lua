@@ -60,7 +60,7 @@ map('n', '<leader>ps', '<cmd>PackerSync<cr>')
 map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
 
 -- fuzzy search (nvim-telescope/telescope.nvim)
-map('n', '<leader>f', '<cmd>Telescope find_files<cr>')
+map('n', '<leader>f', '<cmd>Telescope find_files winblend=10 theme=dropdown previewer=false<cr>')
 map('n', '<leader>sb', '<cmd>Telescope buffers<cr>')
 map('n', '<leader>sf', '<cmd>Telescope file_browser<cr>')
 map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
