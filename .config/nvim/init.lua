@@ -60,11 +60,21 @@ map('n', '<leader>ps', '<cmd>PackerSync<cr>')
 map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
 
 -- fuzzy search (nvim-telescope/telescope.nvim)
-map('n', '<leader>f', '<cmd>Telescope find_files winblend=10 theme=dropdown previewer=false<cr>')
-map('n', '<leader>sb', '<cmd>Telescope buffers<cr>')
-map('n', '<leader>sf', '<cmd>Telescope file_browser<cr>')
-map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
-map('n', '<leader>sr', '<cmd>Telescope registers<cr>')
+map(
+	'n',
+	'<leader>f',
+	[[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_dropdown({winblend=10,previewer=false}))<cr>]]
+)
+map(
+	'n',
+	'<leader>st',
+	[[:lua require('telescope.builtin').live_grep({layout_config={preview_width=0.6}})<cr>]]
+)
+map(
+	'n',
+	'<leader>sr',
+	[[:lua require('telescope.builtin').registers(require'telescope.themes'.get_dropdown({winblend=10}))<cr>]]
+)
 
 local tab_width = 4
 vim.opt.shiftwidth = tab_width
