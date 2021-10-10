@@ -279,7 +279,18 @@ require('packer').startup(function(use)
 	use({
 		'hrsh7th/nvim-cmp',
 		config = function()
+			local has_words_before = function()
+				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+				return col ~= 0
+					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
+							:sub(col, col)
+							:match('%s')
+						== nil
+			end
+
 			local cmp = require('cmp')
+			local luasnip = require('luasnip')
+			require('luasnip/loaders/from_vscode').lazy_load()
 
 			cmp.setup({
 				snippet = {
@@ -289,17 +300,50 @@ require('packer').startup(function(use)
 				},
 				preselect = cmp.PreselectMode.None,
 				mapping = {
-					['<tab>'] = cmp.mapping.select_next_item(),
-					['<s-tab>'] = cmp.mapping.select_prev_item(),
+					['<c-n>'] = cmp.mapping.select_next_item(),
+					['<c-p>'] = cmp.mapping.select_prev_item(),
+					['<tab>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						elseif has_words_before() then
+							cmp.complete()
+						else
+							fallback()
+						end
+					end, {
+						'i',
+						's',
+					}),
+
+					['<s-Tab>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, {
+						'i',
+						's',
+					}),
 					['<c-space>'] = cmp.mapping.complete(),
 				},
 				sources = {
-					{ name = 'nvim_lsp' },
+					{ name = 'buffer', priority = 7 },
+					{ name = 'path', priority = 6 },
+					{ name = 'nvim_lsp', priority = 9 },
+					{ name = 'luasnip', priority = 8 },
 				},
 			})
 		end,
 	})
-	use('L3MON4D3/LuaSnip')
+	use('hrsh7th/cmp-buffer')
+	use('hrsh7th/cmp-path')
+	use({ 'L3MON4D3/LuaSnip', requires = 'rafamadriz/friendly-snippets' })
+	use('saadparwaiz1/cmp_luasnip')
 	use('hrsh7th/cmp-nvim-lsp')
 	use({
 		'kyazdani42/nvim-tree.lua',
