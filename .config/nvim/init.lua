@@ -45,6 +45,7 @@ map('n', 'L', ':bnext<cr>')
 map('n', 'H', ':bprev<cr>')
 map('n', '<leader>d', ':bdelete<cr>')
 map('n', '<leader>bo', [[:silent %bd|e#|bd#<cr>'"]]) -- close all but current
+map('n', '<leader>bf', ':lua vim.lsp.buf.formatting_sync(nil, 1000)<cr>')
 
 -- buffers (via barbar)
 map('n', 'L', ':BufferNext<cr>')
