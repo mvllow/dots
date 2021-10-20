@@ -270,6 +270,7 @@ require('packer').startup(function(use)
 	})
 	use({
 		'hrsh7th/nvim-cmp',
+		requires = 'L3MON4D3/LuaSnip',
 		config = function()
 			local has_words_before = function()
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -282,7 +283,6 @@ require('packer').startup(function(use)
 
 			local cmp = require('cmp')
 			local luasnip = require('luasnip')
-			require('luasnip/loaders/from_vscode').lazy_load()
 
 			cmp.setup({
 				snippet = {
@@ -309,7 +309,7 @@ require('packer').startup(function(use)
 						's',
 					}),
 
-					['<s-Tab>'] = cmp.mapping(function(fallback)
+					['<s-tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						elseif luasnip.jumpable(-1) then
@@ -324,18 +324,11 @@ require('packer').startup(function(use)
 					['<c-space>'] = cmp.mapping.complete(),
 				},
 				sources = {
-					{ name = 'buffer', priority = 7 },
-					{ name = 'path', priority = 6 },
-					{ name = 'nvim_lsp', priority = 9 },
-					{ name = 'luasnip', priority = 8 },
+					{ name = 'nvim_lsp' },
 				},
 			})
 		end,
 	})
-	use('hrsh7th/cmp-buffer')
-	use('hrsh7th/cmp-path')
-	use({ 'L3MON4D3/LuaSnip', requires = 'rafamadriz/friendly-snippets' })
-	use('saadparwaiz1/cmp_luasnip')
 	use('hrsh7th/cmp-nvim-lsp')
 	use({
 		'kyazdani42/nvim-tree.lua',
