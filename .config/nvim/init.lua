@@ -103,10 +103,7 @@ vim.cmd([[autocmd VimResized * tabdo wincmd =]])
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
-
-	-- TODO: Remove impatient.nvim (and require at the top) once merged upstream
 	use('lewis6991/impatient.nvim')
-
 	use({
 		'rose-pine/neovim',
 		config = function()
