@@ -209,30 +209,21 @@ require('packer').startup(function(use)
 				buf_map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 			end
 
-			local function setup_servers()
-				require('lspinstall').setup()
+			local lsp_installer = require('nvim-lsp-installer')
 
-				local servers = require('lspinstall').installed_servers()
-				for _, server in pairs(servers) do
-					local config = {
-						capabilities = capabilities,
-						on_attach = on_attach,
-					}
+			lsp_installer.on_server_ready(function(server)
+				local opts = {
+					capabilities = capabilities,
+					on_attach = on_attach,
+				}
 
-					if server == 'lua' then
-						config = vim.tbl_extend('force', config, require('lua-dev').setup())
-					end
-
-					require('lspconfig')[server].setup(config)
+				if server.name == 'sumneko_lua' then
+					opts = vim.tbl_extend('force', opts, require('lua-dev').setup())
 				end
-			end
 
-			setup_servers()
-
-			require('lspinstall').post_install_hook = function()
-				setup_servers()
-				vim.cmd('bufdo e')
-			end
+				server:setup(opts)
+				vim.cmd([[ do User LspAttachBuffers ]])
+			end)
 
 			vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 				vim.lsp.diagnostic.on_publish_diagnostics,
@@ -246,7 +237,7 @@ require('packer').startup(function(use)
 		end,
 	})
 	use('folke/lua-dev.nvim')
-	use('kabouzeid/nvim-lspinstall')
+	use('williamboman/nvim-lsp-installer')
 	use({
 		'jose-elias-alvarez/null-ls.nvim',
 		requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
