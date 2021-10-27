@@ -98,6 +98,7 @@ vim.cmd([[autocmd VimResized * tabdo wincmd =]])
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('lewis6991/impatient.nvim')
+	use('nathom/filetype.nvim')
 	use({
 		'rose-pine/neovim',
 		config = function()
