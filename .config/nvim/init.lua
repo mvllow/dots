@@ -25,7 +25,7 @@ map('n', '<c-j>', '<c-w><c-j>')
 map('n', '<c-k>', '<c-w><c-k>')
 map('n', '<c-l>', '<c-w><c-l>')
 
--- hop between previous and current buffer
+-- hop between current and previous buffer
 map('n', '<c-p>', '<c-^>')
 
 -- move through wrap lines
@@ -36,31 +36,25 @@ map('n', 'k', 'gk')
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- search word under cursor (or selection)
+-- search selection or word under cursor
 map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 
 -- buffers
-map('n', 'L', ':bnext<cr>')
-map('n', 'H', ':bprev<cr>')
-map('n', '<leader>d', ':bdelete<cr>')
-map('n', '<leader>bo', [[:silent %bd|e#|bd#<cr>'"]]) -- close all but current
-map('n', '<leader>bf', ':lua vim.lsp.buf.formatting_sync(nil, 1000)<cr>')
-
--- buffers (via barbar)
 map('n', 'L', ':BufferNext<cr>')
 map('n', 'H', ':BufferPrevious<cr>')
 map('n', '<leader>d', ':BufferClose<cr>')
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
+map('n', '<leader>bf', ':lua vim.lsp.buf.formatting_sync(nil, 1000)<cr>')
 
--- plugin manager (wbthomason/packer.nvim)
+-- plugin manager
 map('n', '<leader>pc', '<cmd>PackerCompile<cr>')
 map('n', '<leader>ps', '<cmd>PackerSync<cr>')
 
--- explorer (kyazdani42/nvim-tree.lua)
+-- explorer
 map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
 
--- fuzzy search (nvim-telescope/telescope.nvim)
+-- search
 map(
 	'n',
 	'<leader>f',
