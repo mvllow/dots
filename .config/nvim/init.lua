@@ -53,6 +53,7 @@ map('n', '<leader>ps', '<cmd>PackerSync<cr>')
 
 -- explorer
 map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+map('n', '<leader>E', '<cmd>NvimTreeFindFileToggle<cr>')
 
 -- search
 map(
