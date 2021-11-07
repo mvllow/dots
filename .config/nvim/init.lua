@@ -84,6 +84,7 @@ vim.opt.ignorecase = true -- case insensitive search...
 vim.opt.smartcase = true -- ...unless capital in search
 vim.opt.updatetime = 250 -- update editor more frequently
 vim.opt.termguicolors = true -- more colors
+vim.opt.completeopt = 'menuone,noselect'
 vim.opt.pumheight = 10 -- popup menu height
 vim.opt.scrolloff = 5 -- scroll before reaching edge of screen
 vim.opt.shortmess:append('c') -- shorter messages
@@ -164,11 +165,8 @@ require('packer').startup(function(use)
 	use({
 		'windwp/nvim-autopairs',
 		config = function()
-			require('nvim-autopairs').setup()
-			require('nvim-autopairs.completion.cmp').setup({
-				map_cr = true,
-				map_complete = true,
-				auto_select = false,
+			require('nvim-autopairs').setup({
+				check_ts = true,
 			})
 		end,
 	})
@@ -274,8 +272,11 @@ require('packer').startup(function(use)
 						== nil
 			end
 
-			local cmp = require('cmp')
 			local luasnip = require('luasnip')
+			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+			local cmp = require('cmp')
+
+			cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
 
 			cmp.setup({
 				snippet = {
@@ -315,6 +316,10 @@ require('packer').startup(function(use)
 						's',
 					}),
 					['<c-space>'] = cmp.mapping.complete(),
+					['<cr>'] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}),
 				},
 				sources = {
 					{ name = 'nvim_lsp' },
