@@ -338,13 +338,15 @@ require('packer').startup(function(use)
 					symlink = '↔',
 				},
 			}
-			vim.g.nvim_tree_ignore = { '.git' }
 			vim.g.nvim_tree_quit_on_open = 1
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 			vim.g.nvim_tree_symlink_arrow = '↔'
 			require('nvim-tree').setup({
 				auto_close = true,
 				disable_netrw = true,
+				filters = {
+					custom = { '.git' },
+				},
 				view = {
 					side = 'right',
 				},
