@@ -1,5 +1,4 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
 else
@@ -11,107 +10,85 @@ local function map(mode, lhs, rhs, opts)
 	return vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
--- use <space> as leader
-map('n', '<space>', '<nop>')
 vim.g.mapleader = ' '
+map('n', '<space>', '<nop>')
 
--- general
 map('i', 'jk', '<esc>')
 map('n', '<esc>', ':noh<cr>')
 
--- splits
 map('n', '<c-h>', '<c-w><c-h>')
 map('n', '<c-j>', '<c-w><c-j>')
 map('n', '<c-k>', '<c-w><c-k>')
 map('n', '<c-l>', '<c-w><c-l>')
 
--- hop between current and previous buffer
-map('n', '<c-p>', '<c-^>')
-
--- move through wrap lines
-map('n', 'j', 'gj')
-map('n', 'k', 'gk')
-
--- reselect visual after indent
 map('v', '<', '<gv')
 map('v', '>', '>gv')
 
--- search selection or word under cursor
 map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 
--- buffers
 map('n', 'L', ':BufferNext<cr>')
 map('n', 'H', ':BufferPrevious<cr>')
 map('n', '<leader>d', ':BufferClose<cr>')
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
-map('n', '<leader>bf', ':lua vim.lsp.buf.formatting_sync(nil, 1000)<cr>')
 
--- plugin manager
-map('n', '<leader>pc', '<cmd>PackerCompile<cr>')
-map('n', '<leader>ps', '<cmd>PackerSync<cr>')
-
--- explorer
 map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
-map('n', '<leader>E', '<cmd>NvimTreeFindFileToggle<cr>')
 
--- search
-map(
-	'n',
-	'<leader>f',
-	[[:lua require('telescope.builtin').find_files(require'telescope.themes'.get_dropdown({winblend=10,previewer=false}))<cr>]]
-)
-map(
-	'n',
-	'<leader>st',
-	[[:lua require('telescope.builtin').live_grep({layout_config={preview_width=0.6}})<cr>]]
-)
-map(
-	'n',
-	'<leader>sr',
-	[[:lua require('telescope.builtin').registers(require'telescope.themes'.get_dropdown({winblend=10}))<cr>]]
-)
+map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown previewer=false winblend=10<cr>')
+map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
+map('n', '<leader>sr', '<cmd>Telescope registers theme=dropdown winblend=10<cr>')
 
-local tab_width = 4
-vim.opt.shiftwidth = tab_width
-vim.opt.tabstop = tab_width
-vim.opt.softtabstop = tab_width
-vim.opt.mouse = 'a' -- enable mouse
-vim.opt.hidden = true -- allow hidden unsaved buffers
-vim.opt.breakindent = true -- match wrapped indent
-vim.opt.undofile = true -- save undo history
-vim.opt.ignorecase = true -- case insensitive search...
-vim.opt.smartcase = true -- ...unless capital in search
-vim.opt.updatetime = 250 -- update editor more frequently
-vim.opt.termguicolors = true -- more colors
-vim.opt.completeopt = 'menuone,noselect'
-vim.opt.pumheight = 10 -- popup menu height
-vim.opt.scrolloff = 5 -- scroll before reaching edge of screen
-vim.opt.shortmess:append('c') -- shorter messages
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+vim.opt.tabstop = 4
+vim.opt.mouse = 'a'
+vim.opt.breakindent = true
+vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.pumheight = 10
+vim.opt.hidden = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.scrolloff = 5
+vim.opt.shortmess:append('c')
+vim.opt.signcolumn = 'yes'
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 0
-vim.opt.statusline = '%f %M %= %l:%c'
+vim.opt.termguicolors = true
+vim.opt.undofile = true
+vim.opt.updatetime = 250
 
-vim.cmd([[autocmd BufEnter * setlocal formatoptions-=o]])
-vim.cmd([[autocmd VimResized * tabdo wincmd =]])
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
+vim.cmd('autocmd VimResized * tabdo wincmd =')
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('lewis6991/impatient.nvim')
-	use('nathom/filetype.nvim')
+	use('editorconfig/editorconfig-vim')
+	use('tpope/vim-commentary')
 	use({
-		'rose-pine/neovim',
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			'nvim-lua/plenary.nvim',
+			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+		},
 		config = function()
-			vim.g.rose_pine_disable_italics = true
-			vim.cmd('colorscheme rose-pine')
+			require('telescope').setup({
+				defaults = {
+					layout_config = {
+						horizontal = { preview_width = 0.6 },
+					},
+				},
+			})
+			require('telescope').load_extension('fzf')
 		end,
 	})
 	use({
-		'mvllow/modes.nvim',
+		'rose-pine/neovim',
+		as = 'rose-pine',
 		config = function()
-			require('modes').setup()
+			vim.g.rose_pine_disable_italics = true
+			vim.cmd('colorscheme rose-pine')
 		end,
 	})
 	use({
@@ -121,60 +98,70 @@ require('packer').startup(function(use)
 				animation = false,
 				icon_close_tab = '×',
 				icon_close_tab_modified = '♥',
-				icon_separator_active = '',
-				icon_separator_inactive = '',
 				icons = false,
 			}
 		end,
 	})
 	use({
-		'lewis6991/gitsigns.nvim',
-		requires = 'nvim-lua/plenary.nvim',
+		'kyazdani42/nvim-tree.lua',
 		config = function()
-			require('gitsigns').setup()
+			vim.g.nvim_tree_git_hl = 1
+			vim.g.nvim_tree_icons = {
+				folder = {
+					default = '>',
+					empty = '>',
+					empty_open = '▼',
+					open = '▼',
+				},
+			}
+			vim.g.nvim_tree_quit_on_open = 1
+			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
+			require('nvim-tree').setup({
+				auto_close = true,
+				disable_netrw = true,
+				filters = {
+					custom = { '.git' },
+				},
+				view = {
+					side = 'right',
+				},
+			})
 		end,
 	})
-	use('editorconfig/editorconfig-vim')
-	use('tpope/vim-commentary')
+	use({
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require('colorizer').setup({ '*' }, { names = false })
+		end,
+	})
 	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
+		requires = { 'windwp/nvim-ts-autotag', 'JoosepAlviste/nvim-ts-context-commentstring' },
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'maintained',
 				ignore_install = { 'haskell' },
-				indent = {
-					enable = true,
-				},
-				highlight = {
-					enable = true,
-				},
-				autopairs = {
-					enable = true,
-				},
-				autotag = {
-					enable = true,
-				},
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
+				indent = { enable = true },
+				highlight = { enable = true },
+				autotag = { enable = true },
+				context_commentstring = { enable = true, enable_autocmd = false },
 			})
 		end,
 	})
 	use({
 		'windwp/nvim-autopairs',
 		config = function()
-			require('nvim-autopairs').setup({
-				check_ts = true,
-			})
+			require('nvim-autopairs').setup()
 		end,
 	})
-	use('windwp/nvim-ts-autotag')
-	use('JoosepAlviste/nvim-ts-context-commentstring')
-	use({ 'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim' })
 	use({
 		'neovim/nvim-lspconfig',
+		requires = {
+			'folke/lua-dev.nvim',
+			'williamboman/nvim-lsp-installer',
+			'jose-elias-alvarez/nvim-lsp-ts-utils',
+		},
 		config = function()
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
@@ -213,7 +200,7 @@ require('packer').startup(function(use)
 				end
 
 				server:setup(opts)
-				vim.cmd([[ do User LspAttachBuffers ]])
+				vim.cmd('do User LspAttachBuffers')
 			end)
 
 			vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
@@ -227,8 +214,6 @@ require('packer').startup(function(use)
 			)
 		end,
 	})
-	use('folke/lua-dev.nvim')
-	use('williamboman/nvim-lsp-installer')
 	use({
 		'jose-elias-alvarez/null-ls.nvim',
 		requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
@@ -237,7 +222,6 @@ require('packer').startup(function(use)
 
 			null_ls.config({
 				sources = {
-					null_ls.builtins.formatting.elm_format,
 					null_ls.builtins.formatting.fish_indent,
 					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.prettier,
@@ -261,18 +245,8 @@ require('packer').startup(function(use)
 	})
 	use({
 		'hrsh7th/nvim-cmp',
-		requires = 'L3MON4D3/LuaSnip',
+		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp' },
 		config = function()
-			local has_words_before = function()
-				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-				return col ~= 0
-					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]
-							:sub(col, col)
-							:match('%s')
-						== nil
-			end
-
-			local luasnip = require('luasnip')
 			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 			local cmp = require('cmp')
 
@@ -284,37 +258,21 @@ require('packer').startup(function(use)
 						require('luasnip').lsp_expand(args.body)
 					end,
 				},
-				preselect = cmp.PreselectMode.None,
 				mapping = {
-					['<c-n>'] = cmp.mapping.select_next_item(),
-					['<c-p>'] = cmp.mapping.select_prev_item(),
 					['<tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
 						else
 							fallback()
 						end
-					end, {
-						'i',
-						's',
-					}),
-
+					end),
 					['<s-tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
 						else
 							fallback()
 						end
-					end, {
-						'i',
-						's',
-					}),
+					end),
 					['<c-space>'] = cmp.mapping.complete(),
 					['<cr>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
@@ -325,43 +283,6 @@ require('packer').startup(function(use)
 					{ name = 'nvim_lsp' },
 				},
 			})
-		end,
-	})
-	use('hrsh7th/cmp-nvim-lsp')
-	use({
-		'kyazdani42/nvim-tree.lua',
-		config = function()
-			vim.g.nvim_tree_git_hl = 1
-			vim.g.nvim_tree_icons = {
-				default = '  ',
-				symlink = '  ',
-				folder = {
-					default = '>',
-					empty = '>',
-					empty_open = '▼',
-					open = '▼',
-					symlink = '↔',
-				},
-			}
-			vim.g.nvim_tree_quit_on_open = 1
-			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
-			vim.g.nvim_tree_symlink_arrow = '↔'
-			require('nvim-tree').setup({
-				auto_close = true,
-				disable_netrw = true,
-				filters = {
-					custom = { '.git' },
-				},
-				view = {
-					side = 'right',
-				},
-			})
-		end,
-	})
-	use({
-		'norcalli/nvim-colorizer.lua',
-		config = function()
-			require('colorizer').setup({ '*' }, { names = false })
 		end,
 	})
 end)
