@@ -276,7 +276,7 @@ require('packer').startup(function(use)
 					['<c-space>'] = cmp.mapping.complete(),
 					['<cr>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
-						select = true,
+						select = false,
 					}),
 				},
 				sources = {
