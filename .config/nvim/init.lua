@@ -27,6 +27,9 @@ map('v', '>', '>gv')
 map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 
+map('n', '<leader>pc', ':PackerCompile<cr>')
+map('n', '<leader>ps', ':PackerSync<cr>')
+
 map('n', 'L', ':BufferNext<cr>')
 map('n', 'H', ':BufferPrevious<cr>')
 map('n', '<leader>d', ':BufferClose<cr>')
