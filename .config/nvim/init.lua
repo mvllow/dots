@@ -37,9 +37,8 @@ map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
 
 map('n', '<leader>e', ':NvimTreeToggle<cr>')
 
-map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown previewer=false winblend=10<cr>')
-map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
-map('n', '<leader>sr', '<cmd>Telescope registers theme=dropdown winblend=10<cr>')
+map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
+map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
 map('n', '<leader>sr', [[:lua require('telescope').extensions.neoclip.default()<cr>]])
 
 vim.opt.shiftwidth = 4
@@ -79,8 +78,15 @@ require('packer').startup(function(use)
 		config = function()
 			require('telescope').setup({
 				defaults = {
+					winblend = 10,
 					layout_config = {
 						horizontal = { preview_width = 0.6 },
+					},
+				},
+				pickers = {
+					find_files = {
+						theme = 'dropdown',
+						previewer = false,
 					},
 				},
 			})
