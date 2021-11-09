@@ -132,12 +132,6 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'norcalli/nvim-colorizer.lua',
-		config = function()
-			require('colorizer').setup({ '*' }, { names = false })
-		end,
-	})
-	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
 		requires = { 'windwp/nvim-ts-autotag', 'JoosepAlviste/nvim-ts-context-commentstring' },
@@ -286,6 +280,12 @@ require('packer').startup(function(use)
 					{ name = 'nvim_lsp' },
 				},
 			})
+		end,
+	})
+	use({
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require('colorizer').setup({ '*' }, { names = false })
 		end,
 	})
 end)
