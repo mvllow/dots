@@ -35,7 +35,7 @@ map('n', 'H', ':BufferPrevious<cr>')
 map('n', '<leader>d', ':BufferClose<cr>')
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
 
-map('n', '<leader>e', '<cmd>NvimTreeToggle<cr>')
+map('n', '<leader>e', ':NvimTreeToggle<cr>')
 
 map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown previewer=false winblend=10<cr>')
 map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
@@ -218,9 +218,7 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.rustfmt,
-					null_ls.builtins.formatting.shfmt.with({
-						filetypes = { 'bash', 'sh', 'zsh' },
-					}),
+					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
 					null_ls.builtins.formatting.stylua,
 				},
 			})
