@@ -40,6 +40,7 @@ map('n', '<leader>e', ':NvimTreeToggle<cr>')
 map('n', '<leader>f', '<cmd>Telescope find_files theme=dropdown previewer=false winblend=10<cr>')
 map('n', '<leader>st', '<cmd>Telescope live_grep<cr>')
 map('n', '<leader>sr', '<cmd>Telescope registers theme=dropdown winblend=10<cr>')
+map('n', '<leader>sr', [[:lua require('telescope').extensions.neoclip.default()<cr>]])
 
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -278,6 +279,15 @@ require('packer').startup(function(use)
 		'norcalli/nvim-colorizer.lua',
 		config = function()
 			require('colorizer').setup({ '*' }, { names = false })
+		end,
+	})
+	use({
+		'AckslD/nvim-neoclip.lua',
+		requires = { 'tami5/sqlite.lua', module = 'sqlite' },
+		config = function()
+			require('neoclip').setup({
+				enable_persistant_history = true,
+			})
 		end,
 	})
 end)
