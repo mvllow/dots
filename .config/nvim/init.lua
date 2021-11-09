@@ -141,7 +141,6 @@ require('packer').startup(function(use)
 				ignore_install = { 'haskell' },
 				indent = { enable = true },
 				highlight = { enable = true },
-				autotag = { enable = true },
 				context_commentstring = { enable = true, enable_autocmd = false },
 			})
 		end,
