@@ -49,25 +49,21 @@ map('n', '<leader>e', ':NvimTreeToggle<cr>')
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
 
+vim.opt.mouse = 'a'
+vim.opt.breakindent = true
+vim.opt.shortmess:append('c')
+vim.opt.undofile = true
+vim.opt.updatetime = 250
+vim.opt.hidden = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 5
+vim.opt.signcolumn = 'yes'
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
-vim.opt.mouse = 'a'
-vim.opt.breakindent = true
-vim.opt.completeopt = 'menu,menuone,noselect'
-vim.opt.pumheight = 10
-vim.opt.hidden = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.scrolloff = 5
-vim.opt.shortmess:append('c')
-vim.opt.signcolumn = 'yes'
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.laststatus = 0
-vim.opt.termguicolors = true
-vim.opt.undofile = true
-vim.opt.updatetime = 250
 
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
@@ -76,13 +72,11 @@ require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('lewis6991/impatient.nvim')
 	use('editorconfig/editorconfig-vim')
+	use('b0o/schemastore.nvim')
 	use('tpope/vim-commentary')
 	use({
 		'nvim-telescope/telescope.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim',
-			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-		},
+		requires = 'nvim-lua/plenary.nvim',
 		config = function()
 			require('telescope').setup({
 				defaults = {
@@ -92,19 +86,16 @@ require('packer').startup(function(use)
 					},
 				},
 				pickers = {
-					find_files = {
-						theme = 'dropdown',
-						previewer = false,
-					},
+					find_files = { theme = 'dropdown', previewer = false },
 				},
 			})
-			require('telescope').load_extension('fzf')
 		end,
 	})
 	use({
 		'rose-pine/neovim',
 		as = 'rose-pine',
 		config = function()
+			vim.opt.termguicolors = true
 			vim.g.rose_pine_disable_italics = true
 			vim.cmd('colorscheme rose-pine')
 		end,
@@ -136,7 +127,6 @@ require('packer').startup(function(use)
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 			require('nvim-tree').setup({
 				auto_close = true,
-				disable_netrw = true,
 				filters = {
 					custom = { '.git' },
 				},
@@ -155,6 +145,7 @@ require('packer').startup(function(use)
 				ensure_installed = 'maintained',
 				ignore_install = { 'haskell' },
 				indent = { enable = true },
+				autotag = { enable = true },
 				highlight = { enable = true },
 				context_commentstring = { enable = true, enable_autocmd = false },
 			})
@@ -170,6 +161,9 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		requires = { 'folke/lua-dev.nvim', 'williamboman/nvim-lsp-installer' },
 		config = function()
+			vim.opt.completeopt = 'menu,menuone,noselect'
+			vim.opt.pumheight = 10
+
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
@@ -204,6 +198,16 @@ require('packer').startup(function(use)
 
 				if server.name == 'sumneko_lua' then
 					opts = vim.tbl_extend('force', opts, require('lua-dev').setup())
+				end
+
+				if server.name == 'jsonls' then
+					opts = vim.tbl_extend('force', opts, {
+						settings = {
+							json = {
+								schemas = require('schemastore').json.schemas(),
+							},
+						},
+					})
 				end
 
 				server:setup(opts)
@@ -249,7 +253,7 @@ require('packer').startup(function(use)
 	})
 	use({
 		'hrsh7th/nvim-cmp',
-		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp' },
+		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
 		config = function()
 			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 			local cmp = require('cmp')
@@ -262,23 +266,27 @@ require('packer').startup(function(use)
 						require('luasnip').lsp_expand(args.body)
 					end,
 				},
+
+				-- Keys are not always normalised, eg. `<tab>` may not work where `<Tab>` does
+				-- https://github.com/hrsh7th/nvim-cmp/issues/521
 				mapping = {
-					['<tab>'] = cmp.mapping(function(fallback)
+					['<Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						else
 							fallback()
 						end
-					end),
-					['<s-tab>'] = cmp.mapping(function(fallback)
+					end, { 'i', 's' }),
+
+					['<S-Tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						else
 							fallback()
 						end
-					end),
-					['<c-space>'] = cmp.mapping.complete(),
-					['<cr>'] = cmp.mapping.confirm({
+					end, { 'i', 's' }),
+					['<C-Space>'] = cmp.mapping.complete(),
+					['<CR>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
 						select = false,
 					}),
@@ -286,21 +294,6 @@ require('packer').startup(function(use)
 				sources = {
 					{ name = 'nvim_lsp' },
 				},
-			})
-		end,
-	})
-	use({
-		'norcalli/nvim-colorizer.lua',
-		config = function()
-			require('colorizer').setup({ '*' }, { names = false })
-		end,
-	})
-	use({
-		'AckslD/nvim-neoclip.lua',
-		requires = { 'tami5/sqlite.lua', module = 'sqlite' },
-		config = function()
-			require('neoclip').setup({
-				enable_persistant_history = true,
 			})
 		end,
 	})
