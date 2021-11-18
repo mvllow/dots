@@ -5,6 +5,13 @@ else
 	require('impatient')
 end
 
+vim.cmd([[
+	augroup Packer
+		autocmd!
+		autocmd BufWritePost init.lua PackerCompile
+	augroup end
+]])
+
 local function map(mode, lhs, rhs, opts)
 	opts = opts or { noremap = true, silent = true }
 	return vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
