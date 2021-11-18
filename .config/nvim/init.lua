@@ -21,6 +21,8 @@ vim.g.mapleader = ' '
 map('n', '<space>', '<nop>')
 
 map('i', 'jk', '<esc>')
+map('n', 'j', 'gj')
+map('n', 'k', 'gk')
 map('n', '<esc>', ':noh<cr>')
 
 map('n', '<c-h>', '<c-w><c-h>')
@@ -46,7 +48,6 @@ map('n', '<leader>e', ':NvimTreeToggle<cr>')
 
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
-map('n', '<leader>sr', [[:lua require('telescope').extensions.neoclip.default()<cr>]])
 
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
