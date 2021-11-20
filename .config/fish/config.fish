@@ -5,6 +5,11 @@ fish_add_path /opt/homebrew/opt/ruby/bin
 
 if status is-interactive
     set fish_greeting '🐟'
+
+    function fish_prompt
+        set -g fish_prompt_pwd_dir_length 0
+        printf '%s%s> ' (prompt_pwd) (set_color yellow; fish_git_prompt; set_color normal)
+    end
 end
 
 # Set directory to buffer location for current session
@@ -20,4 +25,4 @@ alias .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
 alias .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
 
 # Custom bindings
-bind \e\[108\;9u toggle_theme # <super+l>
+bind \e\[108\;9u toggle-theme # <super+l>
