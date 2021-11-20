@@ -1,4 +1,6 @@
-function toggle_theme
+function toggle-theme -d "toggle kitty theme (which will indirectly update fish)"
+    use-terminal-colors
+
     set current_theme (awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
     set new_theme "rose-pine.conf"
 

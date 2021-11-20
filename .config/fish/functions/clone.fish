@@ -1,4 +1,4 @@
-function clone -a repo
+function clone -a repo -d "clone repo and enter directory"
     string match -rq '.*?\/(?<name>.*)' -- $repo
 
     git clone git@github.com:$repo.git $argv[2..]

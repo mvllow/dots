@@ -1,4 +1,4 @@
-function use_terminal_colors
+function use-terminal-colors
     # Syntax highlighting variables
     # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
     set -U fish_color_normal normal
