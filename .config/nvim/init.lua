@@ -46,6 +46,8 @@ map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
 
 map('n', '<leader>e', ':NvimTreeToggle<cr>')
 
+map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
+
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
 
@@ -139,7 +141,11 @@ require('packer').startup(function(use)
 	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
-		requires = { 'windwp/nvim-ts-autotag', 'JoosepAlviste/nvim-ts-context-commentstring' },
+		requires = {
+			'nvim-treesitter/playground',
+			'windwp/nvim-ts-autotag',
+			'JoosepAlviste/nvim-ts-context-commentstring',
+		},
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'maintained',
@@ -148,6 +154,7 @@ require('packer').startup(function(use)
 				autotag = { enable = true },
 				highlight = { enable = true },
 				context_commentstring = { enable = true, enable_autocmd = false },
+				playground = { enable = true },
 			})
 		end,
 	})
