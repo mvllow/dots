@@ -267,10 +267,8 @@ require('packer').startup(function(use)
 					end,
 				},
 
-				-- Keys are not always normalised, eg. `<tab>` may not work where `<Tab>` does
-				-- https://github.com/hrsh7th/nvim-cmp/issues/521
 				mapping = {
-					['<Tab>'] = cmp.mapping(function(fallback)
+					['<tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
 						else
@@ -278,15 +276,15 @@ require('packer').startup(function(use)
 						end
 					end, { 'i', 's' }),
 
-					['<S-Tab>'] = cmp.mapping(function(fallback)
+					['<s-tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
 						else
 							fallback()
 						end
 					end, { 'i', 's' }),
-					['<C-Space>'] = cmp.mapping.complete(),
-					['<CR>'] = cmp.mapping.confirm({
+					['<c-space>'] = cmp.mapping.complete(),
+					['<cr>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
 						select = false,
 					}),
