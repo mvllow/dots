@@ -177,6 +177,7 @@ require('packer').startup(function(use)
 
 			local function on_attach(client, bufnr)
 				client.resolved_capabilities.document_formatting = false
+				client.resolved_capabilities.document_range_formatting = false
 
 				vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
