@@ -69,7 +69,6 @@ vim.opt.tabstop = 4
 
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
-vim.cmd('autocmd BufRead,BufNewFile *.json set filetype=jsonc')
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
