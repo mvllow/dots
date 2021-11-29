@@ -61,6 +61,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = 'yes'
+vim.opt.laststatus = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
@@ -244,7 +245,7 @@ require('packer').startup(function(use)
 				sources = {
 					null_ls.builtins.formatting.fish_indent,
 					null_ls.builtins.formatting.gofmt,
-					null_ls.builtins.formatting.prettier.with({
+					null_ls.builtins.formatting.prettier_d_slim.with({
 						filetypes = {
 							'javascript',
 							'javascriptreact',
