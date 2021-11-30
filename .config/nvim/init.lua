@@ -254,25 +254,12 @@ require('packer').startup(function(use)
 				sources = {
 					null_ls.builtins.formatting.fish_indent,
 					null_ls.builtins.formatting.gofmt,
-					null_ls.builtins.formatting.prettier_d_slim.with({
-						filetypes = {
-							'javascript',
-							'javascriptreact',
-							'typescript',
-							'typescriptreact',
-							'vue',
-							'css',
-							'scss',
-							'less',
-							'html',
-							'json',
-							'jsonc',
-							'yaml',
-							'markdown',
-							'graphql',
-							'svelte',
-						},
-						extra_args = { '--plugin-search-dir=.' },
+					null_ls.builtins.formatting.prettierd.with({
+						filetypes = vim.tbl_extend(
+							'force',
+							null_ls.builtins.formatting.prettierd.filetypes,
+							{ 'svelte' }
+						),
 					}),
 					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
