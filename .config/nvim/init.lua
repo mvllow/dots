@@ -68,6 +68,7 @@ vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 
+vim.cmd('set whichwrap+=<,>,[,],h,l')
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
 vim.cmd('autocmd BufRead,BufNewFile *.json set ft=jsonc')
