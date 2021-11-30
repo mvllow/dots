@@ -272,10 +272,9 @@ require('packer').startup(function(use)
 		'hrsh7th/nvim-cmp',
 		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
 		config = function()
-			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 			local cmp = require('cmp')
 
-			cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
 			cmp.setup({
 				snippet = {
@@ -283,7 +282,6 @@ require('packer').startup(function(use)
 						require('luasnip').lsp_expand(args.body)
 					end,
 				},
-
 				mapping = {
 					['<tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
@@ -292,7 +290,6 @@ require('packer').startup(function(use)
 							fallback()
 						end
 					end, { 'i', 's' }),
-
 					['<s-tab>'] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.select_prev_item()
