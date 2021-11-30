@@ -250,7 +250,7 @@ require('packer').startup(function(use)
 						filetypes = vim.tbl_extend(
 							'force',
 							null_ls.builtins.formatting.prettierd.filetypes,
-							{ 'svelte' }
+							{ 'jsonc', 'svelte' }
 						),
 					}),
 					null_ls.builtins.formatting.rustfmt,
