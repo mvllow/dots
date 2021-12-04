@@ -267,25 +267,25 @@ require('packer').startup(function(use)
 					end,
 				},
 				mapping = {
-					['<tab>'] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						else
-							fallback()
-						end
-					end, { 'i', 's' }),
-					['<s-tab>'] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						else
-							fallback()
-						end
-					end, { 'i', 's' }),
 					['<c-space>'] = cmp.mapping.complete(),
 					['<cr>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
 						select = false,
 					}),
+					['<tab>'] = function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						else
+							fallback()
+						end
+					end,
+					['<s-tab>'] = function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						else
+							fallback()
+						end
+					end,
 				},
 				sources = {
 					{ name = 'nvim_lsp' },
