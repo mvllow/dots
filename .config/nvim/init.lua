@@ -204,6 +204,7 @@ require('packer').startup(function(use)
 
 				if server.name == 'jsonls' then
 					opts = {
+						filetypes = { 'json', 'jsonc' },
 						settings = {
 							json = {
 								schemas = require('schemastore').json.schemas(),
