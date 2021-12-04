@@ -196,26 +196,25 @@ require('packer').startup(function(use)
 			local lsp_installer = require('nvim-lsp-installer')
 
 			lsp_installer.on_server_ready(function(server)
-				local opts = {
-					capabilities = capabilities,
-					on_attach = on_attach,
-				}
+				local opts = {}
 
 				if server.name == 'sumneko_lua' then
-					opts = vim.tbl_extend('force', opts, require('lua-dev').setup())
+					opts = require('lua-dev').setup()
 				end
 
 				if server.name == 'jsonls' then
-					opts = vim.tbl_extend('force', opts, {
+					opts = {
 						settings = {
 							json = {
 								schemas = require('schemastore').json.schemas(),
 							},
 						},
-					})
+					}
 				end
 
-				server:setup(opts)
+				server:setup(
+					vim.tbl_extend('force', opts, { on_attach = on_attach, capabilities = capabilities })
+				)
 
 				vim.cmd('do User LspAttachBuffers')
 			end)
