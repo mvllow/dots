@@ -230,17 +230,17 @@ require('packer').startup(function(use)
 		requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
 		config = function()
 			local null_ls = require('null-ls')
+			local prettier_filetypes = null_ls.builtins.formatting.prettier.filetypes
+
+			table.insert(prettier_filetypes, 'jsonc')
+			table.insert(prettier_filetypes, 'svelte')
 
 			null_ls.config({
 				sources = {
 					null_ls.builtins.formatting.fish_indent,
 					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.prettierd.with({
-						filetypes = vim.tbl_extend(
-							'force',
-							null_ls.builtins.formatting.prettierd.filetypes,
-							{ 'jsonc', 'svelte' }
-						),
+						filetypes = prettier_filetypes,
 					}),
 					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
