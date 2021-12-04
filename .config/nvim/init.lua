@@ -59,6 +59,8 @@ vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
+vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.pumheight = 10
 
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
@@ -166,9 +168,6 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		requires = { 'folke/lua-dev.nvim', 'williamboman/nvim-lsp-installer' },
 		config = function()
-			vim.opt.completeopt = 'menu,menuone,noselect'
-			vim.opt.pumheight = 10
-
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
