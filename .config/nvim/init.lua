@@ -59,7 +59,6 @@ vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
-vim.opt.showmode = false
 
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
