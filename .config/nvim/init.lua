@@ -97,12 +97,6 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'mvllow/modes.nvim',
-		config = function()
-			require('modes').setup({})
-		end,
-	})
-	use({
 		'romgrk/barbar.nvim',
 		config = function()
 			vim.g.bufferline = {
@@ -239,11 +233,9 @@ require('packer').startup(function(use)
 			null_ls.config({
 				sources = {
 					null_ls.builtins.formatting.fish_indent,
-					null_ls.builtins.formatting.gofmt,
 					null_ls.builtins.formatting.prettierd.with({
 						filetypes = prettier_filetypes,
 					}),
-					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
 					null_ls.builtins.formatting.stylua,
 				},
