@@ -1,14 +1,9 @@
-SHELL := /bin/bash
+SHELL := /bin/sh
 
 install:
-	brew install node stylua
-	brew install neovim --HEAD
-	npm install --global @fsouza/prettierd
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	@echo Installing neovim, language servers, and formatters
+	sh ./util/install.sh
 
-update:
-	brew update
-	brew upgrade node stylua
-	brew upgrade neovim --fetch-head
-	npm update --global @fsouza/prettierd
-	rustup update
+uninstall:
+	@echo Removing neovim, language servers, and formatters
+	sh ./util/uninstall.sh

@@ -166,11 +166,8 @@ require('packer').startup(function(use)
 	})
 	use({
 		'neovim/nvim-lspconfig',
-		requires = { 'folke/lua-dev.nvim', 'williamboman/nvim-lsp-installer' },
+		requires = { 'folke/lua-dev.nvim' },
 		config = function()
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
 			local function on_attach(client, bufnr)
 				client.resolved_capabilities.document_formatting = false
 				client.resolved_capabilities.document_range_formatting = false
@@ -193,16 +190,26 @@ require('packer').startup(function(use)
 				buf_map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
 			end
 
-			local lsp_installer = require('nvim-lsp-installer')
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-			lsp_installer.on_server_ready(function(server)
+			local lspconfig = require('lspconfig')
+			lspconfig.sumneko_lua.setup(require('lua-dev').setup({
+				lspconfig = {
+					cmd = {
+						vim.fn.getenv('HOME')
+							.. '/.local/share/lua-language-server/bin/macOS/lua-language-server',
+					},
+					on_attach = on_attach,
+					capabilities = capabilities,
+				},
+			}))
+
+			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte' }
+			for _, server in ipairs(servers) do
 				local opts = {}
 
-				if server.name == 'sumneko_lua' then
-					opts = require('lua-dev').setup()
-				end
-
-				if server.name == 'jsonls' then
+				if server == 'jsonls' then
 					opts = {
 						filetypes = { 'json', 'jsonc' },
 						settings = {
@@ -213,12 +220,11 @@ require('packer').startup(function(use)
 					}
 				end
 
-				server:setup(
-					vim.tbl_extend('force', opts, { on_attach = on_attach, capabilities = capabilities })
-				)
-
-				vim.cmd('do User LspAttachBuffers')
-			end)
+				lspconfig[server].setup(vim.tbl_deep_extend('force', {
+					on_attach = on_attach,
+					capabilities = capabilities,
+				}, opts))
+			end
 		end,
 	})
 	use({
@@ -227,7 +233,6 @@ require('packer').startup(function(use)
 		config = function()
 			local null_ls = require('null-ls')
 			local prettier_filetypes = null_ls.builtins.formatting.prettier.filetypes
-
 			table.insert(prettier_filetypes, 'jsonc')
 			table.insert(prettier_filetypes, 'svelte')
 
