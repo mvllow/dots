@@ -12,35 +12,26 @@ end
 
 vim.g.mapleader = ' '
 map('n', '<space>', '<nop>')
-
 map('i', 'jk', '<esc>')
-map('n', 'j', 'gj')
+map('n', 'j', 'gj') -- move through wrapped lines
 map('n', 'k', 'gk')
-map('n', '<esc>', ':noh<cr>')
-
-map('n', '<c-h>', '<c-w><c-h>')
+map('n', '<esc>', ':noh<cr>') -- clear highlights on escape
+map('n', '<c-h>', '<c-w><c-h>') -- split management
 map('n', '<c-j>', '<c-w><c-j>')
 map('n', '<c-k>', '<c-w><c-k>')
 map('n', '<c-l>', '<c-w><c-l>')
-
-map('v', '<', '<gv')
+map('v', '<', '<gv') -- reselect after indenting in visual mode
 map('v', '>', '>gv')
-
-map('n', '*', '*N')
-map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
-
+map('n', '*', '*N') -- keep `*` selection on current word
+map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
 map('n', '<leader>pc', ':PackerCompile<cr>')
 map('n', '<leader>ps', ':PackerSync<cr>')
-
 map('n', 'L', ':BufferNext<cr>')
 map('n', 'H', ':BufferPrevious<cr>')
 map('n', '<leader>d', ':BufferClose<cr>')
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
-
 map('n', '<leader>e', ':NvimTreeToggle<cr>')
-
 map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
-
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
 
