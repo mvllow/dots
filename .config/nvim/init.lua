@@ -73,9 +73,7 @@ require('packer').startup(function(use)
 			require('telescope').setup({
 				defaults = {
 					winblend = 10,
-					layout_config = {
-						horizontal = { preview_width = 0.6 },
-					},
+					layout_config = { horizontal = { preview_width = 0.6 } },
 				},
 				pickers = {
 					find_files = { theme = 'dropdown', previewer = false },
