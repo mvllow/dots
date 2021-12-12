@@ -1,6 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+brew "dark-mode"
 brew "fd"
 brew "go"
 brew "lazygit"
