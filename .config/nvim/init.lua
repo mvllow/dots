@@ -54,6 +54,8 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
 vim.opt.wrap = false
 
+vim.diagnostic.config({ virtual_text = false })
+
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
 vim.cmd('autocmd BufRead,BufNewFile *.json set ft=jsonc')
