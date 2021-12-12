@@ -52,6 +52,7 @@ vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
+vim.opt.wrap = false
 
 vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
 vim.cmd('autocmd VimResized * tabdo wincmd =')
