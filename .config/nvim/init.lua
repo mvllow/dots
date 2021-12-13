@@ -198,14 +198,7 @@ require('packer').startup(function(use)
 				if server == 'jsonls' then
 					opts = {
 						filetypes = { 'json', 'jsonc' },
-						settings = {
-							json = {
-								schemas = require('schemastore').json.schemas(),
-							},
-						},
-					}
-				end
-
+						settings = { json = { schemas = require('schemastore').json.schemas() } },
 					}
 				end
 
@@ -225,12 +218,10 @@ require('packer').startup(function(use)
 			table.insert(prettier_filetypes, 'jsonc')
 			table.insert(prettier_filetypes, 'svelte')
 
-			null_ls.config({
+			null_ls.setup({
 				sources = {
 					null_ls.builtins.formatting.fish_indent,
-					null_ls.builtins.formatting.prettierd.with({
-						filetypes = prettier_filetypes,
-					}),
+					null_ls.builtins.formatting.prettierd.with({ filetypes = prettier_filetypes }),
 					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
 					null_ls.builtins.formatting.stylua,
 				},
