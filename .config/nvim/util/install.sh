@@ -18,6 +18,12 @@ if [ ! -d "$HOME/.local/share/lua-language-server" ]; then
 	install_lua_ls
 fi
 
+if which shfmt &>/dev/null; then
+	brew upgrade shfmt
+else
+	brew install shfmt
+fi
+
 if which stylua &>/dev/null; then
 	brew upgrade stylua
 else

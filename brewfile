@@ -8,8 +8,6 @@ brew "lazygit"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
-brew "shfmt"
-brew "stylua"
 cask "figma"
 cask "kitty"
 cask "rectangle"
