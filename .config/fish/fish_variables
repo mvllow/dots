@@ -1,6 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR THEME:Ros\u00e9\x20Pine
+SETUVAR THEME:Ros\u00e9\x20Pine\x20Dawn
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:normal
