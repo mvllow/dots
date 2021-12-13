@@ -206,6 +206,9 @@ require('packer').startup(function(use)
 					}
 				end
 
+					}
+				end
+
 				lspconfig[server].setup(vim.tbl_deep_extend('force', {
 					on_attach = on_attach,
 					capabilities = capabilities,

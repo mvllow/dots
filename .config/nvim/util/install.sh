@@ -30,4 +30,4 @@ else
 	brew install neovim --HEAD
 fi
 
-npm install -g @fsouza/prettierd@latest typescript@latest typescript-language-server@latest vscode-langservers-extracted@latest @tailwindcss/language-server svelte-language-server@latest
+npm install -g @fsouza/prettierd@latest typescript@latest typescript-language-server@latest vscode-langservers-extracted@latest @tailwindcss/language-server svelte-language-server@latest @volar/server@latest
