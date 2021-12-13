@@ -211,7 +211,7 @@ require('packer').startup(function(use)
 	})
 	use({
 		'jose-elias-alvarez/null-ls.nvim',
-		requires = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+		requires = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local null_ls = require('null-ls')
 			local prettier_filetypes = null_ls.builtins.formatting.prettier.filetypes
@@ -225,9 +225,6 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
 					null_ls.builtins.formatting.stylua,
 				},
-			})
-
-			require('lspconfig')['null-ls'].setup({
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
 						vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
