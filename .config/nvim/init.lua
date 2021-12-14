@@ -26,10 +26,10 @@ map('n', '*', '*N') -- keep `*` selection on current word
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
 map('n', '<leader>pc', ':PackerCompile<cr>')
 map('n', '<leader>ps', ':PackerSync<cr>')
-map('n', 'L', ':BufferNext<cr>')
-map('n', 'H', ':BufferPrevious<cr>')
-map('n', '<leader>d', ':BufferClose<cr>')
-map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
+map('n', 'L', ':bnext<cr>')
+map('n', 'H', ':bprev<cr>')
+map('n', '<leader>d', ':bdelete<cr>')
+map('n', '<leader>bo', ':%bd<cr>')
 map('n', '<leader>e', ':NvimTreeToggle<cr>')
 map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
@@ -44,7 +44,6 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 5
 vim.opt.signcolumn = 'yes'
-vim.opt.laststatus = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
@@ -53,6 +52,8 @@ vim.opt.tabstop = 4
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
 vim.opt.wrap = false
+vim.opt.laststatus = 2
+vim.opt.statusline = '%f %M %= %l:%c ♥'
 
 vim.diagnostic.config({ virtual_text = false })
 
@@ -86,17 +87,6 @@ require('packer').startup(function(use)
 		as = 'rose-pine',
 		config = function()
 			vim.cmd('colorscheme rose-pine')
-		end,
-	})
-	use({
-		'romgrk/barbar.nvim',
-		config = function()
-			vim.g.bufferline = {
-				animation = false,
-				icon_close_tab = '×',
-				icon_close_tab_modified = '♥',
-				icons = false,
-			}
 		end,
 	})
 	use({
