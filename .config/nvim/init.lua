@@ -5,35 +5,33 @@ else
 	pcall(require, 'impatient')
 end
 
-local function map(mode, lhs, rhs, opts)
-	opts = opts or { noremap = true, silent = true }
-	return vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ' '
-map('n', '<space>', '<nop>')
-map('i', 'jk', '<esc>')
-map('n', 'j', 'gj') -- move through wrapped lines
-map('n', 'k', 'gk')
-map('n', '<esc>', ':noh<cr>') -- clear highlights on escape
-map('n', '<c-h>', '<c-w><c-h>') -- split management
-map('n', '<c-j>', '<c-w><c-j>')
-map('n', '<c-k>', '<c-w><c-k>')
-map('n', '<c-l>', '<c-w><c-l>')
-map('v', '<', '<gv') -- reselect after indenting in visual mode
-map('v', '>', '>gv')
-map('n', '*', '*N') -- keep `*` selection on current word
-map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
-map('n', '<leader>pc', ':PackerCompile<cr>')
-map('n', '<leader>ps', ':PackerSync<cr>')
-map('n', 'L', ':bnext<cr>')
-map('n', 'H', ':bprev<cr>')
-map('n', '<leader>d', ':bdelete<cr>')
-map('n', '<leader>bo', ':%bd<cr>')
-map('n', '<leader>e', ':NvimTreeToggle<cr>')
-map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
-map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]])
-map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]])
+map('n', '<space>', '<nop>', opts)
+map('i', 'jk', '<esc>', opts)
+map('n', 'j', 'gj', opts) -- move through wrapped lines
+map('n', 'k', 'gk', opts)
+map('n', '<esc>', ':noh<cr>', opts) -- clear highlights on escape
+map('n', '<c-h>', '<c-w><c-h>', opts) -- split management
+map('n', '<c-j>', '<c-w><c-j>', opts)
+map('n', '<c-k>', '<c-w><c-k>', opts)
+map('n', '<c-l>', '<c-w><c-l>', opts)
+map('v', '<', '<gv', opts) -- reselect after indenting in visual mode
+map('v', '>', '>gv', opts)
+map('n', '*', '*N', opts) -- keep `*` selection on current word
+map('v', '*', [[y/\V<c-r>=escape(@",'/\', opts)<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
+map('n', '<leader>pc', ':PackerCompile<cr>', opts)
+map('n', '<leader>ps', ':PackerSync<cr>', opts)
+map('n', 'L', ':bnext<cr>', opts)
+map('n', 'H', ':bprev<cr>', opts)
+map('n', '<leader>d', ':bdelete<cr>', opts)
+map('n', '<leader>bo', ':%bd<cr>', opts)
+map('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
+map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts)
+map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]], opts)
+map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]], opts)
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
