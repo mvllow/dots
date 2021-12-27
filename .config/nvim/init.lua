@@ -53,8 +53,7 @@ vim.opt.tabstop = 4
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
 vim.opt.wrap = false
-vim.opt.laststatus = 2
-vim.opt.statusline = '%f %M %= %l:%c ♥'
+vim.opt.laststatus = 0
 
 vim.diagnostic.config({ virtual_text = false })
 
