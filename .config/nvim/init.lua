@@ -9,33 +9,32 @@ local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = ' '
-map('n', '<space>', '<nop>', opts)
-map('i', 'jk', '<esc>', opts)
-map('n', 'j', 'gj', opts) -- move through wrapped lines
-map('n', 'k', 'gk', opts)
+map('n', '<space>', '<nop>', opts) -- allow `space` as leader
+map('i', 'jk', '<esc>', opts) -- alternative escape
+map('n', 'j', 'gj', opts) -- move through wrapped lines (down)
+map('n', 'k', 'gk', opts) -- move through wrapped lines (up)
 map('n', '<esc>', ':noh<cr>', opts) -- clear highlights on escape
-map('n', '<c-h>', '<c-w><c-h>', opts) -- split management
-map('n', '<c-j>', '<c-w><c-j>', opts)
-map('n', '<c-k>', '<c-w><c-k>', opts)
-map('n', '<c-l>', '<c-w><c-l>', opts)
-map('v', '<', '<gv', opts) -- reselect after indenting in visual mode
-map('v', '>', '>gv', opts)
+map('n', '<c-h>', '<c-w><c-h>', opts) -- move to split (left)
+map('n', '<c-j>', '<c-w><c-j>', opts) -- move to split (down)
+map('n', '<c-k>', '<c-w><c-k>', opts) -- move to split (up)
+map('n', '<c-l>', '<c-w><c-l>', opts) -- move to split (right)
+map('v', '<', '<gv', opts) -- reselect indented text (left)
+map('v', '>', '>gv', opts) -- reselect indented text (right)
 map('n', '*', '*N', opts) -- keep `*` selection on current word
-map('v', '*', [[y/\V<c-r>=escape(@",'/\', opts)<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
-map('n', '<leader>pc', ':PackerCompile<cr>', opts)
-map('n', '<leader>ps', ':PackerSync<cr>', opts)
-map('n', 'L', ':bnext<cr>', opts)
-map('n', 'H', ':bprev<cr>', opts)
-map('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
-map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts)
-map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]], opts)
-map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]], opts)
+map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- mimic normal mode `*` selection (and keep on current word)
+map('n', 'H', ':bprev<cr>', opts) -- switch to buffer (left)
+map('n', 'L', ':bnext<cr>', opts) -- switch buffer (right)
 map('n', '-', ':m .+1<cr>==', { noremap = true }) -- bubble line (up)
 map('n', '_', ':m .-2<cr>==', { noremap = true }) -- bubble line (down)
 map('v', '-', ":m '>+1<cr>gv=gv", { noremap = true }) -- bubble selection (up)
 map('v', '_', ":m '<-2<cr>gv=gv", { noremap = true }) -- bubble selection (down)
+map('n', '<leader>ps', ':PackerSync<cr>', opts) -- Packer: sync plugins
 map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
+map('n', '<leader>e', ':NvimTreeToggle<cr>', opts) -- NvimTree: toggle file explorer
+map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts) -- TSPlayground: get highlight group under cursor
+map('n', '<leader>f', ':Telescope find_files<cr>', opts) -- Telescope: find_files
+map('n', '<leader>st', ':Telescope live_grep<cr>', opts) -- Telescope: live_grep
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
