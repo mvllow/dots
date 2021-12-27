@@ -26,12 +26,12 @@ map('n', '<leader>pc', ':PackerCompile<cr>', opts)
 map('n', '<leader>ps', ':PackerSync<cr>', opts)
 map('n', 'L', ':bnext<cr>', opts)
 map('n', 'H', ':bprev<cr>', opts)
-map('n', '<leader>d', ':bdelete<cr>', opts)
-map('n', '<leader>bo', ':%bd<cr>', opts)
 map('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
 map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts)
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]], opts)
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]], opts)
+map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
+map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
@@ -85,6 +85,19 @@ require('packer').startup(function(use)
 		as = 'rose-pine',
 		config = function()
 			vim.cmd('colorscheme rose-pine')
+		end,
+	})
+	use({
+		'romgrk/barbar.nvim',
+		config = function()
+			vim.g.bufferline = {
+				animation = false,
+				icon_close_tab = '×',
+				icon_close_tab_modified = '♥',
+				icon_separator_active = '',
+				icon_separator_inactive = '',
+				icons = false,
+			}
 		end,
 	})
 	use({
