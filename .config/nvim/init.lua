@@ -30,6 +30,10 @@ map('n', '<leader>e', ':NvimTreeToggle<cr>', opts)
 map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts)
 map('n', '<leader>f', [[:lua require('telescope.builtin').find_files()<cr>]], opts)
 map('n', '<leader>st', [[:lua require('telescope.builtin').live_grep()<cr>]], opts)
+map('n', '-', ':m .+1<cr>==', { noremap = true }) -- bubble line (up)
+map('n', '_', ':m .-2<cr>==', { noremap = true }) -- bubble line (down)
+map('v', '-', ":m '>+1<cr>gv=gv", { noremap = true }) -- bubble selection (up)
+map('v', '_', ":m '<-2<cr>gv=gv", { noremap = true }) -- bubble selection (down)
 map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
 
