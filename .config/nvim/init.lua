@@ -65,6 +65,8 @@ require('packer').startup(function(use)
 	use('editorconfig/editorconfig-vim')
 	use('b0o/schemastore.nvim')
 	use('tpope/vim-commentary')
+	use('tpope/vim-surround')
+	use('tpope/vim-repeat')
 	use({
 		'nvim-telescope/telescope.nvim',
 		requires = 'nvim-lua/plenary.nvim',
