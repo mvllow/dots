@@ -123,6 +123,9 @@ require('packer').startup(function(use)
 				filters = {
 					custom = { '.git' },
 				},
+				git = {
+					ignore = false,
+				},
 				view = {
 					side = 'right',
 				},
