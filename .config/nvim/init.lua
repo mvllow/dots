@@ -92,6 +92,13 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
+		'mvllow/modes.nvim',
+		config = function()
+			vim.opt.cursorline = true
+			require('modes').setup()
+		end,
+	})
+	use({
 		'romgrk/barbar.nvim',
 		config = function()
 			vim.g.bufferline = {
