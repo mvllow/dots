@@ -22,13 +22,13 @@ map('v', '<', '<gv', opts) -- reselect indented text (left)
 map('v', '>', '>gv', opts) -- reselect indented text (right)
 map('n', '*', '*N', opts) -- keep `*` selection on current word
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- mimic normal mode `*` selection (and keep on current word)
-map('n', 'H', ':bprev<cr>', opts) -- switch to buffer (left)
-map('n', 'L', ':bnext<cr>', opts) -- switch buffer (right)
 map('n', '-', ':m .+1<cr>==', { noremap = true }) -- bubble line (up)
 map('n', '_', ':m .-2<cr>==', { noremap = true }) -- bubble line (down)
 map('v', '-', ":m '>+1<cr>gv=gv", { noremap = true }) -- bubble selection (up)
 map('v', '_', ":m '<-2<cr>gv=gv", { noremap = true }) -- bubble selection (down)
 map('n', '<leader>ps', ':PackerSync<cr>', opts) -- Packer: sync plugins
+map('n', 'H', ':BufferPrevious<cr>', opts) -- BarBar: switch to buffer (left)
+map('n', 'L', ':BufferNext<cr>', opts) -- BarBar: switch buffer (right)
 map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
 map('n', '<leader>e', ':NvimTreeToggle<cr>', opts) -- NvimTree: toggle file explorer
