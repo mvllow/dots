@@ -195,10 +195,6 @@ require('packer').startup(function(use)
 			local lspconfig = require('lspconfig')
 			lspconfig.sumneko_lua.setup(require('lua-dev').setup({
 				lspconfig = {
-					cmd = {
-						vim.fn.getenv('HOME')
-							.. '/.local/share/lua-language-server/bin/macOS/lua-language-server',
-					},
 					on_attach = on_attach,
 					capabilities = capabilities,
 				},
