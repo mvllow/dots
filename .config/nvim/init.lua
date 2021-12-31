@@ -251,6 +251,7 @@ require('packer').startup(function(use)
 			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 
 			cmp.setup({
+				documentation = false,
 				snippet = {
 					expand = function(args)
 						require('luasnip').lsp_expand(args.body)
