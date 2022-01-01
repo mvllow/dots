@@ -31,6 +31,9 @@ alias ,fish "nvim ~/.config/fish/config.fish $lcd"
 alias ,kitty "nvim ~/.config/kitty/kitty.conf $lcd"
 alias ,nvim "nvim ~/.config/nvim/init.lua $lcd"
 
+# Misc
+alias clean-nvim-swap "rm -rf $HOME/.local/share/nvim/swap"
+
 # Custom git command for our dotfiles
 alias .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
 alias .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
