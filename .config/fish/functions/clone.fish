@@ -1,4 +1,12 @@
-function clone --wrap 'git clone' -a repo -d "clone repo and enter directory"
+# Clone remote repository and change to created directory
+# https://github.com/mvllow/fun-shell
+#
+# @requires git
+# @usage
+# clone mvllow/fun-shell
+# clone rose-pine/neovim rose-pine-neovim
+
+function clone --wrap 'git clone' -a repo
     string match -rq '.*?\/(?<name>.*)' -- $repo
 
     git clone git@github.com:$repo.git $argv[2..]

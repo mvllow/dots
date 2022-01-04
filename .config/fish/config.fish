@@ -1,42 +1,24 @@
-set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+set -q XDG_CONFIG_HOME; or set -xg XDG_CONFIG_HOME $HOME/.config
+set -gx EDITOR nvim
 
 fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/opt/ruby/bin
-fish_add_path "$HOME/.cargo/bin"
 
 if status is-interactive
     set fish_greeting '🐟'
+
+    toggle-theme system
 
     function fish_prompt
         set -g fish_prompt_pwd_dir_length 0
         printf '%s%s> ' (prompt_pwd) (set_color yellow; fish_git_prompt; set_color normal)
     end
-
-    dark-mode status | read darkMode
-
-    if [ "$darkMode" = on ]
-        set -U THEME "Rosé Pine"
-    else
-        set -U THEME "Rosé Pine Dawn"
-    end
-
-    kitty +kitten themes --reload-in=all $THEME
 end
 
-# Set directory to buffer location for current session
-set lcd "+'lcd %:p:h'"
+abbr --add .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
+abbr --add .list "git --git-dir=$HOME/dots.git --work-tree=$HOME ls-files --other $HOME/.config/*"
+abbr --add .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
+abbr --add ,fish "$EDITOR $XDG_CONFIG_HOME/fish/config.fish +'lcd %:p:h'"
+abbr --add ,nvim "$EDITOR $XDG_CONFIG_HOME/nvim/init.lua +'lcd %:p:h'"
+abbr --add clean-nvim-swap "rm -rf $HOME/.local/share/nvim/swap"
 
-# Quickly jump to config files
-alias ,fish "nvim ~/.config/fish/config.fish $lcd"
-alias ,kitty "nvim ~/.config/kitty/kitty.conf $lcd"
-alias ,nvim "nvim ~/.config/nvim/init.lua $lcd"
-
-# Misc
-alias clean-nvim-swap "rm -rf $HOME/.local/share/nvim/swap"
-
-# Custom git command for our dotfiles
-alias .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
-alias .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
-
-# Custom bindings
 bind \e\[108\;9u toggle-theme # <super+l>
