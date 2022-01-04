@@ -31,7 +31,7 @@ map('n', 'H', ':BufferPrevious<cr>', opts) -- BarBar: switch to buffer (left)
 map('n', 'L', ':BufferNext<cr>', opts) -- BarBar: switch buffer (right)
 map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
 map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
-map('n', '<leader>e', ':NvimTreeToggle<cr>', opts) -- NvimTree: toggle file explorer
+map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', opts) -- NvimTree: toggle file explorer
 map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts) -- TSPlayground: get highlight group under cursor
 map('n', '<leader>f', ':Telescope find_files<cr>', opts) -- Telescope: find_files
 map('n', '<leader>st', ':Telescope live_grep<cr>', opts) -- Telescope: live_grep
