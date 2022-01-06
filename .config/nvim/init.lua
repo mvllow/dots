@@ -5,36 +5,33 @@ else
 	pcall(require, 'impatient')
 end
 
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
 vim.g.mapleader = ' '
-map('n', '<space>', '<nop>', opts) -- allow `space` as leader
-map('i', 'jk', '<esc>', opts) -- alternative escape
-map('n', 'j', 'gj', opts) -- move through wrapped lines (down)
-map('n', 'k', 'gk', opts) -- move through wrapped lines (up)
-map('n', '<esc>', ':noh<cr>', opts) -- clear highlights on escape
-map('n', '<c-h>', '<c-w><c-h>', opts) -- move to split (left)
-map('n', '<c-j>', '<c-w><c-j>', opts) -- move to split (down)
-map('n', '<c-k>', '<c-w><c-k>', opts) -- move to split (up)
-map('n', '<c-l>', '<c-w><c-l>', opts) -- move to split (right)
-map('v', '<', '<gv', opts) -- reselect indented text (left)
-map('v', '>', '>gv', opts) -- reselect indented text (right)
-map('n', '*', '*N', opts) -- keep `*` selection on current word
-map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- mimic normal mode `*` selection (and keep on current word)
-map('n', '-', ':m .+1<cr>==', { noremap = true }) -- bubble line (up)
-map('n', '_', ':m .-2<cr>==', { noremap = true }) -- bubble line (down)
-map('v', '-', ":m '>+1<cr>gv=gv", { noremap = true }) -- bubble selection (up)
-map('v', '_', ":m '<-2<cr>gv=gv", { noremap = true }) -- bubble selection (down)
-map('n', '<leader>ps', ':PackerSync<cr>', opts) -- Packer: sync plugins
-map('n', 'H', ':BufferPrevious<cr>', opts) -- BarBar: switch to buffer (left)
-map('n', 'L', ':BufferNext<cr>', opts) -- BarBar: switch buffer (right)
-map('n', '<leader>d', ':BufferClose<cr>', opts) -- BarBar: close current buffer
-map('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', opts) -- BarBar: close other buffers
-map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', opts) -- NvimTree: toggle file explorer
-map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', opts) -- TSPlayground: get highlight group under cursor
-map('n', '<leader>f', ':Telescope find_files<cr>', opts) -- Telescope: find_files
-map('n', '<leader>st', ':Telescope live_grep<cr>', opts) -- Telescope: live_grep
+vim.keymap.set('n', '<space>', '<nop>') -- allow `space` as leader
+vim.keymap.set('i', 'jk', '<esc>') -- alternative escape
+vim.keymap.set('n', 'j', 'gj') -- move through wrapped lines (down)
+vim.keymap.set('n', 'k', 'gk') -- move through wrapped lines (up)
+vim.keymap.set('n', '<esc>', ':noh<cr>') -- clear highlights on escape
+vim.keymap.set('n', '<c-h>', '<c-w><c-h>') -- move to split (left)
+vim.keymap.set('n', '<c-j>', '<c-w><c-j>') -- move to split (down)
+vim.keymap.set('n', '<c-k>', '<c-w><c-k>') -- move to split (up)
+vim.keymap.set('n', '<c-l>', '<c-w><c-l>') -- move to split (right)
+vim.keymap.set('v', '<', '<gv') -- reselect indented text (left)
+vim.keymap.set('v', '>', '>gv') -- reselect indented text (right)
+vim.keymap.set('n', '*', '*N') -- keep `*` selection on current word
+vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
+vim.keymap.set('n', '-', ':m .+1<cr>==') -- bubble line (up)
+vim.keymap.set('n', '_', ':m .-2<cr>==') -- bubble line (down)
+vim.keymap.set('v', '-', ":m '>+1<cr>gv=gv") -- bubble selection (up)
+vim.keymap.set('v', '_', ":m '<-2<cr>gv=gv") -- bubble selection (down)
+vim.keymap.set('n', 'H', ':BufferPrevious<cr>')
+vim.keymap.set('n', 'L', ':BufferNext<cr>')
+vim.keymap.set('n', '<leader>d', ':BufferClose<cr>')
+vim.keymap.set('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
+vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>')
+vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
+vim.keymap.set('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files)
+vim.keymap.set('n', '<leader>st', require('telescope.builtin').live_grep)
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
@@ -50,10 +47,10 @@ vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
-vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.pumheight = 10
 vim.opt.wrap = false
 vim.opt.laststatus = 0
+vim.opt.completeopt = 'menu,menuone,noselect'
 
 vim.diagnostic.config({ virtual_text = false })
 
@@ -65,20 +62,14 @@ require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('lewis6991/impatient.nvim')
 	use('editorconfig/editorconfig-vim')
-	use('b0o/schemastore.nvim')
 	use('tpope/vim-commentary')
 	use({
 		'nvim-telescope/telescope.nvim',
 		requires = 'nvim-lua/plenary.nvim',
 		config = function()
 			require('telescope').setup({
-				defaults = {
-					winblend = 10,
-					layout_config = { horizontal = { preview_width = 0.6 } },
-				},
-				pickers = {
-					find_files = { theme = 'dropdown', previewer = false },
-				},
+				defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },
+				pickers = { find_files = { theme = 'dropdown', previewer = false } },
 			})
 		end,
 	})
@@ -105,28 +96,16 @@ require('packer').startup(function(use)
 	use({
 		'kyazdani42/nvim-tree.lua',
 		config = function()
-			vim.g.nvim_tree_git_hl = 1
 			vim.g.nvim_tree_icons = {
-				folder = {
-					default = '>',
-					empty = '>',
-					empty_open = '▼',
-					open = '▼',
-				},
+				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
 			}
 			vim.g.nvim_tree_quit_on_open = 1
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 			require('nvim-tree').setup({
 				auto_close = true,
-				filters = {
-					custom = { '.git' },
-				},
-				git = {
-					ignore = false,
-				},
-				view = {
-					side = 'right',
-				},
+				filters = { custom = { '.git' } },
+				git = { ignore = false },
+				view = { side = 'right' },
 			})
 		end,
 	})
@@ -160,26 +139,18 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		requires = { 'folke/lua-dev.nvim' },
 		config = function()
-			local function on_attach(client, bufnr)
+			local function on_attach(client)
 				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
 
-				vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-				local function buf_map(mode, lhs, rhs, opts)
-					opts = opts or { noremap = true, silent = true }
-					vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
-				end
-
-				buf_map('n', '<c-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-				buf_map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-				buf_map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-				buf_map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-				buf_map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-				buf_map('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-				buf_map('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-				buf_map('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-				buf_map('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<cr>')
+				vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, { buffer = true })
+				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = true })
+				vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = true })
+				vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = true })
+				vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { buffer = true })
+				vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, { buffer = true })
+				vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, { buffer = true })
+				vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, { buffer = true })
+				vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = true })
 			end
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -187,27 +158,12 @@ require('packer').startup(function(use)
 
 			local lspconfig = require('lspconfig')
 			lspconfig.sumneko_lua.setup(require('lua-dev').setup({
-				lspconfig = {
-					on_attach = on_attach,
-					capabilities = capabilities,
-				},
+				lspconfig = { on_attach = on_attach, capabilities = capabilities },
 			}))
 
 			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte' }
 			for _, server in ipairs(servers) do
-				local opts = {}
-
-				if server == 'jsonls' then
-					opts = {
-						filetypes = { 'json', 'jsonc' },
-						settings = { json = { schemas = require('schemastore').json.schemas() } },
-					}
-				end
-
-				lspconfig[server].setup(vim.tbl_deep_extend('force', {
-					on_attach = on_attach,
-					capabilities = capabilities,
-				}, opts))
+				lspconfig[server].setup({ on_attach = on_attach, capabilities = capabilities })
 			end
 		end,
 	})
@@ -240,9 +196,7 @@ require('packer').startup(function(use)
 		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
 		config = function()
 			local cmp = require('cmp')
-
 			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
-
 			cmp.setup({
 				documentation = false,
 				snippet = {
@@ -252,10 +206,6 @@ require('packer').startup(function(use)
 				},
 				mapping = {
 					['<c-space>'] = cmp.mapping.complete(),
-					['<cr>'] = cmp.mapping.confirm({
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = false,
-					}),
 					['<tab>'] = function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
@@ -271,9 +221,7 @@ require('packer').startup(function(use)
 						end
 					end,
 				},
-				sources = {
-					{ name = 'nvim_lsp' },
-				},
+				sources = { { name = 'nvim_lsp' } },
 			})
 		end,
 	})
