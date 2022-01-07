@@ -9,7 +9,7 @@
 make install
 
 # Keep things up to date
-make update
+make upgrade
 ```
 
 ## Formatting
