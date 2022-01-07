@@ -6,32 +6,32 @@ else
 end
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<space>', '<nop>') -- allow `space` as leader
-vim.keymap.set('i', 'jk', '<esc>') -- alternative escape
-vim.keymap.set('n', 'j', 'gj') -- move through wrapped lines (down)
-vim.keymap.set('n', 'k', 'gk') -- move through wrapped lines (up)
-vim.keymap.set('n', '<esc>', ':noh<cr>') -- clear highlights on escape
-vim.keymap.set('n', '<c-h>', '<c-w><c-h>') -- move to split (left)
-vim.keymap.set('n', '<c-j>', '<c-w><c-j>') -- move to split (down)
-vim.keymap.set('n', '<c-k>', '<c-w><c-k>') -- move to split (up)
-vim.keymap.set('n', '<c-l>', '<c-w><c-l>') -- move to split (right)
-vim.keymap.set('v', '<', '<gv') -- reselect indented text (left)
-vim.keymap.set('v', '>', '>gv') -- reselect indented text (right)
-vim.keymap.set('n', '*', '*N') -- keep `*` selection on current word
-vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
-vim.keymap.set('n', '-', ':m .+1<cr>==') -- bubble line (up)
-vim.keymap.set('n', '_', ':m .-2<cr>==') -- bubble line (down)
-vim.keymap.set('v', '-', ":m '>+1<cr>gv=gv") -- bubble selection (up)
-vim.keymap.set('v', '_', ":m '<-2<cr>gv=gv") -- bubble selection (down)
-vim.keymap.set('n', 'H', ':BufferPrevious<cr>')
-vim.keymap.set('n', 'L', ':BufferNext<cr>')
-vim.keymap.set('n', '<leader>d', ':BufferClose<cr>')
-vim.keymap.set('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>')
-vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>')
-vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
-vim.keymap.set('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>')
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files)
-vim.keymap.set('n', '<leader>st', require('telescope.builtin').live_grep)
+vim.keymap.set('n', '<space>', '<nop>', { silent = true }) -- allow `space` as leader
+vim.keymap.set('i', 'jk', '<esc>', { silent = true }) -- alternative escape
+vim.keymap.set('n', 'j', 'gj', { silent = true }) -- move through wrapped lines (down)
+vim.keymap.set('n', 'k', 'gk', { silent = true }) -- move through wrapped lines (up)
+vim.keymap.set('n', '<esc>', ':noh<cr>', { silent = true }) -- clear highlights on escape
+vim.keymap.set('n', '<c-h>', '<c-w><c-h>', { silent = true }) -- move to split (left)
+vim.keymap.set('n', '<c-j>', '<c-w><c-j>', { silent = true }) -- move to split (down)
+vim.keymap.set('n', '<c-k>', '<c-w><c-k>', { silent = true }) -- move to split (up)
+vim.keymap.set('n', '<c-l>', '<c-w><c-l>', { silent = true }) -- move to split (right)
+vim.keymap.set('v', '<', '<gv', { silent = true }) -- reselect indented text (left)
+vim.keymap.set('v', '>', '>gv', { silent = true }) -- reselect indented text (right)
+vim.keymap.set('n', '*', '*N', { silent = true }) -- keep `*` selection on current word
+vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\', {silent = true})<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
+vim.keymap.set('n', '-', ':m .+1<cr>==', { silent = true }) -- bubble line (up)
+vim.keymap.set('n', '_', ':m .-2<cr>==', { silent = true }) -- bubble line (down)
+vim.keymap.set('v', '-', ":m '>+1<cr>gv=gv", { silent = true }) -- bubble selection (up)
+vim.keymap.set('v', '_', ":m '<-2<cr>gv=gv", { silent = true }) -- bubble selection (down)
+vim.keymap.set('n', 'H', ':BufferPrevious<cr>', { silent = true })
+vim.keymap.set('n', 'L', ':BufferNext<cr>', { silent = true })
+vim.keymap.set('n', '<leader>d', ':BufferClose<cr>', { silent = true })
+vim.keymap.set('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', { silent = true })
+vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>', { silent = true })
+vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', { silent = true })
+vim.keymap.set('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', { silent = true })
+vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { silent = true })
+vim.keymap.set('n', '<leader>st', require('telescope.builtin').live_grep, { silent = true })
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
