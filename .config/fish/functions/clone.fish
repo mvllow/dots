@@ -11,9 +11,11 @@ function clone --wrap 'git clone' -a repo
 
     git clone git@github.com:$repo.git $argv[2..]
 
-    if test $argv[2]
-        cd $argv[2]
-    else
-        cd $name
+    if test $status = 0
+        if test $argv[2]
+            cd $argv[2]
+        else
+            cd $name
+        end
     end
 end
