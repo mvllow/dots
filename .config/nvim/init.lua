@@ -206,6 +206,10 @@ require('packer').startup(function(use)
 				},
 				mapping = {
 					['<c-space>'] = cmp.mapping.complete(),
+					['<cr>'] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = false,
+					}),
 					['<tab>'] = function(fallback)
 						if cmp.visible() then
 							cmp.select_next_item()
