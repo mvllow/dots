@@ -18,7 +18,7 @@ vim.keymap.set('n', '<c-l>', '<c-w><c-l>', { silent = true }) -- move to split (
 vim.keymap.set('v', '<', '<gv', { silent = true }) -- reselect indented text (left)
 vim.keymap.set('v', '>', '>gv', { silent = true }) -- reselect indented text (right)
 vim.keymap.set('n', '*', '*N', { silent = true }) -- keep `*` selection on current word
-vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\', {silent = true})<cr><cr>N]]) -- mimic normal mode `*` selection (and keep on current word)
+vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], { silent = true }) -- mimic normal mode `*` selection (and keep on current word)
 vim.keymap.set('n', '-', ':m .+1<cr>==', { silent = true }) -- bubble line (up)
 vim.keymap.set('n', '_', ':m .-2<cr>==', { silent = true }) -- bubble line (down)
 vim.keymap.set('v', '-', ":m '>+1<cr>gv=gv", { silent = true }) -- bubble selection (up)
