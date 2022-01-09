@@ -161,7 +161,7 @@ require('packer').startup(function(use)
 				lspconfig = { on_attach = on_attach, capabilities = capabilities },
 			}))
 
-			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte' }
+			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'volar', 'svelte' }
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({ on_attach = on_attach, capabilities = capabilities })
 			end
