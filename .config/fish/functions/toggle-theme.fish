@@ -38,7 +38,9 @@ function toggle-theme -a mode
         dark-mode on
     end
 
-    kitty +kitten themes --reload-in=all "$THEME"
+    if type -q kitty
+        kitty +kitten themes --reload-in=all "$THEME"
+    end
 end
 
 function use-terminal-colors
