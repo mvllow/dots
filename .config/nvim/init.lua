@@ -28,8 +28,6 @@ vim.keymap.set('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', { silent = tr
 vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', { silent = true })
 vim.keymap.set('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', { silent = true })
-vim.keymap.set('n', '<leader>f', require('telescope.builtin').find_files, { silent = true })
-vim.keymap.set('n', '<leader>st', require('telescope.builtin').live_grep, { silent = true })
 
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
@@ -90,6 +88,10 @@ require('packer').startup(function(use)
 				defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },
 				pickers = { find_files = { theme = 'dropdown', previewer = false } },
 			})
+
+			local builtin = require('telescope.builtin')
+			vim.keymap.set('n', '<leader>f', builtin.find_files, { silent = true })
+			vim.keymap.set('n', '<leader>st', builtin.live_grep, { silent = true })
 		end,
 	})
 	use({
