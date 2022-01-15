@@ -1,8 +1,6 @@
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
-else
-	pcall(require, 'impatient')
 end
 
 vim.g.mapleader = ' '
@@ -60,7 +58,6 @@ vim.cmd('autocmd BufRead,BufNewFile *.json set ft=jsonc')
 
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
-	use('lewis6991/impatient.nvim')
 	use('editorconfig/editorconfig-vim')
 	use('tpope/vim-commentary')
 	use({
