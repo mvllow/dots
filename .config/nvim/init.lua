@@ -21,12 +21,11 @@ vim.keymap.set('n', '-', ':m .+1<cr>==', { silent = true }) -- bubble line (up)
 vim.keymap.set('n', '_', ':m .-2<cr>==', { silent = true }) -- bubble line (down)
 vim.keymap.set('v', '-', ":m '>+1<cr>gv=gv", { silent = true }) -- bubble selection (up)
 vim.keymap.set('v', '_', ":m '<-2<cr>gv=gv", { silent = true }) -- bubble selection (down)
-vim.keymap.set('n', 'H', ':BufferPrevious<cr>', { silent = true })
-vim.keymap.set('n', 'L', ':BufferNext<cr>', { silent = true })
-vim.keymap.set('n', '<leader>d', ':BufferClose<cr>', { silent = true })
-vim.keymap.set('n', '<leader>bo', ':BufferCloseAllButCurrent<cr>', { silent = true })
-vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>', { silent = true })
+vim.keymap.set('n', 'H', ':bprevious<cr>', { silent = true })
+vim.keymap.set('n', 'L', ':bnext<cr>', { silent = true })
+vim.keymap.set('n', '<leader>d', ':bdelete<cr>', { silent = true })
 vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', { silent = true })
+vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>', { silent = true })
 vim.keymap.set('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', { silent = true })
 
 vim.opt.mouse = 'a'
@@ -45,8 +44,9 @@ vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.pumheight = 10
 vim.opt.wrap = false
-vim.opt.laststatus = 0
 vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.laststatus = 2
+vim.opt.statusline = '%f %M %= %l:%c ♥'
 
 vim.diagnostic.config({ virtual_text = false })
 
@@ -57,29 +57,7 @@ vim.cmd('autocmd BufRead,BufNewFile *.json set ft=jsonc')
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('editorconfig/editorconfig-vim')
-	use({
-		'numToStr/Comment.nvim',
-		config = function()
-			require('Comment').setup({
-				---@param ctx Ctx
-				pre_hook = function(ctx)
-					local U = require('Comment.utils')
-
-					local location = nil
-					if ctx.ctype == U.ctype.block then
-						location = require('ts_context_commentstring.utils').get_cursor_location()
-					elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
-						location = require('ts_context_commentstring.utils').get_visual_start_location()
-					end
-
-					return require('ts_context_commentstring.internal').calculate_commentstring({
-						key = ctx.ctype == U.ctype.line and '__default' or '__multiline',
-						location = location,
-					})
-				end,
-			})
-		end,
-	})
+	use('tpope/vim-commentary')
 	use({
 		'nvim-telescope/telescope.nvim',
 		requires = 'nvim-lua/plenary.nvim',
@@ -103,16 +81,18 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'romgrk/barbar.nvim',
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate',
+		requires = { 'nvim-treesitter/playground', 'JoosepAlviste/nvim-ts-context-commentstring' },
 		config = function()
-			vim.g.bufferline = {
-				animation = false,
-				icon_close_tab = '×',
-				icon_close_tab_modified = '♥',
-				icon_separator_active = '',
-				icon_separator_inactive = '',
-				icons = false,
-			}
+			require('nvim-treesitter.configs').setup({
+				ensure_installed = 'maintained',
+				ignore_install = { 'haskell' },
+				indent = { enable = true },
+				highlight = { enable = true },
+				context_commentstring = { enable = true, enable_autocmd = false },
+				playground = { enable = true },
+			})
 		end,
 	})
 	use({
@@ -129,32 +109,6 @@ require('packer').startup(function(use)
 				git = { ignore = false },
 				view = { side = 'right' },
 			})
-		end,
-	})
-	use({
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		requires = {
-			'nvim-treesitter/playground',
-			'windwp/nvim-ts-autotag',
-			'JoosepAlviste/nvim-ts-context-commentstring',
-		},
-		config = function()
-			require('nvim-treesitter.configs').setup({
-				ensure_installed = 'maintained',
-				ignore_install = { 'haskell' },
-				indent = { enable = true },
-				autotag = { enable = true },
-				highlight = { enable = true },
-				context_commentstring = { enable = true, enable_autocmd = false },
-				playground = { enable = true },
-			})
-		end,
-	})
-	use({
-		'windwp/nvim-autopairs',
-		config = function()
-			require('nvim-autopairs').setup()
 		end,
 	})
 	use({
@@ -194,16 +148,14 @@ require('packer').startup(function(use)
 		requires = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local null_ls = require('null-ls')
-			local prettier_filetypes = null_ls.builtins.formatting.prettier.filetypes
-			table.insert(prettier_filetypes, 'jsonc')
-			table.insert(prettier_filetypes, 'svelte')
+			local formatting = null_ls.builtins.formatting
 
 			null_ls.setup({
 				sources = {
-					null_ls.builtins.formatting.fish_indent,
-					null_ls.builtins.formatting.prettierd.with({ filetypes = prettier_filetypes }),
-					null_ls.builtins.formatting.shfmt.with({ filetypes = { 'bash', 'sh', 'zsh' } }),
-					null_ls.builtins.formatting.stylua,
+					formatting.fish_indent,
+					formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
+					formatting.shfmt.with({ extra_filetypes = { 'bash', 'sh', 'zsh' } }),
+					formatting.stylua,
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
@@ -215,10 +167,9 @@ require('packer').startup(function(use)
 	})
 	use({
 		'hrsh7th/nvim-cmp',
-		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
+		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp' },
 		config = function()
 			local cmp = require('cmp')
-			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 			cmp.setup({
 				documentation = false,
 				snippet = {
