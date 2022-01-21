@@ -52,7 +52,6 @@ alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
 ### Applications
 
 - Finder locations and views
-- Safari developer stuff
 - Screencapture locations and shadows
 - Rectangle behaviour
 

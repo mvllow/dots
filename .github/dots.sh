@@ -67,11 +67,6 @@ if [ $(uname) == "Darwin" ]; then
 	defaults write NSGlobalDomain _HIHideMenuBar -bool true     # autohide
 	defaults write com.apple.Siri StatusMenuVisible -bool false # hide siri
 
-	# safari
-	defaults write com.apple.Safari IncludeDevelopMenu -bool true                                                        # show develop menu
-	defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true                                 # enable web inspector
-	defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true # enable web inspector
-
 	# screencapture
 	defaults write com.apple.screencapture location ~/Downloads      # set default save location
 	defaults write com.apple.screencapture disable-shadow -bool true # disable shadow
@@ -95,4 +90,5 @@ echo "done; suggested next steps:"
 echo "- map caps lock to escape"
 echo "- enable full disk access for terminal.app"
 echo "- enable messages in icloud"
+echo "- show develop in safari menu"
 echo "- reboot for all changes to take effect"
