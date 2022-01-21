@@ -98,6 +98,7 @@ require('packer').startup(function(use)
 		'rose-pine/neovim',
 		as = 'rose-pine',
 		config = function()
+			vim.g.rose_pine_disable_italics = true
 			vim.cmd('colorscheme rose-pine')
 		end,
 	})
