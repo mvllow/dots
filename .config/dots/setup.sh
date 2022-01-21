@@ -24,7 +24,7 @@ if ! [ $(which brew) ]; then
 fi
 
 brew upgrade
-brew bundle --file="$HOME/brewfile"
+brew bundle --file="$HOME/.config/dots/brewfile"
 brew cleanup
 
 if [ $(which fish) ]; then

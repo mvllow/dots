@@ -9,7 +9,7 @@ The setup scripts will install and configure a minimal amount of applications, c
 One liner to download and run the setup script. Unless our souls match, you may consider modifying a fork versus running this directly.
 
 ```sh
-curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/.github/dots.sh && ./dots.sh
+curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/.config/dots/setup.sh && ./setup.sh
 ```
 
 ## Manual installation
