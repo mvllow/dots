@@ -27,11 +27,6 @@ brew upgrade
 brew bundle --file="$HOME/brewfile"
 brew cleanup
 
-if [ $(which nvim) ]; then
-	echo "- bootstrapping neovim plugins"
-	nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-fi
-
 if [ $(which fish) ]; then
 	echo "- setting default shell: fish"
 	echo $(which fish) | sudo tee -a /etc/shells
