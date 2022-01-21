@@ -57,9 +57,11 @@ alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
 
 ## Notes
 
-- [Update kitty config from neovim](https://github.com/mvllow/dots/blob/main/notes/update-kitty-config-from-neovim.md)
-- [Signing git commits with GPG](https://github.com/mvllow/dots/blob/main/notes/signing-git-commits-with-gpg.md)
-- [Using a custom shell](https://github.com/mvllow/dots/blob/main/notes/using-custom-shell.md)
+> All notes can be found in the [wiki](https://github.com/mvllow/dots/wiki)
+
+- [Using a custom shell](https://github.com/mvllow/dots/wiki/Using-a-custom-shell)
+- [Signing git commits with GPG](https://github.com/mvllow/dots/wiki/Signing-git-commits-with-GPG)
+- [Update kitty config from neovim](https://github.com/mvllow/dots/wiki/Update-kitty-config-from-neovim)
 
 ## FAQ
 
