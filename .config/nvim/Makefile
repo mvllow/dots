@@ -1,18 +1,20 @@
 SHELL := /bin/sh
 
+BREW_PACKAGES = lua-language-server \
+				stylua \
+				shfmt
+NPM_PACKAGES = @fsouza/prettierd \
+			   typescript-language-server \
+			   vscode-langservers-extracted \
+			   @tailwindcss/language-server \
+			   svelte-language-server \
+			   @volar/server
+
 install:
-	@echo Installing neovim, language servers, and formatters
-	brew install neovim --HEAD
-	brew install lua-language-server shfmt stylua
-	npm install --global @fsouza/prettierd typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server svelte-language-server @volar/server
+	brew upgrade
+	brew install $(BREW_PACKAGES)
+	npm install --global --latest $(NPM_PACKAGES)
 
-upgrade:
-	@echo Upgrading neovim, language servers, and formatters
-	brew upgrade neovim --fetch-head
-	brew upgrade lua-language-server shfmt stylua
-	npm update --global
-
-uninstall:
-	@echo Removing neovim, language servers, and formatters
-	brew uninstall neovim lua-language-server shfmt stylua
-	npm uninstall --global @fsouza/prettierd typescript typescript-language-server vscode-langservers-extracted @tailwindcss/language-server svelte-language-server @volar/server
+clean:
+	brew uninstall $(BREW_PACKAGES)
+	npm uninstall --global $(NPM_PACKAGES)
