@@ -73,6 +73,17 @@ require('packer').startup(function(use)
 		config = function()
 			local function on_attach(client)
 				client.resolved_capabilities.document_formatting = false
+				local function map_buffer(mode, lhs, rhs, desc)
+					vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = 0, desc = desc })
+				end
+
+				map_buffer('i', '<c-k>', vim.lsp.buf.signature_help, 'signature help')
+				map_buffer('n', '<leader>a', vim.lsp.buf.code_action, 'code action')
+				map_buffer('n', '<leader>r', vim.lsp.buf.rename, 'rename symbol')
+				map_buffer('n', 'K', vim.lsp.buf.hover, 'symbol hover')
+				map_buffer('n', 'gd', vim.lsp.buf.definition, 'goto definition')
+				map_buffer('n', 'gi', vim.lsp.buf.implementation, 'goto implementation')
+				map_buffer('n', 'gr', vim.lsp.buf.references, 'show references')
 			end
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
