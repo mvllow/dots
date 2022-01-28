@@ -17,8 +17,16 @@ require('packer').startup(function(use)
 		requires = 'nvim-lua/plenary.nvim',
 		config = function()
 			require('telescope').setup({
-				defaults = { layout_config = { horizontal = { preview_width = 0.6 } } },
-				pickers = { find_files = { theme = 'dropdown', previewer = false } },
+				defaults = {
+					layout_config = { horizontal = { preview_width = 0.6 } },
+				},
+				pickers = {
+					find_files = {
+						find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+						theme = 'dropdown',
+						previewer = false,
+					},
+				},
 			})
 		end,
 	})
