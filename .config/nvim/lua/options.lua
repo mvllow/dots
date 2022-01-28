@@ -15,7 +15,7 @@ vim.opt.tabstop = 4
 vim.opt.pumheight = 10
 vim.opt.wrap = false
 vim.opt.completeopt = 'menu,menuone,noselect'
-vim.opt.statusline = '%f %M %= %l:%c ♥'
+vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 vim.opt.list = true
 vim.opt.listchars = { tab = '  ', trail = '·' }
 
