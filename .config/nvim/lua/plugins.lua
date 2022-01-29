@@ -79,10 +79,10 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		requires = 'folke/lua-dev.nvim',
 		config = function()
-			local function on_attach(client)
+			local function on_attach(client, bufnr)
 				client.resolved_capabilities.document_formatting = false
 				local function map_buffer(mode, lhs, rhs, desc)
-					vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = 0, desc = desc })
+					vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = bufnr, desc = desc })
 				end
 
 				map_buffer('i', '<c-k>', vim.lsp.buf.signature_help, 'signature help')
