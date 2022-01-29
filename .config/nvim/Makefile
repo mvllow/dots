@@ -10,6 +10,9 @@ NPM_PACKAGES = @fsouza/prettierd \
 			   svelte-language-server \
 			   @volar/server
 
+all:
+	brew upgrade neovim --fetch-head
+
 install:
 	brew upgrade
 	brew install $(BREW_PACKAGES)
