@@ -1,5 +1,4 @@
 # Set theme for macOS system, kitty terminal, and fish shell
-# https://github.com/mvllow/fun-shell
 #
 # @requires
 # kitty (https://github.com/kovidgoyal/kitty)

@@ -1,5 +1,4 @@
 # Clone remote repository and change to created directory
-# https://github.com/mvllow/fun-shell
 #
 # @requires git
 # @usage
