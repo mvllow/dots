@@ -14,7 +14,7 @@ map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 map('n', '#', '*Ncgn')
 map('v', '#', [[y/\V<c-r>=escape(@",'/\')<cr><cr>Ncgn]])
-map('n', '<leader>y', '"*y', 'yank selection to clipboard')
+map({ 'n', 'v' }, '<leader>y', '"*y', 'yank selection to clipboard')
 
 -- window
 map('n', '<leader>wF', '<c-w>vgf', 'goto file (vsplit)')
