@@ -40,14 +40,6 @@ map('n', 'gO', '<c-i>', 'goto next position')
 map('n', 'gp', ':bprevious<cr>', 'goto previous buffer')
 map('n', 'gn', ':bnext<cr>', 'goto next buffer')
 
--- match
-map('n', 'mm', '%', 'goto matching bracket')
--- map('n', 'ms', '', 'surround add')
--- map('n', 'mr', '', 'surround replace')
--- map('n', 'md', '', 'surround delete')
--- map('o', 'ma', 'va', 'select around object')
--- map('n', 'mi', '', 'select inside object')
-
 -- diagnostic
 map('n', '[d', vim.diagnostic.goto_prev, 'goto next diagnostic')
 map('n', ']d', vim.diagnostic.goto_next, 'goto previous diagnostic')
