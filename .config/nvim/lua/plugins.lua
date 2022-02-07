@@ -7,7 +7,7 @@ require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('editorconfig/editorconfig-vim')
 	use({
-		'mvllow/nvim-markdown-preview',
+		'davidgranstrom/nvim-markdown-preview',
 		run = 'brew install pandoc && npm i -g live-server',
 	})
 	use({
