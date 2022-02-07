@@ -12,7 +12,7 @@ vim.opt.smartcase = true
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
-vim.opt.pumheight = 10
+vim.opt.pumheight = 5
 vim.opt.wrap = false
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
