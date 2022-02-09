@@ -19,9 +19,11 @@ if status is-interactive
 end
 
 abbr --add .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
-abbr --add .list "git --git-dir=$HOME/dots.git --work-tree=$HOME ls-files --other --no-empty-directory --exclude-standard $HOME/.config/*"
 abbr --add .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
+abbr --add .list "git --git-dir=$HOME/dots.git --work-tree=$HOME ls-files --other --no-empty-directory --exclude-standard $HOME/.config/*"
 abbr --add ,fish "$EDITOR $XDG_CONFIG_HOME/fish/config.fish +'lcd %:p:h'"
+abbr --add ,kitty "$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf +'lcd %:p:h'"
+abbr --add ,lazygit "$EDITOR $XDG_CONFIG_HOME/lazygit/config.yml +'lcd %:p:h'"
 abbr --add ,nvim "$EDITOR $XDG_CONFIG_HOME/nvim/init.lua +'lcd %:p:h'"
 abbr --add clean-nvim-swap "rm -rf $HOME/.local/share/nvim/swap"
 
