@@ -1,3 +1,4 @@
+vim.opt.title = true
 vim.opt.mouse = 'a'
 vim.opt.breakindent = true
 vim.opt.shortmess:append('c')
