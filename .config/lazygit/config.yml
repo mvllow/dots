@@ -1,0 +1,6 @@
+gui:
+  theme:
+    selectedRangeBgColor:
+      - reverse
+  authorColors:
+    "*": "#6e6a86"
