@@ -149,10 +149,8 @@ require('packer').startup(function(use)
 	use({
 		'rose-pine/neovim',
 		as = 'rose-pine',
-		tag = 'v1.0.0-canary.*',
 		config = function()
 			require('rose-pine').setup({
-				dark_variant = 'moon',
 				disable_italics = true,
 				groups = {
 					punctuation = 'muted',
