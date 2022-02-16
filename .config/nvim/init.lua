@@ -149,12 +149,7 @@ require('packer').startup(function(use)
 		'rose-pine/neovim',
 		as = 'rose-pine',
 		config = function()
-			require('rose-pine').setup({
-				disable_italics = true,
-				groups = {
-					punctuation = 'muted',
-				},
-			})
+			require('rose-pine').setup({ disable_italics = true })
 			vim.cmd('colorscheme rose-pine')
 		end,
 	})
