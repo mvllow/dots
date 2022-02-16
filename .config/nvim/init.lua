@@ -139,23 +139,6 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'kyazdani42/nvim-tree.lua',
-		config = function()
-			vim.g.nvim_tree_icons = {
-				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
-			}
-			vim.g.nvim_tree_quit_on_open = 1
-			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
-			require('nvim-tree').setup({
-				auto_close = true,
-				auto_reload_on_write = true,
-				filters = { custom = { '.git' } },
-				git = { ignore = false },
-				view = { side = 'right' },
-			})
-		end,
-	})
-	use({
 		'neovim/nvim-lspconfig',
 		requires = 'folke/lua-dev.nvim',
 		config = function()
