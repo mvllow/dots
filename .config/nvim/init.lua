@@ -45,8 +45,6 @@ map('v', '<', '<gv')
 map('v', '>', '>gv')
 map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
-map('n', '#', '*Ncgn')
-map('v', '#', [[y/\V<c-r>=escape(@",'/\')<cr><cr>Ncgn]])
 map({ 'n', 'v' }, '<leader>y', '"*y', 'yank selection to clipboard')
 map('n', '<leader>P', '<c-r>', 'paste selection inline')
 
