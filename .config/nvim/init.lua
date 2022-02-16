@@ -46,44 +46,34 @@ map('v', '>', '>gv')
 map('n', '*', '*N')
 map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 map({ 'n', 'v' }, '<leader>y', '"*y', 'yank selection to clipboard')
-map('n', '<leader>P', '<c-r>', 'paste selection inline')
+map('n', '<leader>d', ':bdelete<cr>', 'delete buffer')
+map('n', '<leader>e', ':Lex!<cr>', 'toggle explorer')
+map('n', '<leader>o', ':set wrap!<cr>', 'toggle word wrap')
+map('n', '<leader>/', ':Telescope live_grep<cr>', 'search text')
+map('n', '<leader>f', ':Telescope find_files theme=dropdown<cr>', 'search files')
+map('n', '<leader>pc', ':PackerCompile<cr>', 'compile plugins')
+map('n', '<leader>ps', ':PackerSync<cr>', 'sync plugins')
+map('n', '<leader><leader>d', ':read !date<cr>kdd', 'put current date')
 
--- window
-map('n', '<leader>wF', '<c-w>vgf', 'goto file (vsplit)')
-map('n', '<leader>wf', '<c-w><c-f>', 'goto file (hsplit)')
 map('n', '<leader>wh', '<c-w><c-h>', 'jump to split to the left')
 map('n', '<leader>wj', '<c-w><c-j>', 'jump to split below')
 map('n', '<leader>wk', '<c-w><c-k>', 'jump to split above')
 map('n', '<leader>wl', '<c-w><c-l>', 'jump to split to the right')
 map('n', '<leader>wr', '<c-w><c-r>', 'swap split positions')
 map('n', '<leader>wo', ':only<cr>', 'close other windows')
-map('n', '<leader>wq', ':quit<cr>', 'close window')
-map('n', '<leader>ws', ':split<cr>', 'open split to the right')
-map('n', '<leader>wv', ':vsplit<cr>', 'open split below')
 map('n', '<leader>ww', '<c-w><c-w>', 'goto next window')
 
--- goto
-map('n', 'gf', ':edit <cfile><cr>', 'goto file')
-map('n', 'gh', '^', 'goto line start')
-map('n', 'g.', '`.', 'goto last modification')
-map('n', 'go', '<c-o>', 'goto previous position')
-map('n', 'gO', '<c-i>', 'goto next position')
-map('n', 'gp', ':bprevious<cr>', 'goto previous buffer')
-map('n', 'gn', ':bnext<cr>', 'goto next buffer')
+map('n', 'gh', '^', 'start of line')
+map('n', 'g.', '`.', 'last modification')
+map('n', 'go', '<c-o>', 'previous position')
+map('n', 'gO', '<c-i>', 'next position')
+map('n', 'gp', '<c-^>', 'previous buffer')
+map('n', 'gn', ':bnext<cr>', 'next buffer')
+map('n', 'gm', '%%', "next matching item: '()', '{}', '[]'")
 
--- diagnostic
 map('n', '[d', vim.diagnostic.goto_prev, 'goto next diagnostic')
 map('n', ']d', vim.diagnostic.goto_next, 'goto previous diagnostic')
 map('n', 'gl', vim.diagnostic.open_float, 'show diagnostic message')
-
--- plugin
-map('n', '<leader>/', ':Telescope live_grep<cr>', 'search text')
-map('n', '<leader>b', ':Telescope buffers<cr>', 'search buffers')
-map('n', '<leader>f', ':Telescope find_files<cr>', 'search files')
-map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', 'explorer')
-map('n', '<leader>h', ':TSHighlightCapturesUnderCursor<cr>', 'show highlight group under cursor')
-map('n', '<leader>pc', ':PackerCompile<cr>', 'compile plugins')
-map('n', '<leader>ps', ':PackerSync<cr>', 'sync plugins')
 
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -114,7 +104,6 @@ require('packer').startup(function(use)
 				pickers = {
 					find_files = {
 						find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
-						theme = 'dropdown',
 						previewer = false,
 					},
 				},
@@ -173,7 +162,7 @@ require('packer').startup(function(use)
 			local function on_attach(client, bufnr)
 				client.resolved_capabilities.document_formatting = false
 				local function map_buffer(mode, lhs, rhs, desc)
-					vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = bufnr, desc = desc })
+					vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = bufnr, desc = desc or '' })
 				end
 
 				map_buffer('i', '<c-k>', vim.lsp.buf.signature_help, 'signature help')
