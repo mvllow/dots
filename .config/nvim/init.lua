@@ -128,7 +128,7 @@ require('packer').startup(function(use)
 	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
-		requires = { 'nvim-treesitter/playground', 'windwp/nvim-ts-autotag' },
+		requires = 'windwp/nvim-ts-autotag',
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'maintained',
@@ -136,7 +136,6 @@ require('packer').startup(function(use)
 				indent = { enable = true },
 				autotag = { enable = true },
 				highlight = { enable = true },
-				playground = { enable = true },
 			})
 		end,
 	})
