@@ -1,4 +1,3 @@
-vim.opt.title = true
 vim.opt.mouse = 'a'
 vim.opt.shortmess:append('c')
 vim.opt.undofile = true
