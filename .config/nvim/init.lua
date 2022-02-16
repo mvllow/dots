@@ -16,8 +16,6 @@ vim.opt.pumheight = 3
 vim.opt.completeopt = 'menu,menuone,noselect'
 vim.opt.laststatus = 2
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
-vim.opt.list = true
-vim.opt.listchars = { tab = '  ', trail = '·' }
 vim.opt.wrap = false
 vim.opt.breakindent = true
 
