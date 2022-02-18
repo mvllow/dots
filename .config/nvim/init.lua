@@ -181,6 +181,7 @@ require('packer').startup(function(use)
 					formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
 					formatting.shfmt.with({ extra_filetypes = { 'bash', 'sh', 'zsh' } }),
 					formatting.stylua,
+					formatting.gofumpt,
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
