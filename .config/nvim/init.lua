@@ -13,7 +13,6 @@ vim.opt.softtabstop = 4
 vim.opt.tabstop = 4
 vim.opt.pumheight = 3
 vim.opt.completeopt = 'menu,menuone,noselect'
-vim.opt.laststatus = 2
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 vim.opt.wrap = false
 vim.opt.breakindent = true
@@ -52,23 +51,21 @@ map('n', '<leader>/', ':Telescope live_grep<cr>', 'search text')
 map('n', '<leader>f', ':Telescope find_files theme=dropdown<cr>', 'search files')
 map('n', '<leader>pc', ':PackerCompile<cr>', 'compile plugins')
 map('n', '<leader>ps', ':PackerSync<cr>', 'sync plugins')
-map('n', '<leader><leader>d', ':read !date<cr>kdd', 'put current date')
 
 map('n', '<leader>wh', '<c-w><c-h>', 'jump to split to the left')
 map('n', '<leader>wj', '<c-w><c-j>', 'jump to split below')
 map('n', '<leader>wk', '<c-w><c-k>', 'jump to split above')
 map('n', '<leader>wl', '<c-w><c-l>', 'jump to split to the right')
 map('n', '<leader>wr', '<c-w><c-r>', 'swap split positions')
-map('n', '<leader>wo', ':only<cr>', 'close other windows')
 map('n', '<leader>ww', '<c-w><c-w>', 'goto next window')
+map('n', '<leader>wo', ':only<cr>', 'close other windows')
 
-map('n', 'gh', '^', 'start of line')
-map('n', 'g.', '`.', 'last modification')
-map('n', 'go', '<c-o>', 'previous position')
-map('n', 'gO', '<c-i>', 'next position')
-map('n', 'gp', '<c-^>', 'previous buffer')
-map('n', 'gn', ':bnext<cr>', 'next buffer')
-map('n', 'gm', '%%', "next matching item: '()', '{}', '[]'")
+map('n', 'g.', '`.', 'goto last modification')
+map('n', 'go', '<c-o>', 'goto previous position')
+map('n', 'gO', '<c-i>', 'goto next position')
+map('n', 'gp', '<c-^>', 'goto previous buffer')
+map('n', 'gn', ':bnext<cr>', 'goto next buffer')
+map('n', 'gm', '%', "goto matching character: '()', '{}', '[]'")
 
 map('n', '[d', vim.diagnostic.goto_prev, 'goto next diagnostic')
 map('n', ']d', vim.diagnostic.goto_next, 'goto previous diagnostic')
