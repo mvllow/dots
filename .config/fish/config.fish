@@ -25,6 +25,7 @@ end
 abbr --add .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
 abbr --add .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
 abbr --add .list "git --git-dir=$HOME/dots.git --work-tree=$HOME ls-files --other --no-empty-directory --exclude-standard $HOME/.config/*"
+abbr --add ,amfora "$EDITOR $XDG_CONFIG_HOME/amfora/config.toml +'lcd %:p:h'"
 abbr --add ,emacs "$EDITOR $XDG_CONFIG_HOME/emacs/init.el +'lcd %:p:h'"
 abbr --add ,fish "$EDITOR $XDG_CONFIG_HOME/fish/config.fish +'lcd %:p:h'"
 abbr --add ,kitty "$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf +'lcd %:p:h'"
