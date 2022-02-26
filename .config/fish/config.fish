@@ -12,6 +12,10 @@ if status is-interactive
 
     toggle-theme system
 
+    function fish_title
+        echo (fish_prompt_pwd_dir_length=0 prompt_pwd)
+    end
+
     function fish_prompt
         set -g fish_prompt_pwd_dir_length 0
         printf '%s%s> ' (prompt_pwd) (set_color yellow; fish_git_prompt; set_color normal)
