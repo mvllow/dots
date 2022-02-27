@@ -123,10 +123,6 @@ require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('editorconfig/editorconfig-vim')
 	use({
-		'davidgranstrom/nvim-markdown-preview',
-		run = 'brew install pandoc && npm i -g live-server',
-	})
-	use({
 		'numToStr/Comment.nvim',
 		config = function()
 			require('comment').setup()
