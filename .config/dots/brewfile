@@ -1,11 +1,14 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "d12frosted/emacs-plus"
+
+brew "emacs-plus@29", args: ["--with-nobu417-big-sur-icon", "--with-native-comp"]
+brew "neovim", args: ["HEAD"]
 brew "dark-mode"
 brew "fd"
 brew "go"
 brew "lazygit"
-brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
 cask "figma"
