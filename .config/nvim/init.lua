@@ -129,37 +129,6 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'nvim-telescope/telescope.nvim',
-		requires = 'nvim-lua/plenary.nvim',
-		config = function()
-			require('telescope').setup({
-				defaults = {
-					layout_config = { horizontal = { preview_width = 0.6 } },
-				},
-				pickers = {
-					find_files = {
-						find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
-						previewer = false,
-					},
-				},
-			})
-		end,
-	})
-	use({
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		requires = 'windwp/nvim-ts-autotag',
-		config = function()
-			require('nvim-treesitter.configs').setup({
-				ensure_installed = 'maintained',
-				ignore_install = { 'haskell' },
-				indent = { enable = true },
-				autotag = { enable = true },
-				highlight = { enable = true },
-			})
-		end,
-	})
-	use({
 		'windwp/nvim-autopairs',
 		config = function()
 			require('nvim-autopairs').setup()
@@ -171,6 +140,54 @@ require('packer').startup(function(use)
 		config = function()
 			require('rose-pine').setup({ disable_italics = true })
 			vim.cmd('colorscheme rose-pine')
+		end,
+	})
+	use({
+		'nvim-telescope/telescope.nvim',
+		requires = 'nvim-lua/plenary.nvim',
+		config = function()
+			require('telescope').setup({
+				defaults = {
+					layout_config = {
+						horizontal = { preview_width = 0.6 },
+					},
+				},
+				pickers = {
+					find_files = {
+						previewer = false,
+						find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+					},
+				},
+			})
+		end,
+	})
+	use({
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate',
+		config = function()
+			require('nvim-treesitter.configs').setup({
+				ensure_installed = 'maintained',
+				ignore_install = { 'haskell' },
+				highlight = { enable = true },
+				autotag = { enable = true },
+				indent = { enable = true },
+			})
+		end,
+	})
+	use({
+		'kyazdani42/nvim-tree.lua',
+		config = function()
+			vim.g.nvim_tree_icons = {
+				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
+			}
+			vim.g.nvim_tree_quit_on_open = 1
+			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
+			require('nvim-tree').setup({
+				auto_close = true,
+				update_cwd = true,
+				filters = { custom = { '.git' } },
+				view = { side = 'right' },
+			})
 		end,
 	})
 	use({
@@ -211,16 +228,17 @@ require('packer').startup(function(use)
 		'jose-elias-alvarez/null-ls.nvim',
 		requires = 'nvim-lua/plenary.nvim',
 		config = function()
-			local null_ls = require('null-ls')
-			local formatting = null_ls.builtins.formatting
+			local builtins = require('null-ls').builtins
 
-			null_ls.setup({
+			require('null-ls').setup({
 				sources = {
-					formatting.fish_indent,
-					formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
-					formatting.shfmt.with({ extra_filetypes = { 'bash', 'sh', 'zsh' } }),
-					formatting.stylua,
-					formatting.gofumpt,
+					builtins.code_actions.xo,
+					builtins.diagnostics.xo,
+					builtins.formatting.fish_indent,
+					builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
+					builtins.formatting.shfmt.with({ extra_filetypes = { 'bash', 'sh', 'zsh' } }),
+					builtins.formatting.stylua,
+					builtins.formatting.gofumpt,
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
@@ -234,6 +252,8 @@ require('packer').startup(function(use)
 		'hrsh7th/nvim-cmp',
 		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
 		config = function()
+			vim.opt.completeopt = 'menu,menuone,noselect'
+
 			local cmp = require('cmp')
 			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 			cmp.setup({
