@@ -191,6 +191,7 @@ require('packer').startup(function(use)
 			require('nvim-tree').setup({
 				auto_close = true,
 				update_cwd = true,
+				git = { ignore = false },
 				filters = { custom = { '.git' } },
 				view = { side = 'right' },
 			})
