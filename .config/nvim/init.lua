@@ -173,6 +173,7 @@ require('packer').startup(function(use)
 	})
 	use({
 		'nvim-treesitter/nvim-treesitter',
+		require = 'windwp/nvim-ts-autotag',
 		run = ':TSUpdate',
 		config = function()
 			require('nvim-treesitter.configs').setup({
