@@ -139,6 +139,12 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
+		'windwp/nvim-ts-autotag',
+		config = function()
+			require('nvim-ts-autotag').setup()
+		end,
+	})
+	use({
 		'lewis6991/gitsigns.nvim',
 		config = function()
 			require('gitsigns').setup()
@@ -173,14 +179,12 @@ require('packer').startup(function(use)
 	})
 	use({
 		'nvim-treesitter/nvim-treesitter',
-		require = 'windwp/nvim-ts-autotag',
 		run = ':TSUpdate',
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'maintained',
 				ignore_install = { 'haskell' },
 				highlight = { enable = true },
-				autotag = { enable = true },
 				indent = { enable = true },
 			})
 		end,
