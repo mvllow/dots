@@ -52,12 +52,16 @@ vim.opt.breakindent = true
 -- ♥  love all
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 
+local function create_autocmd(event, pattern, command)
+	vim.api.nvim_create_autocmd({ event = event, pattern = pattern, command = command })
+end
+
 -- Remove continuation of comments when creating a new line via `o`
-vim.cmd('autocmd BufEnter * setlocal formatoptions-=o')
+create_autocmd('BufEnter', '*', 'setlocal formatoptions-=o')
 -- Ensure splits are equal width when resizing vim
-vim.cmd('autocmd VimResized * tabdo wincmd =')
+create_autocmd('VimResized', '*', 'tabdo wincmd =')
 -- Set json filetype to jsonc
-vim.cmd('autocmd BufRead,BufNewFile *.json set ft=jsonc')
+create_autocmd({ 'BufRead', 'BufNewFile' }, '*.json', 'set ft=jsonc')
 
 -- Diagnostics
 vim.diagnostic.config({ virtual_text = false })
