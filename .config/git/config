@@ -4,7 +4,6 @@
 	ls = ls-tree --full-tree -r --name-only HEAD
 [core]
 	editor = nvim
-	excludesfile = ~/.config/dots/.global-gitignore
 [init]
 	defaultBranch = main
 [pull]
