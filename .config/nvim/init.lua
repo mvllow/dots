@@ -53,25 +53,22 @@ vim.opt.breakindent = true
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 
 -- Remove continuation of comments when creating a new line via `o`
-vim.api.nvim_create_autocmd({
-	event = 'BufEnter',
+vim.api.nvim_create_autocmd('BufEnter', {
 	pattern = '*',
 	command = 'setlocal formatoptions-=o',
 })
 
 -- Ensure splits are equal width when resizing vim stylua: ignore
-vim.api.nvim_create_autocmd({ event = 'VimResized', pattern = '*', command = 'tabdo wincmd =' })
+vim.api.nvim_create_autocmd('VimResized', { pattern = '*', command = 'tabdo wincmd =' })
 
 -- Set json filetype to jsonc
-vim.api.nvim_create_autocmd({
-	event = { 'BufRead', 'BufNewFile' },
-	pattern = '*.json',
-	command = 'set ft=jsonc',
-})
+vim.api.nvim_create_autocmd(
+	{ 'BufRead', 'BufNewFile' },
+	{ pattern = '*.json', command = 'set ft=jsonc' }
+)
 
 -- Create missing directories on save
-vim.api.nvim_create_autocmd({
-	event = 'BufWritePre',
+vim.api.nvim_create_autocmd('BufWritePre', {
 	pattern = '*',
 	callback = function()
 		vim.fn.mkdir(vim.fn.expand('%:p:h'), 'p')
