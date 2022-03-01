@@ -22,15 +22,17 @@ if status is-interactive
     end
 end
 
-abbr --add .git "git --git-dir=$HOME/dots.git --work-tree=$HOME"
-abbr --add .lazygit "lazygit --git-dir=$HOME/dots.git --work-tree=$HOME"
-abbr --add .list "git --git-dir=$HOME/dots.git --work-tree=$HOME ls-files --other --no-empty-directory --exclude-standard $HOME/.config/*"
-abbr --add ,amfora "$EDITOR $XDG_CONFIG_HOME/amfora/config.toml +'lcd %:p:h'"
-abbr --add ,emacs "emacs $XDG_CONFIG_HOME/rational-emacs/config.el"
-abbr --add ,fish "$EDITOR $XDG_CONFIG_HOME/fish/config.fish +'lcd %:p:h'"
-abbr --add ,kitty "$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf +'lcd %:p:h'"
-abbr --add ,lazygit "$EDITOR $XDG_CONFIG_HOME/lazygit/config.yml +'lcd %:p:h'"
-abbr --add ,nvim "$EDITOR $XDG_CONFIG_HOME/nvim/init.lua +'lcd %:p:h'"
-abbr --add clean-nvim-swap "rm -rf $HOME/.local/share/nvim/swap"
+# Manage dotfiles
+abbr --add .git "git --git-dir=\$HOME/dots.git --work-tree=\$HOME"
+abbr --add .lazygit "lazygit --git-dir=\$HOME/dots.git --work-tree=\$HOME"
+abbr --add .list "git --git-dir=\$HOME/dots.git --work-tree=\$HOME ls-files --other --no-empty-directory --exclude-standard \$HOME/.config/*"
+
+# Manage cli configs
+abbr --add ,amfora "$EDITOR ~/.config/amfora/config.toml -c 'lcd %:p:h'"
+abbr --add ,fish "$EDITOR ~/.config/fish/config.fish -c 'lcd %:p:h'"
+abbr --add ,git "$EDITOR ~/.config/git/config -c 'lcd %:p:h'"
+abbr --add ,kitty "$EDITOR ~/.config/kitty/kitty.conf -c 'lcd %:p:h'"
+abbr --add ,lazygit "$EDITOR ~/.config/lazygit/config.yml -c 'lcd %:p:h'"
+abbr --add ,nvim "$EDITOR ~/.config/nvim/init.lua -c 'lcd %:p:h'"
 
 bind \e\[108\;9u toggle-theme # <super+l>
