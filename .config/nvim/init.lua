@@ -264,7 +264,6 @@ require('packer').startup(function(use)
 					builtins.diagnostics.xo,
 					builtins.formatting.fish_indent,
 					builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
-					builtins.formatting.shfmt.with({ extra_filetypes = { 'bash', 'sh', 'zsh' } }),
 					builtins.formatting.stylua,
 					builtins.formatting.gofumpt,
 				},

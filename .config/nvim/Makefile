@@ -1,8 +1,7 @@
 SHELL := /bin/sh
 
 BREW_PACKAGES = lua-language-server \
-				stylua \
-				shfmt
+				stylua
 NPM_PACKAGES = @fsouza/prettierd \
 			   typescript-language-server \
 			   vscode-langservers-extracted \
