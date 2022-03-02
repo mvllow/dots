@@ -196,7 +196,7 @@ require('packer').startup(function(use)
 				lspconfig = { on_attach = on_attach, capabilities = capabilities },
 			}))
 
-			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte', 'gopls' }
+			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte', 'volar' }
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({ on_attach = on_attach, capabilities = capabilities })
 			end
@@ -215,7 +215,6 @@ require('packer').startup(function(use)
 					builtins.formatting.fish_indent,
 					builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
 					builtins.formatting.stylua,
-					builtins.formatting.gofumpt,
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
