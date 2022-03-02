@@ -1,84 +1,36 @@
--- Enable mouse support
 vim.opt.mouse = 'a'
-
--- Create horizontal splits below current (:split)
 vim.opt.splitbelow = true
--- Create vertical splits to the right of current (:vsplit)
 vim.opt.splitright = true
-
--- Indent width when using <tab>
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
--- Indent width when using >, >>, <, and << commands
--- 0 matches |tabstop|
 vim.opt.shiftwidth = 4
-
--- Enable persistent undo between sessions
 vim.opt.undofile = true
-
--- Ignore case when searching (/)
 vim.opt.ignorecase = true
--- Unless search contains an uppercase character
 vim.opt.smartcase = true
-
--- Time in milliseconds to update swap files and |CursorHold|
 vim.opt.updatetime = 250
-
--- Shorten file messages to avoid hit-enter prompts
 vim.opt.shortmess:append('c')
-
--- Always show signcolumn
--- Used for diagnostics, symbols, etc.
 vim.opt.signcolumn = 'yes'
-
--- Popup menu height
--- Used for completions, etc.
 vim.opt.pumheight = 3
-
--- Scroll offset
--- Minimal number of screen lines to keep above and below the cursor
 vim.opt.scrolloff = 3
-
--- Wrap lines
 vim.opt.wrap = false
 vim.opt.breakindent = true
-
--- Statusline
--- %f filename
--- %M modified status, eg. "+" when unsaved
--- %= start of right side
--- %l current line
--- %c current column
--- ♥  love all
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 
--- Remove continuation of comments when creating a new line via `o`
 vim.api.nvim_create_autocmd('BufEnter', {
 	pattern = '*',
 	command = 'setlocal formatoptions-=o',
 })
-
--- Ensure splits are equal width when resizing vim stylua: ignore
-vim.api.nvim_create_autocmd('VimResized', { pattern = '*', command = 'tabdo wincmd =' })
-
--- Set json filetype to jsonc
+vim.api.nvim_create_autocmd('VimResized', {
+	pattern = '*',
+	command = 'tabdo wincmd =',
+})
 vim.api.nvim_create_autocmd(
 	{ 'BufRead', 'BufNewFile' },
 	{ pattern = '*.json', command = 'set ft=jsonc' }
 )
 
--- Create missing directories on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-	pattern = '*',
-	callback = function()
-		vim.fn.mkdir(vim.fn.expand('%:p:h'), 'p')
-	end,
-})
-
--- Diagnostics
 vim.diagnostic.config({ virtual_text = false })
 
--- Create diagnostic signs
 local signs = { 'Error', 'Warn', 'Hint', 'Info' }
 for _, type in pairs(signs) do
 	local hl = string.format('DiagnosticSign%s', type)
@@ -89,7 +41,6 @@ local function map(mode, lhs, rhs, desc)
 	vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc or '' })
 end
 
--- Set map prefix, eg. <leader>
 vim.g.mapleader = ' '
 map('n', '<space>', '<nop>')
 
@@ -129,7 +80,6 @@ map('n', '[d', vim.diagnostic.goto_prev, 'goto next diagnostic')
 map('n', ']d', vim.diagnostic.goto_next, 'goto previous diagnostic')
 map('n', 'gl', vim.diagnostic.open_float, 'show diagnostic message')
 
--- Bootstrap packer.nvim
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
