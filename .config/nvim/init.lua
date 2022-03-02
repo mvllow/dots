@@ -219,7 +219,12 @@ require('packer').startup(function(use)
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
-						vim.cmd([[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]])
+						vim.api.nvim_create_autocmd('BufWritePre', {
+							pattern = '<buffer>',
+							callback = function()
+								vim.lsp.buf.formatting_sync()
+							end,
+						})
 					end
 				end,
 			})
