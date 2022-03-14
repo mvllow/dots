@@ -7,7 +7,7 @@ NPM_PACKAGES = @fsouza/prettierd \
 			   vscode-langservers-extracted \
 			   @tailwindcss/language-server \
 			   svelte-language-server \
-			   @volar/server
+			   @volar/vue-language-server
 
 all:
 	brew upgrade neovim --fetch-head
