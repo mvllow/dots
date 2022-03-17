@@ -133,7 +133,7 @@ require('packer').startup(function(use)
 				pickers = {
 					find_files = {
 						previewer = false,
-						find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' },
+						find_command = { 'fd', '--type', 'f', '--hidden', '--strip-cwd-prefix' },
 					},
 				},
 			})
