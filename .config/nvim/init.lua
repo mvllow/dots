@@ -196,7 +196,16 @@ require('packer').startup(function(use)
 				lspconfig = { on_attach = on_attach, capabilities = capabilities },
 			}))
 
-			local servers = { 'html', 'jsonls', 'cssls', 'tailwindcss', 'tsserver', 'svelte', 'volar' }
+			local servers = {
+				'html',
+				'jsonls',
+				'cssls',
+				'tailwindcss',
+				'tsserver',
+				'svelte',
+				'volar',
+				'rust_analyzer',
+			}
 			for _, server in ipairs(servers) do
 				lspconfig[server].setup({ on_attach = on_attach, capabilities = capabilities })
 			end
@@ -214,6 +223,7 @@ require('packer').startup(function(use)
 					builtins.diagnostics.xo,
 					builtins.formatting.fish_indent,
 					builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
+					builtins.formatting.rustfmt,
 					builtins.formatting.stylua,
 				},
 				on_attach = function(client)
