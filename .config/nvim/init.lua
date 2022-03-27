@@ -1,88 +1,96 @@
-vim.opt.mouse = 'a'
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.updatetime = 250
-vim.opt.shortmess:append('c')
-vim.opt.signcolumn = 'yes'
-vim.opt.pumheight = 3
-vim.opt.scrolloff = 3
-vim.opt.wrap = false
-vim.opt.breakindent = true
-vim.opt.statusline = ' %f %M %= %l:%c ♥ '
+--- Global
+local opts = { silent = true }
 
-vim.api.nvim_create_autocmd('BufEnter', {
-	pattern = '*',
-	command = 'setlocal formatoptions-=o',
-})
+vim.g.mapleader = ' '
+vim.keymap.set('n', '<space>', '<nop>', opts)
+
+--- UI
+vim.opt.updatetime = 250
+vim.opt.signcolumn = 'yes'
+vim.opt.laststatus = 3
+vim.opt.statusline = ' %f %M %= %l:%c ♥ '
+vim.opt.shortmess:append('c')
+
+-- Equally resize splits
 vim.api.nvim_create_autocmd('VimResized', {
 	pattern = '*',
 	command = 'tabdo wincmd =',
 })
-vim.api.nvim_create_autocmd(
-	{ 'BufRead', 'BufNewFile' },
-	{ pattern = '*.json', command = 'set ft=jsonc' }
-)
+
+--- Editing
+vim.opt.mouse = 'a'
+vim.opt.tabstop = 3
+vim.opt.softtabstop = 3
+vim.opt.shiftwidth = 3
+vim.opt.undofile = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.scrolloff = 3
+vim.opt.breakindent = true
+
+vim.keymap.set('i', 'jk', '<esc>', opts) -- escape alternative
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', opts) -- move through wrapped lines
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', opts) -- move through wrapped lines
+vim.keymap.set('v', '<', '<gv', opts) -- dedent (keep selection)
+vim.keymap.set('v', '>', '>gv', opts) -- indent (keep selection)
+
+-- Goto
+vim.keymap.set('n', 'g.', '`.', opts) -- goto last modification
+vim.keymap.set('n', 'go', '<c-o>', opts) -- goto previous position
+vim.keymap.set('n', 'gO', '<c-i>', opts) -- goto next position
+vim.keymap.set('n', 'gp', '<c-^>', opts) -- goto previous buffer (cycles between two buffers, rather than looping through all buffers)
+vim.keymap.set('n', 'gn', ':bnext<cr>', opts) -- goto next buffer
+vim.keymap.set('n', 'gm', '%', opts) -- goto matching character: '()', '{}', '[]'
+
+-- Window
+vim.keymap.set('n', '<leader>wh', '<c-w><c-h>', opts) -- jump to split to the left
+vim.keymap.set('n', '<leader>wj', '<c-w><c-j>', opts) -- jump to split below
+vim.keymap.set('n', '<leader>wk', '<c-w><c-k>', opts) -- jump to split above
+vim.keymap.set('n', '<leader>wl', '<c-w><c-l>', opts) -- jump to split to the right
+vim.keymap.set('n', '<leader>wr', '<c-w><c-r>', opts) -- swap split positions
+vim.keymap.set('n', '<leader>ww', '<c-w><c-w>', opts) -- focus next window
+vim.keymap.set('n', '<leader>wo', ':only<cr>', opts) -- close other windows
+
+-- Stop 'o' continuing comments
+vim.api.nvim_create_autocmd('BufEnter', {
+	pattern = '*',
+	command = 'setlocal formatoptions-=o',
+})
+
+-- Set json as jsonc for comments
+vim.api.nvim_create_autocmd({'BufRead','BufNewFile'}, {
+	pattern = '*.json',
+	command = 'set ft=jsonc',
+})
+
+--- Search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+vim.keymap.set('n', '<esc>', ':noh<cr>', opts) -- clear search highlights
+vim.keymap.set('n', '*', '*N', opts) -- search word under cursor (keep position)
+vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- search selection (keep position)
+
+vim.keymap.set('n', '<leader>f', ':Telescope find_files<cr>', opts) -- search files
+vim.keymap.set('n', '<leader>/', ':Telescope live_grep<cr>', opts) -- search text
+
+--- LSP
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts) -- goto previous diagnostic
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts) -- goto next diagnostic
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- show diagnostic message
 
 vim.diagnostic.config({ virtual_text = false })
 
-local signs = { 'Error', 'Warn', 'Hint', 'Info' }
-for _, type in pairs(signs) do
-	local hl = string.format('DiagnosticSign%s', type)
-	vim.fn.sign_define(hl, { text = '●', texthl = hl, numhl = hl })
-end
+--- Completions
+vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.pumheight = 3
 
-local function map(mode, lhs, rhs, opts)
-	opts = vim.tbl_extend('force', opts or {}, { silent = true })
-	vim.keymap.set(mode, lhs, rhs, opts)
-end
-
-vim.g.mapleader = ' '
-map('n', '<space>', '<nop>')
-map('i', 'jk', '<esc>', { desc = 'escape alternative' })
-map('n', '<esc>', ':noh<cr>', { desc = 'clear search highlights' })
-map({ 'n', 'v' }, 'j', 'gj', { desc = 'move through wrapped lines' })
-map({ 'n', 'v' }, 'k', 'gk', { desc = 'move through wrapped lines' })
-map('v', '<', '<gv', { desc = 'dedent (keep selection)' })
-map('v', '>', '>gv', { desc = 'indent (keep selection)' })
-map('n', '*', '*N', { desc = 'search word under cursor (keep position)' })
-map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], { desc = 'search selection (keep position)' })
-
-map('n', '<leader>o', ':set wrap!<cr>', { desc = 'toggle word wrap' })
-map('n', '<leader>d', ':bdelete<cr>', { desc = 'delete buffer' })
-map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', { desc = 'toggle explorer' })
-map('n', '<leader>/', ':Telescope live_grep<cr>', { desc = 'search text' })
-map('n', '<leader>f', ':Telescope find_files theme=dropdown<cr>', { desc = 'search files' })
-map('n', '<leader>pc', ':PackerCompile<cr>', { desc = 'compile plugins' })
-map('n', '<leader>ps', ':PackerSync<cr>', { desc = 'sync plugins' })
-
-map('n', '<leader>wh', '<c-w><c-h>', { desc = 'jump to split to the left' })
-map('n', '<leader>wj', '<c-w><c-j>', { desc = 'jump to split below' })
-map('n', '<leader>wk', '<c-w><c-k>', { desc = 'jump to split above' })
-map('n', '<leader>wl', '<c-w><c-l>', { desc = 'jump to split to the right' })
-map('n', '<leader>wr', '<c-w><c-r>', { desc = 'swap split positions' })
-map('n', '<leader>ww', '<c-w><c-w>', { desc = 'goto next window' })
-map('n', '<leader>wo', ':only<cr>', { desc = 'close other windows' })
-
-map('n', 'g.', '`.', { desc = 'goto last modification' })
-map('n', 'go', '<c-o>', { desc = 'goto previous position' })
-map('n', 'gO', '<c-i>', { desc = 'goto next position' })
-map('n', 'gp', '<c-^>', { desc = 'goto previous buffer' })
-map('n', 'gn', ':bnext<cr>', { desc = 'goto next buffer' })
-map('n', 'gm', '%', { desc = "goto matching character: '()', '{}', '[]'" })
-
-map('n', '[d', vim.diagnostic.goto_prev, { desc = 'goto next diagnostic' })
-map('n', ']d', vim.diagnostic.goto_next, { desc = 'goto previous diagnostic' })
-map('n', 'gl', vim.diagnostic.open_float, { desc = 'show diagnostic message' })
-
+--- Plugins
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
+	vim.fn.execute(
+		'!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path
+	)
 end
 
 require('packer').startup(function(use)
@@ -92,18 +100,6 @@ require('packer').startup(function(use)
 		'numToStr/Comment.nvim',
 		config = function()
 			require('comment').setup()
-		end,
-	})
-	use({
-		'windwp/nvim-autopairs',
-		config = function()
-			require('nvim-autopairs').setup()
-		end,
-	})
-	use({
-		'windwp/nvim-ts-autotag',
-		config = function()
-			require('nvim-ts-autotag').setup()
 		end,
 	})
 	use({
@@ -127,13 +123,24 @@ require('packer').startup(function(use)
 			require('telescope').setup({
 				defaults = {
 					layout_config = {
-						horizontal = { preview_width = 0.6 },
+						horizontal = {
+							preview_width = 0.6,
+						},
 					},
 				},
 				pickers = {
 					find_files = {
+						theme = 'dropdown',
 						previewer = false,
-						find_command = { 'fd', '--type', 'f', '--hidden', '--strip-cwd-prefix' },
+						find_command = {
+							'fd',
+							'--type',
+							'f',
+							'--hidden',
+							'--exclude',
+							'.git',
+							'--strip-cwd-prefix',
+						},
 					},
 				},
 			})
@@ -152,62 +159,43 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'kyazdani42/nvim-tree.lua',
-		config = function()
-			vim.g.nvim_tree_icons = {
-				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
-			}
-			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
-			require('nvim-tree').setup({
-				auto_close = true,
-				actions = { open_file = { quit_on_open = true } },
-				git = { ignore = false },
-				filters = { custom = { '.git' } },
-				view = { side = 'right' },
-			})
-		end,
-	})
-	use({
 		'neovim/nvim-lspconfig',
 		requires = 'folke/lua-dev.nvim',
 		config = function()
 			local function on_attach(client, bufnr)
+				-- Disable lsp-provided formatting in favour of null-ls
 				client.resolved_capabilities.document_formatting = false
 
-				local function map_buffer(mode, lhs, rhs, opts)
-					opts = vim.tbl_extend('force', opts or {}, { silent = true, buffer = bufnr })
-					vim.keymap.set(mode, lhs, rhs, opts)
-				end
-
-				map_buffer('i', '<c-k>', vim.lsp.buf.signature_help)
-				map_buffer('n', '<leader>a', vim.lsp.buf.code_action)
-				map_buffer('n', '<leader>r', vim.lsp.buf.rename)
-				map_buffer('n', 'K', vim.lsp.buf.hover)
-				map_buffer('n', 'gd', vim.lsp.buf.definition)
-				map_buffer('n', 'gi', vim.lsp.buf.implementation)
-				map_buffer('n', 'gr', vim.lsp.buf.references)
+				local b_opts = { buffer = bufnr, silent = true }
+				vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, b_opts)
+				vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, b_opts)
+				vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, b_opts)
+				vim.keymap.set('n', 'K', vim.lsp.buf.hover, b_opts)
+				vim.keymap.set('n', 'gd', vim.lsp.buf.definition, b_opts)
+				vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, b_opts)
+				vim.keymap.set('n', 'gr', vim.lsp.buf.references, b_opts)
 			end
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+			-- Improve compatibility with nvim-cmp completions
 			capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-			local lspconfig = require('lspconfig')
-			lspconfig.sumneko_lua.setup(require('lua-dev').setup({
-				lspconfig = { on_attach = on_attach, capabilities = capabilities },
+			require('lspconfig').sumneko_lua.setup(require('lua-dev').setup({
+				lspconfig = {
+					on_attach = on_attach,
+					capabilities = capabilities,
+				},
 			}))
 
-			local servers = {
-				'html',
-				'jsonls',
-				'cssls',
-				'tailwindcss',
-				'tsserver',
-				'svelte',
-				'volar',
-				'rust_analyzer',
-			}
+			-- Language servers to setup. Servers must be available in your path.
+			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+			local servers = { 'cssls', 'html', 'jsonls', 'svelte', 'tailwindcss', 'tsserver' }
 			for _, server in ipairs(servers) do
-				lspconfig[server].setup({ on_attach = on_attach, capabilities = capabilities })
+				require('lspconfig')[server].setup({
+					on_attach = on_attach,
+					capabilities = capabilities,
+				})
 			end
 		end,
 	})
@@ -215,16 +203,17 @@ require('packer').startup(function(use)
 		'jose-elias-alvarez/null-ls.nvim',
 		requires = 'nvim-lua/plenary.nvim',
 		config = function()
-			local builtins = require('null-ls').builtins
-
-			require('null-ls').setup({
+			local null_ls = require('null-ls')
+			null_ls.setup({
 				sources = {
-					builtins.code_actions.xo,
-					builtins.diagnostics.xo,
-					builtins.formatting.fish_indent,
-					builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
-					builtins.formatting.rustfmt,
-					builtins.formatting.stylua,
+					null_ls.builtins.code_actions.xo,
+					null_ls.builtins.diagnostics.xo,
+					null_ls.builtins.formatting.fish_indent,
+					null_ls.builtins.formatting.prettierd.with({
+						extra_filetypes = { 'svelte', 'jsonc' },
+					}),
+					null_ls.builtins.formatting.rustfmt,
+					null_ls.builtins.formatting.stylua,
 				},
 				on_attach = function(client)
 					if client.resolved_capabilities.document_formatting then
@@ -241,12 +230,9 @@ require('packer').startup(function(use)
 	})
 	use({
 		'hrsh7th/nvim-cmp',
-		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp', 'windwp/nvim-autopairs' },
+		requires = { 'L3MON4D3/LuaSnip', 'hrsh7th/cmp-nvim-lsp' },
 		config = function()
-			vim.opt.completeopt = 'menu,menuone,noselect'
-
 			local cmp = require('cmp')
-			cmp.event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done())
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -274,7 +260,9 @@ require('packer').startup(function(use)
 						end
 					end,
 				},
-				sources = { { name = 'nvim_lsp' } },
+				sources = {
+					{ name = 'nvim_lsp' },
+				},
 			})
 		end,
 	})
