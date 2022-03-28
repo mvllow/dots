@@ -27,6 +27,10 @@ brew upgrade
 brew bundle --file="$HOME/.config/dots/brewfile"
 brew cleanup
 
+if [ $(which npm) ]; then
+	npm install --global trash-cli
+fi
+
 if [ $(which fish) ]; then
 	echo "- setting default shell: fish"
 	echo $(which fish) | sudo tee -a /etc/shells
