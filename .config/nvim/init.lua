@@ -11,6 +11,8 @@ vim.opt.laststatus = 3
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 vim.opt.shortmess:append('c')
 
+vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', opts) -- toggle explorer
+
 -- Equally resize splits
 vim.api.nvim_create_autocmd('VimResized', {
 	pattern = '*',
@@ -142,6 +144,29 @@ require('packer').startup(function(use)
 							'--strip-cwd-prefix',
 						},
 					},
+				},
+			})
+		end,
+	})
+	use({
+		'kyazdani42/nvim-tree.lua',
+		config = function()
+			vim.g.nvim_tree_icons = {
+				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
+			}
+			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
+			require('nvim-tree').setup({
+				actions = { open_file = { quit_on_open = true } },
+				filters = { custom = { '.git' } },
+				git = { ignore = false },
+				view = {
+					mappings = {
+						list = {
+							{ key = 'd', action = 'trash' },
+							{ key = 'D', action = 'remove' },
+						},
+					},
+					side = 'right',
 				},
 			})
 		end,
