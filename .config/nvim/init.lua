@@ -59,8 +59,8 @@ vim.api.nvim_create_autocmd('BufEnter', {
 	command = 'setlocal formatoptions-=o',
 })
 
--- Set json as jsonc for comments
-vim.api.nvim_create_autocmd({'BufRead','BufNewFile'}, {
+-- Set json filetype to jsonc
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 	pattern = '*.json',
 	command = 'set ft=jsonc',
 })
@@ -82,6 +82,13 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts) -- goto next diagnosti
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- show diagnostic message
 
 vim.diagnostic.config({ virtual_text = false })
+
+-- Use lil dots
+local signs = { 'Error', 'Warn', 'Hint', 'Info' }
+for _, type in pairs(signs) do
+	local hl = string.format('DiagnosticSign%s', type)
+	vim.fn.sign_define(hl, { text = '●', texthl = hl, numhl = hl })
+end
 
 --- Completions
 vim.opt.completeopt = 'menu,menuone,noselect'
