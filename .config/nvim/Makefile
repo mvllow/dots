@@ -1,13 +1,13 @@
 SHELL := /bin/sh
 
 BREW_PACKAGES = lua-language-server \
-				stylua
+					 stylua
 NPM_PACKAGES = @fsouza/prettierd \
-			   typescript-language-server \
-			   vscode-langservers-extracted \
-			   @tailwindcss/language-server \
-			   svelte-language-server \
-			   @volar/vue-language-server
+					typescript-language-server \
+					vscode-langservers-extracted \
+					@tailwindcss/language-server \
+					svelte-language-server \
+					@volar/vue-language-server
 
 all:
 	brew upgrade neovim --fetch-head
