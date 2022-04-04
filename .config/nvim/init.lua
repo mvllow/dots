@@ -113,12 +113,6 @@ require('packer').startup(function(use)
 		end,
 	})
 	use({
-		'lewis6991/gitsigns.nvim',
-		config = function()
-			require('gitsigns').setup()
-		end,
-	})
-	use({
 		'rose-pine/neovim',
 		as = 'rose-pine',
 		config = function()
@@ -190,9 +184,7 @@ require('packer').startup(function(use)
 		config = function()
 			require('nvim-treesitter.configs').setup({
 				ensure_installed = 'maintained',
-				ignore_install = { 'haskell' },
 				highlight = { enable = true },
-				indent = { enable = true },
 			})
 		end,
 	})
