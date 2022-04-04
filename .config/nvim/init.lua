@@ -5,6 +5,7 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<space>', '<nop>', opts)
 
 --- UI
+vim.opt.colorcolumn = '80'
 vim.opt.updatetime = 250
 vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 3
@@ -121,7 +122,12 @@ require('packer').startup(function(use)
 		'rose-pine/neovim',
 		as = 'rose-pine',
 		config = function()
-			require('rose-pine').setup({ disable_italics = true })
+			require('rose-pine').setup({
+				disable_italics = true,
+				highlight_groups = {
+					ColorColumn = { bg = 'highlight_low' },
+				},
+			})
 			vim.cmd('colorscheme rose-pine')
 		end,
 	})
