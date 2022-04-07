@@ -164,7 +164,7 @@ require('packer').startup(function(use)
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 			require('nvim-tree').setup({
 				actions = { open_file = { quit_on_open = true } },
-				filters = { custom = { '.git' } },
+				filters = { custom = { '.git$' } },
 				git = { ignore = false },
 				view = {
 					mappings = {
