@@ -5,6 +5,8 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<space>', '<nop>', opts)
 
 --- UI
+vim.cmd('colorscheme un')
+
 vim.opt.colorcolumn = '80'
 vim.opt.updatetime = 250
 vim.opt.signcolumn = 'yes'
@@ -120,7 +122,6 @@ require('packer').startup(function(use)
 					ColorColumn = { bg = 'highlight_low' },
 				},
 			})
-			vim.cmd('colorscheme rose-pine')
 		end,
 	})
 	use({
