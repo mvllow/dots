@@ -1,4 +1,4 @@
-column_width = 100
+column_width = 120
 indent_type = "Tabs"
 line_endings = "Unix"
 quote_style = "AutoPreferSingle"
