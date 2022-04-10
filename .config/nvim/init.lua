@@ -62,12 +62,6 @@ vim.api.nvim_create_autocmd('BufEnter', {
 	command = 'setlocal formatoptions-=o',
 })
 
--- Set json filetype to jsonc
-vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
-	pattern = '*.json',
-	command = 'set ft=jsonc',
-})
-
 --- Search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
