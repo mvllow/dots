@@ -113,9 +113,17 @@ require('packer').startup(function(use)
 			require('rose-pine').setup({
 				disable_italics = true,
 				highlight_groups = {
-					ColorColumn = { bg = 'highlight_low' },
+					ColorColumn = { bg = 'surface' },
+					Comment = { fg = 'muted', style = 'italic' },
 				},
 			})
+		end,
+	})
+	use({
+		'mvllow/modes.nvim',
+		branch = 'next',
+		config = function()
+			require('modes').setup()
 		end,
 	})
 	use({
