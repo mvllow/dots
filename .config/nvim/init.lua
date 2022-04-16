@@ -160,7 +160,7 @@ require('packer').startup(function(use)
 		'kyazdani42/nvim-tree.lua',
 		config = function()
 			vim.g.nvim_tree_icons = {
-				folder = { default = '>', empty = '>', empty_open = '▼', open = '▼' },
+				folder = { default = '●', empty = '◌', empty_open = '○', open = '○' },
 			}
 			vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 			require('nvim-tree').setup({
