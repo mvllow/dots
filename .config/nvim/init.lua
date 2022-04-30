@@ -121,7 +121,6 @@ require('packer').startup(function(use)
 	})
 	use({
 		'mvllow/modes.nvim',
-		branch = 'next',
 		config = function()
 			require('modes').setup()
 		end,
