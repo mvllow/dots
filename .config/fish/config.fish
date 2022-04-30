@@ -1,6 +1,5 @@
 set -q XDG_CONFIG_HOME; or set -xg XDG_CONFIG_HOME $HOME/.config
 set -gx EDITOR nvim
-set -gx LS_COLORS true
 
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.cargo/bin
@@ -16,7 +15,7 @@ if status is-interactive
 
     function fish_prompt
         set -g fish_prompt_pwd_dir_length 0
-        printf '%s%s> ' (prompt_pwd) (set_color yellow; fish_git_prompt; set_color normal)
+        printf '%s%s> ' (prompt_pwd) (set_color brblack; fish_git_prompt; set_color normal)
     end
 end
 
