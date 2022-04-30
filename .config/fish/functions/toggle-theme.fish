@@ -9,36 +9,44 @@
 # toggle-theme [system|light|dark]
 
 function toggle-theme -a mode
-    set dark_theme "Rosé Pine"
-    set light_theme "Rosé Pine Dawn"
-
+    set dark_theme rose-pine
+    set light_theme rose-pine-dawn
     set -q THEME; or use-terminal-colors
     set -q THEME; or set -U THEME $dark_theme
 
     if [ "$mode" = system ]
-        dark-mode status | read is_dark
+        dark-mode status | read dark_mode
 
-        if [ "$is_dark" = on ]
-            set -U THEME "$dark_theme"
+        if [ "$dark_mode" = on ]
+            set -U THEME $dark_theme
         else
-            set -U THEME "$light_theme"
+            set -U THEME $light_theme
         end
     else if [ "$mode" = light ]
-        set -U THEME "$light_theme"
+        set -u THEME $light_theme
         dark-mode off
     else if [ "$mode" = dark ]
-        set -U THEME "$dark_theme"
+        set -u THEME $dark_theme
         dark-mode on
-    else if [ "$THEME" = "$dark_theme" ]
-        set -U THEME "$light_theme"
+    else if [ "$THEME" = $dark_theme ]
+        set -u THEME $light_theme
         dark-mode off
     else
-        set -U THEME "$dark_theme"
+        set -u THEME $dark_theme
         dark-mode on
     end
 
     if type -q kitty
-        kitty +kitten themes --reload-in=all "$THEME"
+        # Manually change kitty theme to local variant
+        # Requires `allow_remote_control yes` in your kitty.conf
+        kitty @ set-colors --all --configured "~/.config/kitty/themes/$THEME.conf"
+        sed -i "" -e \
+            "s/include themes\/.*\.conf/include themes\/$THEME.conf/" \
+            "$HOME/.config/kitty/kitty.conf"
+
+        # Use kitten to set theme
+        # Syntax may differ, eg. rose-pine becomes Rosé Pine
+        # kitty +kitten themes --reload-in=all "$THEME"
     end
 end
 
