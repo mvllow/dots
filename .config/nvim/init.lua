@@ -270,7 +270,7 @@ require('packer').startup(function(use)
 						require('luasnip').lsp_expand(args.body)
 					end,
 				},
-				mapping = {
+				mapping = cmp.mapping.preset.insert({
 					['<c-space>'] = cmp.mapping.complete(),
 					['<cr>'] = cmp.mapping.confirm({
 						behavior = cmp.ConfirmBehavior.Replace,
@@ -290,7 +290,7 @@ require('packer').startup(function(use)
 							fallback()
 						end
 					end,
-				},
+				}),
 				sources = {
 					{ name = 'nvim_lsp' },
 				},
