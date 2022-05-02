@@ -196,10 +196,7 @@ require('packer').startup(function(use)
 		'neovim/nvim-lspconfig',
 		requires = 'folke/lua-dev.nvim',
 		config = function()
-			local function on_attach(client, bufnr)
-				-- Disable lsp-provided formatting in favour of null-ls
-				client.resolved_capabilities.document_formatting = false
-
+			local function on_attach(_, bufnr)
 				local b_opts = { buffer = bufnr, silent = true }
 				vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, b_opts)
 				vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, b_opts)
@@ -249,12 +246,12 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.stylua,
 				},
-				on_attach = function(client)
-					if client.resolved_capabilities.document_formatting then
+				on_attach = function(client, bufnr)
+					if client.supports_method('textDocument/formatting') then
 						vim.api.nvim_create_autocmd('BufWritePre', {
-							pattern = '<buffer>',
+							buffer = bufnr,
 							callback = function()
-								vim.lsp.buf.formatting_sync()
+								vim.lsp.buf.format()
 							end,
 						})
 					end
