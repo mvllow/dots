@@ -97,6 +97,9 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.fn.execute('!git clone --depth 1 https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
+vim.keymap.set('n', '<leader>pc', ':PackerCompile<cr>', opts) -- compile plugins
+vim.keymap.set('n', '<leader>ps', ':PackerSync<cr>', opts) -- sync and compile plugins
+
 require('packer').startup(function(use)
 	use('wbthomason/packer.nvim')
 	use('editorconfig/editorconfig-vim')
