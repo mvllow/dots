@@ -7,10 +7,9 @@
 # @usage
 # toggle-theme
 # toggle-theme [system|light|dark]
-
 function toggle-theme -a mode
-    set dark_theme rose-pine
-    set light_theme rose-pine-dawn
+    set dark_theme "Rosé Pine"
+    set light_theme "Rosé Pine Dawn"
     set -q THEME; or use-terminal-colors
     set -q THEME; or set -U THEME $dark_theme
 
@@ -39,14 +38,14 @@ function toggle-theme -a mode
     if type -q kitty
         # Manually change kitty theme to local variant
         # Requires `allow_remote_control yes` in your kitty.conf
-        kitty @ set-colors --all --configured "~/.config/kitty/themes/$THEME.conf"
-        sed -i "" -e \
-            "s/include themes\/.*\.conf/include themes\/$THEME.conf/" \
-            "$HOME/.config/kitty/kitty.conf"
+        # kitty @ set-colors --all --configured "~/.config/kitty/themes/$THEME.conf"
+        # sed -i "" -e \
+        #     "s/include themes\/.*\.conf/include themes\/$THEME.conf/" \
+        #     "$HOME/.config/kitty/kitty.conf"
 
         # Use kitten to set theme
         # Syntax may differ, eg. rose-pine becomes Rosé Pine
-        # kitty +kitten themes --reload-in=all "$THEME"
+        kitty +kitten themes --reload-in=all "$THEME"
     end
 end
 
