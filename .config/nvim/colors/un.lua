@@ -47,10 +47,10 @@ end
 --- Interface
 
 h('ColorColumn', { bg = p.bg_med })
+h('CurSearch', { link = 'IncSearch' })
 h('CursorColumn', { bg = p.bg_med })
 h('CursorLine', { bg = p.bg_med })
 h('CursorLineNr', { fg = p.fg_med })
-h('WarningMsg', { fg = p.warn })
 h('ErrorMsg', { fg = p.bg_error })
 h('IncSearch', { bg = p.accent, fg = p.on_accent })
 h('LineNr', { fg = p.fg_low })
@@ -68,6 +68,7 @@ h('StatusLine', { bg = p.bg_med, fg = p.fg_low })
 h('Title', { fg = p.fg_high })
 h('VertSplit', { fg = p.bg_med })
 h('Visual', { bg = p.bg_high })
+h('WarningMsg', { fg = p.warn })
 h('WinSeperator', { link = 'VertSplit' })
 
 --- Syntax
