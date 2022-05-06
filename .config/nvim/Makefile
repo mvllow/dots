@@ -9,14 +9,13 @@ NPM_PACKAGES = @fsouza/prettierd \
 					svelte-language-server \
 					@volar/vue-language-server
 
-all:
-	brew upgrade neovim --fetch-head
-
+.PHONY: install
 install:
 	brew upgrade
 	brew install $(BREW_PACKAGES)
 	npm install --global --latest $(NPM_PACKAGES)
 
-clean:
+.PHONY: uninstall
+uninstall:
 	brew uninstall $(BREW_PACKAGES)
 	npm uninstall --global $(NPM_PACKAGES)
