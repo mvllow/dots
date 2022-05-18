@@ -2,11 +2,12 @@ set -q XDG_CACHE_HOME; or set -xg XDG_CACHE_HOME $HOME/.cache
 set -q XDG_CONFIG_HOME; or set -xg XDG_CONFIG_HOME $HOME/.config
 set -q XDG_DATA_HOME; or set -xg XDG_DATA_HOME $HOME/.local/share
 set -q XDG_STATE_HOME; or set -xg XDG_STATE_HOME $HOME/.local/state
+
+set -gx GOPATH $HOME/.local/go
 set -gx EDITOR nvim
 
 fish_add_path /opt/homebrew/bin
-fish_add_path $HOME/.cargo/bin
-fish_add_path $HOME/go/bin
+fish_add_path $GOPATH/bin
 
 if status is-interactive
     set fish_greeting '🐟'

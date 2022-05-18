@@ -6,7 +6,6 @@
 # clone dots <-- clones <your name>/dots
 # clone mvllow/pinecone
 # clone rose-pine/neovim rose-pine-neovim
-
 function clone --wrap 'git clone' -a input
     # Extract repo name out of "user/repo"
     string match -rq '.*?\/(?<repo>.*)' -- $input

@@ -8,7 +8,6 @@ vim.keymap.set('n', '<space>', '<nop>', opts)
 vim.g.un_variant = 'rp'
 vim.cmd('colorscheme un')
 
-vim.opt.colorcolumn = '80'
 vim.opt.updatetime = 250
 vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 3
@@ -25,9 +24,9 @@ vim.api.nvim_create_autocmd('VimResized', {
 
 --- Editing
 vim.opt.mouse = 'a'
-vim.opt.tabstop = 3
-vim.opt.softtabstop = 3
-vim.opt.shiftwidth = 3
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.undofile = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -80,13 +79,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts) -- goto next diagnosti
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- show diagnostic message
 
 vim.diagnostic.config({ virtual_text = false })
-
--- Use lil dots
-local signs = { 'Error', 'Warn', 'Hint', 'Info' }
-for _, type in pairs(signs) do
-	local hl = string.format('DiagnosticSign%s', type)
-	vim.fn.sign_define(hl, { text = '●', texthl = hl, numhl = hl })
-end
 
 --- Completions
 vim.opt.completeopt = 'menu,menuone,noselect'
@@ -244,7 +236,6 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.prettierd.with({
 						extra_filetypes = { 'svelte', 'jsonc' },
 					}),
-					null_ls.builtins.formatting.rustfmt,
 					null_ls.builtins.formatting.stylua,
 				},
 				on_attach = function(client, bufnr)
