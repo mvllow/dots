@@ -1,14 +1,27 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
+tap "yt-dlp/taps"
 
 brew "dark-mode"
 brew "fd"
+brew "ffmpeg"
+brew "fish"
 brew "go"
 brew "lazygit"
+brew "lua-language-server"
+brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "ripgrep"
+brew "shfmt"
+brew "stylua"
+brew "yt-dlp/taps/yt-dlp"
+
 cask "figma"
 cask "kitty"
 cask "rectangle"
+
+mas "Gifski", id: 1351639930
+mas "Refined GitHub", id: 1519867270
+mas "Wipr", id: 1320666476

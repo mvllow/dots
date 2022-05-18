@@ -236,6 +236,7 @@ require('packer').startup(function(use)
 					null_ls.builtins.formatting.prettierd.with({
 						extra_filetypes = { 'svelte', 'jsonc' },
 					}),
+					null_ls.builtins.formatting.shfmt,
 					null_ls.builtins.formatting.stylua,
 				},
 				on_attach = function(client, bufnr)

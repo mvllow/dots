@@ -3,7 +3,6 @@
 clear
 echo "dots"
 
-echo "- initialising repo"
 git clone \
 	--separate-git-dir=$HOME/dots.git \
 	https://github.com/mvllow/dots.git \
@@ -12,14 +11,11 @@ git clone \
 rsync --recursive --verbose --exclude '.git' dots-tmp/ $HOME/
 rm -rf dots-tmp
 
-alias dotgit="git --git-dir=$HOME/dots.git/ --work-tree=$HOME"
-dotgit config status.showUntrackedFiles no
-dotgit remote add origin git@github.com:mvllow/dots.git
+git --git-dir=$HOME/dots.git/ --work-tree=$HOME config status.showUntrackedFiles no
+git --git-dir=$HOME/dots.git/ --work-tree=$HOME remote add origin git@github.com:mvllow/dots.git
 
 if ! [ $(which brew) ]; then
-	echo "- installing homebrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
 	export PATH=/opt/homebrew/bin:$PATH
 fi
 
@@ -28,7 +24,14 @@ brew bundle --file="$HOME/.config/dots/brewfile"
 brew cleanup
 
 if [ $(which npm) ]; then
-	npm install --global trash-cli
+	echo "- installing npm packages"
+	npm install --global trash-cli \
+		@fsouza/prettierd \
+		@tailwindcss/language-server \
+		@volar/vue-language-server \
+		svelte-language-server \
+		typescript-language-server \
+		vscode-langservers-extracted
 fi
 
 if [ $(which fish) ]; then
