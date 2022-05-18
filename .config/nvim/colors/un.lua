@@ -7,41 +7,74 @@ end
 vim.opt.termguicolors = true
 vim.g.colors_name = 'un'
 
-local v = {
-	l = {
-		error = '#b4637a',
-		warn = '#ea9d34',
-		hint = '#56949f',
-		info = '#907aa9',
-		accent = '#d7827e',
-		on_accent = '#faf4ed',
-		bg_low = '#faf4ed',
-		bg_med = '#fffaf3',
-		bg_high = '#f2e9e1',
-		fg_low = '#9893a5',
-		fg_med = '#797593',
-		fg_high = '#575279',
+local variants = {
+	meno = {
+		light = {
+			error = '#c75c6a',
+			warn = '#f5c359',
+			hint = '#78ccc5',
+			info = '#9745be',
+			accent = '#78ccc5',
+			on_accent = '#000000',
+			bg_low = '#fefefe',
+			bg_med = '#f5f5f5',
+			bg_high = '#e8e8e8',
+			fg_low = '#949494',
+			fg_med = '#636363',
+			fg_high = '#131313',
+		},
+		dark = {
+			error = '#c75c6a',
+			warn = '#f5c359',
+			hint = '#78ccc5',
+			info = '#9745be',
+			accent = '#78ccc5',
+			on_accent = '#000000',
+			bg_low = '#1a1a1a',
+			bg_med = '#262626',
+			bg_high = '#333333',
+			fg_low = '#737373',
+			fg_med = '#a3a3a3',
+			fg_high = '#f7f7f7',
+		},
 	},
-	d = {
-		error = '#eb6f92',
-		warn = '#f6c177',
-		hint = '#9ccfd8',
-		info = '#c4a7e7',
-		accent = '#ebbcba',
-		on_accent = '#191724',
-		bg_low = '#191724',
-		bg_med = '#1f1d2e',
-		bg_high = '#26233a',
-		fg_low = '#6e6a86',
-		fg_med = '#908caa',
-		fg_high = '#e0def4',
+	rp = {
+		light = {
+			error = '#b4637a',
+			warn = '#ea9d34',
+			hint = '#56949f',
+			info = '#907aa9',
+			accent = '#d7827e',
+			on_accent = '#faf4ed',
+			bg_low = '#faf4ed',
+			bg_med = '#fffaf3',
+			bg_high = '#f2e9e1',
+			fg_low = '#9893a5',
+			fg_med = '#797593',
+			fg_high = '#575279',
+		},
+		dark = {
+			error = '#eb6f92',
+			warn = '#f6c177',
+			hint = '#9ccfd8',
+			info = '#c4a7e7',
+			accent = '#ebbcba',
+			on_accent = '#191724',
+			bg_low = '#191724',
+			bg_med = '#1f1d2e',
+			bg_high = '#26233a',
+			fg_low = '#6e6a86',
+			fg_med = '#908caa',
+			fg_high = '#e0def4',
+		},
 	},
 }
 
-local p = vim.o.background == 'light' and v.l or v.d
+local v = vim.g.un_variant or 'meno'
+local p = vim.o.background == 'light' and variants[v].light or variants[v].dark
 
-local h = function(...)
-	return vim.api.nvim_set_hl(0, ...)
+local h = function(group, color)
+	return vim.api.nvim_set_hl(0, group, color)
 end
 
 --- Interface
@@ -59,7 +92,7 @@ h('NonText', { fg = p.fg_low })
 h('Normal', { bg = p.bg_low, fg = p.fg_low })
 h('Pmenu', { bg = p.bg_med, fg = p.fg_med })
 h('PmenuSbar', { bg = p.bg_high })
-h('PmenuSel', { bg = p.bg_high, fg = p.text })
+h('PmenuSel', { bg = p.bg_high, fg = p.fg_high })
 h('PmenuThumb', { bg = p.fg_low })
 h('Question', { fg = p.fg_med })
 h('Search', { bg = p.bg_high })
@@ -158,6 +191,7 @@ h('DiagnosticUnderlineWarn', { undercurl = true, sp = p.warn })
 --- Plugins
 
 -- kyazdani42/nvim-tree.lua
+h('NvimTreeFolderIcon', { fg = p.fg_low })
 h('NvimTreeSpecialFile', { fg = p.fg_low })
 
 -- mvllow/modes.nvim

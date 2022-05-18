@@ -11,7 +11,7 @@ fish_add_path $HOME/go/bin
 if status is-interactive
     set fish_greeting '🐟'
 
-    toggle-theme system
+    set-theme system
 
     function fish_title
         echo (fish_prompt_pwd_dir_length=0 prompt_pwd)
@@ -40,4 +40,4 @@ abbr --add ,nvim "$EDITOR ~/.config/nvim/init.lua -c 'lcd %:p:h'"
 # Docker
 abbr --add da "docker run --rm -it -p 7655:22 alpine:latest"
 
-bind \e\[108\;9u toggle-theme # <super+l>
+bind \e\[108\;9u set-theme # <super+l>

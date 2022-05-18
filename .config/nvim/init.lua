@@ -5,6 +5,7 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<space>', '<nop>', opts)
 
 --- UI
+vim.g.un_variant = 'rp'
 vim.cmd('colorscheme un')
 
 vim.opt.colorcolumn = '80'
