@@ -34,6 +34,11 @@ if [ $(which npm) ]; then
 		vscode-langservers-extracted
 fi
 
+if [ $(which go) ]; then
+	go install golang.org/x/tools/gopls@latest
+	go install golang.org/x/tools/cmd/goimports@latest
+fi
+
 if [ $(which fish) ]; then
 	echo "- setting default shell: fish"
 	echo $(which fish) | sudo tee -a /etc/shells

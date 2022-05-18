@@ -214,7 +214,7 @@ require('packer').startup(function(use)
 
 			-- Language servers to setup. Servers must be available in your path.
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-			local servers = { 'cssls', 'html', 'jsonls', 'svelte', 'tailwindcss', 'tsserver' }
+			local servers = { 'cssls', 'html', 'jsonls', 'svelte', 'tailwindcss', 'tsserver', 'gopls' }
 			for _, server in ipairs(servers) do
 				require('lspconfig')[server].setup({
 					on_attach = on_attach,
@@ -233,6 +233,8 @@ require('packer').startup(function(use)
 					null_ls.builtins.code_actions.xo,
 					null_ls.builtins.diagnostics.xo,
 					null_ls.builtins.formatting.fish_indent,
+					null_ls.builtins.formatting.gofmt,
+					null_ls.builtins.formatting.goimports,
 					null_ls.builtins.formatting.prettierd.with({
 						extra_filetypes = { 'svelte', 'jsonc' },
 					}),
