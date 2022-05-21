@@ -32,7 +32,7 @@ local variants = {
 			on_accent = '#000000',
 			bg_low = '#1a1a1a',
 			bg_med = '#262626',
-			bg_high = '#333333',
+			bg_high = '#323232',
 			fg_low = '#737373',
 			fg_med = '#a3a3a3',
 			fg_high = '#f7f7f7',
@@ -70,7 +70,7 @@ local variants = {
 	},
 }
 
-local v = vim.g.un_variant or 'meno'
+local v = vim.g.un_variant or 'rp'
 local p = vim.o.background == 'light' and variants[v].light or variants[v].dark
 
 local h = function(group, color)
