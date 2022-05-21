@@ -3,10 +3,12 @@ tap "homebrew/cask"
 tap "homebrew/core"
 tap "yt-dlp/taps"
 
+brew "clang-format"
 brew "dark-mode"
 brew "fd"
 brew "ffmpeg"
 brew "fish"
+brew "gh"
 brew "go"
 brew "lazygit"
 brew "lua-language-server"
@@ -22,6 +24,6 @@ cask "figma"
 cask "kitty"
 cask "rectangle"
 
-mas "Gifski", id: 1351639930
+mas "Mini Motorways", id: 1456188526
 mas "Refined GitHub", id: 1519867270
 mas "Wipr", id: 1320666476
