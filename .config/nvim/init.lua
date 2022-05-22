@@ -143,7 +143,10 @@ null_ls.setup({
 		null_ls.builtins.formatting.fish_indent,
 		null_ls.builtins.formatting.gofmt,
 		null_ls.builtins.formatting.goimports,
-		null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { 'svelte', 'jsonc' } }),
+		null_ls.builtins.formatting.prettierd.with({
+			extra_filetypes = { 'svelte', 'jsonc' },
+			{ extra_args = { '--plugin-search-dir', '.' } },
+		}),
 		null_ls.builtins.formatting.shfmt,
 		null_ls.builtins.formatting.stylua,
 	},
