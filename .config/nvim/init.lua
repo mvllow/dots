@@ -129,7 +129,7 @@ require('lspconfig').sumneko_lua.setup(
 
 -- Language servers to setup. Servers must be available in your path.
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-local servers = { 'cssls', 'gopls', 'html', 'jsonls', 'svelte', 'tailwindcss', 'tsserver', 'volar' }
+local servers = { 'cssls', 'gopls', 'html', 'jsonls', 'svelte', 'tailwindcss', 'tsserver' }
 for _, server in ipairs(servers) do
 	require('lspconfig')[server].setup({ on_attach = on_attach, capabilities = capabilities })
 end
