@@ -15,6 +15,7 @@ brew "lua-language-server"
 brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
+brew "pnpm"
 brew "ripgrep"
 brew "shfmt"
 brew "stylua"
