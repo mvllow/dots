@@ -36,20 +36,28 @@ vim.g.un_variant = 'rp'
 vim.cmd('colorscheme rose-pine')
 
 packer.use('kyazdani42/nvim-tree.lua')
-vim.g.nvim_tree_icons = {
-	folder = {
-		default = '▷',
-		open = '▽',
-		empty = '○',
-		empty_open = '□',
-		symlink = '⮂',
-	},
-}
-vim.g.nvim_tree_show_icons = { folders = 1, files = 0 }
 require('nvim-tree').setup({
-	actions = { open_file = { quit_on_open = true } },
-	filters = { custom = { '.git$' } },
-	git = { ignore = false },
+	actions = {
+		open_file = {
+			quit_on_open = true,
+		},
+	},
+	filters = {
+		custom = { '.git$' },
+	},
+	git = {
+		ignore = false,
+	},
+	renderer = {
+		icons = {
+			show = {
+				file = false,
+				folder = false,
+				folder_arrow = false,
+				git = false,
+			},
+		},
+	},
 	view = {
 		mappings = {
 			list = {
