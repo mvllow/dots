@@ -1,9 +1,11 @@
 gui:
+  authorColors:
+    "*": magenta
   showBottomLine: false
+  showCommandLog: false
+  showListFooter: false
   theme:
     selectedLineBgColor:
       - default
     selectedRangeBgColor:
       - reverse
-  authorColors:
-    "*": "magenta"
