@@ -32,7 +32,6 @@ require('nvim-treesitter.configs').setup({
 
 packer.use({ 'rose-pine/neovim', as = 'rose-pine' })
 require('rose-pine').setup({ disable_italics = true })
-vim.g.un_variant = 'rp'
 vim.cmd('colorscheme rose-pine')
 
 packer.use('kyazdani42/nvim-tree.lua')
