@@ -14,11 +14,9 @@ function set-theme -a theme
             else
                 set -U THEME $light_theme
             end
-        case meno-luna
         case rose-pine
         case rose-pine-moon
             dark-mode on
-        case meno-sole
         case rose-pine-dawn
             dark-mode off
         case ''
