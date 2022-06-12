@@ -32,7 +32,7 @@ function set-theme -a theme
             dark-mode on
     end
 
-    if type -q kitty
+    if [ "$TERM" = xterm-kitty ]
         # Manually change kitty theme to local variant
         # Requires `allow_remote_control yes` in your kitty.conf
         kitty @ set-colors --all --configured "$HOME/.config/kitty/themes/$THEME.conf"
