@@ -69,11 +69,12 @@ require('nvim-tree').setup({
 })
 map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>') -- toggle explorer
 
-vim.opt.updatetime = 250
+vim.opt.cmdheight = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 3
 vim.opt.statusline = ' %f %M %= %l:%c ♥ '
 -- vim.opt.winbar = ' %= %M %f '
+vim.opt.updatetime = 250
 vim.opt.shortmess:append('c')
 
 --- Editing
