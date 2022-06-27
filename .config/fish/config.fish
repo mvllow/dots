@@ -3,6 +3,7 @@ set -q XDG_CONFIG_HOME; or set -xg XDG_CONFIG_HOME $HOME/.config
 set -q XDG_DATA_HOME; or set -xg XDG_DATA_HOME $HOME/.local/share
 set -q XDG_STATE_HOME; or set -xg XDG_STATE_HOME $HOME/.local/state
 
+set -gx LS_COLORS auto
 set -gx GOPATH $HOME/.local/go
 set -gx EDITOR nvim
 
