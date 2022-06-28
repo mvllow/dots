@@ -33,6 +33,7 @@ abbr --add .list "git --git-dir=\$HOME/dots.git --work-tree=\$HOME ls-files --ot
 # Manage cli configs
 abbr --add ,amfora "$EDITOR ~/.config/amfora/config.toml -c 'lcd %:p:h'"
 abbr --add ,dots "$EDITOR ~/.config/dots/setup.sh -c 'lcd %:p:h'"
+abbr --add ,music "$EDITOR ~/.config/music/playlists.conf -c 'lcd %:p:h'"
 abbr --add ,fish "$EDITOR ~/.config/fish/config.fish -c 'lcd %:p:h'"
 abbr --add ,git "$EDITOR ~/.config/git/config -c 'lcd %:p:h'"
 abbr --add ,kitty "$EDITOR ~/.config/kitty/kitty.conf -c 'lcd %:p:h'"
