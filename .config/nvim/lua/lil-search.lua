@@ -35,5 +35,7 @@ local opts = { silent = true }
 vim.keymap.set('n', '<esc>', ':noh<cr>', opts) -- clear search highlights
 vim.keymap.set('n', '*', '*N', opts) -- search word under cursor (keep position)
 vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- search selection (keep position)
+vim.keymap.set('n', 'S', ':%s///g<left><left>', opts) -- replace last search
+
 vim.keymap.set('n', '<leader>f', ':Telescope find_files<cr>', opts)
 vim.keymap.set('n', '<leader>/', ':Telescope live_grep<cr>', opts)

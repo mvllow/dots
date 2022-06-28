@@ -33,6 +33,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>l', ':normal gq80l<cr>', opts) -- wrap lin
 
 -- Goto
 vim.keymap.set('n', 'go', '<c-o>', opts) -- goto previous position
+vim.keymap.set('n', 'gp', '<c-^>', opts) -- goto previous buffer
+vim.keymap.set('n', 'gm', '%', opts) -- goto matching pair
 
 -- Window
 vim.keymap.set('n', '<leader>wh', '<c-w><c-h>', opts) -- jump to split to the left
@@ -42,7 +44,6 @@ vim.keymap.set('n', '<leader>wl', '<c-w><c-l>', opts) -- jump to split to the ri
 vim.keymap.set('n', '<leader>wr', '<c-w><c-r>', opts) -- swap split positions
 vim.keymap.set('n', '<leader>ww', '<c-w><c-w>', opts) -- focus next window
 vim.keymap.set('n', '<leader>wo', ':only<cr>', opts) -- close other windows
-vim.keymap.set('n', '<leader>e', ':Lex!<cr>', opts) -- toggle file explorer
 
 -- Stop 'o' continuing comments
 vim.api.nvim_create_autocmd('BufEnter', {
