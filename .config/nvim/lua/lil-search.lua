@@ -4,6 +4,7 @@
 --- Setup search.
 
 local use = require('lil-helpers').use
+local map = require('lil-helpers').map
 
 use({
 	'nvim-telescope/telescope.nvim',
@@ -17,13 +18,6 @@ use({
 					},
 				},
 			},
-			pickers = {
-				find_files = {
-					theme = 'dropdown',
-					previewer = false,
-					find_command = { 'fd', '-t', 'f', '--strip-cwd-prefix' },
-				},
-			},
 		})
 	end,
 })
@@ -31,11 +25,15 @@ use({
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-local opts = { silent = true }
-vim.keymap.set('n', '<esc>', ':noh<cr>', opts) -- clear search highlights
-vim.keymap.set('n', '*', '*N', opts) -- search word under cursor (keep position)
-vim.keymap.set('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], opts) -- search selection (keep position)
-vim.keymap.set('n', 'S', ':%s///g<left><left>', opts) -- replace last search
+map('n', '<esc>', ':noh<cr>', 'clear search highlights')
+map('n', '*', '*N', 'search word under cursor')
+map('v', '*', [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], 'search selection')
+map('n', 'S', ':%s///g<left><left>', 'substitute search')
 
-vim.keymap.set('n', '<leader>f', ':Telescope find_files<cr>', opts)
-vim.keymap.set('n', '<leader>/', ':Telescope live_grep<cr>', opts)
+map('n', '<leader>/', ':Telescope live_grep<cr>')
+map(
+	'n',
+	'<leader>f',
+	':Telescope find_files find_command=fd,-t,f,-H,-E,.git,--strip-cwd-prefix theme=dropdown previewer=false<cr>'
+)
+map('n', '<leader>p', ':Telescope commands theme=dropdown<cr>')

@@ -10,14 +10,14 @@ use({
 	requires = 'folke/lua-dev.nvim',
 	config = function()
 		local function on_attach(_, bufnr)
-			local b_opts = { buffer = bufnr, silent = true }
-			vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, b_opts)
-			vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, b_opts)
-			vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, b_opts)
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, b_opts)
-			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, b_opts)
-			vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, b_opts)
-			vim.keymap.set('n', 'gr', vim.lsp.buf.references, b_opts)
+			local map = require('lil-helpers').map
+			map('i', '<c-k>', vim.lsp.buf.signature_help, { buffer = bufnr })
+			map('n', '<leader>a', vim.lsp.buf.code_action, { buffer = bufnr })
+			map('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr })
+			map('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
+			map('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
+			map('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
+			map('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
 		end
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -103,13 +103,4 @@ use({
 			end,
 		})
 	end,
-})
-
-local opts = { silent = true }
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts) -- goto previous diagnostic
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts) -- goto next diagnostic
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- show diagnostic message
-
-vim.diagnostic.config({
-	virtual_text = false,
 })

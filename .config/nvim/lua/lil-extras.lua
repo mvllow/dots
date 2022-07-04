@@ -5,6 +5,7 @@
 --- built-in functionality.
 
 local use = require('lil-helpers').use
+local map = require('lil-helpers').map
 
 use({
 	'kyazdani42/nvim-tree.lua',
@@ -52,5 +53,4 @@ use({
 	end,
 })
 
-local opts = { silent = true }
-vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', opts)
+map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')

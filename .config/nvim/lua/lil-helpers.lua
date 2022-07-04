@@ -7,14 +7,25 @@ local M = {}
 local packer = nil
 local installed_plugins = {}
 
+M.map = function(mode, lhs, rhs, opts)
+	opts = opts or {}
+	if type(opts) == 'string' then
+		opts = { desc = opts }
+	end
+
+	opts = vim.tbl_deep_extend('force', opts, { silent = true })
+
+	vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 M.use = function(package)
 	if packer == nil then
 		local install_path = vim.fn.stdpath('data')
-			 .. '/site/pack/packer/start/packer.nvim'
+			.. '/site/pack/packer/start/packer.nvim'
 		if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 			vim.fn.execute(
 				'!git clone --depth 1 https://github.com/wbthomason/packer.nvim '
-				.. install_path
+					.. install_path
 			)
 		end
 
