@@ -1,0 +1,15 @@
+--download-archive "$HOME/.config/yt-dlp/download-cache.txt"
+--batch-file "$HOME/.config/yt-dlp/playlists.conf"
+-o "$HOME/Music/dl/%(playlist_title)s/%(title)s - %(uploader)s.%(ext)s"
+# -o "$HOME/Music/dl/%(playlist_title)s/%(title)s.%(ext)s"
+--no-overwrites
+--continue
+--embed-thumbnail
+
+--metadata-from-title "%(artist)s - %(track)s"
+--add-metadata
+
+--extract-audio
+--audio-format mp3
+--audio-quality 0
+--prefer-ffmpeg
