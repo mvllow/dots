@@ -17,6 +17,7 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "pnpm"
 brew "ripgrep"
+brew "rust-analyzer"
 brew "shfmt"
 brew "stylua"
 brew "yt-dlp/taps/yt-dlp"

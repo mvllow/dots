@@ -43,6 +43,7 @@ use({
 			'gopls',
 			'html',
 			'jsonls',
+			'rust_analyzer',
 			'svelte',
 			'tailwindcss',
 			'tsserver',
@@ -80,6 +81,7 @@ use({
 			null_ls.builtins.formatting.prettierd.with({
 				extra_filetypes = { 'svelte' },
 			}),
+			null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.shfmt,
 			null_ls.builtins.formatting.stylua,
 		}

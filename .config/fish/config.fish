@@ -8,6 +8,7 @@ set -gx GOPATH $HOME/.local/go
 set -gx EDITOR nvim
 
 fish_add_path /opt/homebrew/bin
+fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 
 if status is-interactive
