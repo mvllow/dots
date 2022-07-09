@@ -4,7 +4,6 @@
 --- Setup interface elements including colorscheme and statusline.
 
 local use = require('lil-helpers').use
-local map = require('lil-helpers').map
 
 use({
 	'nvim-treesitter/nvim-treesitter',
@@ -36,9 +35,14 @@ vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
 vim.g.netrw_winsize = 25
 
+-- Add virtual color column per line only when necessary
+vim.cmd('hi LilColorColumn cterm=reverse gui=reverse')
+vim.fn.matchadd('LilColorColumn', '\\%81v', 100)
+
 -- Equally resize splits
 vim.api.nvim_create_autocmd('VimResized', {
 	command = 'tabdo wincmd =',
 })
 
-map('n', '<leader>e', ':Lex!<cr>', 'toggle file explorer')
+local opts = { silent = true }
+vim.keymap.set('n', '<leader>e', ':Lex!<cr>', opts) -- toggle file explorer

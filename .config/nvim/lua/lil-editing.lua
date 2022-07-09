@@ -4,7 +4,6 @@
 --- Setup options related to editing.
 
 local use = require('lil-helpers').use
-local map = require('lil-helpers').map
 
 use('editorconfig/editorconfig-vim')
 use({
@@ -15,6 +14,9 @@ use({
 })
 
 vim.opt.mouse = 'a'
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.undofile = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -32,40 +34,35 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 	end,
 })
 
-map('i', 'jk', '<esc>')
-map({ 'n', 'v' }, 'j', 'gj', 'move through wrapped lines')
-map({ 'n', 'v' }, 'k', 'gk', 'move through wrapped lines')
-map('v', '<', '<gv', 'dedent (keep selection)')
-map('v', '>', '>gv', 'indent (keep selection)')
+local opts = { silent = true }
+vim.keymap.set('i', 'jk', '<esc>', opts) -- alternative to <esc>
+vim.keymap.set({ 'n', 'v' }, 'j', 'gj', opts) -- move through wrapped lines
+vim.keymap.set({ 'n', 'v' }, 'k', 'gk', opts) -- move through wrapped lines
+vim.keymap.set('v', '<', '<gv', opts) -- dedent (keep selection)
+vim.keymap.set('v', '>', '>gv', opts) -- indent (keep selection)
 
 -- Goto
-map('n', 'go', '<c-o>', 'goto previous position')
-map('n', 'gp', '<c-^>', 'goto previously focused buffer')
-map('n', 'gm', '%', 'goto matching pair')
-map('n', 'g[', vim.diagnostic.goto_prev, {
-	desc = 'goto previous diagnostic',
-})
-map('n', 'g]', vim.diagnostic.goto_next, {
-	desc = 'goto next diagnostic',
-})
-map('n', 'gl', vim.diagnostic.open_float, {
-	desc = 'goto line diagnostic message',
-})
+vim.keymap.set('n', 'go', '<c-o>', opts) -- goto previous position
+vim.keymap.set('n', 'gp', '<c-^>', opts) -- goto previously focused buffer
+vim.keymap.set('n', 'gm', '%', opts) -- goto matching pair
+vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev, opts) -- goto previous diagnostic
+vim.keymap.set('n', 'g]', vim.diagnostic.goto_next, opts) -- goto next diagnostic
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts) -- goto line diagnostic message
 
 -- Buffer
-map('n', '<leader>bp', ':bp<cr>', 'focus previous buffer')
-map('n', '<leader>bn', ':bn<cr>', 'focus next buffer')
-map('n', '<leader>bm', ':bm<cr>', 'focus modified buffer')
-map('n', '<leader>bd', ':bd<cr>', 'delete buffer')
+vim.keymap.set('n', '<leader>bp', ':bp<cr>', opts) -- focus previous buffer
+vim.keymap.set('n', '<leader>bn', ':bn<cr>', opts) -- focus next buffer
+vim.keymap.set('n', '<leader>bm', ':bm<cr>', opts) -- focus modified buffer
+vim.keymap.set('n', '<leader>bd', ':bd<cr>', opts) -- delete buffer
 
 -- Window
-map('n', '<leader>wh', '<c-w>h', 'move to left split')
-map('n', '<leader>wj', '<c-w>j', 'move to below split')
-map('n', '<leader>wk', '<c-w>k', 'move to above split')
-map('n', '<leader>wl', '<c-w>l', 'move to right split')
-map('n', '<leader>wr', '<c-w>r', 'swap split positions')
-map('n', '<leader>ws', '<c-w>s', 'open horizontal split')
-map('n', '<leader>wv', '<c-w>v', 'open vertical split')
-map('n', '<leader>ww', '<c-w>w', 'focus next window')
-map('n', '<leader>wc', '<c-w>c', 'close current window')
-map('n', '<leader>wo', ':only<cr>', 'close other windows')
+vim.keymap.set('n', '<leader>wh', '<c-w>h', opts) -- move to left window
+vim.keymap.set('n', '<leader>wj', '<c-w>j', opts) -- move to below window
+vim.keymap.set('n', '<leader>wk', '<c-w>k', opts) -- move to above window
+vim.keymap.set('n', '<leader>wl', '<c-w>l', opts) -- move to right window
+vim.keymap.set('n', '<leader>wr', '<c-w>r', opts) -- swap split positions
+vim.keymap.set('n', '<leader>ws', '<c-w>s', opts) -- open horizontal split
+vim.keymap.set('n', '<leader>wv', '<c-w>v', opts) -- open vertical split
+vim.keymap.set('n', '<leader>ww', '<c-w>w', opts) -- focus next window
+vim.keymap.set('n', '<leader>wc', '<c-w>c', opts) -- close current window
+vim.keymap.set('n', '<leader>wo', ':only<cr>', opts) -- close other windows

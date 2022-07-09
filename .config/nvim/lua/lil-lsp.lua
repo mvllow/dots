@@ -10,14 +10,14 @@ use({
 	requires = 'folke/lua-dev.nvim',
 	config = function()
 		local function on_attach(_, bufnr)
-			local map = require('lil-helpers').map
-			map('i', '<c-k>', vim.lsp.buf.signature_help, { buffer = bufnr })
-			map('n', '<leader>a', vim.lsp.buf.code_action, { buffer = bufnr })
-			map('n', '<leader>r', vim.lsp.buf.rename, { buffer = bufnr })
-			map('n', 'K', vim.lsp.buf.hover, { buffer = bufnr })
-			map('n', 'gd', vim.lsp.buf.definition, { buffer = bufnr })
-			map('n', 'gi', vim.lsp.buf.implementation, { buffer = bufnr })
-			map('n', 'gr', vim.lsp.buf.references, { buffer = bufnr })
+			local opts = { buffer = bufnr, silent = true }
+			vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, opts)
+			vim.keymap.set('n', '<leader>a', vim.lsp.buf.code_action, opts)
+			vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+			vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+			vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+			vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 		end
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -36,7 +36,8 @@ use({
 			},
 		}))
 
-		-- Language servers to setup. Servers must be available in your path.
+		-- TODO(user): Add language servers
+		-- Servers must be available in your path.
 		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 		local servers = {
 			'cssls',
@@ -47,22 +48,11 @@ use({
 			'svelte',
 			'tailwindcss',
 			'tsserver',
-			'volar',
 		}
-
 		for _, server in ipairs(servers) do
-			local settings = {}
-
-			if server == 'cssls' then
-				settings = {
-					css = { validate = false },
-				}
-			end
-
 			lspconfig[server].setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
-				settings = settings,
 			})
 		end
 	end,
@@ -72,6 +62,10 @@ use({
 	requires = 'nvim-lua/plenary.nvim',
 	config = function()
 		local null_ls = require('null-ls')
+
+		-- TODO(user): Add sources
+		-- Source cmd must be available in your path.
+		-- https:// https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 		local sources = {
 			null_ls.builtins.code_actions.xo,
 			null_ls.builtins.diagnostics.xo,

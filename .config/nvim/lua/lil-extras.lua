@@ -5,7 +5,6 @@
 --- built-in functionality.
 
 local use = require('lil-helpers').use
-local map = require('lil-helpers').map
 
 use({
 	'kyazdani42/nvim-tree.lua',
@@ -18,7 +17,7 @@ use({
 			},
 			filters = {
 				-- Hide ".git" folder
-				custom = { '.git$' },
+				custom = { '^.git$' },
 			},
 			git = {
 				-- Do not hide gitignored files
@@ -53,4 +52,5 @@ use({
 	end,
 })
 
-map('n', '<leader>e', ':NvimTreeFindFileToggle<cr>')
+local opts = { silent = true }
+vim.keymap.set('n', '<leader>e', ':NvimTreeFindFileToggle<cr>', opts)
