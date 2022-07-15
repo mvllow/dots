@@ -8,142 +8,49 @@ vim.opt.termguicolors = true
 vim.g.colors_name = 'un'
 
 local variants = {
-	meno = {
-		light = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#78ccc5',
-			on_accent = '#000000',
-			b_low = '#fefefe',
-			b_med = '#f5f5f5',
-			b_high = '#e8e8e8',
-			f_low = '#949494',
-			f_med = '#636363',
-			f_high = '#131313',
-		},
-		dark = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#78ccc5',
-			on_accent = '#000000',
-			b_low = '#1a1a1a',
-			b_med = '#212121',
-			b_high = '#292929',
-			f_low = '#adada4',
-			f_med = '#cfcfc9',
-			f_high = '#f0f0ef',
-		},
+	light = {
+		error = '#b4637a',
+		warn = '#ea9d34',
+		hint = '#56949f',
+		info = '#907aa9',
+		accent = '#d7827e',
+		on_accent = '#faf4ed',
+		b_low = '#faf4ed',
+		b_med = '#fffaf3',
+		b_high = '#f2e9e1',
+		f_low = '#9893a5',
+		f_med = '#797593',
+		f_high = '#575279',
 	},
-	nessuna = {
-		light = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#78ccc5',
-			on_accent = '#000000',
-			b_low = '#fefefe',
-			b_med = '#f5f5f5',
-			b_high = '#e8e8e8',
-			f_low = '#949494',
-			f_med = '#636363',
-			f_high = '#131313',
-		},
-		dark = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#78ccc5',
-			on_accent = '#000000',
-			b_low = '#1a1a1a',
-			b_med = '#262626',
-			b_high = '#323232',
-			f_low = '#737373',
-			f_med = '#a3a3a3',
-			f_high = '#f7f7f7',
-		},
-	},
-	warsaw = {
-		light = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#78ccc5',
-			on_accent = '#000000',
-			b_low = '#f6ecdf',
-			b_med = '#fefaf3',
-			b_high = '#efe4d4',
-			f_low = '#f5c1a9',
-			f_med = '#58b0b0',
-			f_high = '#b9d9b4',
-		},
-		dark = {
-			error = '#c75c6a',
-			warn = '#f5c359',
-			hint = '#78ccc5',
-			info = '#9745be',
-			accent = '#e3bd77',
-			on_accent = '#141414',
-			b_low = '#1a1a1a',
-			b_med = '#000000',
-			b_high = '#323232',
-			f_low = '#f5c1a9',
-			f_med = '#58b0b0',
-			f_high = '#b9d9b4',
-		},
-	},
-	rose_pine = {
-		light = {
-			error = '#b4637a',
-			warn = '#ea9d34',
-			hint = '#56949f',
-			info = '#907aa9',
-			accent = '#d7827e',
-			on_accent = '#faf4ed',
-			b_low = '#faf4ed',
-			b_med = '#fffaf3',
-			b_high = '#f2e9e1',
-			f_low = '#9893a5',
-			f_med = '#797593',
-			f_high = '#575279',
-		},
-		dark = {
-			error = '#eb6f92',
-			warn = '#f6c177',
-			hint = '#9ccfd8',
-			info = '#c4a7e7',
-			accent = '#ebbcba',
-			on_accent = '#191724',
-			b_low = '#191724',
-			b_med = '#1f1d2e',
-			b_high = '#26233a',
-			f_low = '#6e6a86',
-			f_med = '#908caa',
-			f_high = '#e0def4',
-		},
+	dark = {
+		error = '#eb6f92',
+		warn = '#f6c177',
+		hint = '#9ccfd8',
+		info = '#c4a7e7',
+		accent = '#ebbcba',
+		on_accent = '#191724',
+		b_low = '#191724',
+		b_med = '#1f1d2e',
+		b_high = '#26233a',
+		f_low = '#6e6a86',
+		f_med = '#908caa',
+		f_high = '#e0def4',
 	},
 }
 
--- Set variant
-local v = vim.g.un_variant or 'rose_pine'
-if not variants[v] then
-	vim.notify('No `un_variant` named "' .. vim.g.un_variant .. '"')
-	v = 'rose_pine'
-end
-
 -- Set palette based on variant
-local p = vim.o.background == 'light' and variants[v].light or variants[v].dark
+local p = vim.o.background == 'light' and variants.light or variants.dark
 
 local h = function(group, color)
 	return vim.api.nvim_set_hl(0, group, color)
 end
 
+p.error = vim.g.un_error or p.error
+p.warn = vim.g.un_warn or p.warn
+p.hint = vim.g.un_hint or p.hint
+p.info = vim.g.un_info or p.info
+p.on_accent = vim.g.un_on_accent or p.on_accent
+p.accent = vim.g.un_accent or p.accent
 p.b_low = vim.g.un_b_low or p.b_low
 p.b_med = vim.g.un_b_med or p.b_med
 p.b_high = vim.g.un_b_high or p.b_high
@@ -163,7 +70,7 @@ h('IncSearch', { bg = p.accent, fg = p.on_accent })
 h('LineNr', { fg = p.f_low })
 h('MatchParen', { bg = p.accent, fg = p.on_accent })
 h('NonText', { fg = p.f_low })
-h('Normal', { bg = p.b_low, fg = p.f_low })
+h('Normal', { bg = p.b_low, fg = p.f_med })
 h('Pmenu', { bg = p.b_med, fg = p.f_med })
 h('PmenuSbar', { bg = p.b_high })
 h('PmenuSel', { bg = p.b_high, fg = p.f_high })
@@ -196,37 +103,31 @@ h('Function', { fg = p.f_med })
 h('Identifier', { fg = p.f_med })
 h('Include', { fg = p.f_med })
 h('Keyword', { fg = p.f_med })
-h('Label', { fg = p.f_med })
+h('Label', { fg = p.f_low })
 h('Macro', { fg = p.f_low })
 h('Number', { fg = p.f_med })
 h('Operator', { fg = p.f_low })
 h('PreCondit', { fg = p.f_med })
 h('PreProc', { fg = p.f_med })
 h('Repeat', { fg = p.f_low })
-h('Special', { fg = p.f_high })
-h('SpecialChar', { fg = p.f_low })
-h('SpecialComment', { fg = p.f_low })
-h('SpecialKey', { fg = p.f_high })
-h('Statement', { fg = p.f_low })
+h('Special', { fg = p.f_low })
+h('SpecialChar', { link = 'Special' })
+h('SpecialComment', { link = 'Special' })
+h('SpecialKey', { link = 'Special' })
+h('Statement', { fg = p.f_high })
 h('StorageClass', { fg = p.f_low })
-h('String', { fg = p.f_low })
+h('String', { fg = p.f_med })
 h('Structure', { fg = p.f_low })
 h('Tag', { fg = p.f_high })
 h('Todo', { fg = p.f_low })
-h('Type', { fg = p.f_low })
+h('Type', { fg = p.f_high })
 h('Typedef', { fg = p.f_low })
-
---- Language syntax
-
-h('markdownCode', { fg = p.f_med })
-h('markdownCodeDelimiter', { link = 'Delimiter' })
-h('markdownUrl', { underline = true })
 
 --- Treesitter syntax
 
 h('TSBoolean', { link = 'Boolean' })
 h('TSConstant', { link = 'Constant' })
-h('TSField', { fg = p.f_med })
+h('TSField', { fg = p.f_low })
 h('TSFunction', { link = 'Function' })
 h('TSInclude', { link = 'Include' })
 h('TSKeyword', { link = 'Keyword' })
@@ -243,6 +144,7 @@ h('TSString', { link = 'String' })
 h('TSStringEscape', { link = 'String' })
 h('TSTag', { link = 'Tag' })
 h('TSTagDelimiter', { link = 'Delimiter' })
+h('TSText', { fg = p.f_high })
 h('TSTitle', { link = 'Title' })
 h('TSType', { link = 'Type' })
 h('TSURI', { link = 'String' })
@@ -263,12 +165,7 @@ h('DiagnosticUnderlineWarn', { undercurl = true, sp = p.warn })
 
 --- Plugins
 
--- kyazdani42/nvim-tree.lua
-h('NvimTreeFolderIcon', { fg = p.f_low })
-h('NvimTreeSpecialFile', { fg = p.f_low })
-
--- mvllow/modes.nvim
-h('ModesCopy', { bg = p.warn })
-h('ModesDelete', { bg = p.error })
-h('ModesInsert', { bg = p.hint })
-h('ModesVisual', { bg = p.info })
+h('NvimTreeSpecialFile', { link = 'Normal' })
+h('NvimTreeFolderName', { fg = p.f_med, bold = true })
+h('NvimTreeEmptyFolderName', { fg = p.f_low, bold = true })
+h('NvimTreeOpenedFolderName', { bold = true, italic = true })
