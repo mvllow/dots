@@ -22,6 +22,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 3
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 
 -- Stop 'o' continuing comments
 vim.api.nvim_create_autocmd('BufEnter', {
