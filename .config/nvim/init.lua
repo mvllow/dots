@@ -12,3 +12,5 @@ require('lil-search')
 require('lil-lsp')
 require('lil-completions')
 require('lil-extras')
+
+vim.keymap.set('n', 'S', ':%s/<c-r><c-w>/', { silent = true })
