@@ -65,9 +65,11 @@ use({
 
 		-- TODO(user): Add sources
 		-- Source cmd must be available in your path.
-		-- https:// https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 		local sources = {
+			null_ls.builtins.code_actions.eslint,
 			null_ls.builtins.code_actions.xo,
+			null_ls.builtins.diagnostics.eslint,
 			null_ls.builtins.diagnostics.xo,
 			null_ls.builtins.formatting.fish_indent,
 			null_ls.builtins.formatting.gofmt,
