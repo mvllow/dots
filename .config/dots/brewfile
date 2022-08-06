@@ -27,6 +27,5 @@ cask "kitty"
 cask "rectangle"
 
 mas "Mini Motorways", id: 1456188526
-mas "Swift Playgrounds", id: 1496833156
 mas "System Color Picker", id: 1545870783
 mas "Wipr", id: 1320666476
