@@ -12,7 +12,6 @@ brew "gh"
 brew "go"
 brew "lazygit"
 brew "lua-language-server"
-brew "mas"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "pnpm"
@@ -25,7 +24,3 @@ brew "yt-dlp/taps/yt-dlp"
 cask "figma"
 cask "kitty"
 cask "rectangle"
-
-mas "Mini Motorways", id: 1456188526
-mas "System Color Picker", id: 1545870783
-mas "Wipr", id: 1320666476
