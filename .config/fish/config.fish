@@ -12,7 +12,7 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $GOPATH/bin
 
 if status is-interactive
-    set fish_greeting '🐟'
+    set fish_greeting
 
     set-theme system
 
