@@ -7,12 +7,6 @@
 local use = require('lil-helpers').use
 
 use({
-	'lewis6991/gitsigns.nvim',
-	config = function()
-		require('gitsigns').setup()
-	end,
-})
-use({
 	'kyazdani42/nvim-tree.lua',
 	config = function()
 		require('nvim-tree').setup({

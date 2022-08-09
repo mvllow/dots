@@ -25,6 +25,10 @@ use({
 	end,
 })
 
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
 vim.opt.updatetime = 250
 vim.opt.signcolumn = 'yes'
 vim.opt.laststatus = 3

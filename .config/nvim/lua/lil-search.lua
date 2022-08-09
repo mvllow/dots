@@ -7,6 +7,7 @@ local use = require('lil-helpers').use
 
 use({
 	'nvim-telescope/telescope.nvim',
+	requires = 'nvim-lua/plenary.nvim',
 	config = function()
 		require('telescope').setup({
 			defaults = {
