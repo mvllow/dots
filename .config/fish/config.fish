@@ -26,6 +26,8 @@ if status is-interactive
     end
 end
 
+alias rm trash
+
 # Manage dotfiles
 abbr --add .git "git --git-dir=\$HOME/dots.git --work-tree=\$HOME"
 abbr --add .lazygit "lazygit --git-dir=\$HOME/dots.git --work-tree=\$HOME"
