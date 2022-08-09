@@ -7,8 +7,16 @@ local use = require('lil-helpers').use
 
 use({
 	'neovim/nvim-lspconfig',
-	requires = 'folke/lua-dev.nvim',
+	requires = {
+		'folke/lua-dev.nvim',
+		'williamboman/mason.nvim',
+		'williamboman/mason-lspconfig.nvim',
+		'WhoIsSethDaniel/mason-tool-installer.nvim',
+	},
 	config = function()
+		require('mason').setup()
+		require('mason-tool-installer').setup({})
+
 		local function on_attach(_, bufnr)
 			local opts = { buffer = bufnr, silent = true }
 			vim.keymap.set('i', '<c-k>', vim.lsp.buf.signature_help, opts)
@@ -28,33 +36,24 @@ use({
 			capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 		end
 
-		local lspconfig = require('lspconfig')
-		lspconfig.sumneko_lua.setup(require('lua-dev').setup({
-			lspconfig = {
-				on_attach = on_attach,
-				capabilities = capabilities,
-			},
-		}))
-
-		-- TODO(user): Add language servers
-		-- Servers must be available in your path.
-		-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-		local servers = {
-			'cssls',
-			'gopls',
-			'html',
-			'jsonls',
-			'rust_analyzer',
-			'svelte',
-			'tailwindcss',
-			'tsserver',
-		}
-		for _, server in ipairs(servers) do
-			lspconfig[server].setup({
-				on_attach = on_attach,
-				capabilities = capabilities,
-			})
-		end
+		-- Automatically setup servers installed via `:MasonInstall`
+		require('mason-lspconfig').setup_handlers({
+			function(server_name)
+				if server_name == 'sumneko_lua' then
+					require('lspconfig')[server_name].setup(
+						require('lua-dev').setup({
+							on_attach = on_attach,
+							capabilities = capabilities,
+						})
+					)
+				else
+					require('lspconfig')[server_name].setup({
+						on_attach = on_attach,
+						capabilities = capabilities,
+					})
+				end
+			end,
+		})
 	end,
 })
 use({
@@ -64,15 +63,13 @@ use({
 		local null_ls = require('null-ls')
 
 		-- TODO(user): Add sources
-		-- Source cmd must be available in your path.
+		-- Source cmd must be available in your path. Try `:MasonInstall stylua`.
 		-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 		local sources = {
-			null_ls.builtins.code_actions.eslint,
 			null_ls.builtins.code_actions.xo,
-			null_ls.builtins.diagnostics.eslint,
 			null_ls.builtins.diagnostics.xo,
+			null_ls.builtins.formatting.clang_format,
 			null_ls.builtins.formatting.fish_indent,
-			null_ls.builtins.formatting.gofmt,
 			null_ls.builtins.formatting.goimports,
 			null_ls.builtins.formatting.prettierd.with({
 				extra_filetypes = { 'svelte' },
@@ -82,19 +79,20 @@ use({
 			null_ls.builtins.formatting.stylua,
 		}
 
+		local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 		null_ls.setup({
 			sources = sources,
 			on_attach = function(client, bufnr)
 				if client.supports_method('textDocument/formatting') then
+					vim.api.nvim_clear_autocmds({
+						group = augroup,
+						buffer = bufnr,
+					})
 					vim.api.nvim_create_autocmd('BufWritePre', {
+						group = augroup,
 						buffer = bufnr,
 						callback = function()
-							vim.lsp.buf.format({
-								bufnr = bufnr,
-								filter = function(lsp_client)
-									return lsp_client.name == 'null-ls'
-								end,
-							})
+							vim.lsp.buf.format({ bufnr = bufnr })
 						end,
 					})
 				end

@@ -25,18 +25,7 @@ brew cleanup
 
 if [ $(which npm) ]; then
 	echo "- installing npm packages"
-	npm install --global trash-cli \
-		@fsouza/prettierd \
-		@tailwindcss/language-server \
-		@volar/vue-language-server \
-		svelte-language-server \
-		typescript-language-server \
-		vscode-langservers-extracted
-fi
-
-if [ $(which go) ]; then
-	go install golang.org/x/tools/gopls@latest
-	go install golang.org/x/tools/cmd/goimports@latest
+	npm install --global trash-cli
 fi
 
 if [ $(which fish) ]; then
