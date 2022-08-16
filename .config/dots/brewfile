@@ -9,6 +9,7 @@ brew "ffmpeg"
 brew "fish"
 brew "gh"
 brew "go"
+brew "imagemagick"
 brew "lazygit"
 brew "neovim", args: ["HEAD"]
 brew "node"
