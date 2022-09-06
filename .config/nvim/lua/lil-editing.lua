@@ -8,8 +8,19 @@ local use = require('lil-helpers').use
 use('editorconfig/editorconfig-vim')
 use({
 	'numToStr/Comment.nvim',
+	requires = 'JoosepAlviste/nvim-ts-context-commentstring',
 	config = function()
-		require('comment').setup()
+		require('nvim-treesitter.configs').setup({
+			context_commentstring = {
+				enable = true,
+				enable_autocmd = false,
+			},
+		})
+		require('Comment').setup({
+			pre_hook = require(
+				'ts_context_commentstring.integrations.comment_nvim'
+			).create_pre_hook(),
+		})
 	end,
 })
 
