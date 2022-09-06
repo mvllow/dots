@@ -1,6 +1,0 @@
-# Welcome
-
-## Favourites
-
-=> gemini://dioskouroi.xyz/top Hacker News
-=> gemini://gemini.circumlunar.space/users/hundredrabbits Hundredrabbits
