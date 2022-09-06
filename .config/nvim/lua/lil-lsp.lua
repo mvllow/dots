@@ -72,7 +72,7 @@ use({
 			null_ls.builtins.formatting.fish_indent,
 			null_ls.builtins.formatting.goimports,
 			null_ls.builtins.formatting.prettierd.with({
-				extra_filetypes = { 'astro', 'svelte' },
+				extra_filetypes = { 'astro', 'jsonc', 'svelte' },
 			}),
 			null_ls.builtins.formatting.rustfmt,
 			null_ls.builtins.formatting.shfmt,
