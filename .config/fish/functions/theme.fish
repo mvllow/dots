@@ -1,7 +1,5 @@
-function set-theme -a theme
-    set -q THEME; or use-terminal-colors
-    set -U THEME $theme
-
+function theme -a theme
+    set -q THEME; or use_terminal_colors
     set dark_theme rose-pine
     set light_theme rose-pine-dawn
 
@@ -9,18 +7,19 @@ function set-theme -a theme
 
     switch $theme
         case system
-            if [ "$dark_mode_status" = on ]
+            if [ $dark_mode_status = on ]
                 set -U THEME $dark_theme
             else
                 set -U THEME $light_theme
             end
-        case rose-pine
-        case rose-pine-moon
+        case dark
+            set -U THEME $dark_theme
             dark-mode on
-        case rose-pine-dawn
+        case light
+            set -U THEME $light_theme
             dark-mode off
         case ''
-            if [ "$dark_mode_status" = on ]
+            if [ $dark_mode_status = on ]
                 set -U THEME $light_theme
                 dark-mode off
             else
@@ -47,7 +46,7 @@ function set-theme -a theme
     end
 end
 
-function use-terminal-colors
+function use_terminal_colors
     # syntax highlighting variables
     # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
     set -U fish_color_normal normal
