@@ -26,12 +26,16 @@ if status is-interactive
 
     # Terminal tab title
     function fish_title
-        echo (fish_prompt_pwd_dir_length=0 prompt_pwd)
+        echo (string split -- / $PWD)[-1]
     end
 
     function fish_prompt
-        set -g fish_prompt_pwd_dir_length 0
-        printf '%s%s> ' (prompt_pwd) (set_color brblack; fish_git_prompt; set_color normal)
+        printf '%s%s> ' (fish_prompt_pwd_dir_length=0 prompt_pwd) (set_color brblack; fish_git_prompt; set_color normal)
+    end
+
+    function fish_user_key_bindings
+        # Toggle theme via <super+l>
+        bind \e\[108\;9u theme
     end
 end
 
