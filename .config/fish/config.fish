@@ -22,7 +22,7 @@ if status is-interactive
     set fish_greeting
 
     # Match theme to system on start
-    theme system
+    set_theme system
 
     # Terminal tab title
     function fish_title
@@ -35,7 +35,7 @@ if status is-interactive
 
     function fish_user_key_bindings
         # Toggle theme via <super+l>
-        bind \e\[108\;9u theme
+        bind \e\[108\;9u set_theme
     end
 end
 
