@@ -9,7 +9,11 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx GOPATH $XDG_DATA_HOME/go
 
-set -gx EDITOR nvim
+if type -q nvim
+	set -gx EDITOR nvim
+else
+	set -gx EDITOR vim
+end
 
 # Set binary paths
 fish_add_path /opt/homebrew/bin
@@ -41,16 +45,17 @@ end
 
 # Skip aliased builtins via `command nvim` or `builtin rm`
 alias ls "ls -a"
+alias vim "vim -c 'lcd %:p:h' $argv"
 alias nvim "nvim -c 'lcd %:p:h' $argv"
 alias rm trash
 
-abbr --add ,dots "nvim ~/.config/dots/setup.sh"
-abbr --add ,fish "nvim ~/.config/fish/config.fish"
-abbr --add ,git "nvim ~/.config/git/config"
-abbr --add ,kitty "nvim ~/.config/kitty/kitty.conf"
-abbr --add ,lazygit "nvim ~/.config/lazygit/config.yml"
-abbr --add ,music "nvim ~/.config/yt-dlp/music.conf"
-abbr --add ,nvim "nvim ~/.config/nvim/init.lua"
+abbr --add ,dots "$EDITOR ~/.config/dots/setup.sh"
+abbr --add ,fish "$EDITOR ~/.config/fish/config.fish"
+abbr --add ,git "$EDITOR ~/.config/git/config"
+abbr --add ,kitty "$EDITOR ~/.config/kitty/kitty.conf"
+abbr --add ,lazygit "$EDITOR ~/.config/lazygit/config.yml"
+abbr --add ,music "$EDITOR ~/.config/yt-dlp/music.conf"
+abbr --add ,nvim "$EDITOR ~/.config/nvim/init.lua"
 
 set dotgit_args "--git-dir=\$HOME/dots.git --work-tree=\$HOME"
 
