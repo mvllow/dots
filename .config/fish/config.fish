@@ -43,7 +43,7 @@ if status is-interactive
     end
 end
 
-# Skip aliased builtins via `command nvim` or `builtin rm`
+# Skip aliased builtins via `command ls`
 alias ls "ls -a"
 alias vim "vim -c 'lcd %:p:h' $argv"
 alias nvim "nvim -c 'lcd %:p:h' $argv"
