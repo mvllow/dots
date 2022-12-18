@@ -1,0 +1,10 @@
+yabai -m config layout              bsp
+yabai -m config top_padding         15
+yabai -m config bottom_padding      15
+yabai -m config left_padding        15
+yabai -m config right_padding       15
+yabai -m config window_gap          15
+
+# Apps to ignore
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Archive Utility$" manage=off

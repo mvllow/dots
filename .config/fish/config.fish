@@ -56,6 +56,8 @@ abbr --add ,kitty "$EDITOR ~/.config/kitty/kitty.conf"
 abbr --add ,lazygit "$EDITOR ~/.config/lazygit/config.yml"
 abbr --add ,music "$EDITOR ~/.config/yt-dlp/music.conf"
 abbr --add ,nvim "$EDITOR ~/.config/nvim/init.lua"
+abbr --add ,skhd "$EDITOR ~/.config/skhd/skhdrc"
+abbr --add ,yabai "$EDITOR ~/.config/yabai/yabairc"
 
 set dotgit_args "--git-dir=\$HOME/dots.git --work-tree=\$HOME"
 

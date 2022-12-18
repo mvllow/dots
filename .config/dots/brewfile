@@ -10,6 +10,8 @@ brew "fish"
 brew "gh"
 brew "go"
 brew "imagemagick"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
 brew "lazygit"
 brew "neovim", args: ["HEAD"]
 brew "node"
@@ -19,4 +21,3 @@ brew "yt-dlp/taps/yt-dlp"
 
 cask "figma"
 cask "kitty"
-cask "rectangle"
