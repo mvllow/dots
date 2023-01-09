@@ -8,3 +8,4 @@ yabai -m config window_gap          15
 # Apps to ignore
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
