@@ -1,14 +1,8 @@
---- init.lua
---- https://github.com/mvllow/lilvim
+require("user/package") -- loads lua/user/package.lua
+require("user/options") -- loads lua/user/options.lua
+require("user/keymaps") -- loads lua/user/keymaps.lua
 
---- Combines all modules of lilvim.
-
-vim.g.mapleader = ' '
-vim.keymap.set('n', '<space>', '<nop>', { silent = true })
-
-require('lil-ui')
-require('lil-editing')
-require('lil-search')
-require('lil-lsp')
-require('lil-completions')
-require('lil-extras')
+require("lazy").setup("plugins", {
+	install = { colorscheme = { "un" } },
+	change_detection = { notify = false },
+}) -- loads and merges each lua/plugins/*
