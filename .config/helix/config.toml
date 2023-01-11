@@ -1,0 +1,11 @@
+theme = "rose_pine"
+
+[editor]
+color-modes = true
+
+[keys.normal]
+V = ["extend_line_below", "select_mode"] # same as "x -> v"
+g.o = "jump_backward" # same as "<c-o>"
+g.O = "jump_forward" # same as "<c-i>"
+space.f = "file_picker_in_current_directory"
+space.F = "file_picker"

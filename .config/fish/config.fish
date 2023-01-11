@@ -52,6 +52,7 @@ alias rm trash
 abbr --add ,dots "$EDITOR ~/.config/dots/setup.sh"
 abbr --add ,fish "$EDITOR ~/.config/fish/config.fish"
 abbr --add ,git "$EDITOR ~/.config/git/config"
+abbr --add ,hx "$EDITOR ~/.config/helix/config.toml"
 abbr --add ,kitty "$EDITOR ~/.config/kitty/kitty.conf"
 abbr --add ,lazygit "$EDITOR ~/.config/lazygit/config.yml"
 abbr --add ,music "$EDITOR ~/.config/yt-dlp/music.conf"

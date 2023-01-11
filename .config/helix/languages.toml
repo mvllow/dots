@@ -1,0 +1,11 @@
+# Manage language servers.
+# https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers
+
+[[language]]
+name = "tailwindcss"
+scope = "source.css"
+injection-regex = "(postcss|css|html)"
+file-types = ["css"]
+roots = ["tailwind.config.js","tailwind.config.cjs"]
+language-server = { command = "tailwindcss-language-server", args = ["-vvv", "--stdio"] }
+config = { }
