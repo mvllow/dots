@@ -5,15 +5,11 @@ return {
 	event = "BufReadPre",
 	dependencies = {
 		{ "folke/neodev.nvim", config = true },
-		{ "williamboman/mason.nvim", config = true },
+		{ "williamboman/mason.nvim", cmd = "Mason", config = true },
 		{ "williamboman/mason-lspconfig.nvim", config = true },
 		{ "WhoIsSethDaniel/mason-tool-installer.nvim", opts = {} },
 	},
 	config = function()
-		vim.diagnostic.config({
-			virtual_text = false,
-		})
-
 		local function on_attach(_, bufnr)
 			local function map(mode, lhs, rhs, opts)
 				opts = opts or {}

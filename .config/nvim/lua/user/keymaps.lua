@@ -1,8 +1,6 @@
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
-	if opts.silent == nil then
-		opts.silent = true
-	end
+	opts.silent = opts.silent or true
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
@@ -24,8 +22,8 @@ map("v", "<c-j>", ":m '>+1<cr>gv=gv")
 map("v", "<c-k>", ":m '<-2<cr>gv=gv")
 
 -- Keep selection when indenting.
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Reindent entire file.
 map("n", "=", "mxggVG=`x")

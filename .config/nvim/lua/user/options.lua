@@ -26,3 +26,20 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("VimResized", {
 	command = "tabdo wincmd =",
 })
+
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
+local signs = { "Error", "Warn", "Hint", "Info" }
+for _, type in pairs(signs) do
+	local hl = string.format("DiagnosticSign%s", type)
+	vim.fn.sign_define(hl, { text = "●", texthl = hl, numhl = hl })
+end
+
+vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+	pattern = "*",
+	callback = function()
+		vim.diagnostic.open_float(nil, { focus = false })
+	end,
+})

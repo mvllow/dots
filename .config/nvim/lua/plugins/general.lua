@@ -81,10 +81,6 @@ return {
 					quit_on_open = true,
 				},
 			},
-			filters = {
-				-- Hide ".git" folder.
-				custom = { "^.git$" },
-			},
 			git = { ignore = false },
 			renderer = {
 				icons = {
