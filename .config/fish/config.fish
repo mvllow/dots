@@ -44,7 +44,7 @@ if status is-interactive
 end
 
 # Skip aliased builtins via `command ls`
-alias ls "ls -a"
+alias ls "ls -Ga"
 alias vim "vim -c 'lcd %:p:h' $argv"
 alias nvim "nvim -c 'lcd %:p:h' $argv"
 alias rm trash
