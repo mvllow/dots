@@ -19,7 +19,12 @@ return {
 					group = augroup,
 					buffer = bufnr,
 					callback = function()
-						vim.lsp.buf.format({ bufnr = bufnr })
+						vim.lsp.buf.format({
+							bufnr = bufnr,
+							filter = function(lsp_client)
+								return lsp_client.name == "null-ls" or lsp_client.name == "denols"
+							end,
+						})
 					end,
 				})
 			end
