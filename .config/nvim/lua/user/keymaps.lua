@@ -38,8 +38,8 @@ map("n", "gp", "<c-^>", { desc = "Goto previously focused buffer" })
 map({ "n", "v" }, "gm", "%", { desc = "Goto matching pair" })
 
 -- Window controls.
-map("n", "<c-w>h", "<leader>wh", { desc = "Focus window to the left" })
-map("n", "<c-w>j", "<leader>wj", { desc = "Focus window below" })
-map("n", "<c-w>k", "<leader>wk", { desc = "Focus window above" })
-map("n", "<c-w>l", "<leader>wl", { desc = "Focus window to the right" })
-map("n", "<c-w>r", "<leader>wr", { desc = "Swap window positions" })
+map("n", "<leader>wh", "<c-w>h", { desc = "Focus window to the left" })
+map("n", "<leader>wj", "<c-w>j", { desc = "Focus window below" })
+map("n", "<leader>wk", "<c-w>k", { desc = "Focus window above" })
+map("n", "<leader>wl", "<c-w>l", { desc = "Focus window to the right" })
+map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
