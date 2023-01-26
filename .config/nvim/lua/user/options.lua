@@ -17,7 +17,6 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 3
 vim.opt.breakindent = true
-vim.opt.lazyredraw = true
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	command = "setlocal formatoptions-=o",
