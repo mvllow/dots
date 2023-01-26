@@ -1,11 +1,13 @@
 vim.cmd.colorscheme("un")
 
+local tab_width = 8
+
 vim.opt.guicursor = ""
 vim.opt.pumheight = 8
 vim.opt.shortmess:append("c")
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
+vim.opt.shiftwidth = tab_width
+vim.opt.softtabstop = tab_width
+vim.opt.tabstop = tab_width
 vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
