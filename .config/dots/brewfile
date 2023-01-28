@@ -1,11 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
-tap "yt-dlp/taps"
 
 brew "dark-mode"
 brew "fd"
-brew "ffmpeg"
 brew "fish"
 brew "gh"
 brew "go"
@@ -18,7 +16,6 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "pnpm"
 brew "ripgrep"
-brew "yt-dlp/taps/yt-dlp"
 
 cask "figma"
 cask "kitty"
