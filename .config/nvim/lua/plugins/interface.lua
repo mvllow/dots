@@ -1,24 +1,5 @@
 return {
-	{
-		"numToStr/Comment.nvim",
-		event = "BufReadPre",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
-			})
-
-			require("Comment").setup({
-				pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-			})
-		end,
-	},
+	{ "lewis6991/gitsigns.nvim", config = true },
 	{
 		"rose-pine/neovim",
 		name = "rose-pine",
@@ -29,6 +10,11 @@ return {
 			require("rose-pine").setup({
 				disable_italics = true,
 				disable_float_background = true,
+				highlight_groups = {
+					Comment = { fg = "muted", italic = true },
+					StatusLine = { fg = "iris", bg = "iris", blend = 10 },
+					StatusLineNC = { fg = "subtle", bg = "surface" },
+				},
 			})
 			vim.cmd.colorscheme("rose-pine")
 		end,
