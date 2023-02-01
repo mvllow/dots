@@ -39,18 +39,24 @@ return {
 			require("mason-lspconfig").setup_handlers({
 				function(server_name)
 					local opts = {}
+					local root_pattern = require("lspconfig").util.root_pattern
 
 					-- Remove shared root_dirs between deno and tsserver.
 					-- https://deno.land/manual@v1.28.3/getting_started/setup_your_environment#neovim-06-using-the-built-in-language-server
 					if server_name == "denols" then
 						opts = {
-							root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+							root_dir = root_pattern("deno.json", "deno.jsonc"),
+						}
+					end
+					if server_name == "tailwindcss" then
+						opts = {
+							root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs"),
 						}
 					end
 					if server_name == "tsserver" then
 						opts = {
 							single_file_support = false,
-							root_dir = require("lspconfig").util.root_pattern("package.json"),
+							root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc"),
 						}
 					end
 
