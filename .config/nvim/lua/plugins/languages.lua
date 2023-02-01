@@ -15,7 +15,7 @@ return {
 				local function map(mode, lhs, rhs, opts)
 					opts = opts or {}
 					opts.buffer = opts.buffer or bufnr
-					opts.silent = opts.silent or true
+					opts.silent = opts.silent == nil and true or opts.silent
 					vim.keymap.set(mode, lhs, rhs, opts)
 				end
 

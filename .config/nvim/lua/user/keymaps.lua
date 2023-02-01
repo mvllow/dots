@@ -1,6 +1,6 @@
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
-	opts.silent = opts.silent or true
+	opts.silent = opts.silent == nil and true or opts.silent
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
