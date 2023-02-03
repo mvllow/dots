@@ -50,11 +50,24 @@ return {
 				"<cmd>Telescope commands theme=dropdown<cr>",
 				desc = "Commands",
 			},
+			{
+				"<leader>d",
+				"<cmd>Telescope diagnostics<cr>",
+				desc = "Diagnostics",
+			},
 		},
-		config = true,
+		opts = {
+			defaults = {
+				layout_config = {
+					horizontal = {
+						preview_width = 80,
+					},
+				},
+			},
+		},
 	},
 	{
-		"kyazdani42/nvim-tree.lua",
+		"nvim-tree/nvim-tree.lua",
 		keys = {
 			{
 				"<leader>e",

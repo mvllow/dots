@@ -6,7 +6,7 @@ return {
 		event = "BufReadPre",
 		dependencies = {
 			{ "folke/neodev.nvim", config = true },
-			{ "williamboman/mason.nvim", cmd = "Mason", config = true },
+			{ "williamboman/mason.nvim", cmd = { "Mason", "MasonInstall", "MasonUninstall" }, config = true },
 			{ "williamboman/mason-lspconfig.nvim", config = true },
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim", opts = {} },
 		},
