@@ -1,9 +1,11 @@
 gui:
   authorColors:
     "*": magenta
+  promptToReturnFromSubprocess: false
   showBottomLine: false
   showCommandLog: false
   showListFooter: false
+  skipRewordInEditorWarning: true
   theme:
     selectedLineBgColor:
       - default
