@@ -8,6 +8,6 @@ gui:
   skipRewordInEditorWarning: true
   theme:
     selectedLineBgColor:
-      - default
+      - black
     selectedRangeBgColor:
       - reverse
