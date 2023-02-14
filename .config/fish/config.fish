@@ -23,15 +23,18 @@ set_theme system
 # Shortcuts to common config files
 # Loop through a list of paths, using the part before the "/" as the abbreviation name, prefixed with ","
 # @example `,fish` will open this file in $EDITOR
-set -l configs 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' 'nvim/init.lua' skhd/skhdrc yabai/yabairc
+set -l configs 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' 'nvim/init.lua' skhd/skhdrc 'tmux/tmux.conf' yabai/yabairc
 for config in $configs
     set app (string split "/" $config)[1]
-    abbr --add ",$app" "$EDITOR ~/.config/$config" # open config file in $EDITOR
+    abbr ",$app" "$EDITOR ~/.config/$config" # open config file in $EDITOR
 end
+
+abbr ta "tmux attach"
+abbr tn "tmux new -s (basename (pwd))"
 
 # Git helpers for our dotfiles bare repo
 # https://github.com/mvllow/dots
 set dotgit_args "--git-dir=\$HOME/dots.git --work-tree=\$HOME"
-abbr --add .git "git $dotgit_args"
-abbr --add .gitls "git $dotgit_args ls-files --others --no-empty-directory --exclude-standard \$XDG_CONFIG_HOME/*"
-abbr --add .lazygit "lazygit $dotgit_args"
+abbr .git "git $dotgit_args"
+abbr .gitls "git $dotgit_args ls-files --others --no-empty-directory --exclude-standard \$XDG_CONFIG_HOME/*"
+abbr .lazygit "lazygit $dotgit_args"
