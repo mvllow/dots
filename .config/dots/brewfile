@@ -18,7 +18,6 @@ brew "neovim", args: ["HEAD"]
 brew "node"
 brew "pnpm"
 brew "ripgrep"
-brew "tmux"
 
 cask "figma"
 cask "kitty"
