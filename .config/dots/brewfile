@@ -14,6 +14,7 @@ brew "jq"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 brew "lazygit"
+brew "lf"
 brew "neovim", args: ["HEAD"]
 brew "node"
 brew "pnpm"

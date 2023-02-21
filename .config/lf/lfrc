@@ -1,0 +1,59 @@
+# vim:ft=sh
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+# info: https://github.com/gokcehan/lf/blob/master/etc/lfrc.example
+set shellopts '-eu'
+set shell sh
+set scrolloff 10
+set hidden
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
+
+cmd open &
+{{
+case $(file --mime-type -Lb $f) in
+text/*) lf -remote "send $id \$$EDITOR \$fx" ;;
+*) for f in $fx; do $OPENER $f >/dev/null 2>/dev/null & done ;;
+esac
+}}
+map enter open
+
+cmd trash %{{
+set -f
+RED="\033[0;31m"
+NC="\033[0m"
+count=$(echo "$fx" | wc -l | xargs echo -n)
+if [[ $count == "1" ]]; then
+	prompt="$RED Delete $fx?$NC (y/N) "
+	result="$RED Deleted $fx$NC"
+else
+	prompt="$RED Delete $count files?$NC (y/N) "
+	result="$RED Deleted $count items$NC"
+fi
+printf "$prompt"
+read ans
+[[ $ans == "y" ]] && trash $fx && echo "$result" || echo "Nothing was deleted"
+}}
+map d trash
+map x cut # remap cut because we use the default "d" for trash
+
+cmd create %{{
+set -f
+BLUE="\034[0;31m"
+NC="\033[0m"
+if [[ $(echo "$@" | grep "/$") ]]; then
+	mkdir -p -- "$@"
+else
+	mkdir -p "$(dirname "$@")/" && touch "$@"
+fi
+echo "$BLUE Created $@$NC"
+}}
+map a %{{
+lf -remote "send $id push :create<space>$(pwd)/"
+}}

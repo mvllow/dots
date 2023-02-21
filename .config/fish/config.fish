@@ -23,7 +23,7 @@ set_theme system
 # Shortcuts to common config files
 # Loop through a list of paths, using the part before the "/" as the abbreviation name, prefixed with ","
 # @example `,fish` will open this file in $EDITOR
-set -l configs 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' 'nvim/init.lua' skhd/skhdrc yabai/yabairc
+set -l configs 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' lf/lfrc 'nvim/init.lua' skhd/skhdrc yabai/yabairc
 for config in $configs
     set app (string split "/" $config)[1]
     abbr ",$app" "$EDITOR ~/.config/$config" # open config file in $EDITOR
