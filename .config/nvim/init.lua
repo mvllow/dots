@@ -11,8 +11,7 @@ require("paq")({
 	{ "rose-pine/neovim", as = "rose-pine" },
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	"JoosepAlviste/nvim-ts-context-commentstring",
-	"numToStr/Comment.nvim",
-	"echasnovski/mini.completion",
+	"echasnovski/mini.nvim",
 	"neovim/nvim-lspconfig",
 	"folke/neodev.nvim",
 	"williamboman/mason.nvim",
@@ -87,6 +86,14 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 -- Plugin options/keymaps
 
 require("gitsigns").setup()
+require("mini.comment").setup({
+	hooks = {
+		pre = function()
+			require("ts_context_commentstring.internal").update_commentstring()
+		end,
+	},
+})
+require("mini.pairs").setup()
 
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
@@ -109,10 +116,6 @@ require("rose-pine").setup({
 	},
 })
 vim.cmd.colorscheme("rose-pine")
-
-require("Comment").setup({
-	pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
-})
 
 require("telescope").setup({
 	defaults = { layout_config = { horizontal = { preview_width = 80 } } },
@@ -145,7 +148,9 @@ map("i", "<cr>", function()
 		-- If popup is not visible, use plain `<cr>`. You might want to customize
 		-- according to other plugins. For example, to use 'mini.pairs', replace
 		-- next line with `return require('mini.pairs').cr()`
-		return keys["cr"]
+		return require("mini.pairs").cr()
+
+		-- return keys["cr"]
 	end
 end, { expr = true })
 
