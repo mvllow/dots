@@ -40,23 +40,6 @@ Optionally, add an alias to manage your dots directly.
 alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
 ```
 
-## Preferences
-
-> For all options, search for "defaults" in [dots.sh](https://github.com/mvllow/dots/blob/main/.github/dots.sh)
-
-### System
-
-- Dock sizing, orientation, and shown apps
-- Keyboard key repeat, smart punctuation, and auto capitalise/correct
-- Menubar appearance
-- Trackpad behaviour and speed
-
-### Applications
-
-- Finder locations and views
-- Screencapture locations and shadows
-- Rectangle behaviour
-
 ## Notes
 
 > All notes can be found in the [wiki](https://github.com/mvllow/dots/wiki)
