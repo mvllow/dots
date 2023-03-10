@@ -237,7 +237,9 @@ require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.goimports,
-		require("null-ls").builtins.formatting.prettierd.with({ extra_filetypes = { "jsonc", "astro", "svelte" } }),
+		require("null-ls").builtins.formatting.prettierd.with({
+			extra_filetypes = { "jsonc", "astro", "svelte" },
+		}),
 		require("null-ls").builtins.formatting.rustfmt,
 		require("null-ls").builtins.formatting.shfmt,
 		require("null-ls").builtins.formatting.stylua,
