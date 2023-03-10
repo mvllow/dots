@@ -78,7 +78,11 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Substitute current word
+map("n", "s", ":s/<c-r><c-w>//g<left><left>", { silent = false })
 map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false })
+
+-- Re-indent entire file
+map("n", "=", "mxggVG=`x")
 
 -- Goto
 map("n", "go", "<c-o>", { desc = "Goto previous position" })
@@ -127,11 +131,10 @@ vim.cmd.colorscheme("rose-pine")
 require("telescope").setup({
 	defaults = { layout_config = { horizontal = { preview_width = 80 } } },
 })
--- "<cmd>Telescope find_files find_command=fd,-t,f,-H,-E,.git,--strip-cwd-prefix theme=dropdown previewer=false<cr>",
-map("n", "<leader>f", require("telescope.builtin").find_files)
-map("n", "<leader>/", require("telescope.builtin").live_grep)
-map("n", "<leader>p", require("telescope.builtin").commands)
-map("n", "<leader>d", require("telescope.builtin").diagnostics)
+map("n", "<leader>f", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>")
+map("n", "<leader>/", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>p", "<cmd>Telescope commands theme=dropdown prompt_title=false<cr>")
+map("n", "<leader>d", "<cmd>Telescope diagnostics theme=dropdown previewer=false<cr>")
 
 require("mini.completion").setup({
 	lsp_completion = { source_func = "omnifunc", auto_setup = false },
