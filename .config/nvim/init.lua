@@ -195,6 +195,9 @@ require("mason").setup()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		local servers = {
+			clangd = {
+				capabilities = { offsetEncoding = "utf-8" },
+			},
 			denols = {
 				root_dir = root_pattern("deno.json", "deno.jsonc"),
 			},
@@ -240,6 +243,7 @@ end
 
 require("null-ls").setup({
 	sources = {
+		require("null-ls").builtins.formatting.clang_format,
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.goimports,
 		require("null-ls").builtins.formatting.prettierd.with({
