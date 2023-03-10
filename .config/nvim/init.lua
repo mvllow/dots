@@ -18,6 +18,7 @@ require("paq")({
 	"williamboman/mason-lspconfig.nvim",
 	"jose-elias-alvarez/null-ls.nvim",
 	"nvim-tree/nvim-tree.lua",
+	"mvllow/matcha.nvim",
 })
 
 -- General options
@@ -205,7 +206,25 @@ require("mason-lspconfig").setup_handlers({
 	end,
 })
 
-local lsp_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
+local function format_on_save(client, bufnr)
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = lsp_formatting, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = lsp_formatting,
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({
+					bufnr = bufnr,
+					filter = function(lsp_client)
+						return lsp_client.name == "null-ls"
+					end,
+				})
+			end,
+		})
+	end
+end
+
 require("null-ls").setup({
 	sources = {
 		require("null-ls").builtins.formatting.fish_indent,
@@ -215,23 +234,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.shfmt,
 		require("null-ls").builtins.formatting.stylua,
 	},
-	on_attach = function(client, bufnr)
-		if client.supports_method("textDocument/formatting") then
-			vim.api.nvim_clear_autocmds({ group = lsp_augroup, buffer = bufnr })
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				group = lsp_augroup,
-				buffer = bufnr,
-				callback = function()
-					vim.lsp.buf.format({
-						bufnr = bufnr,
-						filter = function(lsp_client)
-							return lsp_client.name == "null-ls" or lsp_client.name == "denols"
-						end,
-					})
-				end,
-			})
-		end
-	end,
+	on_attach = format_on_save,
 })
 
 require("nvim-tree").setup({
@@ -250,3 +253,7 @@ require("nvim-tree").setup({
 	},
 })
 map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file tree" })
+
+map("n", [[\f]], function()
+	require("matcha").toggle("LspFormatting")
+end)
