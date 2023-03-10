@@ -99,7 +99,12 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 
 -- Plugin options/keymaps
 
-require("gitsigns").setup()
+require("gitsigns").setup({
+	worktrees = {
+		-- Dots bare repo
+		{ toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" },
+	},
+})
 require("mini.comment").setup({
 	hooks = {
 		pre = function()
