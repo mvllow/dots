@@ -26,6 +26,11 @@ require("paq")({
 vim.opt.guicursor = ""
 vim.opt.pumheight = 3
 vim.opt.laststatus = 0
+vim.opt.cmdheight = 0
+vim.opt.ruler = false
+vim.opt.showmode = false
+-- vim.opt.statusline = " %f %m %= %l:%c ♥ "
+vim.opt.winbar = " %f %m %= %l:%c ♥ "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.undofile = true
@@ -109,11 +114,8 @@ require("rose-pine").setup({
 	disable_italics = true,
 	highlight_groups = {
 		Comment = { fg = "muted", italic = true },
-		TelescopeBorder = { fg = "highlight_high" },
-		TelescopeNormal = { fg = "subtle" },
-		TelescopePromptNormal = { fg = "text" },
-		TelescopeSelection = { fg = "text" },
-		TelescopeSelectionCaret = { fg = "rose", bg = "rose" },
+		StatusLine = { fg = "base", bg = "pine" },
+		WinBar = { fg = "base", bg = "pine" },
 	},
 })
 vim.cmd.colorscheme("rose-pine")
@@ -121,7 +123,6 @@ vim.cmd.colorscheme("rose-pine")
 require("telescope").setup({
 	defaults = { layout_config = { horizontal = { preview_width = 80 } } },
 })
-
 -- "<cmd>Telescope find_files find_command=fd,-t,f,-H,-E,.git,--strip-cwd-prefix theme=dropdown previewer=false<cr>",
 map("n", "<leader>f", require("telescope.builtin").find_files)
 map("n", "<leader>/", require("telescope.builtin").live_grep)
