@@ -21,6 +21,10 @@ require("paq")({
 	"mvllow/matcha.nvim",
 })
 
+-- Local plugins
+-- (Ensure conflicting plugins are uninstalled first)
+-- vim.opt.runtimepath:append("~/dev/neovim") -- rose-pine/neovim
+-- vim.opt.runtimepath:append("~/dev/matcha.nvim") -- mvllow/matcha.nvim
 -- General options
 
 vim.opt.guicursor = ""
