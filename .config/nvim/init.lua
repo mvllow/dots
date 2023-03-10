@@ -9,7 +9,7 @@ require("paq")({
 	"nvim-lua/plenary.nvim", -- Required by telescope.nvim, null-ls.nvim
 	"nvim-telescope/telescope.nvim",
 	{ "rose-pine/neovim", as = "rose-pine" },
-	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+	"nvim-treesitter/nvim-treesitter",
 	"JoosepAlviste/nvim-ts-context-commentstring",
 	"echasnovski/mini.nvim",
 	"neovim/nvim-lspconfig",
