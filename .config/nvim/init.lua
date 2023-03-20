@@ -78,7 +78,6 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Substitute current word
-map("n", "s", ":s/<c-r><c-w>//g<left><left>", { silent = false })
 map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false })
 
 -- Re-indent entire file
