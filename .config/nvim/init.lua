@@ -272,6 +272,21 @@ require("nvim-tree").setup({
 })
 map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file tree" })
 
+vim.api.nvim_create_augroup("Writing", {})
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.signcolumn = "no"
+		vim.opt_local.textwidth = 78
+		vim.opt_local.spell = true
+		vim.opt_local.wrap = false
+	end,
+})
+
+map("n", [[\w]], function()
+	require("matcha").toggle("Writing")
+end)
+
 map("n", [[\f]], function()
 	require("matcha").toggle("LspFormatting")
 end)
