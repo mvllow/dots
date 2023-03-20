@@ -1,10 +1,9 @@
-# Set system and terminal theme
-# Depends on https://github.com/sindresorhus/dark-mode
-#
+# @dependencies
+# dark-mode (https://github.com/sindresorhus/dark-mode)
 # @usage
 # set_theme
 # set_theme system
-function set_theme -a theme
+function set_theme -a theme -d "Set system and terminal theme"
     function _use_terminal_colors
         printf "* Matching terminal colors.\n"
 

@@ -1,10 +1,7 @@
-# Dither image
-# Inspired by https://flower.codes/2022/03/23/backwards-compatibility.html
-#
 # @usage
 # dither image.png
 # dither image.png -colorspace gray
-function dither --wraps="convert"
+function dither -w convert -d "Dither image"
     convert $image \
         -quantize transparent \
         -format GIF \

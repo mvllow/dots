@@ -1,5 +1,5 @@
-# Replace rm with trash
-# https://github.com/sindresorhus/trash-cli
-function rm --wraps="trash"
+# @dependencies
+# trash (https://github.com/sindresorhus/trash-cli)
+function rm -w trash -d "Trash file or directory"
     command trash $argv
 end

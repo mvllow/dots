@@ -1,4 +1,3 @@
-# Open neovim with the file's location as the working directory
-function nvim --wraps="nvim -c 'lcd %:p:h'"
+function nvim -w "nvim -c 'lcd %:p:h'" -d "Open neovim with the file's location as the working directory"
     command nvim -c 'lcd %:p:h' $argv
 end

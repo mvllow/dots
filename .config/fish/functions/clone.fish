@@ -1,10 +1,8 @@
-# Clone remote repository and change to created directory
-#
 # @usage
-# clone dots <-- clones <git config --get user.name>/dots
+# clone dots # clones <git config --get user.name>/dots
 # clone mvllow/pinecone
 # clone rose-pine/neovim rose-pine-neovim
-function clone --wraps="git clone" -a input
+function clone -w "git clone" -a input -d "Clone remote repository and change to created directory"
     # Extract repo name out of "user/repo"
     string match -rq '.*?\/(?<repo>.*)' -- $input
 
