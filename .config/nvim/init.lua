@@ -23,18 +23,17 @@ require("paq")({
 
 -- Local plugins
 -- (Ensure conflicting plugins are uninstalled first)
--- vim.opt.runtimepath:append("~/dev/neovim") -- rose-pine/neovim
+-- vim.opt.runtimepath:append("~/dev/rose-pine-neovim") -- rose-pine/neovim
 -- vim.opt.runtimepath:append("~/dev/matcha.nvim") -- mvllow/matcha.nvim
+-- vim.opt.runtimepath:append("~/dev/modes.nvim") -- mvllow/modes.nvim
+
 -- General options
 
 vim.opt.guicursor = ""
 vim.opt.pumheight = 3
-vim.opt.laststatus = 0
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
+vim.opt.laststatus = 3
 vim.opt.cmdheight = 0
-vim.opt.ruler = false
-vim.opt.showmode = false
--- vim.opt.statusline = " %f %m %= %l:%c ♥ "
-vim.opt.winbar = " %f %m %= %l:%c ♥ "
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.undofile = true
@@ -43,8 +42,6 @@ vim.opt.updatetime = 250
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.scrolloff = 3
-vim.opt.backup = false
-vim.opt.writebackup = false
 vim.opt.breakindent = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -64,32 +61,32 @@ end
 
 vim.g.mapleader = " "
 
--- Improve search behaviour
 map("n", "<esc>", ":noh<cr>", { desc = "Clear search highlights" })
 map("n", "*", "*N", { desc = "Search under cursor" })
 map("v", "*", [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], { desc = "Search selection" })
 
--- Move through wrapped lines
-map({ "n", "v" }, "j", "gj")
-map({ "n", "v" }, "k", "gk")
+map({ "n", "v" }, "j", "gj", { desc = "Move down through wrapped lines" })
+map({ "n", "v" }, "k", "gk", { desc = "Move up through wrapped lines" })
 
--- Keep selection when indenting
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv", { desc = "Indent, keeping selection" })
+map("v", ">", ">gv", { desc = "Dedent, keeping selection" })
 
--- Substitute current word
-map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false })
+map({ "n", "v" }, "<leader>y", [["*y]], { desc = "Copy to clipboard" })
+map({ "n", "v" }, "<leader>p", [["*p]], { desc = "Paste from clipboard" })
+map("n", "U", "<c-r>", { desc = "Redo" })
+map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false, desc = "Substitue current word" })
 
--- Re-indent entire file
-map("n", "=", "mxggVG=`x")
+map("n", "=", "mxggVG=`x", { desc = "Re-indent file" })
 
--- Goto
 map("n", "go", "<c-o>", { desc = "Goto previous position" })
 map("n", "gO", "<c-i>", { desc = "Goto next position" })
 map("n", "gp", "<c-^>", { desc = "Goto previously focused buffer" })
 map({ "n", "v" }, "gm", "%", { desc = "Goto matching pair" })
+map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Goto next hunk" })
+map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Goto previous hunk" })
+map("n", "}", "<cmd>bnext<cr>", { desc = "Goto next buffer" })
+map("n", "{", "<cmd>bprevious<cr>", { desc = "Goto previous buffer" })
 
--- Window
 map("n", "<leader>wh", "<c-w>h", { desc = "Focus window to the left" })
 map("n", "<leader>wj", "<c-w>j", { desc = "Focus window below" })
 map("n", "<leader>wk", "<c-w>k", { desc = "Focus window above" })
@@ -98,36 +95,20 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 
 -- Plugin options/keymaps
 
-require("gitsigns").setup({
-	worktrees = {
-		-- Dots bare repo
-		{ toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" },
-	},
-})
-require("mini.comment").setup({
-	hooks = {
-		pre = function()
-			require("ts_context_commentstring.internal").update_commentstring()
-		end,
-	},
-})
-require("mini.pairs").setup()
+require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
 
+require("mini.comment").setup({ hooks = { pre = require("ts_context_commentstring.internal").update_commentstring } })
 require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 	highlight = { enable = true },
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
+	context_commentstring = { enable = true, enable_autocmd = false },
 })
 
 require("rose-pine").setup({
 	disable_italics = true,
 	highlight_groups = {
 		Comment = { fg = "muted", italic = true },
-		StatusLine = { fg = "base", bg = "pine" },
-		WinBar = { fg = "base", bg = "pine" },
+		TelescopePreviewNormal = { bg = "overlay" },
 	},
 })
 vim.cmd.colorscheme("rose-pine")
@@ -161,9 +142,7 @@ map("i", "<cr>", function()
 		-- If popup is not visible, use plain `<cr>`. You might want to customize
 		-- according to other plugins. For example, to use 'mini.pairs', replace
 		-- next line with `return require('mini.pairs').cr()`
-		return require("mini.pairs").cr()
-
-		-- return keys["cr"]
+		return keys["cr"]
 	end
 end, { expr = true })
 
@@ -172,18 +151,18 @@ local function lsp_on_attach(client, bufnr)
 	-- https://github.com/echasnovski/nvim/blob/487ce206d88412db5577435ba956fcf5a19d6302/lua/ec/configs/nvim-lspconfig.lua#L11-L26
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.MiniCompletion.completefunc_lsp")
 
-	map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
-	map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
-	map("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
-	map("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-	map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
-	map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-	map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
-	map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
-	map("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
-	map("n", "<leader>k", vim.diagnostic.open_float, { buffer = bufnr })
-	map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
-	map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
+	map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
+	map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code actions" })
+	map("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
+	map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
+	map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Goto declaration" })
+	map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto definition" })
+	map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Goto type definition" })
+	map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto implementation" })
+	map("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Goto references" })
+	map("n", "<leader>k", vim.diagnostic.open_float, { buffer = bufnr, desc = "Show line diagnostics" })
+	map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Goto next diagnostic" })
+	map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Goto previous diagnostic" })
 end
 
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
