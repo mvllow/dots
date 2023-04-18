@@ -86,6 +86,8 @@ function set_theme -a theme -d "Set system and terminal theme"
     if test "$TERM" = xterm-kitty
         # Manually change kitty theme to local variant, e.g. rose-pine
         # Requires `allow_remote_control yes` in your kitty.conf
+        # Note: $dark_theme and $light_theme need to be set above to the
+        # desired theme filename, e.g. "rose-pine" and "rose-pine-dawn"
         kitty @ set-colors --all --configured "$HOME/.config/kitty/themes/$THEME.conf"
 
         sed -i "" -e \
@@ -93,6 +95,8 @@ function set_theme -a theme -d "Set system and terminal theme"
             "$HOME/.config/kitty/kitty.conf"
 
         # Or use built-in themes, e.g. Rosé Pine
+        # Note: $dark_theme and $light_theme need to be set above to the
+        # desired theme names, e.g. "Rosé Pine" and "Rosé Pine Dawn"
         # kitty +kitten themes --reload-in=all $THEME
     end
 
