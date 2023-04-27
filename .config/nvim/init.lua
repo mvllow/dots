@@ -1,57 +1,62 @@
--- Install package mangager:
+-- Install package manager:
 -- git clone --depth=1 https://github.com/savq/paq-nvim.git ~/.local/share/nvim/site/pack/paqs/start/paq-nvim
-
--- Plugins
-
 require("paq")({
 	"savq/paq-nvim",
-	"lewis6991/gitsigns.nvim",
-	"nvim-lua/plenary.nvim", -- Required by telescope.nvim, null-ls.nvim
-	"nvim-telescope/telescope.nvim",
-	{ "rose-pine/neovim", as = "rose-pine" },
+	"nvim-lua/plenary.nvim",
 	"nvim-treesitter/nvim-treesitter",
-	"JoosepAlviste/nvim-ts-context-commentstring",
+	{ "rose-pine/neovim", as = "rose-pine" },
+	"lewis6991/gitsigns.nvim",
 	"echasnovski/mini.nvim",
 	"neovim/nvim-lspconfig",
-	"folke/neodev.nvim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"jose-elias-alvarez/null-ls.nvim",
+	"nvim-telescope/telescope.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"mvllow/matcha.nvim",
 })
 
--- Local plugins
--- (Ensure conflicting plugins are uninstalled first)
--- vim.opt.runtimepath:append("~/dev/rose-pine-neovim") -- rose-pine/neovim
--- vim.opt.runtimepath:append("~/dev/matcha.nvim") -- mvllow/matcha.nvim
--- vim.opt.runtimepath:append("~/dev/modes.nvim") -- mvllow/modes.nvim
-
--- General options
-
+-- Use block cursor in all modes
 vim.opt.guicursor = ""
-vim.opt.pumheight = 3
-vim.opt.statusline = " %f %m %= %l:%c ♥ "
-vim.opt.laststatus = 3
-vim.opt.cmdheight = 0
+
+-- Persist undo history between sessions
+vim.opt.undofile = true
+
+-- Set tab width
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-vim.opt.undofile = true
+
+-- Set popup menu max height
+vim.opt.pumheight = 3
+
+-- Hide statusline
+vim.opt.laststatus = 0
+
+-- Add vertical scroll padding
+vim.opt.scrolloff = 3
+
+-- Show diagnostics and other symbols in the number column
 vim.opt.signcolumn = "yes"
-vim.opt.updatetime = 250
+
+-- Open new splits below and vertical splits to the right
 vim.opt.splitbelow = true
 vim.opt.splitright = true
-vim.opt.scrolloff = 3
-vim.opt.breakindent = true
+
+-- Ignore case for all-lowercase searches
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+
+-- Preserve horizontal blocks of text when virtually wrapping lines
+vim.opt.breakindent = true
+
+-- Time in milliseconds between writing swap files or triggering the
+-- CursorHold autocommand
+vim.opt.updatetime = 250
 
 vim.api.nvim_create_autocmd("BufEnter", { command = "setlocal formatoptions-=o" })
 vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
 
 vim.diagnostic.config({ virtual_text = false })
-
--- General keymaps
 
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
@@ -73,17 +78,14 @@ map("v", ">", ">gv", { desc = "Dedent, keeping selection" })
 
 map({ "n", "v" }, "<leader>y", [["*y]], { desc = "Copy to clipboard" })
 map({ "n", "v" }, "<leader>p", [["*p]], { desc = "Paste from clipboard" })
-map("n", "U", "<c-r>", { desc = "Redo" })
 map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false, desc = "Substitue current word" })
 
 map("n", "=", "mxggVG=`x", { desc = "Re-indent file" })
 
 map("n", "go", "<c-o>", { desc = "Goto previous position" })
-map("n", "gO", "<c-i>", { desc = "Goto next position" })
+map("n", "gn", "<c-i>", { desc = "Goto next position" })
 map("n", "gp", "<c-^>", { desc = "Goto previously focused buffer" })
 map({ "n", "v" }, "gm", "%", { desc = "Goto matching pair" })
-map("n", "]h", "<cmd>Gitsigns next_hunk<cr>", { desc = "Goto next hunk" })
-map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>", { desc = "Goto previous hunk" })
 map("n", "}", "<cmd>bnext<cr>", { desc = "Goto next buffer" })
 map("n", "{", "<cmd>bprevious<cr>", { desc = "Goto previous buffer" })
 
@@ -93,38 +95,19 @@ map("n", "<leader>wk", "<c-w>k", { desc = "Focus window above" })
 map("n", "<leader>wl", "<c-w>l", { desc = "Focus window to the right" })
 map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 
--- Plugin options/keymaps
+-- Plugin configurations
 
-require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
+require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
 
-require("mini.comment").setup({ hooks = { pre = require("ts_context_commentstring.internal").update_commentstring } })
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "all",
-	highlight = { enable = true },
-	context_commentstring = { enable = true, enable_autocmd = false },
-})
-
-require("rose-pine").setup({
-	disable_italics = true,
-	highlight_groups = {
-		Comment = { fg = "muted", italic = true },
-		TelescopePreviewNormal = { bg = "overlay" },
-	},
-})
+require("rose-pine").setup({ disable_italics = true })
 vim.cmd.colorscheme("rose-pine")
 
-require("telescope").setup({
-	defaults = { layout_config = { horizontal = { preview_width = 80 } } },
-})
-map("n", "<leader>f", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>")
-map("n", "<leader>/", "<cmd>Telescope live_grep<cr>")
-map("n", "<leader>p", "<cmd>Telescope commands theme=dropdown prompt_title=false<cr>")
-map("n", "<leader>d", "<cmd>Telescope diagnostics theme=dropdown previewer=false<cr>")
+require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
+map("n", "]h", "<cmd>Gitsigns next_hunk<cr>")
+map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
 
-require("mini.completion").setup({
-	lsp_completion = { source_func = "omnifunc", auto_setup = false },
-})
-
+require("mini.comment").setup()
+require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
 map("i", "<tab>", [[pumvisible() ? "\<c-n>" : "\<tab>"]], { expr = true })
 map("i", "<s-tab>", [[pumvisible() ? "\<c-p>" : "\<s-tab>"]], { expr = true })
 
@@ -135,7 +118,7 @@ local keys = {
 }
 map("i", "<cr>", function()
 	if vim.fn.pumvisible() ~= 0 then
-		-- If popup is visible, confirm selected item or add new line otherwise
+		-- If popup is visible, confirm selected item, otherwise add new line
 		local item_selected = vim.fn.complete_info()["selected"] ~= -1
 		return item_selected and keys["ctrl-y"] or keys["ctrl-y_cr"]
 	else
@@ -168,24 +151,14 @@ end
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 local root_pattern = require("lspconfig").util.root_pattern
 
-require("neodev").setup()
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		local servers = {
-			clangd = {
-				capabilities = { offsetEncoding = "utf-8" },
-			},
-			denols = {
-				root_dir = root_pattern("deno.json", "deno.jsonc"),
-			},
-			tailwindcss = {
-				root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs"),
-			},
-			tsserver = {
-				single_file_support = false,
-				root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc"),
-			},
+			clangd = { capabilities = { offsetEncoding = "utf-8" } },
+			denols = { root_dir = root_pattern("deno.json", "deno.jsonc") },
+			tailwindcss = { root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs") },
+			tsserver = { single_file_support = false, root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc") },
 		}
 
 		local opts = {}
@@ -193,10 +166,9 @@ require("mason-lspconfig").setup_handlers({
 			opts = servers[server_name]
 		end
 
-		require("lspconfig")[server_name].setup(vim.tbl_deep_extend("force", {
-			on_attach = lsp_on_attach,
-			capabilities = lsp_capabilities,
-		}, opts))
+		require("lspconfig")[server_name].setup(
+			vim.tbl_deep_extend("force", { on_attach = lsp_on_attach, capabilities = lsp_capabilities }, opts)
+		)
 	end,
 })
 
@@ -220,6 +192,7 @@ local function format_on_save(client, bufnr)
 end
 
 require("null-ls").setup({
+	on_attach = format_on_save,
 	sources = {
 		require("null-ls").builtins.formatting.clang_format,
 		require("null-ls").builtins.formatting.fish_indent,
@@ -231,47 +204,26 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.shfmt,
 		require("null-ls").builtins.formatting.stylua,
 	},
-	on_attach = format_on_save,
 })
+map("n", "<space><space>", vim.lsp.buf.format)
 
+-- telescope.nvim
+map("n", "<leader>/", "<cmd>Telescope live_grep layout_config={'preview_width':0.6}<cr>")
+map("n", "<leader>f", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>")
+
+-- nvim-tree.lua
 require("nvim-tree").setup({
+	on_attach = function(bufnr)
+		local api = require("nvim-tree.api")
+		api.config.mappings.default_on_attach(bufnr)
+		map("n", "d", api.fs.trash, { buffer = bufnr })
+	end,
 	actions = { open_file = { quit_on_open = true } },
 	git = { ignore = false },
 	renderer = { icons = { show = { file = false, folder = false, folder_arrow = false, git = false } } },
 	trash = { cmd = "trash" },
-	view = {
-		side = "right",
-		mappings = {
-			list = {
-				{ key = "d", action = "trash" },
-				{ key = "D", action = "remove" },
-			},
-		},
-	},
+	view = { side = "right" },
 })
-map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>", { desc = "Toggle file tree" })
+map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
 
-local prose = vim.api.nvim_create_augroup("Prose", {})
-vim.api.nvim_create_autocmd("FileType", {
-	group = prose,
-	pattern = "markdown",
-	callback = function()
-		vim.opt_local.signcolumn = "no"
-		vim.opt_local.textwidth = 78
-		vim.opt_local.spell = true
-		vim.opt_local.wrap = false
-	end,
-})
-
-require("matcha").setup({
-	prefix = [[\]],
-	keys = {
-		b = "background",
-		f = "LspFormatting",
-		l = "list",
-		n = "number",
-		p = "Prose",
-		s = "spell",
-		w = "wrap",
-	},
-})
+require("matcha").setup({ keys = { b = "background", f = "LspFormatting" } })
