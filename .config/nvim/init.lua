@@ -78,16 +78,13 @@ map("v", ">", ">gv", { desc = "Dedent, keeping selection" })
 
 map({ "n", "v" }, "<leader>y", [["*y]], { desc = "Copy to clipboard" })
 map({ "n", "v" }, "<leader>p", [["*p]], { desc = "Paste from clipboard" })
-map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false, desc = "Substitue current word" })
-
-map("n", "=", "mxggVG=`x", { desc = "Re-indent file" })
+map("n", "S", ":%s/<c-r>///g<left><left>", { silent = false, desc = "Substitue current search" })
+-- map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false, desc = "Substitue current word" })
 
 map("n", "go", "<c-o>", { desc = "Goto previous position" })
 map("n", "gn", "<c-i>", { desc = "Goto next position" })
 map("n", "gp", "<c-^>", { desc = "Goto previously focused buffer" })
 map({ "n", "v" }, "gm", "%", { desc = "Goto matching pair" })
-map("n", "}", "<cmd>bnext<cr>", { desc = "Goto next buffer" })
-map("n", "{", "<cmd>bprevious<cr>", { desc = "Goto previous buffer" })
 
 map("n", "<leader>wh", "<c-w>h", { desc = "Focus window to the left" })
 map("n", "<leader>wj", "<c-w>j", { desc = "Focus window below" })
