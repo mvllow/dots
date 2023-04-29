@@ -96,7 +96,7 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 
 require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
 
-require("rose-pine").setup({ disable_italics = true })
+require("rose-pine").setup({ disable_italics = true, disable_float_background = true })
 vim.cmd.colorscheme("rose-pine")
 
 require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
@@ -151,21 +151,16 @@ local root_pattern = require("lspconfig").util.root_pattern
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
+		local options = { on_attach = lsp_on_attach, capabilities = lsp_capabilities }
 		local servers = {
 			clangd = { capabilities = { offsetEncoding = "utf-8" } },
 			denols = { root_dir = root_pattern("deno.json", "deno.jsonc") },
 			tailwindcss = { root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs") },
 			tsserver = { single_file_support = false, root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc") },
+			volar = { filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" } },
 		}
 
-		local opts = {}
-		if servers[server_name] ~= nil then
-			opts = servers[server_name]
-		end
-
-		require("lspconfig")[server_name].setup(
-			vim.tbl_deep_extend("force", { on_attach = lsp_on_attach, capabilities = lsp_capabilities }, opts)
-		)
+		require("lspconfig")[server_name].setup(vim.tbl_deep_extend("force", servers[server_name] or {}, options))
 	end,
 })
 
@@ -194,21 +189,16 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.clang_format,
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.goimports,
-		require("null-ls").builtins.formatting.prettierd.with({
-			extra_filetypes = { "jsonc", "astro", "svelte" },
-		}),
+		require("null-ls").builtins.formatting.prettierd.with({ extra_filetypes = { "jsonc", "astro", "svelte" } }),
 		require("null-ls").builtins.formatting.rustfmt,
-		require("null-ls").builtins.formatting.shfmt,
 		require("null-ls").builtins.formatting.stylua,
 	},
 })
 map("n", "<space><space>", vim.lsp.buf.format)
 
--- telescope.nvim
 map("n", "<leader>/", "<cmd>Telescope live_grep layout_config={'preview_width':0.6}<cr>")
 map("n", "<leader>f", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>")
 
--- nvim-tree.lua
 require("nvim-tree").setup({
 	on_attach = function(bufnr)
 		local api = require("nvim-tree.api")
