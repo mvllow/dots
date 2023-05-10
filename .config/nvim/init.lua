@@ -58,6 +58,12 @@ vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
 
 vim.diagnostic.config({ virtual_text = false })
 
+local signs = { "Error", "Warn", "Hint", "Info" }
+for _, type in pairs(signs) do
+	local hl = string.format("DiagnosticSign%s", type)
+	vim.fn.sign_define(hl, { text = "●", texthl = hl, numhl = hl })
+end
+
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent == nil and true or opts.silent
