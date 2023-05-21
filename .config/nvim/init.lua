@@ -14,6 +14,7 @@ require("paq")({
 	"nvim-telescope/telescope.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"mvllow/matcha.nvim",
+	"mvllow/naif.nvim",
 })
 
 -- Use block cursor in all modes
@@ -246,3 +247,6 @@ require("nvim-tree").setup({
 map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
 
 require("matcha").setup({ keys = { b = "background", f = "LspFormatting" } })
+
+-- vim.opt.runtimepath:append("~/dev/naif.nvim")
+require("naif").setup({ disable_extra_highlights = false })
