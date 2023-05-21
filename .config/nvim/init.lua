@@ -126,6 +126,7 @@ map("n", "<leader>gs", "<cmd>Gitsigns preview_hunk_inline<cr>")
 map("n", "<leader>gS", "<cmd>Gitsigns preview_hunk<cr>")
 
 require("mini.comment").setup()
+require("mini.tabline").setup()
 require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
 map("i", "<tab>", [[pumvisible() ? "\<c-n>" : "\<tab>"]], { expr = true })
 map("i", "<s-tab>", [[pumvisible() ? "\<c-p>" : "\<s-tab>"]], { expr = true })
