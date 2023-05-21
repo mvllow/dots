@@ -77,6 +77,9 @@ map("n", "<esc>", ":noh<cr>", { desc = "Clear search highlights" })
 map("n", "*", "*N", { desc = "Search under cursor" })
 map("v", "*", [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], { desc = "Search selection" })
 
+map("n", "H", ":bprevious<cr>", { desc = "Switch to previous buffer" })
+map("n", "L", ":bnext<cr>", { desc = "Switch to next buffer" })
+
 map({ "n", "v" }, "j", "gj", { desc = "Move down through wrapped lines" })
 map({ "n", "v" }, "k", "gk", { desc = "Move up through wrapped lines" })
 
@@ -104,11 +107,17 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
 
 require("rose-pine").setup({ disable_italics = true, disable_float_background = true })
+map("n", "<leader>i", "<cmd>Inspect<cr>")
+
 vim.cmd.colorscheme("rose-pine")
 
 require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
-map("n", "]h", "<cmd>Gitsigns next_hunk<cr>")
-map("n", "[h", "<cmd>Gitsigns prev_hunk<cr>")
+map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>")
+map("n", "<leader>gn", "<cmd>Gitsigns next_hunk<cr>")
+map("n", "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>")
+map("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>")
+map("n", "<leader>gs", "<cmd>Gitsigns preview_hunk_inline<cr>")
+map("n", "<leader>gS", "<cmd>Gitsigns preview_hunk<cr>")
 
 require("mini.comment").setup()
 require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
