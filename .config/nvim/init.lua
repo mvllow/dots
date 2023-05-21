@@ -29,8 +29,9 @@ vim.opt.tabstop = 4
 -- Set popup menu max height
 vim.opt.pumheight = 3
 
--- Hide statusline
+-- Set global statusline and appearance
 vim.opt.laststatus = 0
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
 
 -- Add vertical scroll padding
 vim.opt.scrolloff = 3
