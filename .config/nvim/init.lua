@@ -111,10 +111,18 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 -- Plugin configurations
 
 require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
-
-require("rose-pine").setup({ disable_italics = true, disable_float_background = true })
 map("n", "<leader>i", "<cmd>Inspect<cr>")
 
+require("rose-pine").setup({
+	disable_italics = true,
+	highlight_groups = {
+		NormalNC = { bg = "none" },
+		Signcolumn = { bg = "none" },
+		TelescopeBorder = { bg = "none" },
+		TelescopeNormal = { bg = "none" },
+		TelescopePromptNormal = { bg = "none" },
+	},
+})
 vim.cmd.colorscheme("rose-pine")
 
 require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
