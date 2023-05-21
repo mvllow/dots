@@ -65,6 +65,12 @@ for _, type in pairs(signs) do
 	vim.fn.sign_define(hl, { text = "●", texthl = hl, numhl = hl })
 end
 
+-- Create highlight group and assign to the first character over 80 columns.
+-- Useful reference to wrap lines. Use the `gw` motion to wrap a visual
+-- selection at 80 columns.
+vim.cmd("hi LilColorColumn cterm=reverse gui=reverse")
+vim.fn.matchadd("LilColorColumn", "\\%81v", 100)
+
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
 	opts.silent = opts.silent == nil and true or opts.silent
