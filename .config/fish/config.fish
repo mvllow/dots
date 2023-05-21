@@ -19,6 +19,8 @@ fish_add_path $HOME/.local/bin
 set fish_greeting
 
 # Fun with tmux
+# Alacritty + tmux
+# alias tmux TERM=xterm-256color tmux
 # if status is-interactive
 #     and not set -q TMUX
 #     exec tmux new-session -As (basename (pwd))
@@ -29,7 +31,7 @@ set_theme system
 # Shortcuts to common config files
 # Loop through a list of paths, using the part before the "/" as the abbreviation name, prefixed with ","
 # @example `,fish` will open this file in $EDITOR
-set -l configs 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' lf/lfrc 'nvim/init.lua' skhd/skhdrc 'tmux/tmux.conf' yabai/yabairc
+set -l configs 'alacritty/alacritty.yml' 'dots/setup.sh' 'fish/config.fish' git/config 'helix/config.toml' 'kitty/kitty.conf' 'lazygit/config.yml' lf/lfrc 'nvim/init.lua' skhd/skhdrc 'tmux/tmux.conf' yabai/yabairc
 for config in $configs
     set app (string split "/" $config)[1]
     abbr ",$app" "$EDITOR ~/.config/$config" # open config file in $EDITOR

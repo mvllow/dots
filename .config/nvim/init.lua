@@ -159,7 +159,6 @@ require("mason-lspconfig").setup_handlers({
 	function(server_name)
 		local options = { on_attach = lsp_on_attach, capabilities = lsp_capabilities }
 		local servers = {
-			clangd = { capabilities = { offsetEncoding = "utf-8" } },
 			denols = { root_dir = root_pattern("deno.json", "deno.jsonc") },
 			tailwindcss = { root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs") },
 			tsserver = { single_file_support = false, root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc") },
@@ -195,7 +194,7 @@ require("null-ls").setup({
 		require("null-ls").builtins.formatting.clang_format,
 		require("null-ls").builtins.formatting.fish_indent,
 		require("null-ls").builtins.formatting.goimports,
-		require("null-ls").builtins.formatting.prettierd.with({ extra_filetypes = { "jsonc", "astro", "svelte" } }),
+		require("null-ls").builtins.formatting.prettierd.with({ extra_filetypes = { "astro", "svelte" } }),
 		require("null-ls").builtins.formatting.rustfmt,
 		require("null-ls").builtins.formatting.stylua,
 	},
