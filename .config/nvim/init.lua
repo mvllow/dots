@@ -157,7 +157,7 @@ map("i", "<cr>", function()
 	end
 end, { expr = true })
 
-local function lsp_on_attach(client, bufnr)
+local function lsp_on_attach(_, bufnr)
 	-- Use omnifunc for completions
 	-- https://github.com/echasnovski/nvim/blob/487ce206d88412db5577435ba956fcf5a19d6302/lua/ec/configs/nvim-lspconfig.lua#L11-L26
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.MiniCompletion.completefunc_lsp")
@@ -177,6 +177,8 @@ local function lsp_on_attach(client, bufnr)
 end
 
 local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+lsp_capabilities.offsetEncoding = { "utf-16" }
+
 local root_pattern = require("lspconfig").util.root_pattern
 
 require("mason").setup()
