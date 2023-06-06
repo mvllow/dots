@@ -19,14 +19,6 @@ fish_add_path $LOCAL_BIN
 
 set fish_greeting
 
-# Fun with tmux
-# Alacritty + tmux
-# alias tmux TERM=xterm-256color tmux
-# if status is-interactive
-#     and not set -q TMUX
-#     exec tmux new-session -As (basename (pwd))
-# end
-
 set_theme system
 
 # Shortcuts to common config files
