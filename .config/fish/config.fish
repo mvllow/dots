@@ -7,6 +7,7 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx GOPATH $XDG_DATA_HOME/go
+set -gx LOCAL_BIN $HOME/.local/bin
 
 set -gx EDITOR nvim
 
@@ -14,7 +15,7 @@ set -gx EDITOR nvim
 fish_add_path /opt/homebrew/bin
 fish_add_path $CARGO_HOME/bin
 fish_add_path $GOPATH/bin
-fish_add_path $HOME/.local/bin
+fish_add_path $LOCAL_BIN
 
 set fish_greeting
 
