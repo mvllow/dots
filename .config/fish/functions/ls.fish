@@ -1,3 +1,3 @@
-function ls -w "ls -Ga" -d "List files"
-    command ls -Ga $argv # -G for colour output; -a to show hidden files
+function ls -w "ls -Fa" -d "List all files"
+    command ls -Fa $argv
 end
