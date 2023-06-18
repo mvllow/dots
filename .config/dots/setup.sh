@@ -36,12 +36,6 @@ brew bundle --file="$HOME/.config/dots/brewfile"
 echo "> Cleaning up"
 brew cleanup
 
-if [ $(which npm) ]; then
-	echo "[npm]"
-	echo "> Installing global npm packages"
-	npm install --global trash-cli
-fi
-
 if [ $(which fish) ]; then
 	echo "[fish]"
 	echo "> Setting default shell"
