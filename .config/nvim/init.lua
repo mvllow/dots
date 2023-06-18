@@ -3,7 +3,7 @@
 require("paq")({
 	"savq/paq-nvim",
 	"nvim-lua/plenary.nvim",
-	"nvim-treesitter/nvim-treesitter",
+	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	{ "rose-pine/neovim", as = "rose-pine" },
 	"lewis6991/gitsigns.nvim",
 	"echasnovski/mini.nvim",
