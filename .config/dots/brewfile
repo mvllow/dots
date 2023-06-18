@@ -15,11 +15,10 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 brew "lazygit"
 brew "lf"
-brew "neovim", args: ["HEAD"]
 brew "macos-trash"
+brew "neovim"
 brew "node"
 brew "pnpm"
 brew "ripgrep"
 
-cask "figma"
 cask "kitty"
