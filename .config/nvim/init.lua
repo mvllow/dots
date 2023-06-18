@@ -6,6 +6,7 @@ require("paq")({
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
 	{ "rose-pine/neovim", as = "rose-pine" },
 	"lewis6991/gitsigns.nvim",
+	"JoosepAlviste/nvim-ts-context-commentstring",
 	"echasnovski/mini.nvim",
 	"neovim/nvim-lspconfig",
 	"williamboman/mason.nvim",
@@ -134,8 +135,14 @@ map("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>")
 map("n", "<leader>gs", "<cmd>Gitsigns preview_hunk_inline<cr>")
 map("n", "<leader>gS", "<cmd>Gitsigns preview_hunk<cr>")
 
-require("mini.comment").setup()
 require("mini.tabline").setup()
+require("mini.comment").setup({
+	options = {
+		custom_commentstring = function()
+			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+		end,
+	},
+})
 require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
 map("i", "<tab>", [[pumvisible() ? "\<c-n>" : "\<tab>"]], { expr = true })
 map("i", "<s-tab>", [[pumvisible() ? "\<c-p>" : "\<s-tab>"]], { expr = true })
