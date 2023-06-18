@@ -15,7 +15,6 @@ require("paq")({
 	"nvim-telescope/telescope.nvim",
 	"nvim-tree/nvim-tree.lua",
 	"mvllow/matcha.nvim",
-	"mvllow/naif.nvim",
 })
 
 -- Use block cursor in all modes
@@ -32,7 +31,7 @@ vim.opt.tabstop = 4
 vim.opt.pumheight = 3
 
 -- Set global statusline and appearance
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
 vim.opt.statusline = " %f %m %= %l:%c ♥ "
 
 -- Add vertical scroll padding
@@ -66,12 +65,6 @@ for _, type in pairs(signs) do
 	local hl = string.format("DiagnosticSign%s", type)
 	vim.fn.sign_define(hl, { text = "●", texthl = hl, numhl = hl })
 end
-
--- Create highlight group and assign to the first character over 80 columns.
--- Useful reference to wrap lines. Use the `gw` motion to wrap a visual
--- selection at 80 columns.
-vim.cmd("hi LilColorColumn cterm=reverse gui=reverse")
-vim.fn.matchadd("LilColorColumn", "\\%81v", 100)
 
 local function map(mode, lhs, rhs, opts)
 	opts = opts or {}
@@ -113,29 +106,11 @@ map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
 -- Plugin configurations
 
 require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
-map("n", "<leader>i", "<cmd>Inspect<cr>")
 
-require("rose-pine").setup({
-	disable_italics = true,
-	highlight_groups = {
-		NormalNC = { bg = "none" },
-		Signcolumn = { bg = "none" },
-		TelescopeBorder = { bg = "none" },
-		TelescopeNormal = { bg = "none" },
-		TelescopePromptNormal = { bg = "none" },
-	},
-})
+require("rose-pine").setup({ disable_italics = true })
 vim.cmd.colorscheme("rose-pine")
 
 require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
-map("n", "<leader>gd", "<cmd>Gitsigns diffthis<cr>")
-map("n", "<leader>gn", "<cmd>Gitsigns next_hunk<cr>")
-map("n", "<leader>gp", "<cmd>Gitsigns prev_hunk<cr>")
-map("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>")
-map("n", "<leader>gs", "<cmd>Gitsigns preview_hunk_inline<cr>")
-map("n", "<leader>gS", "<cmd>Gitsigns preview_hunk<cr>")
-
-require("mini.tabline").setup()
 require("mini.comment").setup({
 	options = {
 		custom_commentstring = function()
@@ -223,15 +198,26 @@ local function format_on_save(client, bufnr)
 	end
 end
 
-require("null-ls").setup({
+local null_ls = require("null-ls")
+null_ls.setup({
 	on_attach = format_on_save,
 	sources = {
-		require("null-ls").builtins.formatting.clang_format,
-		require("null-ls").builtins.formatting.fish_indent,
-		require("null-ls").builtins.formatting.goimports,
-		require("null-ls").builtins.formatting.prettierd.with({ extra_filetypes = { "astro", "svelte" } }),
-		require("null-ls").builtins.formatting.rustfmt,
-		require("null-ls").builtins.formatting.stylua,
+		null_ls.builtins.formatting.clang_format,
+		null_ls.builtins.formatting.deno_fmt.with({
+			condition = function(utils)
+				return utils.root_has_file({ "deno.json", "deno.jsonc" })
+			end,
+		}),
+		null_ls.builtins.formatting.fish_indent,
+		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.prettierd.with({
+			condition = function(utils)
+				return not utils.root_has_file({ "deno.json", "deno.jsonc" })
+			end,
+			extra_filetypes = { "astro", "svelte" },
+		}),
+		null_ls.builtins.formatting.rustfmt,
+		null_ls.builtins.formatting.stylua,
 	},
 })
 map("n", "<space><space>", vim.lsp.buf.format)
@@ -254,6 +240,3 @@ require("nvim-tree").setup({
 map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
 
 require("matcha").setup({ keys = { b = "background", f = "LspFormatting" } })
-
--- vim.opt.runtimepath:append("~/dev/naif.nvim")
-require("naif").setup({ disable_extra_highlights = false })
