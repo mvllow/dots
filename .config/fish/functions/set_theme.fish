@@ -83,17 +83,6 @@ function set_theme -a theme -d "Set system and terminal theme"
         end
     end
 
-    if test "$TERM" = alacritty
-        or test "$TERM" = xterm-256color
-        sed -i "" -e \
-            "s/- ~\/.config\/alacritty\/themes\/*\.yml/- ~\/.config\/alacritty\/themes\/$THEME.yml/" \
-            "$HOME/.config/alacritty/alacritty.yml"
-
-        sed -i "" -e \
-            "s/  - ~\/.config\/alacritty\/themes\/.*\.yml/  - ~\/.config\/alacritty\/themes\/$THEME\.yml/" \
-            "$HOME/.config/alacritty/alacritty.yml"
-    end
-
     if test "$TERM" = xterm-kitty
         # Manually change kitty theme to local variant, e.g. rose-pine
         # Requires `allow_remote_control yes` in your kitty.conf
@@ -110,10 +99,6 @@ function set_theme -a theme -d "Set system and terminal theme"
         # desired theme names, e.g. "Rosé Pine" and "Rosé Pine Dawn"
         # kitty +kitten themes --reload-in=all $THEME
     end
-
-    sed -i "" -e \
-        "s/theme = \".*\"/theme = \"$(string replace -a "-" "_" $THEME)\"/" \
-        "$HOME/.config/helix/config.toml"
 
     # Toggle system theme last because it takes longer
     if test "$should_toggle_system_dark_mode" = true
