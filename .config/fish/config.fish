@@ -19,8 +19,6 @@ fish_add_path $LOCAL_BIN
 
 set fish_greeting
 
-set_theme system
-
 # Shortcuts to common config files
 # Loop through a list of paths, using the part before the "/" as the abbreviation name, prefixed with ","
 # @example `,fish` will open this file in $EDITOR
