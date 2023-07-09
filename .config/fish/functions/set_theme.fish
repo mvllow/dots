@@ -55,7 +55,7 @@ function set_theme -a theme -d "Set system and terminal theme"
     set -q THEME; or _use_terminal_colors
 
     set dark_status $(dark-mode status)
-    set dark_theme rose-pine
+    set dark_theme rose-pine-moon
     set light_theme rose-pine-dawn
 
     if test "$dark_status" = on; and test "$THEME" = "$dark_theme"

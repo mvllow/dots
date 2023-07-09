@@ -1,242 +1,129 @@
--- Install package manager:
--- git clone --depth=1 https://github.com/savq/paq-nvim.git ~/.local/share/nvim/site/pack/paqs/start/paq-nvim
+-- Install plugin manager
+-- git clone --depth=1 https://github.com/savq/paq-nvim.git "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/pack/paqs/start/paq-nvim
+
 require("paq")({
 	"savq/paq-nvim",
 	"nvim-lua/plenary.nvim",
+	"nvim-telescope/telescope.nvim",
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-	{ "rose-pine/neovim", as = "rose-pine" },
-	"lewis6991/gitsigns.nvim",
-	"JoosepAlviste/nvim-ts-context-commentstring",
+	"rose-pine/neovim",
 	"echasnovski/mini.nvim",
-	"neovim/nvim-lspconfig",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	"jose-elias-alvarez/null-ls.nvim",
-	"nvim-telescope/telescope.nvim",
-	"nvim-tree/nvim-tree.lua",
+	"neovim/nvim-lspconfig",
 	"mvllow/matcha.nvim",
+	"github/copilot.vim",
 })
 
--- Use block cursor in all modes
 vim.opt.guicursor = ""
-
--- Persist undo history between sessions
-vim.opt.undofile = true
-
--- Set tab width
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-
--- Set popup menu max height
-vim.opt.pumheight = 3
-
--- Set global statusline and appearance
-vim.opt.laststatus = 3
-vim.opt.statusline = " %f %m %= %l:%c ♥ "
-
--- Add vertical scroll padding
-vim.opt.scrolloff = 3
-
--- Show diagnostics and other symbols in the number column
-vim.opt.signcolumn = "yes"
-
--- Open new splits below and vertical splits to the right
-vim.opt.splitbelow = true
+vim.opt.scrolloff = 5
+vim.opt.pumheight = 5
 vim.opt.splitright = true
-
--- Ignore case for all-lowercase searches
-vim.opt.ignorecase = true
+vim.opt.splitbelow = true
 vim.opt.smartcase = true
-
--- Preserve horizontal blocks of text when virtually wrapping lines
+vim.opt.ignorecase = true
 vim.opt.breakindent = true
-
--- Time in milliseconds between writing swap files or triggering the
--- CursorHold autocommand
+vim.opt.undofile = true
 vim.opt.updatetime = 250
-
-vim.api.nvim_create_autocmd("BufEnter", { command = "setlocal formatoptions-=o" })
-vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
-
-vim.diagnostic.config({ virtual_text = false })
-
-local signs = { "Error", "Warn", "Hint", "Info" }
-for _, type in pairs(signs) do
-	local hl = string.format("DiagnosticSign%s", type)
-	vim.fn.sign_define(hl, { text = "●", texthl = hl, numhl = hl })
-end
-
-local function map(mode, lhs, rhs, opts)
-	opts = opts or {}
-	opts.silent = opts.silent == nil and true or opts.silent
-	vim.keymap.set(mode, lhs, rhs, opts)
-end
 
 vim.g.mapleader = " "
 
-map("n", "<esc>", ":noh<cr>", { desc = "Clear search highlights" })
-map("n", "*", "*N", { desc = "Search under cursor" })
-map("v", "*", [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]], { desc = "Search selection" })
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
-map("n", "H", ":bprevious<cr>", { desc = "Switch to previous buffer" })
-map("n", "L", ":bnext<cr>", { desc = "Switch to next buffer" })
+-- Bubble lines
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-map({ "n", "v" }, "j", "gj", { desc = "Move down through wrapped lines" })
-map({ "n", "v" }, "k", "gk", { desc = "Move up through wrapped lines" })
+-- Cursor management
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set({ "n", "v" }, "j", "gj")
+vim.keymap.set({ "n", "v" }, "k", "gk")
 
-map("v", "<", "<gv", { desc = "Indent, keeping selection" })
-map("v", ">", ">gv", { desc = "Dedent, keeping selection" })
+-- Clipboard management
+vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 
-map({ "n", "v" }, "<leader>y", [["*y]], { desc = "Copy to clipboard" })
-map({ "n", "v" }, "<leader>p", [["*p]], { desc = "Paste from clipboard" })
-map("n", "S", ":%s/<c-r>///g<left><left>", { silent = false, desc = "Substitue current search" })
--- map("n", "S", ":%s/<c-r><c-w>//g<left><left>", { silent = false, desc = "Substitue current word" })
+vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv")
 
-map("n", "go", "<c-o>", { desc = "Goto previous position" })
-map("n", "gn", "<c-i>", { desc = "Goto next position" })
-map("n", "gp", "<c-^>", { desc = "Goto previously focused buffer" })
-map({ "n", "v" }, "gm", "%", { desc = "Goto matching pair" })
+vim.keymap.set("n", "<C-j>", ":cnext<CR>zz")
+vim.keymap.set("n", "<C-k>", ":cprev<CR>zz")
 
-map("n", "<leader>wh", "<c-w>h", { desc = "Focus window to the left" })
-map("n", "<leader>wj", "<c-w>j", { desc = "Focus window below" })
-map("n", "<leader>wk", "<c-w>k", { desc = "Focus window above" })
-map("n", "<leader>wl", "<c-w>l", { desc = "Focus window to the right" })
-map("n", "<leader>wr", "<c-w>r", { desc = "Swap window positions" })
+vim.keymap.set("n", "*", "*N")
+vim.keymap.set("v", "*", [[y/\V<C-r>=escape(@",'/\')<CR><CR>N]])
+vim.keymap.set("n", "S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
--- Plugin configurations
+vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files)
+vim.keymap.set("n", "<leader>/", require("telescope.builtin").live_grep)
 
-require("nvim-treesitter.configs").setup({ ensure_installed = "all", highlight = { enable = true } })
+require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 
-require("rose-pine").setup({ disable_italics = true })
+require("rose-pine").setup({ dark_variant = "moon", disable_italics = true })
 vim.cmd.colorscheme("rose-pine")
 
-require("gitsigns").setup({ worktrees = { { toplevel = vim.env.HOME, gitdir = vim.env.HOME .. "/dots.git" } } })
-require("mini.comment").setup({
-	options = {
-		custom_commentstring = function()
-			return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
-		end,
-	},
-})
-require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
-map("i", "<tab>", [[pumvisible() ? "\<c-n>" : "\<tab>"]], { expr = true })
-map("i", "<s-tab>", [[pumvisible() ? "\<c-p>" : "\<s-tab>"]], { expr = true })
+require("mini.comment").setup()
 
+require("mini.completion").setup({ lsp_completion = { source_func = "omnifunc", auto_setup = false } })
+-- Tab seems to be working as expected without these?
+-- vim.keymap.set("i", "<Tab>", [[pumvisible() ? "\<C-n>" : "\<Tab>"]], { expr = true })
+-- vim.keymap.set("i", "<S-Tab>", [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]], { expr = true })
 local keys = {
-	["cr"] = vim.api.nvim_replace_termcodes("<cr>", true, true, true),
-	["ctrl-y"] = vim.api.nvim_replace_termcodes("<c-y>", true, true, true),
-	["ctrl-y_cr"] = vim.api.nvim_replace_termcodes("<c-y><cr>", true, true, true),
+	["cr"] = vim.api.nvim_replace_termcodes("<CR>", true, true, true),
+	["ctrl-y"] = vim.api.nvim_replace_termcodes("<C-y>", true, true, true),
+	["ctrl-y_cr"] = vim.api.nvim_replace_termcodes("<C-y><CR>", true, true, true),
 }
-map("i", "<cr>", function()
-	if vim.fn.pumvisible() ~= 0 then
-		-- If popup is visible, confirm selected item, otherwise add new line
-		local item_selected = vim.fn.complete_info()["selected"] ~= -1
-		return item_selected and keys["ctrl-y"] or keys["ctrl-y_cr"]
-	else
-		-- If popup is not visible, use plain `<cr>`. You might want to customize
-		-- according to other plugins. For example, to use 'mini.pairs', replace
-		-- next line with `return require('mini.pairs').cr()`
-		return keys["cr"]
-	end
+vim.keymap.set("i", "<cr>", function()
+	return vim.fn.pumvisible() ~= 0
+		and (vim.fn.complete_info()["selected"] ~= 1 and keys["ctrl-y"] or keys["ctrl-y_cr"])
+		or keys["cr"]
 end, { expr = true })
 
-local function lsp_on_attach(_, bufnr)
-	-- Use omnifunc for completions
-	-- https://github.com/echasnovski/nvim/blob/487ce206d88412db5577435ba956fcf5a19d6302/lua/ec/configs/nvim-lspconfig.lua#L11-L26
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.MiniCompletion.completefunc_lsp")
+local lsp_options = {
+	capabilities = vim.lsp.protocol.make_client_capabilities(),
+	on_attach = function(_, bufnr)
+		-- Use omnifunc for completions
+		-- https://github.com/echasnovski/nvim/blob/487ce206d88412db5577435ba956fcf5a19d6302/lua/ec/configs/nvim-lspconfig.lua#L11-L26
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.MiniCompletion.completefunc_lsp")
 
-	map("i", "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature help" })
-	map("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "Code actions" })
-	map("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr, desc = "Rename symbol" })
-	map("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "Show documentation" })
-	map("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "Goto declaration" })
-	map("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Goto definition" })
-	map("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr, desc = "Goto type definition" })
-	map("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "Goto implementation" })
-	map("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "Goto references" })
-	map("n", "<leader>k", vim.diagnostic.open_float, { buffer = bufnr, desc = "Show line diagnostics" })
-	map("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr, desc = "Goto next diagnostic" })
-	map("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr, desc = "Goto previous diagnostic" })
-end
+		vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr })
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
+		vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { buffer = bufnr })
+		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
+		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
+	end,
+}
 
-local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-lsp_capabilities.offsetEncoding = { "utf-16" }
-
-local root_pattern = require("lspconfig").util.root_pattern
+local root_pattern = require("lspconfig.util").root_pattern
 
 require("mason").setup()
 require("mason-lspconfig").setup_handlers({
 	function(server_name)
-		local options = { on_attach = lsp_on_attach, capabilities = lsp_capabilities }
 		local servers = {
 			denols = { root_dir = root_pattern("deno.json", "deno.jsonc") },
-			tailwindcss = { root_dir = root_pattern("tailwind.config.js", "tailwind.config.cjs") },
 			tsserver = { single_file_support = false, root_dir = root_pattern("tsconfig.json", "tsconfig.jsonc") },
-			volar = { filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" } },
 		}
-
-		require("lspconfig")[server_name].setup(vim.tbl_deep_extend("force", servers[server_name] or {}, options))
+		require("lspconfig")[server_name].setup(vim.tbl_deep_extend("force", servers[server_name] or {}, lsp_options))
 	end,
 })
 
-local lsp_formatting = vim.api.nvim_create_augroup("LspFormatting", {})
-local function format_on_save(client, bufnr)
-	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_clear_autocmds({ group = lsp_formatting, buffer = bufnr })
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = lsp_formatting,
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({
-					bufnr = bufnr,
-					filter = function(lsp_client)
-						return lsp_client.name == "null-ls"
-					end,
-				})
-			end,
-		})
-	end
-end
+vim.diagnostic.config({ signs = false, virtual_text = false })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-	on_attach = format_on_save,
-	sources = {
-		null_ls.builtins.formatting.clang_format,
-		null_ls.builtins.formatting.deno_fmt.with({
-			condition = function(utils)
-				return utils.root_has_file({ "deno.json", "deno.jsonc" })
-			end,
-		}),
-		null_ls.builtins.formatting.fish_indent,
-		null_ls.builtins.formatting.goimports,
-		null_ls.builtins.formatting.prettierd.with({
-			condition = function(utils)
-				return not utils.root_has_file({ "deno.json", "deno.jsonc" })
-			end,
-			extra_filetypes = { "astro", "svelte" },
-		}),
-		null_ls.builtins.formatting.rustfmt,
-		null_ls.builtins.formatting.stylua,
-	},
-})
-map("n", "<space><space>", vim.lsp.buf.format)
-
-map("n", "<leader>/", "<cmd>Telescope live_grep layout_config={'preview_width':0.6}<cr>")
-map("n", "<leader>f", "<cmd>Telescope find_files theme=dropdown previewer=false<cr>")
-
-require("nvim-tree").setup({
-	on_attach = function(bufnr)
-		local api = require("nvim-tree.api")
-		api.config.mappings.default_on_attach(bufnr)
-		map("n", "d", api.fs.trash, { buffer = bufnr })
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = vim.api.nvim_create_augroup("LspFormatting", {}),
+	callback = function()
+		vim.lsp.buf.format()
 	end,
-	actions = { open_file = { quit_on_open = true } },
-	git = { ignore = false },
-	renderer = { icons = { show = { file = false, folder = false, folder_arrow = false, git = false } } },
-	trash = { cmd = "trash" },
-	view = { side = "right" },
 })
-map("n", "<leader>e", "<cmd>NvimTreeFindFileToggle<cr>")
 
-require("matcha").setup({ keys = { b = "background", f = "LspFormatting" } })
+require("matcha").setup({ keys = { f = "LspFormatting" } })

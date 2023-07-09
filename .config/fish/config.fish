@@ -7,7 +7,6 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx GOPATH $XDG_DATA_HOME/go
-set -gx LOCAL_BIN $HOME/.local/bin
 
 set -gx EDITOR nvim
 
@@ -15,7 +14,7 @@ set -gx EDITOR nvim
 fish_add_path /opt/homebrew/bin
 fish_add_path $CARGO_HOME/bin
 fish_add_path $GOPATH/bin
-fish_add_path $LOCAL_BIN
+fish_add_path $HOME/.local/bin
 
 set fish_greeting
 
@@ -27,6 +26,10 @@ for config in $configs
     set app (string split "/" $config)[1]
     abbr ",$app" "$EDITOR ~/.config/$config" # open config file in $EDITOR
 end
+
+abbr ta "tmux attach"
+abbr tn "tmux new -s (basename (pwd))"
+abbr ts tmux-sessions
 
 # Git helpers for our dotfiles bare repo
 # https://github.com/mvllow/dots

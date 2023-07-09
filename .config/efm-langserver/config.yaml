@@ -1,0 +1,49 @@
+version: 2
+root-markers:
+  - .git/
+  - package.json
+  - go.mod
+lint-debounce: 1s
+
+tools:
+  fish-indent: &fish-indent
+    format-command: "fish_indent"
+  goimports: &goimports
+    format-command: "goimports"
+  prettier: &prettier
+    format-command: "./node_modules/.bin/prettier"
+  stylua: &stylua
+    format-command: 'stylua -'
+    format-stdin: true
+
+languages:
+  fish:
+    - <<: *fish-indent
+  go:
+    - <<: *goimports
+  css:
+    - <<: *prettier
+  html:
+    - <<: *prettier
+  json:
+    - <<: *prettier
+  yaml:
+    - <<: *prettier
+  markdown:
+    - <<: *prettier
+  javascript:
+    - <<: *prettier
+  javascriptreact:
+    - <<: *prettier
+  typescript:
+    - <<: *prettier
+  typescriptreact:
+    - <<: *prettier
+  astro:
+    - <<: *prettier
+  svelte:
+    - <<: *prettier
+  vue:
+    - <<: *prettier
+  lua:
+    - <<: *stylua

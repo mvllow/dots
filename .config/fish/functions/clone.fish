@@ -1,29 +1,30 @@
 # @usage
-# clone dots # clones <git config --get user.name>/dots
+#
+# clone dots
+#   => Clones git@github.com:<user>/dots to ./dots
+#
 # clone mvllow/pinecone
-# clone rose-pine/neovim rose-pine-neovim
-function clone -w "git clone" -a input -d "Clone remote repository and change to created directory"
-    # Extract repo name out of "user/repo"
-    string match -rq '.*?\/(?<repo>.*)' -- $input
+#   => Clones git@github.com:mvllow/pinecone to ./mvllow-pinecone
+#
+# clone rose-pine/neovim
+#   => Clones git@github.com:rose-pine/neovim to ./rose-pine-neovim
+#
+function clone --wraps "git clone" -a input --description "Clone remote repositories"
+    string match -rq '(?<user>.*)?\/(?<repository>.*)' -- $input
 
-    if test -n "$repo"
-        set src "$input"
-        set dst "$repo"
+    if test -n "$repository"
+        set source "$input"
+        set output "$user-$repository"
     else
-        # Use git's user.name if user was not passed as input
-        # eg. if "repo" is passed, we assume "git_user_name/repo"
-        set src "$(git config --get user.name)/$input"
-        set dst "$input"
+        set source "$(git config --get user.name)/$input"
+        set output "$input"
     end
 
-    # Clone "user/repo" while passing any extra arguments
-    git clone git@github.com:$src.git $argv[2..]
-
-    if test $status = 0
-        if test $argv[2]
-            cd $argv[2]
-        else
-            cd "$dst"
-        end
+    if test $argv[2]
+        git clone git@github.com:$source.git $argv[2..]
+        cd "$argv[2]"
+    else
+        git clone git@github.com:$source.git $output
+        cd "$output"
     end
 end
