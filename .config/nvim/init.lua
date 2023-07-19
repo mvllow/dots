@@ -6,14 +6,22 @@ require("paq")({
 	"nvim-lua/plenary.nvim",
 	"nvim-telescope/telescope.nvim",
 	{ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
-	"rose-pine/neovim",
+	-- "rose-pine/neovim",
+	"theprimeagen/harpoon",
 	"echasnovski/mini.nvim",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig",
+	"lewis6991/gitsigns.nvim",
+	"folke/zen-mode.nvim",
 	"mvllow/matcha.nvim",
+	"mvllow/stand.nvim",
 	"github/copilot.vim",
+	"rcarriga/nvim-notify",
 })
+
+vim.opt.runtimepath:append("~/dev/rose-pine-neovim")
+-- vim.opt.runtimepath:append("~/dev/stand.nvim")
 
 vim.opt.guicursor = ""
 vim.opt.shiftwidth = 4
@@ -26,11 +34,13 @@ vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.breakindent = true
 vim.opt.undofile = true
+vim.opt.wrap = false
 vim.opt.updatetime = 250
+vim.opt.signcolumn = "yes"
+vim.opt.statusline = " %f %m %= %l:%c ♥ "
+vim.opt.shortmess:append("WcC")
 
 vim.g.mapleader = " "
-
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 
 -- Bubble lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -40,8 +50,10 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-vim.keymap.set({ "n", "v" }, "j", "gj")
-vim.keymap.set({ "n", "v" }, "k", "gk")
+-- vim.keymap.set({ "n", "v" }, "j", "gj")
+-- vim.keymap.set({ "n", "v" }, "k", "gk")
+vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Clipboard management
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
@@ -57,13 +69,24 @@ vim.keymap.set("n", "*", "*N")
 vim.keymap.set("v", "*", [[y/\V<C-r>=escape(@",'/\')<CR><CR>N]])
 vim.keymap.set("n", "S", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("n", "<leader>f", require("telescope.builtin").find_files)
-vim.keymap.set("n", "<leader>/", require("telescope.builtin").live_grep)
+vim.keymap.set("n", "<leader>f", ":Telescope find_files theme=dropdown previewer=false<CR>")
+vim.keymap.set("n", "<leader>/", ":Telescope live_grep layout_config={'preview_width':0.6}<CR>")
+
+require("mini.files").setup({ content = { prefix = function() end } })
+vim.keymap.set("n", "<leader>e", MiniFiles.open)
 
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 
-require("rose-pine").setup({ dark_variant = "moon", disable_italics = true })
+require("harpoon").setup({ tabline = true })
+vim.keymap.set("n", "<C-e>", require("harpoon.ui").toggle_quick_menu)
+vim.keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
+vim.keymap.set("n", "H", require("harpoon.ui").nav_prev)
+vim.keymap.set("n", "L", require("harpoon.ui").nav_next)
+
+require("rose-pine").setup()
 vim.cmd.colorscheme("rose-pine")
+
+require("gitsigns").setup()
 
 require("mini.comment").setup()
 
@@ -126,4 +149,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
-require("matcha").setup({ keys = { f = "LspFormatting" } })
+vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("Prose", {}),
+	pattern = { "gitcommit", "markdown" },
+	callback = function()
+		vim.opt_local.spell = true
+		vim.opt_local.wrap = true
+	end,
+})
+
+require("zen-mode").setup({ plugins = { tmux = true } })
+vim.keymap.set("n", "\\z", require("zen-mode").toggle)
+
+require("matcha").setup({ keys = { b = "background", f = "LspFormatting", p = "Prose", w = "wrap" } })
+require("stand").setup({ minute_interval = 60 })
