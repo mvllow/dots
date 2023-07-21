@@ -17,7 +17,6 @@ require("paq")({
 	"mvllow/matcha.nvim",
 	"mvllow/stand.nvim",
 	"github/copilot.vim",
-	"rcarriga/nvim-notify",
 })
 
 vim.opt.runtimepath:append("~/dev/rose-pine-neovim")
@@ -77,7 +76,6 @@ vim.keymap.set("n", "<leader>e", MiniFiles.open)
 
 require("nvim-treesitter.configs").setup({ highlight = { enable = true } })
 
-require("harpoon").setup({ tabline = true })
 vim.keymap.set("n", "<C-e>", require("harpoon.ui").toggle_quick_menu)
 vim.keymap.set("n", "<leader>a", require("harpoon.mark").add_file)
 vim.keymap.set("n", "H", require("harpoon.ui").nav_prev)
@@ -116,10 +114,7 @@ local lsp_options = {
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
 		vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { buffer = bufnr })
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
-		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { buffer = bufnr })
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
 		vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { buffer = bufnr })
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
@@ -162,4 +157,4 @@ require("zen-mode").setup({ plugins = { tmux = true } })
 vim.keymap.set("n", "\\z", require("zen-mode").toggle)
 
 require("matcha").setup({ keys = { b = "background", f = "LspFormatting", p = "Prose", w = "wrap" } })
-require("stand").setup({ minute_interval = 60 })
+require("stand").setup()
