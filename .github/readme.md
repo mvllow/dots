@@ -18,7 +18,7 @@ curl -LJO https://raw.githubusercontent.com/mvllow/dots/main/.config/dots/setup.
 
 > To learn how to use a bare git repo for your own dotfiles, check out [postylem/dotfiles](https://github.com/postylem/dotfiles)
 
-Clone to a temp directory
+Clone to a temp directory:
 
 ```sh
 git clone \
@@ -27,14 +27,14 @@ git clone \
   dots-tmp
 ```
 
-Copy working tree snapshot from the temp directory to the home directory, then delete the temp directory.
+Copy working tree snapshot from the temp directory to the home directory, then delete the temp directory:
 
 ```sh
 rsync --recursive --verbose --exclude '.git' dots-tmp/ $HOME/
 rm -rf dots-tmp
 ```
 
-Optionally, add an alias to manage your dots directly.
+Optionally, add an alias to manage your dots directly:
 
 ```sh
 alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
@@ -44,11 +44,12 @@ alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
 
 > All notes can be found in the [wiki](https://github.com/mvllow/dots/wiki)
 
-- [Using a custom shell](https://github.com/mvllow/dots/wiki/Using-a-custom-shell)
+- [macOS setup](https://github.com/mvllow/dots/wiki/macOS-setup)
 - [Signing git commits with GPG](https://github.com/mvllow/dots/wiki/Signing-git-commits-with-GPG)
 - [Update kitty config from neovim](https://github.com/mvllow/dots/wiki/Update-kitty-config-from-neovim)
+- [Using a custom shell](https://github.com/mvllow/dots/wiki/Using-a-custom-shell)
 
 ## FAQ
 
-- Theme used is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
-- Font used is [Cartograph CF](https://connary.com/cartograph.html)
+- Theme is [Rosé Pine](https://github.com/rose-pine/rose-pine-theme)
+- Font is unchanged or [Cartograph CF](https://connary.com/cartograph.html)
