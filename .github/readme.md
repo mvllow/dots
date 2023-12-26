@@ -45,7 +45,7 @@ alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
 > All notes can be found in the [wiki](https://github.com/mvllow/dots/wiki)
 
 - [macOS setup](https://github.com/mvllow/dots/wiki/macOS-setup)
-- [Signing git commits with GPG](https://github.com/mvllow/dots/wiki/Signing-git-commits-with-GPG)
+- [Signing git commits](https://github.com/mvllow/dots/wiki/Signing-git-commits)
 - [Update kitty config from neovim](https://github.com/mvllow/dots/wiki/Update-kitty-config-from-neovim)
 - [Using a custom shell](https://github.com/mvllow/dots/wiki/Using-a-custom-shell)
 
