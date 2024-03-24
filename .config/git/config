@@ -1,0 +1,16 @@
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+[init]
+	defaultbranch = main
+[merge]
+	conflictstyle = diff3
+[pull]
+	rebase = true
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
+	signingkey = /Users/not/.ssh/id_ed25519.pub
+[gpg]
+	format = ssh
