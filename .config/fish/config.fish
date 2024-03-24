@@ -20,7 +20,7 @@ set fish_greeting
 # Open common configuration files
 # $ ,fish
 # > Opened ~/.config/fish in $EDITOR
-set -l configs "fish/config.fish" git/config "kitty/kitty.conf" "nvim/init.lua" skhd/skhdrc tmux/tmux.conf yabai/yabairc
+set -l configs "fish/config.fish" ghostty/config git/config "kitty/kitty.conf" "nvim/init.lua" skhd/skhdrc tmux/tmux.conf yabai/yabairc
 for config in $configs
     set folder_name (string split "/" $config)[1]
     set folder_path "~/.config/$config"
