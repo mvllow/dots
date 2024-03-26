@@ -318,7 +318,7 @@ require("lazy").setup({
 				group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
 				pattern = "*",
 				callback = function(args)
-					require("conform").format({ bufnr = args.buf })
+					require("conform").format({ bufnr = args.buf, lsp_fallback = true })
 				end,
 			})
 		end,
