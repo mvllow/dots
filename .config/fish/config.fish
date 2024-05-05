@@ -6,7 +6,7 @@ set -gx XDG_DATA_HOME $HOME/.local/share
 set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx EDITOR nvim
-
+set -gx FZF_DEFAULT_OPTS "--color=16"
 set -gx GOPATH $XDG_DATA_HOME/go
 
 fish_add_path /opt/homebrew/bin
