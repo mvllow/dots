@@ -7,12 +7,10 @@ set -gx XDG_STATE_HOME $HOME/.local/state
 
 set -gx EDITOR nvim
 
-set -gx CARGO_HOME $XDG_DATA_HOME/cargo
 set -gx GOPATH $XDG_DATA_HOME/go
 
 fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.local/bin
-fish_add_path $CARGO_HOME/bin
 fish_add_path $GOPATH/bin
 
 set fish_greeting
@@ -38,4 +36,3 @@ abbr tn "tmux new -s (basename (pwd))"
 abbr .git "git --git-dir=\$HOME/dots.git --work-tree=\$HOME"
 abbr .lg "lazygit --git-dir=\$HOME/dots.git --work-tree=\$HOME"
 
-status --is-interactive; and rbenv init - fish | source
