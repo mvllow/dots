@@ -36,8 +36,11 @@ alt - f : yabai -m window --toggle zoom-fullscreen
 # Toggle floating window
 alt - g : yabai -m window --toggle float
 
+# Toggle window gap and padding
+shift + alt - g : yabai -m space --toggle gap; yabai -m space --toggle padding
+
 # Toggle float, resize and center
-alt - space : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+alt - space : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
 
 # Toggle window split type
 shift + alt - s : yabai -m window --toggle split
