@@ -1,17 +1,17 @@
-theme = rose-pine
+theme = rose-pine-dawn
 command = "/opt/homebrew/bin/tmux new -A"
 
-adjust-cell-height = 40%
-background-opacity = 0.96
+adjust-cell-height = 50%
 font-family = SF Mono
 font-size = 13.5
-window-decoration = true
+window-decoration = false
 window-padding-balance = true
 
 cursor-style = block
 cursor-style-blink = false
-shell-integration-features = no-cursor
+cursor-invert-fg-bg = true
 mouse-hide-while-typing = true
+shell-integration-features = no-cursor
 
 confirm-close-surface = false
 
@@ -23,10 +23,6 @@ keybind = super+two=text:\x012
 keybind = super+three=text:\x013
 keybind = super+four=text:\x014
 keybind = super+five=text:\x015
-keybind = super+six=text:\x016
-keybind = super+seven=text:\x017
-keybind = super+eight=text:\x018
-keybind = super+nine=text:\x019
 keybind = super+w=text:\x01x
 keybind = super+t=text:\x01c
 keybind = super+comma=text:\x01,
@@ -34,7 +30,7 @@ keybind = super+shift+left_bracket=text:\x01p
 keybind = super+shift+right_bracket=text:\x01n
 keybind = super+d=text:\x01d
 keybind = super+s=text:\x01s
-keybind = super+shift+l=text:\x01L
+keybind = super+l=text:\x01L
 keybind = super+f=text:\x01f
 keybind = super+g=text:\x01g
 keybind = super+shift+g=text:\x01G
