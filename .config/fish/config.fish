@@ -22,7 +22,7 @@ set -l configs "fish/config.fish" ghostty/config git/config "kitty/kitty.conf" "
 for config in $configs
     set folder_name (string split "/" $config)[1]
     set folder_path "~/.config/$config"
-    abbr ",$folder_name" "$EDITOR $folder_path"
+    abbr ",$folder_name" "nvim $folder_path"
 end
 
 alias vim nvim
@@ -35,4 +35,3 @@ abbr tn "tmux new -s (basename (pwd))"
 # https://github.com/mvllow/dots
 abbr .git "git --git-dir=\$HOME/dots.git --work-tree=\$HOME"
 abbr .lg "lazygit --git-dir=\$HOME/dots.git --work-tree=\$HOME"
-
