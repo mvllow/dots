@@ -19,7 +19,7 @@ if status is-interactive
     # Open common configuration files
     # $ ,fish
     # > Editing ~/.config/fish/config.fish in Neovim
-    set -l configs fish/config.fish ghostty/config git/config nvim/init.lua skhd/skhdrc tmux/tmux.conf yabai/yabairc
+    set -l configs fish/config.fish ghostty/config git/config lazygit/config.yml nvim/init.lua skhd/skhdrc tmux/tmux.conf yabai/yabairc
     for config in $configs
         set folder_name (string split "/" $config)[1]
         set folder_path "$XDG_CONFIG_HOME/$config"
