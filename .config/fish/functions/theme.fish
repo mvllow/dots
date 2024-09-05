@@ -8,6 +8,9 @@ function theme -a option
         sed -i "" -e \
             "s/theme = .*/theme = $THEME/" \
             "$HOME/.config/ghostty/config"
+
+        osascript -e 'tell application "Ghostty" to activate' \
+            -e 'tell application "System Events" to keystroke "," using {shift down, command down}'
     end
 
     function _set_kitty_theme
