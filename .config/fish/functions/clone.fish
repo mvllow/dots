@@ -25,9 +25,19 @@ function clone -w "git clone" -a input -d "Clone remote repository"
 
     if test $argv[2]
         git clone git@github.com:$source.git $argv[2..]
-        cd "$argv[2]"
+        set clone_dir "$argv[2]"
     else
         git clone git@github.com:$source.git $output
-        cd "$output"
+        set clone_dir "$output"
+    end
+
+    set session_name (string replace -r '\W' '_' "$output")
+
+    tmux new-session -ds "$session_name" -c "$PWD/$clone_dir"
+
+    if test -n "$TMUX"
+        tmux switch-client -t "$session_name"
+    else
+        tmux attach-session -t "$session_name"
     end
 end
