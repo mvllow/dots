@@ -1,18 +1,19 @@
 theme = rose-pine-dawn
 
-adjust-cell-height = 50%
-font-family = SF Mono
+adjust-cell-height = 40%
+font-family = Menlo
 font-size = 13.5
-window-decoration = false
-window-padding-balance = true
 
+confirm-close-surface = false
+
+cursor-invert-fg-bg = true
 cursor-style = block
 cursor-style-blink = false
-cursor-invert-fg-bg = true
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor
 
-confirm-close-surface = false
+window-decoration = false
+window-padding-balance = true
 
 # Keybinds
 # \x02 is ctrl+b (default tmux prefix)
