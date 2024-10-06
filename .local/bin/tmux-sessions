@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 1 ]]; then
-	selected=$1
-else
-	selected=$(echo -e "0\n$(find ~/dev -mindepth 1 -maxdepth 1 -type d)" | fzf)
-fi
-
+search_dir="$HOME/dev"
+selected=$(echo -e "0\n$(find $search_dir -mindepth 1 -maxdepth 1 -type d | awk -F'/' '{print $NF}')" | fzf --tmux=center,60%,10)
 
 if [[ -z $selected ]]; then
 	exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+selected_path="$search_dir/$selected"
 
 if [[ -n $TMUX ]]; then
-	if ! tmux has-session -t=$selected_name 2> /dev/null; then
-		tmux new-session -ds $selected_name -c $selected
+	if ! tmux has-session -t=$selected 2>/dev/null; then
+		tmux new-session -ds $selected -c "$selected_path"
 	fi
-	tmux switch-client -t $selected_name
+	tmux switch-client -t $selected
 else
-	tmux new -A -s $selected_name -c $selected
+	tmux new -A -s $selected -c "$selected_path"
 fi
