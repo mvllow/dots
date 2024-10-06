@@ -1,4 +1,3 @@
-vim.cmd([[
 if exists('loaded_matchit') && !exists('b:match_words')
   let b:match_ignorecase = 0
   let b:match_words =
@@ -8,4 +7,3 @@ if exists('loaded_matchit') && !exists('b:match_words')
         \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>,' .
         \ '<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
 endif
-]])
