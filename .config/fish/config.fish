@@ -13,6 +13,10 @@ fish_add_path /opt/homebrew/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $GOPATH/bin
 
+if not set -q TMUX
+    tmux new -A
+end
+
 if status is-interactive
     set fish_greeting
 

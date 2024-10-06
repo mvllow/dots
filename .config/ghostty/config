@@ -1,5 +1,4 @@
 theme = rose-pine-dawn
-command = "/opt/homebrew/bin/tmux new -A"
 
 adjust-cell-height = 50%
 font-family = SF Mono
