@@ -1,23 +1,29 @@
 vim.g.mapleader = " "
 
-vim.opt.guicursor = ""
-vim.opt.signcolumn = "yes"
-vim.opt.undofile = true
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.scrolloff = 3
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.pumheight = 5
-vim.opt.breakindent = true
-vim.opt.linebreak = true
-vim.opt.showbreak = [[\\]]
+vim.o.guicursor = ""
+vim.o.signcolumn = "yes"
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.pumheight = 5
+vim.o.breakindent = true
+vim.o.linebreak = true
+vim.o.showbreak = [[\\]]
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.undofile = true
+vim.o.lazyredraw = true
 
-vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
+-- Navigate between wrapped lines
+vim.keymap.set({ "n", "v" }, "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
+vim.keymap.set({ "n", "v" }, "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+vim.keymap.set({ "n", "v" }, "<up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+vim.keymap.set({ "n", "v" }, "<down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 
-vim.keymap.set("n", "]q", ":cnext<cr>zz")
-vim.keymap.set("n", "[q", ":cprev<cr>zz")
+-- Navigate quickfix results
+vim.keymap.set("n", "<c-j>", ":cnext<cr>zz")
+vim.keymap.set("n", "<c-k>", ":cprev<cr>zz")
 
+-- Use tab to navigate popup menu, enter to confirm selection
 local keys = {
 	["cr"] = vim.api.nvim_replace_termcodes("<cr>", true, true, true),
 	["ctrl-y"] = vim.api.nvim_replace_termcodes("<c-y>", true, true, true),
@@ -31,194 +37,288 @@ end, { expr = true })
 vim.keymap.set("i", "<tab>", [[pumvisible() ? "\<c-n>" : "\<tab>"]], { expr = true })
 vim.keymap.set("i", "<s-tab>", [[pumvisible() ? "\<c-p>" : "\<s-tab>"]], { expr = true })
 
+-- Yank and paste via clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
-vim.keymap.set("n", "S", ":%s/<c-r><c-w>/<c-r><c-w>/g<left><left>")
-vim.keymap.set("v", "S", [["zy:let @"=@0<cr>:%s/<c-r>z/<c-r>z/g<left><left>]])
-vim.keymap.set({ "n", "v" }, "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-vim.keymap.set({ "n", "v" }, "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-vim.keymap.set({ "n", "v" }, "<up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-vim.keymap.set({ "n", "v" }, "<down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
-vim.keymap.set({ "n", "v" }, "<c-h>", "<c-w>h")
-vim.keymap.set({ "n", "v" }, "<c-j>", "<c-w>j")
-vim.keymap.set({ "n", "v" }, "<c-k>", "<c-w>k")
-vim.keymap.set({ "n", "v" }, "<c-l>", "<c-w>l")
-vim.keymap.set({ "n", "v" }, "<c-,>", "<c-w>5<")
-vim.keymap.set({ "n", "v" }, "<c-.>", "<c-w>5>")
-vim.keymap.set({ "n", "v" }, "<c-=>", "<c-w>+")
-vim.keymap.set({ "n", "v" }, "<c-->", "<c-w>-")
+
+-- Override "*" to visualise current word or selection
 vim.keymap.set("n", "*", "*N")
 vim.keymap.set("v", "*", [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
-vim.keymap.set("n", "<leader>cp", [[:let @+ = "./" . expand("%")<cr>]])
+
+-- Override "S" to substitute current word or selection
+vim.keymap.set("n", "S", ":%s/<c-r><c-w>/<c-r><c-w>/g<left><left>")
+vim.keymap.set("v", "S", [["zy:let @"=@0<cr>:%s/<c-r>z/<c-r>z/g<left><left>]])
+
+vim.keymap.set("n", "<leader>e", ":Ex<cr>")
+
+-- Show diagnostic message
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 
-vim.diagnostic.config({ virtual_text = false })
+if vim.fn.executable("fzf") ~= 0 then
+	vim.opt.runtimepath:append("/opt/homebrew/opt/fzf")
+	vim.keymap.set("n", "<leader>f", ":FZF<cr>")
+end
+
+if vim.fn.executable("rg") ~= 0 then
+	-- Use `:grep some-text` to search, then `:copen` to open quickfix list
+	vim.o.grepprg = "rg --vimgrep"
+end
+
+-- Balance windows on resize
+vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
+
+vim.diagnostic.config({
+	signs = false,
+	virtual_text = false,
+})
+
+vim.filetype.add(require("linguine.filetypes"))
 
 require("pam").manage({
-	{ source = "tpope/vim-sleuth" },
-	{ source = "tpope/vim-dadbod" },
-	{ source = "kristijanhusak/vim-dadbod-ui" },
-	{ source = "vim-test/vim-test" },
-	{ source = "rose-pine/neovim" },
-	{ source = "nvim-treesitter/nvim-treesitter" },
-	{ source = "folke/ts-comments.nvim" },
-	-- packadd mini.nvim | helptags ALL
-	{ source = "echasnovski/mini.nvim" },
-	{ source = "stevearc/conform.nvim" },
-	{ source = "mvllow/matcha.nvim" },
-	{ source = "neovim/nvim-lspconfig" },
-	{ source = "williamboman/mason.nvim" },
-	{ source = "williamboman/mason-lspconfig.nvim" },
+	{ source = "mvllow/pam.nvim" },
+	{
+		source = "williamboman/mason.nvim",
+		dependencies = {
+			{ source = "neovim/nvim-lspconfig" },
+			{ source = "williamboman/mason-lspconfig.nvim" },
+		},
+		config = function()
+			local capabilities = vim.lsp.protocol.make_client_capabilities()
+			local servers = {
+				angularls = require("linguine.languages.angular").lspconfig(),
+				lua_ls = require("linguine.languages.lua").lspconfig(),
+			}
+
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				handlers = {
+					function(server_name)
+						local server = servers[server_name] or {}
+						server.capabilities = capabilities
+						require("lspconfig")[server_name].setup(server)
+
+						if server_name == "angularls" then
+							vim.keymap.set("n", "gt", function()
+								require("linguine.languages.angular").goto_component_or_template()
+							end)
+						end
+					end,
+				},
+			})
+
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("CustomLspAttach", { clear = true }),
+				callback = function(event)
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+					if client and client.name == "astro" then
+						require("linguine.languages.astro").on_lsp_attach(client)
+					end
+
+					if client and client.name == "svelte" then
+						require("linguine.languages.svelte").on_lsp_attach(client)
+					end
+
+					vim.b.minicompletion_config = { lsp_completion = { source_func = "omnifunc", auto_setup = false } }
+					vim.api.nvim_set_option_value(
+						"omnifunc",
+						"v:lua.MiniCompletion.completefunc_lsp",
+						{ buf = event.buf }
+					)
+				end,
+			})
+		end,
+	},
+	{
+		source = "nvim-treesitter/nvim-treesitter",
+		post_checkout = function()
+			vim.cmd("TSUpdate")
+		end,
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				auto_install = true,
+				ensure_installed = { "c", "lua", "markdown", "markdown_inline", "query", "vim", "vimdoc" },
+				highlight = { enable = true, additional_vim_regex_highlighting = { "ruby" } },
+				indent = { enable = false, disable = { "ruby" } },
+			})
+		end,
+	},
+	{
+		source = "folke/ts-comments.nvim",
+		config = function()
+			require("ts-comments").setup()
+		end,
+	},
+	{
+		source = "rose-pine/neovim",
+		config = function()
+			require("rose-pine").setup({
+				styles = { italic = false },
+				highlight_groups = {
+					CurSearch = { fg = "base", bg = "rose", inherit = false },
+					Search = { fg = "text", bg = "rose", blend = 20, inherit = false },
+					StatusLine = { fg = "base", bg = "text", inherit = false },
+					Visual = { bg = "iris", blend = 15 },
+					["@constant"] = { fg = "text", bold = true },
+					["@variable.builtin"] = { fg = "text", bold = true },
+				},
+			})
+			vim.cmd.colorscheme("rose-pine")
+		end,
+	},
+	{
+		source = "echasnovski/mini.nvim",
+		config = function()
+			require("mini.align").setup()
+
+			require("mini.clue").setup()
+
+			require("mini.completion").setup()
+
+			local minidiff = require("mini.diff")
+			minidiff.setup({ view = { signs = { add = "+", change = "~", delete = "-" } } })
+
+			require("mini.doc").setup()
+
+			local miniextra = require("mini.extra")
+			miniextra.setup()
+
+			local minifiles = require("mini.files")
+			minifiles.setup()
+			vim.keymap.set("n", "<leader>e", function()
+				minifiles.open(vim.api.nvim_buf_get_name(0))
+			end)
+
+			require("mini.git").setup()
+
+			local minipick = require("mini.pick")
+			local choose_all = function()
+				local mappings = minipick.get_picker_opts().mappings
+				vim.api.nvim_input(mappings.mark_all .. mappings.choose_marked)
+			end
+			minipick.setup({ mappings = { choose_all = { char = "<c-q>", func = choose_all } } })
+			vim.ui.select = minipick.ui_select
+			vim.keymap.set("n", "<leader>f", ":Pick files<cr>")
+			vim.keymap.set("n", "<leader>.", ":Pick resume<cr><space><bs>")
+			vim.keymap.set("n", "<leader>/", ":Pick grep_live<cr>")
+			vim.keymap.set("n", "<leader>g", function()
+				miniextra.pickers.git_files({ scope = "modified" })
+			end)
+			vim.keymap.set("n", "<leader>d", function()
+				miniextra.pickers.diagnostic()
+			end)
+		end,
+	},
+	{
+		source = "kristijanhusak/vim-dadbod-ui",
+		dependencies = { { source = "tpope/vim-dadbod" } },
+		config = function()
+			vim.g.db_ui_save_location = "~/.local/share/db_ui"
+			vim.g.db_ui_tmp_query_location = "~/.local/share/db_ui/tmp"
+			vim.keymap.set("n", "<leader>W", "<plug>(DBUI_SaveQuery)")
+		end,
+	},
+	{
+		source = "vim-test/vim-test",
+		dependencies = { { source = "benmills/vimux" } },
+		config = function()
+			vim.g["test#strategy"] = "vimux"
+			if vim.uv.fs_stat(vim.fn.getcwd() .. "/nx.json") then
+				vim.g["test#javascript#runner"] = "nx"
+			end
+
+			vim.keymap.set("n", "<leader>tf", ":TestFile<cr>")
+			vim.keymap.set("n", "<leader>tn", ":TestNearest<cr>")
+			vim.keymap.set("n", "<leader>tq", ":VimuxCloseRunner<cr>")
+			vim.keymap.set("n", "<leader>tz", ":VimuxZoomRunner<cr>")
+		end,
+	},
 	{
 		source = "ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		dependencies = { { source = "nvim-lua/plenary.nvim" } },
+		config = function()
+			local harpoon = require("harpoon")
+			harpoon:setup({ settings = { save_on_toggle = true } })
+			vim.keymap.set("n", "ma", function()
+				harpoon:list():add()
+			end)
+			vim.keymap.set("n", "<leader>m", function()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
+			end)
+			vim.keymap.set("n", "'a", function()
+				harpoon:list():select(1)
+			end)
+			vim.keymap.set("n", "'s", function()
+				harpoon:list():select(2)
+			end)
+			vim.keymap.set("n", "'d", function()
+				harpoon:list():select(3)
+			end)
+			vim.keymap.set("n", "'f", function()
+				harpoon:list():select(4)
+			end)
+			vim.keymap.set("n", "'g", function()
+				harpoon:list():select(5)
+			end)
+		end,
 	},
-})
-
-require("nvim-treesitter.configs").setup({
-	auto_install = true,
-	ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
-	highlight = { enable = true, additional_vim_regex_highlighting = { "ruby" } },
-	indent = { enable = true, disable = { "ruby" } },
-})
-
-require("ts-comments").setup()
-
-require("rose-pine").setup({ styles = { italic = false } })
-vim.cmd.colorscheme("rose-pine")
-
-require("mini.completion").setup()
-
-require("mini.diff").setup({ view = { signs = { add = "+", change = "~", delete = "-" } } })
-vim.keymap.set("n", "]h", function()
-	require("mini.diff").goto_hunk("next")
-end)
-vim.keymap.set("n", "[h", function()
-	require("mini.diff").goto_hunk("prev")
-end)
-
-require("mini.doc").setup()
-
-require("mini.files").setup()
-vim.keymap.set("n", "<leader>e", function()
-	require("mini.files").open(vim.api.nvim_buf_get_name(0))
-end)
-
-local choose_all = function()
-	local mappings = MiniPick.get_picker_opts().mappings
-	vim.api.nvim_input(mappings.mark_all .. mappings.choose_marked)
-end
-require("mini.pick").setup({
-	mappings = {
-		choose_all = { char = "<C-q>", func = choose_all },
+	{
+		source = "stevearc/conform.nvim",
+		config = function()
+			require("conform").setup({
+				notify_on_error = false,
+				default_format_opts = { lsp_format = "fallback" },
+				formatters_by_ft = vim.tbl_extend("force", {
+					fish = { "fish_indent" },
+					go = { "goimports" },
+					lua = { "stylua" },
+					sh = { "shfmt" },
+				}, require("linguine.formatters").prettier),
+			})
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
+				pattern = "*",
+				callback = function()
+					require("conform").format()
+				end,
+			})
+		end,
 	},
-})
-vim.ui.select = require("mini.pick").ui_select
-vim.keymap.set("n", "<leader>f", ":Pick files<cr>")
-vim.keymap.set("n", "<leader>.", function()
-	MiniPick.refresh()
-	MiniPick.builtin.resume()
-	MiniPick.refresh()
-	-- ":Pick resume<cr><space><bs>"
-end)
-vim.keymap.set("n", "<leader>/", ":Pick grep_live<cr>")
+	{
+		source = "mvllow/matcha.nvim",
+		config = function()
+			local prefix = ","
+			require("matcha").setup({
+				prefix = prefix,
+				keys = {
+					a = "matcha_copilot",
+					b = "background",
+					c = "cmdheight",
+					d = "matcha_diagnostics",
+					f = "FormatOnSave",
+					g = "matcha_diff_overlay",
+					h = "matcha_inlay_hints",
+					l = "list",
+					m = "laststatus",
+					q = "matcha_quickfix",
+					s = "spell",
+					-- t = "matcha_terminal",
+					w = "wrap",
+					["-"] = "Supplement",
+				},
+			})
 
-require("mini.test").setup()
-
-local harpoon = require("harpoon")
-harpoon:setup({ settings = { save_on_toggle = true } })
-vim.keymap.set("n", "ma", function()
-	harpoon:list():add()
-end)
-vim.keymap.set("n", "<leader>m", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-vim.keymap.set("n", "'a", function()
-	harpoon:list():select(1)
-end)
-vim.keymap.set("n", "'s", function()
-	harpoon:list():select(2)
-end)
-vim.keymap.set("n", "'d", function()
-	harpoon:list():select(3)
-end)
-vim.keymap.set("n", "'f", function()
-	harpoon:list():select(4)
-end)
-vim.keymap.set("n", "'g", function()
-	harpoon:list():select(5)
-end)
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("CustomLspAttach", { clear = true }),
-	callback = function(event)
-		vim.b.minicompletion_config = { lsp_completion = { source_func = "omnifunc", auto_setup = false } }
-		vim.api.nvim_set_option_value("omnifunc", "v:lua.MiniCompletion.completefunc_lsp", { buf = event.buf })
-	end,
-})
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local servers = {
-	angularls = require("linguine.languages.angular").lspconfig(),
-	lua_ls = require("linguine.languages.lua").lspconfig(),
-}
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-	handlers = {
-		function(server_name)
-			local server = servers[server_name] or {}
-			server.capabilities = capabilities
-			require("lspconfig")[server_name].setup(server)
+			vim.keymap.set("n", prefix .. "-", function()
+				require("matcha").toggle("Supplement")
+				require("Supplement").clear()
+			end)
+		end,
+	},
+	{
+		source = "~/.config/nvim/lua/supplement",
+		config = function()
+			require("supplement").setup()
 		end,
 	},
 })
-
-require("conform").setup({
-	notify_on_error = false,
-	default_format_opts = { lsp_format = "fallback" },
-	formatters_by_ft = vim.tbl_extend("force", {
-		fish = { "fish_indent" },
-		go = { "goimports" },
-		lua = { "stylua" },
-	}, require("linguine.formatters.prettier")),
-})
-vim.api.nvim_create_autocmd("BufWritePre", {
-	group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-	pattern = "*",
-	callback = function()
-		require("conform").format()
-	end,
-})
-
-require("matcha").setup({
-	prefix = ",",
-	keys = {
-		a = "matcha_copilot",
-		b = "background",
-		c = "cmdheight",
-		d = "matcha_diagnostics",
-		f = "FormatOnSave",
-		g = "matcha_diff_overlay",
-		h = "matcha_inlay_hints",
-		l = "list",
-		m = "laststatus",
-		q = "matcha_quickfix",
-		s = "spell",
-		w = "wrap",
-	},
-})
-
--- kristijanhusak/vim-dadbod-ui
-vim.g.db_ui_force_echo_notifications = 1
-vim.g.db_ui_save_location = "~/.local/share/db_ui"
-vim.g.db_ui_tmp_query_location = "~/.local/share/db_ui/tmp"
-vim.keymap.set("n", "<leader>W", "<plug>(DBUI_SaveQuery)")
-
--- vim-test/vim-test
--- https://github.com/vim-test/vim-test/issues/776
--- vim.g["test#strategy"] = "dispatch"
-vim.g["test#strategy"] = "neovim"
-vim.keymap.set("n", "<leader>tf", ":TestFile<cr>")
-vim.keymap.set("n", "<leader>tn", ":TestNearest<cr>")

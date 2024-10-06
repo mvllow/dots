@@ -1,5 +1,7 @@
+local M = {}
+
 local prettier = { "prettierd", "prettier", stop_after_first = true }
-return {
+M.prettier = {
 	-- prettier (default)
 	javascript = prettier,
 	javascriptreact = prettier,
@@ -21,3 +23,5 @@ return {
 	astro = prettier,
 	svelte = prettier,
 }
+
+return M
