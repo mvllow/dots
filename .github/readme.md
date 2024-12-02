@@ -19,22 +19,22 @@ rsync --recursive --verbose --exclude '.git' dots-tmp/ $HOME/
 rm -rf dots-tmp
 ```
 
-Optionally, add an alias to use git with this new structure:
+Add an alias to use git with this new structure:
 
 ```sh
 alias .git='git --git-dir=$HOME/dots.git/ --work-tree=$HOME'
-```
-
-Optionally, hide untracked files—you will have to manually add new files:
-
-```sh
-.git config --local status.showUntrackedFiles no
 ```
 
 Change upstream from https to ssh:
 
 ```sh
 .git remote set-url origin git@github.com:mvllow/dots.git
+```
+
+Optionally, hide untracked files—you will have to manually add new files:
+
+```sh
+.git config --local status.showUntrackedFiles no
 ```
 
 ## References
