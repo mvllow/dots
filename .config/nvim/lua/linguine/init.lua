@@ -3,16 +3,10 @@ local Linguine = {}
 function Linguine.setup(opts)
 	opts = opts or {}
 
-	local languages = {
-		angular = require("linguine.languages.angular"),
-		astro = require("linguine.languages.astro"),
-		lua = require("linguine.languages.lua"),
-		svelte = require("linguine.languages.svelte"),
-	}
-
+	local languages = require("linguine.languages")
 	for language, module in pairs(languages) do
 		if not require("lspconfig")[language] then
-			vim.notify("Warning: LSP config for " .. language .. " is not available.", vim.log.levels.WARN)
+			vim.notify("LSP config for " .. language .. " is not available.", vim.log.levels.WARN)
 		elseif not require("lspconfig")[language].manager then
 			if module.lspconfig then
 				require("lspconfig")[language].setup(module.lspconfig())
@@ -37,8 +31,8 @@ function Linguine.setup_languages(languages)
 			end
 
 			for language, module in pairs(languages) do
-				if client.name == language and module.on_lsp_attach then
-					module.on_lsp_attach(client)
+				if client.name == language and module.lsp_on_attach then
+					module.lsp_on_attach(client)
 				end
 			end
 		end,

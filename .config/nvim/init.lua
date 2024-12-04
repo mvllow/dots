@@ -83,10 +83,11 @@ require("pam").manage({
 			{ source = "williamboman/mason-lspconfig.nvim" },
 		},
 		config = function()
+			local languages = require("linguine.languages")
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			local servers = {
-				angularls = require("linguine.languages.angular").lspconfig(),
-				lua_ls = require("linguine.languages.lua").lspconfig(),
+				angularls = languages.angular.lspconfig(),
+				lua_ls = languages.lua.lspconfig(),
 			}
 
 			require("mason").setup()
@@ -96,34 +97,24 @@ require("pam").manage({
 						local server = servers[server_name] or {}
 						server.capabilities = capabilities
 						require("lspconfig")[server_name].setup(server)
-
-						if server_name == "angularls" then
-							vim.keymap.set("n", "gt", function()
-								require("linguine.languages.angular").goto_component_or_template()
-							end)
-						end
 					end,
 				},
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("CustomLspAttach", { clear = true }),
-				callback = function(event)
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-					if client and client.name == "astro" then
-						require("linguine.languages.astro").on_lsp_attach(client)
-					end
-
-					if client and client.name == "svelte" then
-						require("linguine.languages.svelte").on_lsp_attach(client)
+					if client and languages[client.name] then
+						languages[client.name].lsp_on_attach(client)
 					end
 
 					vim.b.minicompletion_config = { lsp_completion = { source_func = "omnifunc", auto_setup = false } }
 					vim.api.nvim_set_option_value(
 						"omnifunc",
 						"v:lua.MiniCompletion.completefunc_lsp",
-						{ buf = event.buf }
+						{ buf = args.buf }
 					)
 				end,
 			})
@@ -269,12 +260,7 @@ require("pam").manage({
 			require("conform").setup({
 				notify_on_error = false,
 				default_format_opts = { lsp_format = "fallback" },
-				formatters_by_ft = vim.tbl_extend("force", {
-					fish = { "fish_indent" },
-					go = { "goimports" },
-					lua = { "stylua" },
-					sh = { "shfmt" },
-				}, require("linguine.formatters").prettier),
+				formatters_by_ft = require("linguine.formatters"),
 			})
 			vim.api.nvim_create_autocmd("BufWritePre", {
 				group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),

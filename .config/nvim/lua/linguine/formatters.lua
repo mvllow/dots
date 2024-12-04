@@ -1,7 +1,10 @@
-local M = {}
-
 local prettier = { "prettierd", "prettier", stop_after_first = true }
-M.prettier = {
+return {
+	fish = { "fish_indent" },
+	go = { "goimports" },
+	lua = { "stylua" },
+	sh = { "shfmt" },
+
 	-- prettier (default)
 	javascript = prettier,
 	javascriptreact = prettier,
@@ -23,5 +26,3 @@ M.prettier = {
 	astro = prettier,
 	svelte = prettier,
 }
-
-return M

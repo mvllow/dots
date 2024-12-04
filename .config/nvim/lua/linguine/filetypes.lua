@@ -1,5 +1,6 @@
 return {
 	extension = {
-		njk = "html"
-	}
+		mustache = "html",
+		njk = "html",
+	},
 }
