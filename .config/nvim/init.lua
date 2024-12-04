@@ -49,28 +49,13 @@ vim.keymap.set("v", "*", [[y/\V<c-r>=escape(@",'/\')<cr><cr>N]])
 vim.keymap.set("n", "S", ":%s/<c-r><c-w>/<c-r><c-w>/g<left><left>")
 vim.keymap.set("v", "S", [["zy:let @"=@0<cr>:%s/<c-r>z/<c-r>z/g<left><left>]])
 
-vim.keymap.set("n", "<leader>e", ":Ex<cr>")
-
 -- Show diagnostic message
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
-
-if vim.fn.executable("fzf") ~= 0 then
-	vim.opt.runtimepath:append("/opt/homebrew/opt/fzf")
-	vim.keymap.set("n", "<leader>f", ":FZF<cr>")
-end
-
-if vim.fn.executable("rg") ~= 0 then
-	-- Use `:grep some-text` to search, then `:copen` to open quickfix list
-	vim.o.grepprg = "rg --vimgrep"
-end
 
 -- Balance windows on resize
 vim.api.nvim_create_autocmd("VimResized", { command = "tabdo wincmd =" })
 
-vim.diagnostic.config({
-	signs = false,
-	virtual_text = false,
-})
+vim.diagnostic.config({ virtual_text = false })
 
 vim.filetype.add(require("linguine.filetypes"))
 
@@ -140,10 +125,6 @@ require("pam").manage({
 			require("rose-pine").setup({
 				styles = { italic = false },
 				highlight_groups = {
-					CurSearch = { fg = "base", bg = "rose", inherit = false },
-					Search = { fg = "text", bg = "rose", blend = 20, inherit = false },
-					StatusLine = { fg = "base", bg = "text", inherit = false },
-					Visual = { bg = "iris", blend = 15 },
 					["@constant"] = { fg = "text", bold = true },
 					["@variable.builtin"] = { fg = "text", bold = true },
 				},
@@ -154,28 +135,16 @@ require("pam").manage({
 	{
 		source = "echasnovski/mini.nvim",
 		config = function()
-			require("mini.align").setup()
-
-			require("mini.clue").setup()
 			require("mini.comment").setup()
 
 			require("mini.completion").setup()
 
-			local minidiff = require("mini.diff")
-			minidiff.setup({ view = { signs = { add = "+", change = "~", delete = "-" } } })
+			require("mini.diff").setup({ view = { signs = { add = "+", change = "~", delete = "-" } } })
 
-			require("mini.doc").setup()
-
-			local miniextra = require("mini.extra")
-			miniextra.setup()
-
-			local minifiles = require("mini.files")
-			minifiles.setup()
+			require("mini.files").setup()
 			vim.keymap.set("n", "<leader>e", function()
-				minifiles.open(vim.api.nvim_buf_get_name(0))
+				require("mini.files").open(vim.api.nvim_buf_get_name(0))
 			end)
-
-			require("mini.git").setup()
 
 			local minipick = require("mini.pick")
 			local choose_all = function()
@@ -187,12 +156,6 @@ require("pam").manage({
 			vim.keymap.set("n", "<leader>f", ":Pick files<cr>")
 			vim.keymap.set("n", "<leader>.", ":Pick resume<cr><space><bs>")
 			vim.keymap.set("n", "<leader>/", ":Pick grep_live<cr>")
-			vim.keymap.set("n", "<leader>g", function()
-				miniextra.pickers.git_files({ scope = "modified" })
-			end)
-			vim.keymap.set("n", "<leader>d", function()
-				miniextra.pickers.diagnostic()
-			end)
 		end,
 	},
 	{
@@ -206,17 +169,13 @@ require("pam").manage({
 	},
 	{
 		source = "vim-test/vim-test",
-		dependencies = { { source = "benmills/vimux" } },
 		config = function()
-			vim.g["test#strategy"] = "vimux"
 			if vim.uv.fs_stat(vim.fn.getcwd() .. "/nx.json") then
 				vim.g["test#javascript#runner"] = "nx"
 			end
 
 			vim.keymap.set("n", "<leader>tf", ":TestFile<cr>")
 			vim.keymap.set("n", "<leader>tn", ":TestNearest<cr>")
-			vim.keymap.set("n", "<leader>tq", ":VimuxCloseRunner<cr>")
-			vim.keymap.set("n", "<leader>tz", ":VimuxZoomRunner<cr>")
 		end,
 	},
 	{
@@ -273,7 +232,6 @@ require("pam").manage({
 			require("matcha").setup({
 				prefix = prefix,
 				keys = {
-					a = "matcha_copilot",
 					b = "background",
 					c = "cmdheight",
 					d = "matcha_diagnostics",
@@ -284,7 +242,6 @@ require("pam").manage({
 					m = "laststatus",
 					q = "matcha_quickfix",
 					s = "spell",
-					-- t = "matcha_terminal",
 					w = "wrap",
 				},
 			})
