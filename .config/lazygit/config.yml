@@ -2,11 +2,6 @@ gui:
   authorColors:
     "*": magenta
   skipRewordInEditorWarning: true
-  theme:
-    selectedLineBgColor:
-      - black
-    selectedRangeBgColor:
-      - reverse
 keybinding:
   files:
     viewResetOptions: <disabled>
