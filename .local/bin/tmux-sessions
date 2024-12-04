@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
 search_dir="$HOME/dev"
-selected=$(echo -e "0\n$(find $search_dir -mindepth 1 -maxdepth 1 -type d | awk -F'/' '{print $NF}')" | fzf --tmux=center,60%,10)
+selected_dir=$(find "$search_dir" -mindepth 1 -maxdepth 1 -type d | fzf)
 
-if [[ -z $selected ]]; then
+if [[ -z $selected_dir ]]; then
 	exit 0
 fi
 
-selected_path="$search_dir/$selected"
+session_name=$(basename "$selected_dir" | tr . _)
+
+if ! tmux list-sessions | grep -q "^$session_name:"; then
+	tmux new-session -ds "$session_name" -c "$selected_dir"
+fi
 
 if [[ -n $TMUX ]]; then
-	if ! tmux has-session -t=$selected 2>/dev/null; then
-		tmux new-session -ds $selected -c "$selected_path"
-	fi
-	tmux switch-client -t $selected
+	tmux switch-client -t "$session_name"
 else
-	tmux new -A -s $selected -c "$selected_path"
+	tmux attach-session -t "$session_name"
 fi
