@@ -291,18 +291,16 @@ require("pam").manage({
 					s = "spell",
 					-- t = "matcha_terminal",
 					w = "wrap",
-					["-"] = "Supplement",
 				},
 			})
 
 			vim.keymap.set("n", prefix .. "-", function()
-				require("matcha").toggle("Supplement")
-				require("Supplement").clear()
+				require("Supplement").toggle()
 			end)
 		end,
 	},
 	{
-		source = "~/.config/nvim/lua/supplement",
+		source = "mvllow/supplement.nvim",
 		config = function()
 			require("supplement").setup()
 		end,
