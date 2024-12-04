@@ -1,17 +1,14 @@
-### GLOBAL
+# Discover keycodes via `skhd -o`, for example when using ","
+# https://github.com/koekeishiya/skhd/issues/1
 
-cmd - n [
-	"safari" : skhd --key "cmd + shift + alt - 0"
+# Open apps
+alt - 1 : open -a Safari
+alt - 2 : open -a Ghostty
+
+cmd - v [
+	# Paste without formatting
+	"Mail" : skhd -k "cmd + alt + shift - v"
 ]
-
-cmd + shift - n [
-	"safari" : skhd --key "cmd + shift + alt - 1"
-]
-
-default < alt - t : open -a /Applications/Ghostty.app
-alt - t : open -a /Applications/Ghostty.app
-
-### YABAI
 
 # Move window focus
 alt - h : yabai -m window --focus west
@@ -19,47 +16,35 @@ alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - l : yabai -m window --focus east
 
-# Move window
-shift + alt - h : yabai -m window --warp west
-shift + alt - j : yabai -m window --warp south
-shift + alt - k : yabai -m window --warp north
-shift + alt - l : yabai -m window --warp east
+# Swap window position
+shift + alt - h : yabai -m window --swap west
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - l : yabai -m window --swap east
 
-# Swap window
-shift + alt - left  : yabai -m window --swap west
-shift + alt - down  : yabai -m window --swap south
-shift + alt - up    : yabai -m window --swap north
-shift + alt - right : yabai -m window --swap east
+# Move window position
+shift + alt - left : yabai -m window --warp west
+shift + alt - down : yabai -m window --warp south
+shift + alt - up : yabai -m window --warp north
+shift + alt - right : yabai -m window --warp east
 
-# Move window to space
-shift + alt - 1 : yabai -m window --space 1
-shift + alt - 2 : yabai -m window --space 2
-shift + alt - 3 : yabai -m window --space 3
-shift + alt - 4 : yabai -m window --space 4
-shift + alt - 5 : yabai -m window --space 5
-
-# Rotate window positions
-alt - r         : yabai -m space --rotate 270
+# Rotate space
 shift + alt - r : yabai -m space --rotate 270
-
-# Flip window positions
-shift + alt - x : yabai -m space --mirror x-axis
-shift + alt - y : yabai -m space --mirror y-axis
-
-# Toggle window zoom
-alt - f : yabai -m window --toggle zoom-fullscreen
-
-# Toggle floating window
-alt - t : yabai -m window --toggle float
-
-# Toggle window gap and padding
-shift + alt - p : yabai -m space --toggle gap; yabai -m space --toggle padding
-
-# Toggle float, resize and center
-alt - space : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
 
 # Toggle window split type
 shift + alt - s : yabai -m window --toggle split
 
-# Balance windows
-alt - b : yabai -m space --balance
+# Toggle space gap and padding
+shift + alt - g : yabai -m space --toggle gap; yabai -m space --toggle padding
+
+# Toggle window float
+alt - space : yabai -m window --toggle float
+
+# Toggle window float, resize and center
+shift + alt - space : yabai -m window --toggle float; yabai -m window --grid 6:6:1:1:4:4
+
+# Toggle window zoom
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+# Balance size of windows
+shift + alt - 0 : yabai -m space --balance
