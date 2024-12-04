@@ -135,12 +135,6 @@ require("pam").manage({
 		end,
 	},
 	{
-		source = "folke/ts-comments.nvim",
-		config = function()
-			require("ts-comments").setup()
-		end,
-	},
-	{
 		source = "rose-pine/neovim",
 		config = function()
 			require("rose-pine").setup({
@@ -163,6 +157,7 @@ require("pam").manage({
 			require("mini.align").setup()
 
 			require("mini.clue").setup()
+			require("mini.comment").setup()
 
 			require("mini.completion").setup()
 
