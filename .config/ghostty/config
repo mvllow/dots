@@ -1,7 +1,7 @@
 theme = rose-pine-dawn
 
 adjust-cell-height = 40%
-font-family = SF Mono
+font-family = Menlo
 font-size = 13
 
 confirm-close-surface = false
@@ -31,7 +31,7 @@ keybind = super+shift+left_bracket=text:\x01p
 keybind = super+shift+right_bracket=text:\x01n
 keybind = super+d=text:\x01d
 keybind = super+s=text:\x01s
-keybind = super+l=text:\x01L
+keybind = super+shift+l=text:\x01L
 keybind = super+f=text:\x01f
 keybind = super+g=text:\x01g
 keybind = super+shift+g=text:\x01G
