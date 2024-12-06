@@ -14,7 +14,7 @@ fish_add_path $HOME/.local/bin
 
 if status is-interactive
     if not set -q TMUX
-        tmux new -A
+        tmux new -A -s (basename (pwd) | tr . _)
     end
 
     set fish_greeting

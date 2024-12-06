@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-search_dir="$HOME/dev"
-selected_dir=$(find "$search_dir" -mindepth 1 -maxdepth 1 -type d | fzf)
+selected_dir=$(
+	{
+		echo "$HOME"
+		find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d
+	} | fzf
+)
 
 if [[ -z $selected_dir ]]; then
 	exit 0
