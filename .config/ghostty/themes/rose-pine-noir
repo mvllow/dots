@@ -1,0 +1,34 @@
+background = #1b1a1e
+foreground = #e0def4
+
+# black
+palette = 0=#2a282f
+palette = 8=#6e6a86
+
+# red
+palette = 1=#eb6f92
+palette = 9=#eb6f92
+
+# green
+palette = 2=#31748f
+palette = 10=#31748f
+
+# yellow
+palette = 3=#f6c177
+palette = 11=#f6c177
+
+# blue
+palette = 4=#908caa
+palette = 12=#908caa
+
+# magenta
+palette = 5=#c4a7e7
+palette = 13=#c4a7e7
+
+# cyan
+palette = 6=#ebbcba
+palette = 14=#ebbcba
+
+# white
+palette = 7=#e0def4
+palette = 15=#e0def4
