@@ -1,0 +1,17 @@
+git:
+  overrideGpg: true
+  paging:
+    colorArg: always
+    # TODO: auto detect light/dark, potentially use --syntax-theme=none
+    pager: delta --light --syntax-theme=ansi --paging=never
+gui:
+  authorColors:
+    "*": magenta
+  showNumstatInFilesView: true
+  skipRewordInEditorWarning: true
+  theme:
+    selectedLineBgColor:
+      - reverse
+keybinding:
+  files:
+    viewResetOptions: <disabled>

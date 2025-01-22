@@ -1,0 +1,25 @@
+[commit]
+	gpgsign = true
+
+[fetch]
+	prune = true
+
+[gpg]
+	format = ssh
+
+[init]
+	defaultbranch = main
+
+[merge]
+	conflictstyle = diff3
+
+[pull]
+	rebase = true
+
+[rebase]
+	updaterefs = true
+
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
+	signingkey = ~/.ssh/id_ed25519.pub

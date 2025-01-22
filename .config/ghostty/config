@@ -1,0 +1,38 @@
+theme = light:rose-pine-dawn,dark:rose-pine
+
+adjust-cell-height = 50%
+font-family = Berkeley Mono
+font-size = 15
+
+confirm-close-surface = false
+
+cursor-invert-fg-bg = true
+cursor-style = block
+cursor-style-blink = false
+mouse-hide-while-typing = true
+shell-integration-features = no-cursor
+
+macos-option-as-alt = false
+macos-titlebar-style = hidden
+window-padding-balance = true
+window-padding-color = extend-always
+
+# Keybinds
+# \x02 is ctrl+b (default tmux prefix)
+# \x01 is ctrl+a (common alternative tmux prefix)
+keybind = super+one=text:\x021
+keybind = super+two=text:\x022
+keybind = super+three=text:\x023
+keybind = super+four=text:\x024
+keybind = super+five=text:\x025
+keybind = super+w=text:\x02x
+keybind = super+t=text:\x02c
+keybind = super+comma=text:\x02,
+keybind = super+shift+left_bracket=text:\x02p
+keybind = super+shift+right_bracket=text:\x02n
+keybind = super+d=text:\x02d
+keybind = super+s=text:\x02s
+keybind = super+shift+l=text:\x02L
+keybind = super+f=text:\x02f
+keybind = super+g=text:\x02g
+keybind = super+shift+g=text:\x02G
