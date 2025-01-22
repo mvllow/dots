@@ -1,0 +1,6 @@
+root = true
+
+[*.lua]
+indent_style = tab
+# Setting added by lua-language-server
+quote_style = single
