@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+# Usage: magick-overlay <base-image> <overlay-image>
+
+BASE_DIR="$(pwd)"
+SOURCE_BASENAME="$(basename "$1" .${1##*.})"
+OVERLAY_BASENAME="$(basename "$2" .${2##*.})"
+
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+
+OUTPUT_DIR="$BASE_DIR/out"
+mkdir -p "$OUTPUT_DIR"
+
+OUTPUT="$OUTPUT_DIR/${SOURCE_BASENAME}_${OVERLAY_BASENAME}_${TIMESTAMP}.jpg"
+OUTPUT_2X="$OUTPUT_DIR/${SOURCE_BASENAME}_${OVERLAY_BASENAME}_${TIMESTAMP}@2x.jpg"
+
+SOURCE="$BASE_DIR/$(basename "$1")"
+OVERLAY="$BASE_DIR/$(basename "$2")"
+
+RES=3000
+RES_2X=$(( $RES * 2 ))
+
+echo "Overlaying $OVERLAY_BASENAME onto $SOURCE_BASENAME..."
+
+magick "$SOURCE" \
+    -resize "${RES}x${RES}"\> -set option:distort:viewport %[fx:w]x%[fx:h] \
+    -write mpr:base +delete \
+    mpr:base -colorspace gray -auto-level -write mpr:mask +delete \
+    "$OVERLAY" -resize %[fx:w]x%[fx:h]! \
+    mpr:mask -compose CopyOpacity -auto-level -evaluate pow 0.7 -composite -write mpr:overlay +delete \
+    mpr:base mpr:overlay -compose overlay -composite "$OUTPUT"
+
+magick "$SOURCE" \
+    -resize "${RES_2X}x${RES_2X}"\> -set option:distort:viewport %[fx:w]x%[fx:h] \
+    -write mpr:base +delete \
+    mpr:base -colorspace gray -auto-level -write mpr:mask +delete \
+    "$OVERLAY" -resize %[fx:w*1.5]x%[fx:h*1.5]! \
+    mpr:mask -compose CopyOpacity -auto-level -evaluate pow 0.7 -composite -write mpr:overlay +delete \
+    mpr:base mpr:overlay -compose overlay -composite "$OUTPUT_2X"
+
+echo "Saved files:"
+echo "- $OUTPUT"
+echo "- $OUTPUT_2X"
