@@ -1,0 +1,17 @@
+tap "nikitabobko/tap"
+brew "fd"
+brew "fish"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "go"
+brew "jq"
+brew "lazygit"
+brew "neovim", args: ["HEAD"]
+brew "node"
+brew "ripgrep"
+brew "tmux", args: ["HEAD"]
+cask "aerospace"
+cask "ghostty@tip"
+cask "orbstack"
+cask "shottr"
