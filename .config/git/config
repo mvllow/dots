@@ -1,0 +1,22 @@
+[alias]
+	lola = "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+[commit]
+	gpgsign = true
+[diff]
+	algorithm = histogram
+[fetch]
+	prune = true
+[gpg]
+	format = ssh
+[init]
+	defaultbranch = main
+[merge]
+	conflictstyle = zdiff3
+[pull]
+	rebase = true
+[rebase]
+	updaterefs = true
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
+	signingkey = ~/.ssh/id_ed25519.pub

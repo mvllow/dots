@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Usage: apply_film_grain <input-image> <film-overlay-image>
+
+BASE_DIR="$(pwd)"
+
+INPUT_BASENAME="$(basename "$1" .${1##*.})"
+OVERLAY_BASENAME="$(basename "$2" .${2##*.})"
+
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+
+OUTPUT_DIR="$BASE_DIR/film_grain_out"
+mkdir -p "$OUTPUT_DIR"
+
+OUTPUT="$OUTPUT_DIR/${INPUT_BASENAME}_${OVERLAY_BASENAME}_film_grain_${TIMESTAMP}.jpg"
+OUTPUT_2X="$OUTPUT_DIR/${INPUT_BASENAME}_${OVERLAY_BASENAME}_film_grain_${TIMESTAMP}@2x.jpg"
+
+INPUT="$BASE_DIR/$(basename "$1")"
+OVERLAY="$BASE_DIR/$(basename "$2")"
+
+RES=1024
+RES_2X=$(( $RES * 2 ))
+
+echo "Applying film grain to $INPUT_BASENAME"
+
+magick "$INPUT" \
+    -resize "${RES}x${RES}"\> -set option:distort:viewport %[fx:w]x%[fx:h] \
+    -write mpr:base +delete \
+    mpr:base -colorspace gray -auto-level -write mpr:mask +delete \
+    "$OVERLAY" -resize %[fx:w]x%[fx:h]! \
+    mpr:mask -compose CopyOpacity -auto-level -evaluate pow 0.7 -composite -write mpr:overlay +delete \
+    mpr:base mpr:overlay -compose overlay -composite "$OUTPUT"
+
+magick "$INPUT" \
+    -resize "${RES_2X}x${RES_2X}"\> -set option:distort:viewport %[fx:w]x%[fx:h] \
+    -write mpr:base +delete \
+    mpr:base -colorspace gray -auto-level -write mpr:mask +delete \
+    "$OVERLAY" -resize %[fx:w*1.5]x%[fx:h*1.5]! \
+    mpr:mask -compose CopyOpacity -auto-level -evaluate pow 0.7 -composite -write mpr:overlay +delete \
+    mpr:base mpr:overlay -compose overlay -composite "$OUTPUT_2X"
+
+echo "Saved files:"
+echo "- $OUTPUT"
+echo "- $OUTPUT_2X"
