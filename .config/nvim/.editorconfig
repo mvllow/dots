@@ -1,0 +1,7 @@
+root = true
+
+[*]
+indent_style = tab
+
+[*.lua]
+quote_style = double
