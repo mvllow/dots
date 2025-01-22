@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+SOURCE_FILE="list.txt"
+OUTPUT_DIR="${XDG_MUSIC_DIR:-$HOME/Music}/library"
+
+mkdir -p "$OUTPUT_DIR"
+
+yt-dlp \
+    --batch-file "$SOURCE_FILE" \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 \
+    --embed-metadata \
+    --embed-thumbnail \
+    --add-metadata \
+    --parse-metadata "playlist_title:%(album)s" \
+    --output "$OUTPUT_DIR/%(uploader)s - %(playlist_title)s/%(title)s.%(ext)s"
+    # --output "$OUTPUT_DIR/%(artist)s - %(album)s/%(title)s.%(ext)s"
