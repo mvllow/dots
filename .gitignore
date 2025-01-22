@@ -1,0 +1,10 @@
+/*
+/*/
+
+!.gitignore
+
+!.config/
+!.github/
+!.local/
+/.local/*
+!.local/bin/
