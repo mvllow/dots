@@ -21,15 +21,14 @@ if status is-interactive
         tmux attach || tmux new -A -s (basename (pwd) | tr . _)
     end
 
+    abbr -a ,aerospace "nvim -c 'lcd %:p:h' ~/.config/aerospace/aerospace.toml"
     abbr -a ,bin "nvim -c 'lcd %:p:h' ~/.local/bin"
     abbr -a ,fish "nvim -c 'lcd %:p:h' ~/.config/fish/config.fish"
     abbr -a ,ghostty "nvim -c 'lcd %:p:h' ~/.config/ghostty/config"
     abbr -a ,git "nvim -c 'lcd %:p:h' ~/.config/git/config"
     abbr -a ,lazygit "nvim -c 'lcd %:p:h' ~/.config/lazygit/config.yml"
     abbr -a ,nvim "nvim -c 'lcd %:p:h' ~/.config/nvim/init.lua"
-    abbr -a ,skhd "nvim -c 'lcd %:p:h' ~/.config/skhd/skhdrc"
     abbr -a ,tmux "nvim -c 'lcd %:p:h' ~/.config/tmux/tmux.conf"
-    abbr -a ,yabai "nvim -c 'lcd %:p:h' ~/.config/yabai/yabairc"
 
     abbr -a ta tmux attach
     abbr -a tn tmux new -A -s (basename (pwd) | tr . _)
