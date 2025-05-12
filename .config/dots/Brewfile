@@ -1,4 +1,3 @@
-tap "homebrew/bundle"
 tap "nikitabobko/tap"
 brew "fd"
 brew "fish"
@@ -9,10 +8,10 @@ brew "go"
 brew "imagemagick"
 brew "jq"
 brew "lazygit"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "node"
-brew "pnpm"
 brew "ripgrep"
-brew "tmux"
+brew "tmux", args: ["HEAD"]
 cask "aerospace"
+cask "ghostty@tip"
 cask "orbstack"
