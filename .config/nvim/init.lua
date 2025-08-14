@@ -77,6 +77,8 @@ require("lil-grep")
 require("lil-places")
 require("lil-quickfix")
 require("lil-subs")
+vim.g.lil_toggle_prefix = ","
+require("lil-toggle")
 require("lil-windows")
 
 require("slimline").setup({
