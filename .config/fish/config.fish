@@ -24,6 +24,7 @@ if status is-interactive
     abbr -a ,aerospace "nvim +'lcd %:p:h' ~/.config/aerospace/aerospace.toml"
     abbr -a ,bash "nvim +'lcd %:p:h' ~/.bashrc"
     abbr -a ,fish "nvim +'lcd %:p:h' ~/.config/fish/config.fish"
+    abbr -a ,foot "nvim +'lcd %:p:h' ~/.config/foot/foot.ini"
     abbr -a ,ghostty "nvim +'lcd %:p:h' ~/.config/ghostty/config"
     abbr -a ,git "nvim +'lcd %:p:h' ~/.config/git/config"
     abbr -a ,lazygit "nvim +'lcd %:p:h' ~/.config/lazygit/config.yml"
@@ -31,6 +32,7 @@ if status is-interactive
     abbr -a ,music "nvim +'lcd %:p:h' ~/.config/music/list.txt"
     abbr -a ,news "nvim +'lcd %:p:h' ~/.config/newsboat/urls"
     abbr -a ,nvim "nvim +'lcd %:p:h' ~/.config/nvim/init.lua"
+    abbr -a ,sway "nvim +'lcd %:p:h' ~/.config/sway/config"
     abbr -a ,tmux "nvim +'lcd %:p:h' ~/.config/tmux/tmux.conf"
 
     abbr -a -c git -c lazygit . -- --git-dir=\$HOME/dots.git --work-tree=\$HOME
