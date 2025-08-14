@@ -22,6 +22,7 @@ if status is-interactive
 
     abbr -a ,aerospace "nvim +'lcd %:p:h' ~/.config/aerospace/aerospace.toml"
     abbr -a ,fish "nvim +'lcd %:p:h' ~/.config/fish/config.fish"
+    abbr -a ,foot "nvim +'lcd %:p:h' ~/.config/foot/foot.ini"
     abbr -a ,ghostty "nvim +'lcd %:p:h' ~/.config/ghostty/config"
     abbr -a ,git "nvim +'lcd %:p:h' ~/.config/git/config"
     abbr -a ,lazygit "nvim +'lcd %:p:h' ~/.config/lazygit/config.yml"
