@@ -63,6 +63,8 @@ require("lil-grep")
 require("lil-places")
 require("lil-quickfix")
 require("lil-subs")
+vim.g.lil_toggle_prefix = ","
+require("lil-toggle")
 require("lil-windows")
 
 -- vim.o.statusline = [[%<%f %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%) %P]]
