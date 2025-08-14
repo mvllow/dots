@@ -47,7 +47,6 @@ vim.pack.add({
 	{ src = "https://github.com/mvllow/lilvim" },
 	{ src = "https://github.com/echasnovski/mini.clue" },
 	{ src = "https://github.com/echasnovski/mini.diff" },
-	{ src = "https://github.com/mvllow/matcha.nvim",              version = "canary" },
 	{ src = "https://github.com/sschleemilch/slimline.nvim" },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
@@ -75,6 +74,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			vim.lsp.completion.enable(true, client.id, args.buf)
 		end
 
+		-- "background" style is enabled by default on nightly
 		if client:supports_method("textDocument/documentColor") then
 			vim.lsp.document_color.enable(true, args.buf, { style = "virtual" })
 		end
@@ -90,9 +90,9 @@ require("lil-grep")
 require("lil-places")
 require("lil-quickfix")
 require("lil-subs")
+vim.g.lil_toggle_prefix = ","
+require("lil-toggle")
 require("lil-windows")
-
-require("matcha").setup({ prefix = "," })
 
 vim.o.laststatus = 3
 require("slimline").setup({
