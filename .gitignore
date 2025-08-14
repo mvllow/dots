@@ -8,3 +8,7 @@
 !.local/
 /.local/*
 !.local/bin/
+
+!Pictures/
+/Pictures/*
+!Pictures/wallpapers/
