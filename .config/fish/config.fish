@@ -27,6 +27,7 @@ if status is-interactive
     abbr -a ,git "nvim +'lcd %:p:h' ~/.config/git/config"
     abbr -a ,lazygit "nvim +'lcd %:p:h' ~/.config/lazygit/config.yml"
     abbr -a ,nvim "nvim +'lcd %:p:h' ~/.config/nvim/init.lua"
+    abbr -a ,sway "nvim +'lcd %:p:h' ~/.config/sway/config"
     abbr -a ,tmux "nvim +'lcd %:p:h' ~/.config/tmux/tmux.conf"
 
     abbr -a -c git -c lazygit . -- --git-dir=\$HOME/dots.git --work-tree=\$HOME
