@@ -8,6 +8,7 @@ brew "go"
 brew "jq"
 brew "lazygit"
 brew "neovim", args: ["HEAD"]
+brew "newsboat"
 brew "node"
 brew "ripgrep"
 brew "tmux", args: ["HEAD"]
