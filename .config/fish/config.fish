@@ -28,6 +28,7 @@ if status is-interactive
     abbr -a ,lazygit "nvim +'lcd %:p:h' ~/.config/lazygit/config.yml"
     abbr -a ,music "nvim +'lcd %:p:h' ~/.config/music/list.txt"
     abbr -a ,news "nvim +'lcd %:p:h' ~/.config/newsboat/urls"
+    abbr -a ,niri "nvim +'lcd %:p:h' ~/.config/niri/config.kdl"
     abbr -a ,nvim "nvim +'lcd %:p:h' ~/.config/nvim/init.lua"
     abbr -a ,sway "nvim +'lcd %:p:h' ~/.config/sway/config"
     abbr -a ,tmux "nvim +'lcd %:p:h' ~/.config/tmux/tmux.conf"
