@@ -1,7 +1,7 @@
 require("vim._extui").enable({})
 
 vim.g.mapleader = " "
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("bauhaus")
 
 vim.o.undofile    = true
 vim.o.tabstop     = 8
