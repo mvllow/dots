@@ -51,15 +51,28 @@ end
 
 ---@class Config
 local config = {
-	--- Helper table to set user highlight groups, extending the theme's group
-	--- values. The palette is accessible by name, e.g. "iris":
+	--- Extend or override the default palette:
+	--- ```lua
+	--- vim.g.rose_pine_palette = {
+	---   dark = {
+	---     base = "#1a1a1a"
+	---   },
+	---   light = {
+	---     rose = "#fa8072"
+	---   }
+	--- }
+	--- ```
+	palette = vim.g.rose_pine_palette or {},
+
+	--- Helper table to set user highlight groups, extending the theme's
+	--- group values. The palette is accessible by name, e.g. "iris":
 	--- ```lua
 	--- vim.g.rose_pine_groups = {
 	---   Normal = { fg = "iris" }
 	--- }
 	--- ```
 	---
-	--- If you want to override a value completely, use the Neovim api directly:
+	--- To override a value completely, use the Neovim api directly:
 	--- ```lua
 	--- vim.api.nvim_create_autocmd("ColorScheme", {
 	---   pattern = "rose-pine",
@@ -68,7 +81,7 @@ local config = {
 	---   end
 	--- })
 	--- ```
-	groups = vim.g.rose_pine_groups or {}
+	groups = vim.g.rose_pine_groups or {},
 }
 
 if vim.g.colors_name then
@@ -78,7 +91,7 @@ end
 vim.g.colors_name = "rose-pine"
 
 ---@class Palette
-local palette = {
+local palette = vim.tbl_extend("force", {
 	base          = "#faf4ed",
 	surface       = "#fffaf3",
 	overlay_dark  = "#f2e9e1",
@@ -92,10 +105,10 @@ local palette = {
 	pine          = "#286983",
 	foam          = "#56949f",
 	iris          = "#907aa9"
-}
+}, config.palette.light or {})
 
 if vim.o.background == "dark" then
-	palette = {
+	palette = vim.tbl_extend("force", {
 		base          = "#1b1a1e",
 		surface       = "#111015",
 		overlay_dark  = "#2a282f",
@@ -109,8 +122,10 @@ if vim.o.background == "dark" then
 		pine          = "#3e8fb0",
 		foam          = "#88b9c0",
 		iris          = "#b59dd4",
-	}
+	}, config.palette.dark or {})
 end
+
+
 
 local no_winborder = vim.o.winborder == "" or vim.o.winborder == "none"
 local dynamic = {
@@ -202,7 +217,7 @@ local highlights = {
 	NonText                  = { fg = palette.overlay_light },
 	Operator                 = { fg = palette.muted },
 	Question                 = { fg = palette.foam },
-	Special                  = { fg = palette.muted },
+	Special                  = { fg = palette.gold },
 	SpellBad                 = { sp = palette.subtle, underdotted = true },
 	SpellCap                 = { sp = palette.subtle, underdotted = true },
 	SpellRare                = { sp = palette.subtle, underdotted = true },
@@ -221,6 +236,10 @@ local highlights = {
 	["@function.builtin"]    = { fg = palette.rose, bold = true },
 	["@variable"]            = { fg = palette.text },
 	["@variable.builtin"]    = { fg = palette.text, bold = true },
+
+	-- Language overrides
+	-- Please prefer updating the root when possible. Otherwise, document general use-cases.
+	["@string.editorconfig"] = { fg = palette.love }, -- invalid values
 }
 
 local transparent = false

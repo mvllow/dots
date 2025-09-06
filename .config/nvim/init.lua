@@ -1,4 +1,24 @@
 vim.g.mapleader = " "
+vim.g.rose_pine_palette = {
+	light = {
+		text = "#2a2a2a",
+		love = "#b73a3a",
+		pine = "#4a944a",
+		gold = "#d18f00",
+		foam = "#3566b8",
+		iris = "#9e4bb5",
+		rose = "#cc6f56",
+	},
+	dark = {
+		text = "#e0e0e0",
+		love = "#e05f5f",
+		pine = "#5dc28b",
+		gold = "#f2c94c",
+		foam = "#5794f2",
+		iris = "#c27ac8",
+		rose = "#c49a9a",
+	}
+}
 vim.cmd.colorscheme("rose-pine")
 
 vim.o.undofile    = true
