@@ -72,8 +72,9 @@ vim.pack.add({
 	"https://github.com/mistweaverco/kulala.nvim",
 })
 
-require("lil-lsp")
 require("lil-grep")
+require("lil-stats")
+require("lil-lsp")
 require("lil-places")
 require("lil-quickfix")
 require("lil-subs")
