@@ -1,8 +1,11 @@
-function tn -d "Create and switch to a tmux session for the current directory"
-    set session_name (tmux_session_name)
+function tn -a path -d "Create and switch to a tmux session for the given directory"
+    set dir (realpath "$path")
+    set session_name (basename "$dir")
 
-    tmux new-session -d -s $session_name -c (pwd)
+    if not tmux has-session -t $session_name 2>/dev/null
+        tmux new-session -d -s $session_name -c $dir
+        echo "==> tmux session '$session_name' created in '$dir'"
+    end
+
     tmux switch-client -t $session_name
-
-    echo "==> tmux session '$session_name' created and attached"
 end
