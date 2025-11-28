@@ -1,0 +1,33 @@
+[alias]
+	lol = "log -10 --decorate --pretty=oneline --abbrev-commit --all"
+	lola = "log --graph --decorate --pretty=oneline --abbrev-commit --all"
+	pushf = "push --force-with-lease --force-if-includes"
+	backup = "!git branch backup/$(git branch --show-current | sed 's/\\//-/g')-$(date +%Y%m%d-%H%M%S)"
+[commit]
+	gpgsign = true
+[difftool "nvim_difftool"]
+	cmd = "nvim -c \"packadd nvim.difftool\" -c \"DiffTool $LOCAL $REMOTE\""
+[diff]
+	algorithm = histogram
+	tool = nvim_difftool
+[fetch]
+	prune = true
+[gpg]
+	format = ssh
+[init]
+	defaultbranch = main
+[merge]
+	conflictstyle = zdiff3
+	tool = nvimdiff
+[mergetool]
+	prompt = false
+[mergetool "nvimdiff"]
+	cmd = "nvim -d \"$LOCAL\" \"$MERGED\" \"$BASE\" \"$REMOTE\" -c \"wincmd w\" -c \"wincmd J\""
+[pull]
+	rebase = true
+[rebase]
+	updaterefs = true
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
+	signingkey = ~/.ssh/id_ed25519.pub

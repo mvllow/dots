@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+
+set -e
+
+DOTS_REMOTE_URL="https://github.com/mvllow/dots.git"
+DOTS_GIT_DIR="$HOME/dots.git"
+
+a_flag=0
+o_flag=0
+
+while getopts "ao" opt; do
+	case "$opt" in
+	a) a_flag=1 ;;
+	o) o_flag=1 ;;
+	esac
+done
+
+echo "Starting system setup..."
+
+if ! xcode-select --print-path &>/dev/null; then
+	echo "Installing Command Line Tools..."
+	xcode-select --install
+	until xcode-select --print-path &>/dev/null; do
+		sleep 3
+	done
+else
+	echo "✓ Found Command Line Tools"
+fi
+
+if [ ! -d "$DOTS_GIT_DIR" ]; then
+	echo "Cloning dotfiles repo..."
+	git clone --bare "$DOTS_REMOTE_URL" "$DOTS_GIT_DIR"
+else
+	echo "✓ Found local dotfiles repo"
+fi
+
+if ! command -v brew >/dev/null 2>&1; then
+	echo "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+	if ! grep -Fq 'eval "$(/opt/homebrew/bin/brew shellenv)"' "$HOME/.zprofile" 2>/dev/null; then
+		echo "# Added by dots script to enable Homebrew. This won't be added again if removed." >>"$HOME/.zprofile"
+		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"$HOME/.zprofile"
+		echo "✓ Added brew to zsh"
+	fi
+
+	if ! grep -Fq 'eval "$(/opt/homebrew/bin/brew shellenv)"' "$XDG_CONFIG_HOME/fish/config.fish" 2>/dev/null; then
+		echo "# Added by dots script to enable Homebrew. This won't be added again if removed." >>"$XDG_CONFIG_HOME/fish/config.fish"
+		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>"$XDG_CONFIG_HOME/fish/config.fish"
+		echo "✓ Added brew to fish"
+	fi
+
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+	echo "✓ Found Homebrew"
+fi
+
+if [ -f "$XDG_CONFIG_HOME/homebrew/Brewfile" ]; then
+	echo "Installing brew bundle..."
+	brew bundle --file="$XDG_CONFIG_HOME/homebrew/Brewfile"
+else
+	echo "× Unable to read $XDG_CONFIG_HOME/homebrew/Brewfile"
+fi
+
+if command -v fish >/dev/null 2>&1; then
+	current_shell="$(dscl . -read /Users/$USER UserShell | awk '{print $2}')"
+	fish_path="$(command -v fish)"
+	if [ "$current_shell" != "$fish_path" ]; then
+		echo "Changing default shell to fish..."
+		if ! grep -q "$fish_path" /etc/shells; then
+			echo "$fish_path" | sudo tee -a /etc/shells
+		fi
+		chsh -s "$fish_path"
+	fi
+fi
+
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+	if command -v melt >/dev/null 2>&1; then
+		echo "Attempting to restore SSH key..."
+		read -sp "Enter your seed: " seed
+		melt restore ~/.ssh/id_ed25519 --seed "$seed"
+	else
+		echo "Generating SSH key..."
+		ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519 -q -N ""
+	fi
+
+	echo "✓ Created key at ~/.ssh/id_ed25519"
+else
+	echo "✓ Found SSH key at ~/.ssh/id_ed25519"
+fi
+
+# Check again for SSH key as it may have been restored above or added before a successive run
+if [ -f ~/.ssh/id_ed25519 ]; then
+	remote_url=$(git --git-dir="$DOTS_GIT_DIR" remote get-url origin)
+	if [[ "$remote_url" =~ ^https://github.com/(.*)$ ]]; then
+		git --git-dir="$DOTS_GIT_DIR" remote set-url origin "git@github.com:${BASH_REMATCH[1]}"
+		echo "✓ Updated dots remote origin from HTTPS to SSH"
+	fi
+fi
+
+if ls ~/Library/Fonts/SF-Mono-*.otf &>/dev/null; then
+	echo "✓ Found system font: SF Mono"
+else
+	echo "Copying SF Mono font to system fonts (may prompt for sudo)..."
+	sudo cp -r /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts/. ~/Library/Fonts/
+fi
+
+if [[ $a_flag -eq 1 ]]; then
+	echo "Setting macOS accent..."
+	printf "%2s \033[38;5;220m●\033[0m %-11s\n" 3 "yellow"
+	printf "%2s \033[38;5;77m●\033[0m %-11s\n" 4 "green"
+	printf "%2s \033[38;5;33m●\033[0m %-11s\n" 5 "blue"
+	printf "%2s \033[38;5;168m●\033[0m %-11s\n" 6 "pink"
+	printf "%2s \033[38;5;99m●\033[0m %-11s\n" 7 "purple"
+	printf "%2s \033[38;5;208m●\033[0m %-11s\n" 8 "orange"
+	printf "%2s \033[38;5;179m●\033[0m %-11s\n" 9 "dark yellow"
+	printf "%2s \033[38;5;65m●\033[0m %-11s\n" 10 "dark green"
+	printf "%2s \033[38;5;24m●\033[0m %-11s\n" 11 "dark blue"
+	printf "%2s \033[38;5;131m●\033[0m %-11s\n" 12 "dark pink"
+	printf "%2s \033[38;5;96m●\033[0m %-11s\n" 13 "dark purple"
+	printf "%2s \033[38;5;130m●\033[0m %-11s\n" 14 "dark orange"
+	read -p "Enter number: " accent
+	defaults write -g NSColorSimulateHardwareAccent -bool YES
+	defaults write -g NSColorSimulatedHardwareEnclosureNumber -int "$accent"
+else
+	echo "- Skipping macOS accent, rerun with '-a' to set macOS accent"
+fi
+
+if [[ $o_flag -eq 1 ]]; then
+	echo "Setting macOS options..."
+	defaults write -g _HIHideMenuBar -bool true
+	defaults write -g AppleTemperatureUnit -string "Celsius"
+	defaults write -g AppleMeasurementUnits -string "Centimeters"
+	defaults write -g AppleICUForce24HourTime -bool true
+	defaults write -g NSAutomaticPeriodSubstitutionEnabled -bool false
+	defaults write -g NSAutomaticSpellingCorrectionEnabled -bool false
+	defaults write -g NSAutomaticQuoteSubstitutionEnabled -bool false
+	defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+	defaults write -g KeyRepeat -int 2
+	defaults write -g InitialKeyRepeat -int 15
+	defaults write -g com.apple.trackpad.scaling -float 3.0
+	defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+	defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+	defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
+	defaults write -g com.apple.mouse.tapBehavior -int 1
+	defaults write com.apple.dock autohide -bool true
+	defaults write com.apple.dock expose-group-apps -bool true # fix tiny windows in exposé when using aerospace
+	defaults write com.apple.dock mru-spaces -bool false
+	defaults write com.apple.dock persistent-apps -array
+	defaults write com.apple.dock show-recents -bool false
+	defaults write com.apple.dock static-only -bool true
+	mkdir -p ~/Pictures/Screenshots
+	defaults write com.apple.screencapture location ~/Pictures/Screenshots
+	defaults write com.apple.screencapture disable-shadow -bool true
+
+	echo "! Some System Preferences must be set manually:"
+	echo "  - Keyboard → Modifier Keys → map Caps Lock to Escape"
+	echo "  - Spotlight → map Shift+Super+Space to Search"
+	echo "  - Spotlight → map Super+Space to Show apps"
+	echo "! Reboot to apply all changes"
+else
+	echo "- Skipping macOS options, rerun with '-o' to set macOS options"
+fi

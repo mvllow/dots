@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+container_name=$(docker ps --filter "name=mongodb" --filter "status=running" --format "{{.Names}}" | head -n 1)
+
+if [ -n "$container_name" ]; then
+    # if interactive
+    if [ -t 1 ]; then
+        docker exec -it $container_name mongosh "$@"
+    else
+        docker exec -i $container_name mongosh "$@"
+    fi
+elif command -v mongosh > /dev/null; then
+    command mongosh "$@"
+else
+    echo "Error: No running Docker container with 'mongodb' in the name found, and mongosh is not installed locally."
+    exit 1
+fi
+

@@ -1,0 +1,61 @@
+{
+  "plugins": {
+    "conform.nvim": {
+      "rev": "afce105eb47b0869dfafdac90d82f02ef2419d61",
+      "src": "https://github.com/stevearc/conform.nvim"
+    },
+    "lilvim": {
+      "rev": "6b7771efff4453422b0508e7b7ffebe5643e351a",
+      "src": "https://github.com/mvllow/lilvim"
+    },
+    "mini.diff": {
+      "rev": "fbb93ea1728e7c9d0944df8bd022a68402bd2e7e",
+      "src": "https://github.com/nvim-mini/mini.diff"
+    },
+    "mini.files": {
+      "rev": "26baa6215c2e5c40ba7fe82685d827fe8e5c68c8",
+      "src": "https://github.com/nvim-mini/mini.files"
+    },
+    "mini.pick": {
+      "rev": "b4351399db5043a781a32699a1bde60b747f711f",
+      "src": "https://github.com/nvim-mini/mini.pick"
+    },
+    "nvim-lspconfig": {
+      "rev": "30a2b191bccf541ce1797946324c9329e90ec448",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "3bbae7b32e0cc417438e54ec77eb7083e5f38c0f",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "slimline.nvim": {
+      "rev": "a7d2d1c89179708294ff77c668e3943a87af1b12",
+      "src": "https://github.com/sschleemilch/slimline.nvim"
+    },
+    "vim-dadbod": {
+      "rev": "e95afed23712f969f83b4857a24cf9d59114c2e6",
+      "src": "https://github.com/tpope/vim-dadbod"
+    },
+    "vim-dadbod-ui": {
+      "rev": "48c4f271da13d380592f4907e2d1d5558044e4e5",
+      "src": "https://github.com/kristijanhusak/vim-dadbod-ui"
+    },
+    "vim-fugitive": {
+      "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
+      "src": "https://github.com/tpope/vim-fugitive"
+    },
+    "vim-rails": {
+      "rev": "b0a5c76f86ea214ade36ab0b811e730c3f0add67",
+      "src": "https://github.com/tpope/vim-rails"
+    },
+    "vim-sleuth": {
+      "rev": "be69bff86754b1aa5adcbb527d7fcd1635a84080",
+      "src": "https://github.com/tpope/vim-sleuth"
+    },
+    "vim-test": {
+      "rev": "8db0f2074d989d452e5ad4b11e01bb5aa0787a01",
+      "src": "https://github.com/vim-test/vim-test"
+    }
+  }
+}
