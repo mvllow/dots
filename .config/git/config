@@ -1,0 +1,37 @@
+[alias]
+	lola = log -10 --decorate --oneline --abbrev-commit --all
+	pushf = push --force-with-lease --force-if-includes
+	backup = "!git branch backup/$(git branch --show-current | sed 's/\\//-/g')-$(date +%Y%m%d-%H%M%S)"
+
+[commit]
+	gpgsign = true
+
+[diff]
+	algorithm = histogram
+	tool = nvim_difftool
+
+[difftool "nvim_difftool"]
+	cmd = "nvim -c 'packadd nvim.difftool' -c 'DiffTool $LOCAL $REMOTE'"
+
+[merge]
+	conflictstyle = zdiff3
+
+[pull]
+	rebase = true
+
+[rebase]
+	updaterefs = true
+
+[fetch]
+	prune = true
+
+[user]
+	name = mvllow
+	email = mvllow@icloud.com
+	signingkey = ~/.ssh/id_ed25519.pub
+
+[gpg]
+	format = ssh
+
+[init]
+	defaultbranch = main

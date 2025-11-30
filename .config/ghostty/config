@@ -1,0 +1,28 @@
+theme = dark:rose-pine,light:rose-pine-dawn
+
+adjust-cell-height = +60%
+font-family = SF Mono
+font-size = 12.5
+font-thicken = true
+font-thicken-strength = 30
+
+confirm-close-surface = false
+macos-option-as-alt = right
+macos-titlebar-style = hidden
+mouse-hide-while-typing = true
+window-padding-balance = true
+
+# tmux-compatible keybinds
+# \x02 is ctrl+b (default tmux prefix)
+# \x01 is ctrl+a (common alternative tmux prefix)
+keybind = super+w=text:\x01x
+keybind = super+t=text:\x01c
+keybind = super+comma=text:\x01,
+keybind = super+shift+left_bracket=text:\x01p
+keybind = super+shift+right_bracket=text:\x01n
+keybind = super+d=text:\x01d
+keybind = super+s=text:\x01s
+keybind = super+shift+l=text:\x01L
+keybind = super+f=text:\x01f
+keybind = super+g=text:\x01g
+keybind = super+shift+g=text:\x01G

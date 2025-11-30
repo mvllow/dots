@@ -1,0 +1,15 @@
+# Ignore everything
+/*
+
+# Unplonk meta files
+!.gitignore
+!LICENSE
+!README.md
+
+# Unplonk directories
+!.config/
+
+# Unplonk nested directories
+!.local/
+.local/*
+!.local/bin/

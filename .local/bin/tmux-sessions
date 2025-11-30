@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+if [[ -n $1 ]]; then
+	session_name=$(basename "$1" | tr . _)
+	tmux new-session -ds "$session_name" -c "$1" 2>/dev/null
+	tmux switch-client -t "$session_name"
+	exit 0
+fi
+
+selected_dir=$(
+	{
+		echo "$HOME"
+		echo "$HOME/dev"
+		find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d
+	} | sed "s|$HOME|~|" | fzf
+)
+
+[[ -z $selected_dir ]] && exit 0
+
+# Convert '~' back to '$HOME' if selected
+selected_dir="${selected_dir/#\~/$HOME}"
+
+session_name=$(basename "$selected_dir" | tr . _)
+
+if ! tmux list-sessions | grep -q "^$session_name:"; then
+	tmux new-session -ds "$session_name" -c "$selected_dir" 2>/dev/null
+fi
+
+if [[ -n $TMUX ]]; then
+	tmux switch-client -t "$session_name"
+else
+	tmux attach-session -t "$session_name"
+fi
